@@ -1,0 +1,50 @@
+{
+  "name": "render-scheduler",
+  "version": "1.0.0",
+  "description": "Schedule DOM updates rendering",
+  "keywords": [
+    "performance",
+    "requestAnimationFrame",
+    "raf"
+  ],
+  "repository": "git+https://github.com/surol/render-scheduler.git",
+  "license": "MIT",
+  "author": "Ruslan Lopatin <ruslan.lopatin@gmail.com>",
+  "main": "dist/render-scheduler.js",
+  "module": "dist/render-scheduler.mjs",
+  "typings": "index.d.ts",
+  "devDependencies": {
+    "@rollup/plugin-commonjs": "^11.0.0",
+    "@rollup/plugin-node-resolve": "^7.0.0",
+    "@types/jest": "^24.0.24",
+    "call-thru": "^2.5.4",
+    "codecov": "^3.6.1",
+    "fs-extra": "^8.1.0",
+    "gh-pages": "^2.1.1",
+    "jest": "^24.9.0",
+    "jest-junit": "^10.0.0",
+    "npm-run-all": "^4.1.5",
+    "rollup": "^1.27.14",
+    "rollup-plugin-sourcemaps": "^0.5.0",
+    "rollup-plugin-typescript2": "^0.25.3",
+    "ts-jest": "^24.2.0",
+    "tslint": "^5.20.1",
+    "typedoc": "^0.15.5",
+    "typedoc-plugin-external-module-name": "^2.1.0",
+    "typescript": "^3.7.4"
+  },
+  "scripts": {
+    "all": "run-p rebuild lint test",
+    "build": "rollup --config ./rollup.config.js",
+    "ci:all": "run-p build lint ci:test",
+    "ci:test": "jest --ci --runInBand",
+    "clean": "node ./build/clean",
+    "doc": "typedoc",
+    "doc:gh-pages": "gh-pages --dist target/typedoc --dotfiles",
+    "doc:ci": "node ./build/doc-ci",
+    "doc:publish": "run-s doc doc:ci \"doc:gh-pages {@}\" --",
+    "lint": "tslint --project .",
+    "rebuild": "run-s clean build",
+    "test": "jest"
+  }
+}

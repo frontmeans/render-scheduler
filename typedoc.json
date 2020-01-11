@@ -1,0 +1,9 @@
+{
+  "exclude": ["**/*.impl.ts", ,"**/*.spec.ts"],
+  "excludeNotExported": true,
+  "excludePrivate": true,
+  "mode": "file",
+  "name": "Render Scheduler",
+  "out": "./target/typedoc",
+  "tsconfig": "tsconfig.main.json"
+}
