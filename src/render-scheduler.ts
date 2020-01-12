@@ -14,7 +14,8 @@ import { RenderSchedule, RenderScheduleOptions } from './render-schedule';
  * There are several scheduler implementations exist:
  * - [[animationRenderScheduler]] (used by default),
  * - [[asyncRenderScheduler]],
- * - [[immediateRenderScheduler]]
+ * - [[immediateRenderScheduler]],
+ * - [[ManualRenderScheduler]],
  * - [[noopRenderScheduler]].
  *
  * Custom scheduler implementations could be created using [[customRenderScheduler]] function.
