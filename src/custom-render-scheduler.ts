@@ -1,7 +1,7 @@
 /**
  * @module render-scheduler
  */
-import { renderScheduleConfig, RenderScheduleConfig } from './render-schedule';
+import { RenderScheduleConfig } from './render-schedule';
 import { RenderScheduler } from './render-scheduler';
 import { ScheduledRender, ScheduledRenderExecution } from './scheduled-render';
 
@@ -19,7 +19,7 @@ export function customRenderScheduler(
 
   return scheduleOptions => {
 
-    const config = renderScheduleConfig(scheduleOptions);
+    const config = RenderScheduleConfig.by(scheduleOptions);
     const schedulerOptions = typeof options === 'function' ? options(config) : options;
     let queued: [readonly ScheduledRender[], ScheduledRender] | [] = [];
     let scheduleQueue: () => void = doScheduleQueue;

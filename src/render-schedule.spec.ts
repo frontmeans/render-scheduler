@@ -1,21 +1,21 @@
-import { renderScheduleConfig } from './render-schedule';
+import { RenderScheduleConfig } from './render-schedule';
 
-describe('renderScheduleConfig', () => {
+describe('RenderScheduleConfig', () => {
   describe('window', () => {
     it('is current window by default', () => {
-      expect(renderScheduleConfig().window).toBe(window);
+      expect(RenderScheduleConfig.by().window).toBe(window);
     });
     it('respects the window specified', () => {
 
       const mockWindow = { name: 'window' } as Window;
 
-      expect(renderScheduleConfig({ window: mockWindow }).window).toBe(mockWindow);
+      expect(RenderScheduleConfig.by({ window: mockWindow }).window).toBe(mockWindow);
     });
     it('accesses the `window` option at most once', () => {
 
       const mockWindow = { name: 'window' } as Window;
       const getWindow = jest.fn(() => mockWindow);
-      const config = renderScheduleConfig({ get window() { return getWindow(); } });
+      const config = RenderScheduleConfig.by({ get window() { return getWindow(); } });
 
       expect(getWindow).not.toHaveBeenCalled();
 
@@ -34,10 +34,10 @@ describe('renderScheduleConfig', () => {
       const errorSpy = jest.spyOn(console, 'error');
       errorSpy.mockImplementation(() => {});
 
-      renderScheduleConfig().error(error);
+      RenderScheduleConfig.by().error(error);
       expect(errorSpy).toHaveBeenCalledWith(error);
 
-      renderScheduleConfig({}).error(error);
+      RenderScheduleConfig.by({}).error(error);
       expect(errorSpy).toHaveBeenLastCalledWith(error);
       expect(errorSpy).toHaveBeenCalledTimes(2);
     });
@@ -46,7 +46,7 @@ describe('renderScheduleConfig', () => {
       const mockError = jest.fn();
       const error = new Error('Expected');
 
-      renderScheduleConfig({ error: mockError }).error(error);
+      RenderScheduleConfig.by({ error: mockError }).error(error);
       expect(mockError).toHaveBeenCalledWith(error);
       expect(mockError).toHaveBeenCalledTimes(1);
     });

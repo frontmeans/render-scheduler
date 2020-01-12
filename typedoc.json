@@ -1,5 +1,5 @@
 {
-  "exclude": ["**/*.impl.ts", ,"**/*.spec.ts"],
+  "exclude": ["**/*.impl.ts", "**/*.spec.ts"],
   "excludeNotExported": true,
   "excludePrivate": true,
   "mode": "file",
