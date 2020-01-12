@@ -1,7 +1,9 @@
 /**
  * @module render-scheduler
  */
-import { RenderScheduleConfig, RenderScheduler, ScheduledRender, ScheduledRenderExecution } from './render-scheduler';
+import { renderScheduleConfig, RenderScheduleConfig } from './render-schedule';
+import { RenderScheduler } from './render-scheduler';
+import { ScheduledRender, ScheduledRenderExecution } from './scheduled-render';
 
 export function customRenderScheduler(
     schedule: (this: void, task: (this: void) => void, config: RenderScheduleConfig) => void,
@@ -9,9 +11,9 @@ export function customRenderScheduler(
 
   let nextQueue: ScheduledRender[] = [];
 
-  return config => {
+  return options => {
 
-    const { window } = config;
+    const config = renderScheduleConfig(options);
     let queued: [readonly ScheduledRender[], ScheduledRender] | [] = [];
     let scheduleQueue: () => void = doScheduleQueue;
 
@@ -52,7 +54,9 @@ export function customRenderScheduler(
 
       const queue = nextQueue;
       const execution: ScheduledRenderExecution = {
-        window,
+        get window() {
+          return config.window;
+        },
         postpone(postponed) {
           queue.push(postponed);
         },
@@ -69,7 +73,7 @@ export function customRenderScheduler(
         try {
           render(execution);
         } catch (e) {
-          window.console.error(e);
+          config.error(e);
         }
       }
     }

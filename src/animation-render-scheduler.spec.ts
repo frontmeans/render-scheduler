@@ -1,19 +1,18 @@
-import { newRenderSchedule, RenderSchedule } from './render-scheduler';
+import { RenderSchedule, RenderScheduleOptions } from './render-schedule';
+import { newRenderSchedule } from './render-scheduler';
 import Mocked = jest.Mocked;
+import Mock = jest.Mock;
 
 describe('animationRenderScheduler', () => {
 
-  let window: Mocked<Window>;
-  let console: Mocked<Console>;
+  let mockWindow: Mocked<Window>;
+  let mockError: Mock<void, [any]>;
   let animate: () => void;
 
   beforeEach(() => {
-    console = {
-      error: jest.fn(),
-    } as any;
-    window = {
+    mockError = jest.fn();
+    mockWindow = {
       requestAnimationFrame: jest.fn(cb => animate = cb),
-      console,
     } as any;
   });
 
@@ -21,8 +20,11 @@ describe('animationRenderScheduler', () => {
   let schedule2: RenderSchedule;
 
   beforeEach(() => {
-    schedule = newRenderSchedule({ window });
-    schedule2 = newRenderSchedule({ window });
+
+    const options: RenderScheduleOptions = { window: mockWindow, error: mockError };
+
+    schedule = newRenderSchedule(options);
+    schedule2 = newRenderSchedule(options);
   });
 
   let errors: any[];
@@ -41,7 +43,7 @@ describe('animationRenderScheduler', () => {
     schedule(render);
     expect(render).not.toHaveBeenCalled();
     animate();
-    expect(render).toHaveBeenCalledWith(expect.objectContaining({ window }));
+    expect(render).toHaveBeenCalledWith(expect.objectContaining({ window: mockWindow }));
     expect(render).toHaveBeenCalledTimes(1);
   });
   it('executes renders from different schedules in single animation frame', () => {
@@ -152,6 +154,6 @@ describe('animationRenderScheduler', () => {
     animate();
     animate();
     expect(nextRender).toHaveBeenCalledTimes(1);
-    expect(console.error).toHaveBeenCalledWith(error);
+    expect(mockError).toHaveBeenCalledWith(error);
   });
 });

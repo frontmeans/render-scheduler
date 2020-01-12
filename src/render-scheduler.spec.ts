@@ -1,4 +1,5 @@
-import { newRenderSchedule, RenderSchedule, RenderScheduler, setRenderScheduler } from './render-scheduler';
+import { RenderSchedule, RenderScheduleOptions } from './render-schedule';
+import { newRenderSchedule, RenderScheduler, setRenderScheduler } from './render-scheduler';
 import Mock = jest.Mock;
 
 describe('setRenderScheduler', () => {
@@ -7,7 +8,7 @@ describe('setRenderScheduler', () => {
   let mockSchedule: Mock<void, Parameters<RenderSchedule>>;
 
   beforeEach(() => {
-    mockScheduler = jest.fn(_config => mockSchedule);
+    mockScheduler = jest.fn((_options?) => mockSchedule);
     mockSchedule = jest.fn();
   });
   afterEach(() => {
@@ -17,9 +18,10 @@ describe('setRenderScheduler', () => {
   it('assigns scheduler', () => {
     expect(setRenderScheduler(mockScheduler)).toBe(mockScheduler);
 
-    const schedule = newRenderSchedule();
+    const options: RenderScheduleOptions = { window };
+    const schedule = newRenderSchedule(options);
 
     expect(schedule).toBe(mockSchedule);
-    expect(mockScheduler).toHaveBeenCalledWith({ window });
+    expect(mockScheduler).toHaveBeenCalledWith(options);
   });
 });

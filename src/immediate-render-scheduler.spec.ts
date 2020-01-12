@@ -1,21 +1,19 @@
 import { immediateRenderScheduler } from './immediate-render-scheduler';
-import { RenderSchedule } from './render-scheduler';
-import Mocked = jest.Mocked;
+import { RenderSchedule } from './render-schedule';
+import Mock = jest.Mock;
 
 describe('immediateRenderScheduler', () => {
 
-  let console: Mocked<Console>;
+  let mockError: Mock<void, [any]>;
 
   beforeEach(() => {
-    console = {
-      error: jest.fn(),
-    } as any;
+    mockError = jest.fn();
   });
 
   let schedule: RenderSchedule;
 
   beforeEach(() => {
-    schedule = immediateRenderScheduler({ window: { console } as any });
+    schedule = immediateRenderScheduler({ error: mockError });
   });
 
   let errors: any[];
@@ -124,6 +122,6 @@ describe('immediateRenderScheduler', () => {
     });
 
     expect(nextRender).toHaveBeenCalledTimes(1);
-    expect(console.error).toHaveBeenCalledWith(error);
+    expect(mockError).toHaveBeenCalledWith(error);
   });
 });

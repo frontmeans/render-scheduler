@@ -1,12 +1,12 @@
 import { asyncRenderScheduler } from './async-render-scheduler';
-import { RenderSchedule } from './render-scheduler';
+import { RenderSchedule } from './render-schedule';
 
 describe('asyncRenderScheduler', () => {
 
   let schedule: RenderSchedule;
 
   beforeEach(() => {
-    schedule = asyncRenderScheduler({ window });
+    schedule = asyncRenderScheduler();
   });
 
   it('render deferred', async () => {
