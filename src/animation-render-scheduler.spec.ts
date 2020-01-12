@@ -43,7 +43,9 @@ describe('animationRenderScheduler', () => {
     schedule(render);
     expect(render).not.toHaveBeenCalled();
     animate();
-    expect(render).toHaveBeenCalledWith(expect.objectContaining({ window: mockWindow }));
+    expect(render).toHaveBeenCalledWith(expect.objectContaining({
+      config: expect.objectContaining({ window: mockWindow }),
+    }));
     expect(render).toHaveBeenCalledTimes(1);
   });
   it('executes renders from different schedules in single animation frame', () => {

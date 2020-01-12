@@ -61,8 +61,8 @@ export function customRenderScheduler(
 
       const queue = nextQueue;
       const execution: ScheduledRenderExecution = {
-        get window() {
-          return config.window;
+        get config() {
+          return config;
         },
         postpone(postponed) {
           queue.push(postponed);
