@@ -14,25 +14,12 @@ describe('setRenderScheduler', () => {
     setRenderScheduler();
   });
 
-  it('assigns scheduler to current window by default', () => {
-    setRenderScheduler(mockScheduler);
+  it('assigns scheduler', () => {
+    expect(setRenderScheduler(mockScheduler)).toBe(mockScheduler);
 
     const schedule = newRenderSchedule();
 
     expect(schedule).toBe(mockSchedule);
     expect(mockScheduler).toHaveBeenCalledWith({ window });
-  });
-  it('reassigns scheduler', () => {
-
-    const mockScheduler2 = jest.fn<ReturnType<RenderScheduler>, Parameters<RenderScheduler>>(_config => mockSchedule2);
-    const mockSchedule2 = jest.fn();
-
-    setRenderScheduler(mockScheduler);
-    setRenderScheduler(mockScheduler2);
-
-    const schedule = newRenderSchedule();
-
-    expect(schedule).toBe(mockSchedule2);
-    expect(mockScheduler2).toHaveBeenCalledWith({ window });
   });
 });

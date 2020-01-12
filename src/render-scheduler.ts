@@ -22,19 +22,16 @@ export interface ScheduledRenderExecution {
   postpone(render: ScheduledRender): void;
 }
 
-const schedulers = new WeakMap<Window, RenderScheduler>();
-
 function currentWindow(): Window {
   return window;
 }
 
+let defaultRenderScheduler = animationRenderScheduler;
+
 export function setRenderScheduler(
     scheduler?: RenderScheduler | null,
-    window: Window = currentWindow(),
 ): RenderScheduler {
-  scheduler = scheduler || animationRenderScheduler;
-  schedulers.set(window, scheduler);
-  return scheduler;
+  return defaultRenderScheduler = scheduler || animationRenderScheduler;
 }
 
 export function newRenderSchedule(
@@ -42,9 +39,5 @@ export function newRenderSchedule(
       window = currentWindow(),
     }: RenderScheduleOptions = {},
 ): RenderSchedule {
-
-  const existing = schedulers.get(window);
-  const scheduler = existing ? existing : setRenderScheduler(null, window);
-
-  return scheduler({ window });
+  return defaultRenderScheduler({ window });
 }
