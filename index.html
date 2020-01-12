@@ -117,8 +117,9 @@ popupSchedule(<span class="hljs-function"><span class="hljs-params">execution</s
 				of DOM manipulations caused by too frequent updates, as only the latest render in the same schedule is executed.</p>
 				<p>There are few more implementations:</p>
 				<ul>
-					<li><code>asyncRenderScheduler</code> - executes renders asynchronously.</li>
+					<li><code>asyncRenderScheduler</code> - executes renders asynchronously,</li>
 					<li><code>immediateRenderScheduler</code> - executes renders immediately upon scheduling,</li>
+					<li><code>ManualRenderScheduler</code> - executes renders on request,</li>
 					<li><code>noopRenderScheduler</code> - neither schedules, not executes renders. </li>
 				</ul>
 				<p>Render schedulers can be used directly, or set globally with <code>setRenderScheduler()</code> function. In the latter case
@@ -166,6 +167,9 @@ popupSchedule(<span class="hljs-function"><span class="hljs-params">execution</s
 						<a href="interfaces/scheduledrenderqueue.html" class="tsd-kind-icon">Scheduled<wbr>Render<wbr>Queue</a>
 					</li>
 					<li class=" tsd-kind-type-alias">
+						<a href="globals.html#manualrenderscheduler" class="tsd-kind-icon">Manual<wbr>Render<wbr>Scheduler</a>
+					</li>
+					<li class=" tsd-kind-type-alias">
 						<a href="globals.html#renderschedule" class="tsd-kind-icon">Render<wbr>Schedule</a>
 					</li>
 					<li class=" tsd-kind-type-alias">
@@ -185,6 +189,9 @@ popupSchedule(<span class="hljs-function"><span class="hljs-params">execution</s
 					</li>
 					<li class=" tsd-kind-function">
 						<a href="globals.html#customrenderscheduler" class="tsd-kind-icon">custom<wbr>Render<wbr>Scheduler</a>
+					</li>
+					<li class=" tsd-kind-function">
+						<a href="globals.html#newmanualrenderscheduler" class="tsd-kind-icon">new<wbr>Manual<wbr>Render<wbr>Scheduler</a>
 					</li>
 					<li class=" tsd-kind-function">
 						<a href="globals.html#newrenderschedule" class="tsd-kind-icon">new<wbr>Render<wbr>Schedule</a>
