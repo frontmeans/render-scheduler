@@ -1,21 +1,15 @@
 /**
  * @module render-scheduler
  */
-import { ScheduledRenderQueue } from './custom-render-scheduler';
-import { CustomRenderScheduler } from './custom-render-scheduler.impl';
-import { RenderScheduleConfig } from './render-schedule';
+import { customRenderScheduler, ScheduledRenderQueue } from './custom-render-scheduler';
 import { RenderScheduler } from './render-scheduler';
 
-const _immediateRenderScheduler = new CustomRenderScheduler(ScheduledRenderQueue.by({
+let immediateRenderQueue = (/*#__PURE__*/ ScheduledRenderQueue.by({
   schedule: task => task(),
+  replace: replacement => immediateRenderQueue = replacement,
 }));
 
-/**
- * A render scheduler that executes renders immediately upon scheduling.
- *
- * The renders scheduled during render execution are executed immediately after current (and postponed) renders
- * execution.
- */
-export const immediateRenderScheduler: RenderScheduler = scheduleOptions => {
-  return render => _immediateRenderScheduler.render(render, RenderScheduleConfig.by(scheduleOptions));
-};
+export const immediateRenderScheduler: RenderScheduler =
+    (/*#__PURE__*/ customRenderScheduler({
+      newQueue: () => immediateRenderQueue,
+    }));

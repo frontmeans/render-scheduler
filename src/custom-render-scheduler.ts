@@ -1,10 +1,9 @@
 /**
  * @module render-scheduler
  */
-import { CustomRenderScheduler } from './custom-render-scheduler.impl';
 import { RenderScheduleConfig } from './render-schedule';
 import { RenderScheduler } from './render-scheduler';
-import { ScheduledRender } from './scheduled-render';
+import { ScheduledRender, ScheduledRenderExecution } from './scheduled-render';
 
 export interface CustomRenderSchedulerOptions {
   newQueue(config: RenderScheduleConfig): ScheduledRenderQueue;
@@ -63,8 +62,71 @@ export function customRenderScheduler(
   return scheduleOptions => {
 
     const config = RenderScheduleConfig.by(scheduleOptions);
-    const scheduler = new CustomRenderScheduler(options.newQueue(config));
+    let nextQueue = options.newQueue(config);
+    let scheduleQueue: () => void = doScheduleQueue;
+    let queued: [ScheduledRenderQueue, ScheduledRender] | [] = [];
 
-    return render => scheduler.render(render, config);
+    return render => {
+
+      const queueStarted = nextQueue.isEmpty;
+      const [queue] = queued;
+
+      if (queue === nextQueue) {
+        queued[1] = render;
+      } else {
+
+        const newQueued = queued = [nextQueue, render];
+
+        nextQueue.add((execution: ScheduledRenderExecution) => newQueued[1](execution));
+      }
+
+      if (queueStarted) {
+        scheduleQueue();
+      }
+    };
+
+    function doScheduleQueue() {
+      scheduleQueue = () => {};
+
+      for (;;) {
+
+        const lastQueue = nextQueue;
+
+        lastQueue.schedule(() => exec());
+        if (nextQueue === lastQueue || nextQueue.isEmpty) {
+          break;
+        }
+      }
+
+      scheduleQueue = doScheduleQueue;
+    }
+
+    function exec() {
+
+      const queue = nextQueue;
+      const execution: ScheduledRenderExecution = {
+        get config() {
+          return config;
+        },
+        postpone(postponed) {
+          queue.add(postponed);
+        },
+      };
+
+      nextQueue = queue.reset();
+      for (; ;) {
+
+        const render = queue.pull();
+
+        if (!render) {
+          break;
+        }
+        try {
+          render(execution);
+        } catch (e) {
+          config.error(e);
+        }
+      }
+    }
   };
 }

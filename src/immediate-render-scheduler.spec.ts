@@ -113,7 +113,7 @@ describe('immediateRenderScheduler', () => {
     expect(nextRender1).not.toHaveBeenCalled();
     expect(nextRender2).toHaveBeenCalledTimes(1);
   });
-  xit('executes recurrent render in another schedule after currently executing one', () => {
+  it('executes recurrent render in another schedule immediately', () => {
 
     const nextRender1 = jest.fn();
     const nextRender2 = jest.fn();
@@ -123,7 +123,7 @@ describe('immediateRenderScheduler', () => {
       schedule2(nextRender2);
       try {
         expect(nextRender1).not.toHaveBeenCalled();
-        expect(nextRender2).not.toHaveBeenCalled();
+        expect(nextRender2).toHaveBeenCalled();
       } catch (e) {
         errors.push(e);
       }
