@@ -8,4 +8,10 @@ import { RenderScheduler } from './render-scheduler';
  * @internal
  */
 export const animationRenderScheduler: RenderScheduler =
-    (/*#__PURE__*/ customRenderScheduler((task, { window }) => window.requestAnimationFrame(task)));
+    (/*#__PURE__*/ customRenderScheduler(
+        ({ window }) => ({
+          schedule(task) {
+            window.requestAnimationFrame(task);
+          },
+        }),
+    ));

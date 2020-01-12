@@ -5,15 +5,22 @@ import { renderScheduleConfig, RenderScheduleConfig } from './render-schedule';
 import { RenderScheduler } from './render-scheduler';
 import { ScheduledRender, ScheduledRenderExecution } from './scheduled-render';
 
+export interface CustomRenderSchedulerOptions {
+  schedule(task: (this: void) => void): void;
+}
+
 export function customRenderScheduler(
-    schedule: (this: void, task: (this: void) => void, config: RenderScheduleConfig) => void,
+    options:
+        | CustomRenderSchedulerOptions
+        | ((this: void, config: RenderScheduleConfig) => CustomRenderSchedulerOptions),
 ): RenderScheduler {
 
   let nextQueue: ScheduledRender[] = [];
 
-  return options => {
+  return scheduleOptions => {
 
-    const config = renderScheduleConfig(options);
+    const config = renderScheduleConfig(scheduleOptions);
+    const schedulerOptions = typeof options === 'function' ? options(config) : options;
     let queued: [readonly ScheduledRender[], ScheduledRender] | [] = [];
     let scheduleQueue: () => void = doScheduleQueue;
 
@@ -42,7 +49,7 @@ export function customRenderScheduler(
 
         const lastQueue = nextQueue;
 
-        schedule(executeRenders, config);
+        schedulerOptions.schedule(executeRenders);
         if (nextQueue === lastQueue || !nextQueue.length) {
           break;
         }

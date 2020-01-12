@@ -5,4 +5,8 @@ import { customRenderScheduler } from './custom-render-scheduler';
 import { RenderScheduler } from './render-scheduler';
 
 export const immediateRenderScheduler: RenderScheduler =
-    (/*#__PURE__*/ customRenderScheduler(task => task()));
+    (/*#__PURE__*/ customRenderScheduler({
+      schedule(task) {
+        task();
+      },
+    }));
