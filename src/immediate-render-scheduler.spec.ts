@@ -11,9 +11,11 @@ describe('immediateRenderScheduler', () => {
   });
 
   let schedule: RenderSchedule;
+  let schedule2: RenderSchedule;
 
   beforeEach(() => {
     schedule = immediateRenderScheduler({ error: mockError });
+    schedule2 = immediateRenderScheduler();
   });
 
   let errors: any[];
@@ -109,6 +111,25 @@ describe('immediateRenderScheduler', () => {
     });
 
     expect(nextRender1).not.toHaveBeenCalled();
+    expect(nextRender2).toHaveBeenCalledTimes(1);
+  });
+  xit('executes recurrent render in another schedule after currently executing one', () => {
+
+    const nextRender1 = jest.fn();
+    const nextRender2 = jest.fn();
+
+    schedule(() => {
+      schedule(nextRender1);
+      schedule2(nextRender2);
+      try {
+        expect(nextRender1).not.toHaveBeenCalled();
+        expect(nextRender2).not.toHaveBeenCalled();
+      } catch (e) {
+        errors.push(e);
+      }
+    });
+
+    expect(nextRender1).toHaveBeenCalledTimes(1);
     expect(nextRender2).toHaveBeenCalledTimes(1);
   });
   it('logs error and executes recurrent render after error', () => {

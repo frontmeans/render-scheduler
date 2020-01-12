@@ -85,7 +85,7 @@ export const RenderScheduleConfig = {
    *
    * @param options  Render scheduler options the configuration should be base on.
    */
-  by(options?: RenderScheduleOptions): RenderScheduleConfig {
+  by(this: void, options?: RenderScheduleOptions): RenderScheduleConfig {
 
     let win: Window | undefined;
 

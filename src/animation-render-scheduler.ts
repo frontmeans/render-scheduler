@@ -1,8 +1,10 @@
 /**
  * @module render-scheduler
  */
-import { customRenderScheduler } from './custom-render-scheduler';
+import { customRenderScheduler, ScheduledRenderQueue } from './custom-render-scheduler';
 import { RenderScheduler } from './render-scheduler';
+
+const animationRenderQueues = (/*#__PURE__*/ new WeakMap<Window, ScheduledRenderQueue>());
 
 /**
  * A render scheduler that executes the scheduled renders within animation frame.
@@ -16,10 +18,22 @@ import { RenderScheduler } from './render-scheduler';
  * [requestAnimationFrame()]: https://developer.mozilla.org/en-US/docs/Web/API/window/requestAnimationFrame
  */
 export const animationRenderScheduler: RenderScheduler =
-    (/*#__PURE__*/ customRenderScheduler(
-        ({ window }) => ({
-          schedule(task) {
-            window.requestAnimationFrame(task);
-          },
-        }),
-    ));
+    (/*#__PURE__*/ customRenderScheduler({
+      newQueue({ window}) {
+
+        const existing = animationRenderQueues.get(window);
+
+        if (existing) {
+          return existing;
+        }
+
+        const newQueue = ScheduledRenderQueue.by({
+          schedule: task => window.requestAnimationFrame(task),
+          replace: replacement => animationRenderQueues.set(window, replacement),
+        });
+
+        animationRenderQueues.set(window, newQueue);
+
+        return newQueue;
+      },
+    }));

@@ -55,11 +55,37 @@ describe('animationRenderScheduler', () => {
 
     schedule(render1);
     schedule2(render2);
+    expect(mockWindow.requestAnimationFrame).toHaveBeenCalledTimes(1);
     expect(render1).not.toHaveBeenCalled();
     expect(render2).not.toHaveBeenCalled();
+
     animate();
     expect(render1).toHaveBeenCalledTimes(1);
     expect(render2).toHaveBeenCalledTimes(1);
+  });
+  it('executes renders from different windows in different animation frames', () => {
+
+    const mockWindow3: Mocked<Window> = {
+      requestAnimationFrame: jest.fn(),
+    } as any;
+    const schedule3 = newRenderSchedule({ window: mockWindow3 });
+    const render1 = jest.fn();
+    const render2 = jest.fn();
+    const render3 = jest.fn();
+
+    schedule(render1);
+    schedule2(render2);
+    schedule3(render3);
+    expect(mockWindow.requestAnimationFrame).toHaveBeenCalledTimes(1);
+    expect(mockWindow3.requestAnimationFrame).toHaveBeenCalledTimes(1);
+    expect(render1).not.toHaveBeenCalled();
+    expect(render2).not.toHaveBeenCalled();
+    expect(render3).not.toHaveBeenCalled();
+
+    animate();
+    expect(render1).toHaveBeenCalledTimes(1);
+    expect(render2).toHaveBeenCalledTimes(1);
+    expect(render3).not.toHaveBeenCalled();
   });
   it('executes only the last render scheduled in one schedule', () => {
 
