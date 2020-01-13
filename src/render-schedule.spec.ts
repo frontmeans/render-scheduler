@@ -11,6 +11,20 @@ describe('RenderScheduleConfig', () => {
 
       expect(RenderScheduleConfig.by({ window: mockWindow }).window).toBe(mockWindow);
     });
+    it('is detected by `node`', () => {
+
+      const mockWindow = { name: 'window' } as Window;
+      const mockNode = { ownerDocument: { defaultView: mockWindow } } as Node;
+
+      expect(RenderScheduleConfig.by({ node: mockNode }).window).toBe(mockWindow);
+    });
+    it('is detected by document `node`', () => {
+
+      const mockWindow = { name: 'window' } as Window;
+      const mockNode = { defaultView: mockWindow } as Document;
+
+      expect(RenderScheduleConfig.by({ node: mockNode }).window).toBe(mockWindow);
+    });
     it('accesses the `window` option at most once', () => {
 
       const mockWindow = { name: 'window' } as Window;

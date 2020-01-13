@@ -34,13 +34,20 @@ export type RenderSchedule =
 export interface RenderScheduleOptions {
 
   /**
-   * A window object for constructed schedule.
+   * A window for constructed schedule.
    *
-   * Current `window` by default.
+   * Detected by [[nodeWindow]] by default, if [[node]] is specified. Falls back to current `window`.
    *
    * The schedulers that don't need a window never access this option value.
    */
   window?: Window;
+
+  /**
+   * A DOM node for constructed schedule.
+   *
+   * Used to detect missing [[window]] option.
+   */
+  node?: Node;
 
   /**
    * Reports an error. E.g. a render execution failure.
@@ -63,11 +70,16 @@ export interface RenderScheduleOptions {
 export interface RenderScheduleConfig {
 
   /**
-   * A window object the schedule is constructed for.
+   * A window the schedule is constructed for.
    *
    * The schedulers that don't need a window should never access this option value.
    */
   window: Window;
+
+  /**
+   * A DOM node the schedule is constructed for.
+   */
+  node?: Node;
 
   /**
    * Reports an error. E.g. a render execution failure.
@@ -85,13 +97,13 @@ export const RenderScheduleConfig = {
    *
    * @param options  Render scheduler options the configuration should be base on.
    */
-  by(this: void, options?: RenderScheduleOptions): RenderScheduleConfig {
+  by(this: void, options: RenderScheduleOptions = {}): RenderScheduleConfig {
 
     let win: Window | undefined;
 
     return {
       get window() {
-        return win || (win = options && options.window || window);
+        return win || (win = options.window || (options.node && nodeWindow(options.node)) || window);
       },
       error(...messages) {
         options && options.error ? options.error(...messages) : console.error(...messages);
@@ -100,3 +112,17 @@ export const RenderScheduleConfig = {
   },
 
 };
+
+/**
+ * Detects a window the given DOM node is attached to.
+ *
+ * @param node  Target DOM node.
+ *
+ * @returns A window of the owner document, or `null` if absent.
+ */
+export function nodeWindow(node: Node): Window | null {
+
+  const document = node.ownerDocument || node as Document;
+
+  return document.defaultView;
+}

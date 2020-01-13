@@ -90,11 +90,13 @@ Schedule Options
 
 When constructing a new schedule additional options may be specified:
 
-- `window` - a window the schedule is created for.
+- `window` - A window for constructed schedule.
   `animationRenderScheduler` executes renders for all schedules created for the same window simultaneously,
   in the same animation frame.
   Other implementations ignore this option.
-  Defaults to current window.
+  Defaults to the window of the `node`, or to the current one.
+- `node` - A DOM node for constructed schedule.
+  Used to detect missing `window` option.
 - `error(...messages: any[])` - a method that will be called when some error occurred.
   E.g. when render execution failed.
   Defaults to `console.error()`.   
