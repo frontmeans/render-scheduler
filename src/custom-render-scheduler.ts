@@ -162,7 +162,7 @@ export function customRenderScheduler(
 
     return render => {
 
-      const scheduled = nextQueue.scheduled;
+      const scheduled = nextQueue.scheduled; // Check it here for to prevent immediate execution _recurrently_
       const [queue] = queued;
 
       nextQueue = nextQueue.next;
