@@ -130,11 +130,13 @@ popupSchedule(<span class="hljs-function"><span class="hljs-params">execution</s
 				</a>
 				<p>When constructing a new schedule additional options may be specified:</p>
 				<ul>
-					<li><code>window</code> - a window the schedule is created for.
+					<li><code>window</code> - A window for constructed schedule.
 						<code>animationRenderScheduler</code> executes renders for all schedules created for the same window simultaneously,
 						in the same animation frame.
 						Other implementations ignore this option.
-					Defaults to current window.</li>
+					Defaults to the window of the <code>node</code>, or to the current one.</li>
+					<li><code>node</code> - A DOM node for constructed schedule.
+					Used to detect missing <code>window</code> option.</li>
 					<li><code>error(...messages: any[])</code> - a method that will be called when some error occurred.
 						E.g. when render execution failed.
 					Defaults to <code>console.error()</code>.   </li>
@@ -195,6 +197,9 @@ popupSchedule(<span class="hljs-function"><span class="hljs-params">execution</s
 					</li>
 					<li class=" tsd-kind-function">
 						<a href="globals.html#newrenderschedule" class="tsd-kind-icon">new<wbr>Render<wbr>Schedule</a>
+					</li>
+					<li class=" tsd-kind-function">
+						<a href="globals.html#nodewindow" class="tsd-kind-icon">node<wbr>Window</a>
 					</li>
 					<li class=" tsd-kind-function">
 						<a href="globals.html#nooprenderscheduler" class="tsd-kind-icon">noop<wbr>Render<wbr>Scheduler</a>

@@ -89,6 +89,7 @@
 						<section class="tsd-index-section ">
 							<h3>Properties</h3>
 							<ul class="tsd-index-list">
+								<li class="tsd-kind-property tsd-parent-kind-interface"><a href="renderscheduleoptions.html#node" class="tsd-kind-icon">node</a></li>
 								<li class="tsd-kind-property tsd-parent-kind-interface"><a href="renderscheduleoptions.html#window" class="tsd-kind-icon">window</a></li>
 							</ul>
 						</section>
@@ -104,19 +105,35 @@
 			<section class="tsd-panel-group tsd-member-group ">
 				<h2>Properties</h2>
 				<section class="tsd-panel tsd-member tsd-kind-property tsd-parent-kind-interface">
+					<a name="node" class="tsd-anchor"></a>
+					<h3><span class="tsd-flag ts-flagOptional">Optional</span> node</h3>
+					<div class="tsd-signature tsd-kind-icon">node<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">Node</span></div>
+					<aside class="tsd-sources">
+						<ul>
+							<li>Defined in <a href="https://github.com/surol/render-scheduler/blob/c3f46e7/src/render-schedule.ts#L50">render-schedule.ts:50</a></li>
+						</ul>
+					</aside>
+					<div class="tsd-comment tsd-typography">
+						<div class="lead">
+							<p>A DOM node for constructed schedule.</p>
+						</div>
+						<p>Used to detect missing <a href="renderscheduleoptions.html#window">window</a> option.</p>
+					</div>
+				</section>
+				<section class="tsd-panel tsd-member tsd-kind-property tsd-parent-kind-interface">
 					<a name="window" class="tsd-anchor"></a>
 					<h3><span class="tsd-flag ts-flagOptional">Optional</span> window</h3>
 					<div class="tsd-signature tsd-kind-icon">window<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">Window</span></div>
 					<aside class="tsd-sources">
 						<ul>
-							<li>Defined in <a href="https://github.com/surol/render-scheduler/blob/48e6d09/src/render-schedule.ts#L43">render-schedule.ts:43</a></li>
+							<li>Defined in <a href="https://github.com/surol/render-scheduler/blob/c3f46e7/src/render-schedule.ts#L43">render-schedule.ts:43</a></li>
 						</ul>
 					</aside>
 					<div class="tsd-comment tsd-typography">
 						<div class="lead">
-							<p>A window object for constructed schedule.</p>
+							<p>A window for constructed schedule.</p>
 						</div>
-						<p>Current <code>window</code> by default.</p>
+						<p>Detected by <a href="../globals.html#nodewindow">nodeWindow</a> by default, if <a href="renderscheduleoptions.html#node">node</a> is specified. Falls back to current <code>window</code>.</p>
 						<p>The schedulers that don&#39;t need a window never access this option value.</p>
 					</div>
 				</section>
@@ -133,7 +150,7 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/surol/render-scheduler/blob/48e6d09/src/render-schedule.ts#L52">render-schedule.ts:52</a></li>
+									<li>Defined in <a href="https://github.com/surol/render-scheduler/blob/c3f46e7/src/render-schedule.ts#L59">render-schedule.ts:59</a></li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
@@ -179,6 +196,9 @@
 						<a href="renderscheduleoptions.html" class="tsd-kind-icon">Render<wbr>Schedule<wbr>Options</a>
 						<ul>
 							<li class=" tsd-kind-property tsd-parent-kind-interface">
+								<a href="renderscheduleoptions.html#node" class="tsd-kind-icon">node</a>
+							</li>
+							<li class=" tsd-kind-property tsd-parent-kind-interface">
 								<a href="renderscheduleoptions.html#window" class="tsd-kind-icon">window</a>
 							</li>
 							<li class=" tsd-kind-method tsd-parent-kind-interface">
@@ -223,6 +243,9 @@
 					</li>
 					<li class=" tsd-kind-function">
 						<a href="../globals.html#newrenderschedule" class="tsd-kind-icon">new<wbr>Render<wbr>Schedule</a>
+					</li>
+					<li class=" tsd-kind-function">
+						<a href="../globals.html#nodewindow" class="tsd-kind-icon">node<wbr>Window</a>
 					</li>
 					<li class=" tsd-kind-function">
 						<a href="../globals.html#nooprenderscheduler" class="tsd-kind-icon">noop<wbr>Render<wbr>Scheduler</a>
