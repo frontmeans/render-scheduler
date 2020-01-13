@@ -1,6 +1,6 @@
 {
   "name": "render-scheduler",
-  "version": "1.0.2",
+  "version": "1.0.3",
   "description": "Schedule DOM updates rendering",
   "keywords": [
     "performance",
