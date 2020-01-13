@@ -78,7 +78,7 @@ export interface ScheduledRenderQueue {
   /**
    * Resets the queue for the next execution.
    *
-   * This is called only one. The [[next]] property must return a result of this call after that.
+   * This is called only once per queue. The [[next]] property must return a result of this call after that.
    *
    * @returns  Another (empty) queue that will collect scheduled renders from now on.
    */
