@@ -33,10 +33,9 @@ describe('ScheduledRenderQueue', () => {
 
   describe('reset', () => {
     it('constructs another queue', () => {
+      queue.add(jest.fn());
 
       const reset = queue.reset();
-
-      queue.add(jest.fn());
 
       expect(reset).not.toBe(queue);
       expect(reset.isEmpty).toBe(true);

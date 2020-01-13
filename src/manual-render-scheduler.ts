@@ -29,33 +29,24 @@ export type ManualRenderScheduler = RenderScheduler & {
  */
 export function newManualRenderScheduler(): ManualRenderScheduler {
 
-  let pendingTask: (() => void) | undefined;
+  const emptyTask = () => false;
+  let pendingTask: (() => boolean) = emptyTask;
   let queue = ScheduledRenderQueue.by({
-    schedule: task => {
-
-      const prev = pendingTask;
-
-      pendingTask = prev ? () => { prev(); task(); } : task;
+    // Called at most once until reset
+    schedule: task => pendingTask = () => {
+      task();
+      return true;
     },
-    replace: replacement => queue = replacement,
+    replace: replacement => {
+      pendingTask = emptyTask;
+      queue = replacement;
+    },
   });
   const scheduler = customRenderScheduler({
     newQueue: () => queue,
   }) as ManualRenderScheduler;
 
-  scheduler.render = () => {
-
-    const task = pendingTask;
-
-    pendingTask = undefined;
-
-    if (task) {
-      task();
-      return true;
-    }
-
-    return false;
-  };
+  scheduler.render = () => pendingTask();
 
   return scheduler;
 }

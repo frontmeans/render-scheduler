@@ -36,12 +36,24 @@ export interface CustomRenderSchedulerOptions {
 export interface ScheduledRenderQueue {
 
   /**
-   * `true` when this queue is empty, or `false` when it contains at least one render.
+   * Whether this queue contains no renders.
    */
   readonly isEmpty: boolean;
 
   /**
-   * Add a render to this queue.
+   * Whether this queue already {@link schedule scheduled}.
+   */
+  readonly scheduled: boolean;
+
+  /**
+   * Actual queue to add renders to.
+   *
+   * This is the same as `this` until the queue is [[reset]].
+   */
+  readonly next: ScheduledRenderQueue;
+
+  /**
+   * Adds a render to this queue.
    *
    * @param render  Scheduled render to add.
    */
@@ -57,12 +69,16 @@ export interface ScheduledRenderQueue {
   /**
    * Schedules queued renders execution.
    *
+   * This is called only once per queue. The [[scheduled]] property must become `true` after that.
+   *
    * @param task  A function that performs scheduled renders execution task.
    */
   schedule(task: (this: void) => void): void;
 
   /**
    * Resets the queue for the next execution.
+   *
+   * This is called only one. The [[next]] property must return a result of this call after that.
    *
    * @returns  Another (empty) queue that will collect scheduled renders from now on.
    */
@@ -88,17 +104,28 @@ export const ScheduledRenderQueue = {
         schedule,
         replace = () => {},
       }: {
-        schedule(this: ScheduledRenderQueue, task: (this: void) => void): void;
-        replace?(this: void, replacement: ScheduledRenderQueue): void
+        schedule(this: void, task: (this: void) => void): void;
+        replace?(this: void, replacement: ScheduledRenderQueue): void;
       },
   ): ScheduledRenderQueue {
 
     const renders: ScheduledRender[] = [];
+    let scheduled = false;
+    let next: ScheduledRenderQueue | undefined;
 
     return {
-      schedule,
       get isEmpty() {
         return !renders.length;
+      },
+      get scheduled() {
+        return scheduled;
+      },
+      get next() {
+        return next && next.next || this;
+      },
+      schedule(task) {
+        scheduled = true;
+        schedule(task);
       },
       add(render) {
         renders.push(render);
@@ -107,12 +134,9 @@ export const ScheduledRenderQueue = {
         return renders.shift();
       },
       reset() {
-
-        const replacement = ScheduledRenderQueue.by({ schedule, replace });
-
-        replace(replacement);
-
-        return replacement;
+        next = ScheduledRenderQueue.by({ schedule, replace });
+        replace(next);
+        return next;
       },
     };
   },
@@ -138,9 +162,10 @@ export function customRenderScheduler(
 
     return render => {
 
-      const queueStarted = nextQueue.isEmpty;
+      const scheduled = nextQueue.scheduled;
       const [queue] = queued;
 
+      nextQueue = nextQueue.next;
       if (queue === nextQueue) {
         queued[1] = render;
       } else {
@@ -150,7 +175,7 @@ export function customRenderScheduler(
         nextQueue.add((execution: ScheduledRenderExecution) => newQueued[1](execution));
       }
 
-      if (queueStarted) {
+      if (!scheduled) {
         scheduleQueue();
       }
     };
@@ -160,12 +185,16 @@ export function customRenderScheduler(
 
       for (;;) {
 
-        const lastQueue = nextQueue;
+        let immediatelyExecuted = false;
 
-        lastQueue.schedule(() => exec());
-        if (nextQueue === lastQueue || nextQueue.isEmpty) {
+        nextQueue.schedule(() => {
+          immediatelyExecuted = true;
+          exec();
+        });
+        if (!immediatelyExecuted || nextQueue.isEmpty) {
           break;
         }
+        // The are more immediately executed tasks
       }
 
       scheduleQueue = doScheduleQueue;
