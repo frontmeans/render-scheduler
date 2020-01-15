@@ -156,6 +156,7 @@ class ScheduledRenderQ {
 
       const next = this.reset();
 
+      next.suspend();
       this.exec(execution);
       next.resume();
     });
@@ -178,9 +179,7 @@ class ScheduledRenderQ {
   }
 
   private reset(): ScheduledRenderQ {
-    this._next = ScheduledRenderQ.by(this.q.reset());
-    this._next.suspend();
-    return this._next;
+    return this._next = ScheduledRenderQ.by(this.q.reset());
   }
 
   private suspend() {
