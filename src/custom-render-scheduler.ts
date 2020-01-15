@@ -36,23 +36,6 @@ export interface CustomRenderSchedulerOptions {
 export interface ScheduledRenderQueue {
 
   /**
-   * Whether this queue contains no renders.
-   */
-  readonly isEmpty: boolean;
-
-  /**
-   * Whether this queue already {@link schedule scheduled}.
-   */
-  readonly scheduled: boolean;
-
-  /**
-   * Actual queue to add renders to.
-   *
-   * This is the same as `this` until the queue is [[reset]].
-   */
-  readonly next: ScheduledRenderQueue;
-
-  /**
    * Adds a render to this queue.
    *
    * @param render  Scheduled render to add.
@@ -104,29 +87,15 @@ export const ScheduledRenderQueue = {
         schedule,
         replace = () => {},
       }: {
-        schedule(this: void, task: (this: void) => void): void;
+        schedule(this: ScheduledRenderQueue, task: (this: void) => void): void;
         replace?(this: void, replacement: ScheduledRenderQueue): void;
       },
   ): ScheduledRenderQueue {
 
     const renders: ScheduledRender[] = [];
-    let scheduled = false;
-    let next: ScheduledRenderQueue | undefined;
 
     return {
-      get isEmpty() {
-        return !renders.length;
-      },
-      get scheduled() {
-        return scheduled;
-      },
-      get next() {
-        return next && next.next || this;
-      },
-      schedule(task) {
-        scheduled = true;
-        schedule(task);
-      },
+      schedule,
       add(render) {
         renders.push(render);
       },
@@ -134,14 +103,102 @@ export const ScheduledRenderQueue = {
         return renders.shift();
       },
       reset() {
-        next = ScheduledRenderQueue.by({ schedule, replace });
+
+        const next = ScheduledRenderQueue.by({ schedule, replace });
+
         replace(next);
+
         return next;
       },
     };
   },
 
 };
+
+const ScheduledRenderQ__symbol = Symbol('scheduled-render-q');
+
+class ScheduledRenderQ {
+
+  schedule: (this: ScheduledRenderQ, config: RenderScheduleConfig) => void;
+  private scheduled?: RenderScheduleConfig;
+  private _next?: ScheduledRenderQ;
+
+  static by(queue: ScheduledRenderQueue): ScheduledRenderQ {
+    return (queue as any)[ScheduledRenderQ__symbol]
+        || ((queue as any)[ScheduledRenderQ__symbol] = new ScheduledRenderQ(queue));
+  }
+
+  private constructor(private readonly q: ScheduledRenderQueue) {
+    this.schedule = this.doSchedule;
+  }
+
+  get next(): ScheduledRenderQ {
+    return this._next || this;
+  }
+
+  add(render: ScheduledRender) {
+    this.q.add(render);
+  }
+
+  private doSchedule(config: RenderScheduleConfig) {
+    this.schedule = () => {};
+
+    const execution: ScheduledRenderExecution = {
+      get config() {
+        return config;
+      },
+      postpone: (postponed) => {
+        this.add(postponed);
+      },
+    };
+
+    this.q.schedule(() => {
+
+      const next = this.reset();
+
+      this.exec(execution);
+      next.resume();
+    });
+  }
+
+  private exec(execution: ScheduledRenderExecution) {
+    for (; ;) {
+
+      const render = this.q.pull();
+
+      if (!render) {
+        break;
+      }
+      try {
+        render(execution);
+      } catch (e) {
+        execution.config.error(e);
+      }
+    }
+  }
+
+  private reset(): ScheduledRenderQ {
+    this._next = ScheduledRenderQ.by(this.q.reset());
+    this._next.suspend();
+    return this._next;
+  }
+
+  private suspend() {
+    this.schedule = config => {
+      this.scheduled = config;
+      this.schedule = () => {};
+    };
+  }
+
+  private resume() {
+    if (this.scheduled) {
+      this.doSchedule(this.scheduled);
+    } else {
+      this.schedule = this.doSchedule;
+    }
+  }
+
+}
 
 /**
  * Builds custom render scheduler.
@@ -156,13 +213,11 @@ export function customRenderScheduler(
   return scheduleOptions => {
 
     const config = RenderScheduleConfig.by(scheduleOptions);
-    let nextQueue = options.newQueue(config);
-    let scheduleQueue: () => void = doScheduleQueue;
-    let queued: [ScheduledRenderQueue, ScheduledRender] | [] = [];
+    let nextQueue = ScheduledRenderQ.by(options.newQueue(config));
+    let queued: [ScheduledRenderQ, ScheduledRender] | [] = [];
 
     return render => {
 
-      const scheduled = nextQueue.scheduled; // Check it here to prevent immediate execution _recurrently_
       const [queue] = queued;
 
       nextQueue = nextQueue.next;
@@ -170,62 +225,12 @@ export function customRenderScheduler(
         queued[1] = render;
       } else {
 
-        const newQueued = queued = [nextQueue, render];
+        const nextQueued = queued = [nextQueue, render];
 
-        nextQueue.add((execution: ScheduledRenderExecution) => newQueued[1](execution));
+        nextQueue.add((execution: ScheduledRenderExecution) => nextQueued[1](execution));
       }
 
-      if (!scheduled) {
-        scheduleQueue();
-      }
+      nextQueue.schedule(config);
     };
-
-    function doScheduleQueue() {
-      scheduleQueue = () => {};
-
-      for (;;) {
-
-        let immediatelyExecuted = false;
-
-        nextQueue.schedule(() => {
-          immediatelyExecuted = true;
-          exec();
-        });
-        if (!immediatelyExecuted || nextQueue.isEmpty) {
-          break;
-        }
-        // The are more immediately executed tasks
-      }
-
-      scheduleQueue = doScheduleQueue;
-    }
-
-    function exec() {
-
-      const queue = nextQueue;
-      const execution: ScheduledRenderExecution = {
-        get config() {
-          return config;
-        },
-        postpone(postponed) {
-          queue.add(postponed);
-        },
-      };
-
-      nextQueue = queue.reset();
-      for (; ;) {
-
-        const render = queue.pull();
-
-        if (!render) {
-          break;
-        }
-        try {
-          render(execution);
-        } catch (e) {
-          config.error(e);
-        }
-      }
-    }
   };
 }
