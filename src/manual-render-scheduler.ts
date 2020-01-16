@@ -9,7 +9,7 @@ import { RenderScheduler } from './render-scheduler';
  *
  * Can be constructed using [[newManualRenderScheduler]] function.
  */
-export type ManualRenderScheduler = RenderScheduler & {
+export interface ManualRenderScheduler extends RenderScheduler {
 
   /**
    * Executes all scheduled renders.
@@ -18,7 +18,7 @@ export type ManualRenderScheduler = RenderScheduler & {
    */
   render(): boolean;
 
-};
+}
 
 /**
  * Creates new render scheduler that executes scheduled renders on request.

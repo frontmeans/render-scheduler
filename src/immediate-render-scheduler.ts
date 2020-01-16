@@ -4,6 +4,9 @@
 import { customRenderScheduler, ScheduledRenderQueue } from './custom-render-scheduler';
 import { RenderScheduler } from './render-scheduler';
 
+/**
+ * @internal
+ */
 let immediateRenderQueue = (/*#__PURE__*/ ScheduledRenderQueue.by({
   schedule: task => task(),
   replace: replacement => immediateRenderQueue = replacement,

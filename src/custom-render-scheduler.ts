@@ -52,16 +52,12 @@ export interface ScheduledRenderQueue {
   /**
    * Schedules queued renders execution.
    *
-   * This is called only once per queue. The [[scheduled]] property must become `true` after that.
-   *
    * @param task  A function that performs scheduled renders execution task.
    */
   schedule(task: (this: void) => void): void;
 
   /**
    * Resets the queue for the next execution.
-   *
-   * This is called only once per queue. The [[next]] property must return a result of this call after that.
    *
    * @returns  Another (empty) queue that will collect scheduled renders from now on.
    */
@@ -115,8 +111,14 @@ export const ScheduledRenderQueue = {
 
 };
 
+/**
+ * @internal
+ */
 const ScheduledRenderQ__symbol = Symbol('scheduled-render-q');
 
+/**
+ * @internal
+ */
 class ScheduledRenderQ {
 
   schedule: (this: ScheduledRenderQ, config: RenderScheduleConfig) => void;

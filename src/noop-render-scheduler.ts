@@ -4,6 +4,9 @@
 import { RenderSchedule } from './render-schedule';
 import { RenderScheduler } from './render-scheduler';
 
+/**
+ * @internal
+ */
 const noopRenderSchedule: RenderSchedule = () => {};
 
 /**

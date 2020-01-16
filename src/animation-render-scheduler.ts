@@ -4,6 +4,9 @@
 import { customRenderScheduler, ScheduledRenderQueue } from './custom-render-scheduler';
 import { RenderScheduler } from './render-scheduler';
 
+/**
+ * @internal
+ */
 const animationRenderQueues = (/*#__PURE__*/ new WeakMap<Window, ScheduledRenderQueue>());
 
 /**

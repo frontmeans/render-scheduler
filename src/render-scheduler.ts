@@ -28,6 +28,9 @@ export type RenderScheduler =
  */
     (this: void, options?: RenderScheduleOptions) => RenderSchedule;
 
+/**
+ * @internal
+ */
 let defaultRenderScheduler = animationRenderScheduler;
 
 /**

@@ -4,6 +4,9 @@
 import { customRenderScheduler, ScheduledRenderQueue } from './custom-render-scheduler';
 import { RenderScheduler } from './render-scheduler';
 
+/**
+ * @internal
+ */
 let asyncRenderQueue = (/*#__PURE__*/ ScheduledRenderQueue.by({
   schedule: task => Promise.resolve().then(task),
   replace: replacement => asyncRenderQueue = replacement,
