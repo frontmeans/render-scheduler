@@ -121,21 +121,18 @@ const ScheduledRenderQ__symbol = Symbol('scheduled-render-q');
  */
 class ScheduledRenderQ {
 
+  readonly ref: [ScheduledRenderQ];
   schedule: (this: ScheduledRenderQ, config: RenderScheduleConfig) => void;
   private scheduled?: RenderScheduleConfig;
-  private _next?: ScheduledRenderQ;
 
-  static by(queue: ScheduledRenderQueue): ScheduledRenderQ {
+  static by(queue: ScheduledRenderQueue, ref?: [ScheduledRenderQ]): ScheduledRenderQ {
     return (queue as any)[ScheduledRenderQ__symbol]
-        || ((queue as any)[ScheduledRenderQ__symbol] = new ScheduledRenderQ(queue));
+        || ((queue as any)[ScheduledRenderQ__symbol] = new ScheduledRenderQ(queue, ref));
   }
 
-  private constructor(private readonly q: ScheduledRenderQueue) {
+  private constructor(private readonly q: ScheduledRenderQueue, ref?: [ScheduledRenderQ]) {
     this.schedule = this.doSchedule;
-  }
-
-  get next(): ScheduledRenderQ {
-    return this._next ? (this._next = this._next.next) : this; // ensure `next` is actual for stale schedules
+    this.ref = ref || [this];
   }
 
   add(render: ScheduledRender) {
@@ -181,7 +178,7 @@ class ScheduledRenderQ {
   }
 
   private reset(): ScheduledRenderQ {
-    return this._next = ScheduledRenderQ.by(this.q.reset());
+    return this.ref[0] = ScheduledRenderQ.by(this.q.reset(), this.ref);
   }
 
   private suspend() {
@@ -214,21 +211,21 @@ export function customRenderScheduler(
   return scheduleOptions => {
 
     const config = RenderScheduleConfig.by(scheduleOptions);
-    let nextQueue = ScheduledRenderQ.by(options.newQueue(config));
-    let queued: [ScheduledRenderQ, ScheduledRender] | [] = [];
+    const queueRef = ScheduledRenderQ.by(options.newQueue(config)).ref;
+    let enqueued: [ScheduledRenderQ, ScheduledRender] | [] = [];
 
     return render => {
 
-      const [queue] = queued;
+      const [lastQueue] = enqueued;
+      const [nextQueue] = queueRef;
 
-      nextQueue = nextQueue.next;
-      if (queue === nextQueue) {
-        queued[1] = render;
+      if (lastQueue === nextQueue) {
+        enqueued[1] = render;
       } else {
 
-        const nextQueued = queued = [nextQueue, render];
+        const nextEnqueued = enqueued = [nextQueue, render];
 
-        nextQueue.add((execution: ScheduledRenderExecution) => nextQueued[1](execution));
+        nextQueue.add((execution: ScheduledRenderExecution) => nextEnqueued[1](execution));
       }
 
       nextQueue.schedule(config);

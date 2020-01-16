@@ -177,7 +177,7 @@ describe('animationRenderScheduler', () => {
 
     schedule(() => {
       schedule(nextRender1.mockImplementation(() => {
-        schedule2(nextRender3); // This schedule stale
+        schedule2(nextRender3); // This schedule is stale
         schedule(nextRender2);
       }));
       try {
