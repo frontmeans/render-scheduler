@@ -169,6 +169,54 @@ describe('animationRenderScheduler', () => {
     expect(nextRender1).not.toHaveBeenCalled();
     expect(nextRender2).toHaveBeenCalledTimes(1);
   });
+  it('executes recurrent renders in the same and another schedule after currently executing one', () => {
+
+    const nextRender1 = jest.fn();
+    const nextRender2 = jest.fn();
+
+    schedule(() => {
+      schedule(nextRender1);
+      schedule2(nextRender2);
+      try {
+        expect(nextRender1).not.toHaveBeenCalled();
+        expect(nextRender2).not.toHaveBeenCalled();
+      } catch (e) {
+        errors.push(e);
+      }
+    });
+
+    animate();
+    expect(nextRender1).not.toHaveBeenCalled();
+    expect(nextRender2).not.toHaveBeenCalled();
+
+    animate();
+    expect(nextRender1).toHaveBeenCalledTimes(1);
+    expect(nextRender2).toHaveBeenCalledTimes(1);
+  });
+  it('executes recurrent render in another and the same schedule after currently executing one', () => {
+
+    const nextRender1 = jest.fn();
+    const nextRender2 = jest.fn();
+
+    schedule(() => {
+      schedule2(nextRender2);
+      schedule(nextRender1);
+      try {
+        expect(nextRender1).not.toHaveBeenCalled();
+        expect(nextRender2).not.toHaveBeenCalled();
+      } catch (e) {
+        errors.push(e);
+      }
+    });
+
+    animate();
+    expect(nextRender1).not.toHaveBeenCalled();
+    expect(nextRender2).not.toHaveBeenCalled();
+
+    animate();
+    expect(nextRender1).toHaveBeenCalledTimes(1);
+    expect(nextRender2).toHaveBeenCalledTimes(1);
+  });
   it('logs error and executes recurrent render after error', () => {
 
     const error = new Error('Expected');
