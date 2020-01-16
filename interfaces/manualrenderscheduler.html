@@ -3,7 +3,7 @@
 <head>
 	<meta charset="utf-8">
 	<meta http-equiv="X-UA-Compatible" content="IE=edge">
-	<title>ScheduledRenderExecution | Render Scheduler</title>
+	<title>ManualRenderScheduler | Render Scheduler</title>
 	<meta name="description" content="">
 	<meta name="viewport" content="width=device-width, initial-scale=1">
 	<link rel="stylesheet" href="../assets/css/main.css">
@@ -54,10 +54,10 @@
 					<a href="../globals.html">Globals</a>
 				</li>
 				<li>
-					<a href="scheduledrenderexecution.html">ScheduledRenderExecution</a>
+					<a href="manualrenderscheduler.html">ManualRenderScheduler</a>
 				</li>
 			</ul>
-			<h1>Interface ScheduledRenderExecution</h1>
+			<h1>Interface ManualRenderScheduler</h1>
 		</div>
 	</div>
 </header>
@@ -67,16 +67,56 @@
 			<section class="tsd-panel tsd-comment">
 				<div class="tsd-comment tsd-typography">
 					<div class="lead">
-						<p>Scheduled render execution.</p>
+						<p>A render scheduler that executes scheduled renders on request.</p>
 					</div>
-					<p>This is passed to <a href="../globals.html#scheduledrender">render</a> when the latter executed.</p>
+					<p>Can be constructed using <a href="../globals.html#newmanualrenderscheduler">newManualRenderScheduler</a> function.</p>
 				</div>
 			</section>
 			<section class="tsd-panel tsd-hierarchy">
 				<h3>Hierarchy</h3>
 				<ul class="tsd-hierarchy">
 					<li>
-						<span class="target">ScheduledRenderExecution</span>
+						<span class="tsd-signature-symbol">(</span>this<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">void</span>, options<span class="tsd-signature-symbol">?: </span><a href="renderscheduleoptions.html" class="tsd-signature-type">RenderScheduleOptions</a><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol"> =&gt; </span><a href="../globals.html#renderschedule" class="tsd-signature-type">RenderSchedule</a>
+						<ul class="tsd-hierarchy">
+							<li>
+								<span class="target">ManualRenderScheduler</span>
+							</li>
+						</ul>
+					</li>
+				</ul>
+			</section>
+			<section class="tsd-panel">
+				<h3 class="tsd-before-signature">Callable</h3>
+				<ul class="tsd-signatures tsd-kind-interface">
+					<li class="tsd-signature tsd-kind-icon">__call<span class="tsd-signature-symbol">(</span>this<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">void</span>, options<span class="tsd-signature-symbol">?: </span><a href="renderscheduleoptions.html" class="tsd-signature-type">RenderScheduleOptions</a><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><a href="../globals.html#renderschedule" class="tsd-signature-type">RenderSchedule</a></li>
+				</ul>
+				<ul class="tsd-descriptions">
+					<li class="tsd-description">
+						<aside class="tsd-sources">
+							<ul>
+								<li>Defined in <a href="https://github.com/surol/render-scheduler/blob/3b371c1/src/render-scheduler.ts#L23">render-scheduler.ts:23</a></li>
+							</ul>
+						</aside>
+						<div class="tsd-comment tsd-typography">
+							<div class="lead">
+								<p>A render scheduler that executes scheduled renders on request.</p>
+							</div>
+							<p>Can be constructed using <a href="../globals.html#newmanualrenderscheduler">newManualRenderScheduler</a> function.</p>
+						</div>
+						<h4 class="tsd-parameters-title">Parameters</h4>
+						<ul class="tsd-parameters">
+							<li>
+								<h5>this: <span class="tsd-signature-type">void</span></h5>
+							</li>
+							<li>
+								<h5><span class="tsd-flag ts-flagOptional">Optional</span> options: <a href="renderscheduleoptions.html" class="tsd-signature-type">RenderScheduleOptions</a></h5>
+								<div class="tsd-comment tsd-typography">
+									<p>Options of constructed render schedule.</p>
+								</div>
+							</li>
+						</ul>
+						<h4 class="tsd-returns-title">Returns <a href="../globals.html#renderschedule" class="tsd-signature-type">RenderSchedule</a></h4>
+						<p>New render schedule.</p>
 					</li>
 				</ul>
 			</section>
@@ -85,70 +125,36 @@
 				<section class="tsd-panel tsd-index-panel">
 					<div class="tsd-index-content">
 						<section class="tsd-index-section ">
-							<h3>Properties</h3>
-							<ul class="tsd-index-list">
-								<li class="tsd-kind-property tsd-parent-kind-interface"><a href="scheduledrenderexecution.html#config" class="tsd-kind-icon">config</a></li>
-							</ul>
-						</section>
-						<section class="tsd-index-section ">
 							<h3>Methods</h3>
 							<ul class="tsd-index-list">
-								<li class="tsd-kind-method tsd-parent-kind-interface"><a href="scheduledrenderexecution.html#postpone" class="tsd-kind-icon">postpone</a></li>
+								<li class="tsd-kind-method tsd-parent-kind-interface"><a href="manualrenderscheduler.html#render" class="tsd-kind-icon">render</a></li>
 							</ul>
 						</section>
-					</div>
-				</section>
-			</section>
-			<section class="tsd-panel-group tsd-member-group ">
-				<h2>Properties</h2>
-				<section class="tsd-panel tsd-member tsd-kind-property tsd-parent-kind-interface">
-					<a name="config" class="tsd-anchor"></a>
-					<h3>config</h3>
-					<div class="tsd-signature tsd-kind-icon">config<span class="tsd-signature-symbol">:</span> <a href="renderscheduleconfig.html" class="tsd-signature-type">RenderScheduleConfig</a></div>
-					<aside class="tsd-sources">
-						<ul>
-							<li>Defined in <a href="https://github.com/surol/render-scheduler/blob/3b371c1/src/scheduled-render.ts#L27">scheduled-render.ts:27</a></li>
-						</ul>
-					</aside>
-					<div class="tsd-comment tsd-typography">
-						<div class="lead">
-							<p>A configuration of rendering schedule the render is executed by.</p>
-						</div>
 					</div>
 				</section>
 			</section>
 			<section class="tsd-panel-group tsd-member-group ">
 				<h2>Methods</h2>
 				<section class="tsd-panel tsd-member tsd-kind-method tsd-parent-kind-interface">
-					<a name="postpone" class="tsd-anchor"></a>
-					<h3>postpone</h3>
+					<a name="render" class="tsd-anchor"></a>
+					<h3>render</h3>
 					<ul class="tsd-signatures tsd-kind-method tsd-parent-kind-interface">
-						<li class="tsd-signature tsd-kind-icon">postpone<span class="tsd-signature-symbol">(</span>render<span class="tsd-signature-symbol">: </span><a href="../globals.html#scheduledrender" class="tsd-signature-type">ScheduledRender</a><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">void</span></li>
+						<li class="tsd-signature tsd-kind-icon">render<span class="tsd-signature-symbol">(</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">boolean</span></li>
 					</ul>
 					<ul class="tsd-descriptions">
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/surol/render-scheduler/blob/3b371c1/src/scheduled-render.ts#L41">scheduled-render.ts:41</a></li>
+									<li>Defined in <a href="https://github.com/surol/render-scheduler/blob/3b371c1/src/manual-render-scheduler.ts#L19">manual-render-scheduler.ts:19</a></li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
 								<div class="lead">
-									<p>Postpones another render, so that it is executed after all currently scheduled renders.</p>
+									<p>Executes all scheduled renders.</p>
 								</div>
-								<p>This may be useful e.g. when the render issues a synchronous page reflow. In this case postponing it until after
-								the all DOM modifications done would help to reduce <a href="https://developers.google.com/web/fundamentals/performance/rendering/avoid-large-complex-layouts-and-layout-thrashing">layout thrashing</a>.</p>
 							</div>
-							<h4 class="tsd-parameters-title">Parameters</h4>
-							<ul class="tsd-parameters">
-								<li>
-									<h5>render: <a href="../globals.html#scheduledrender" class="tsd-signature-type">ScheduledRender</a></h5>
-									<div class="tsd-comment tsd-typography">
-										<p>A render to postpone.</p>
-									</div>
-								</li>
-							</ul>
-							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">void</span></h4>
+							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">boolean</span></h4>
+							<p><code>true</code> if some renders executed, or <code>false</code> when no renders scheduled.</p>
 						</li>
 					</ul>
 				</section>
@@ -167,30 +173,27 @@
 					<li class=" tsd-kind-interface">
 						<a href="customrenderscheduleroptions.html" class="tsd-kind-icon">Custom<wbr>Render<wbr>Scheduler<wbr>Options</a>
 					</li>
-					<li class=" tsd-kind-interface">
+				</ul>
+				<ul class="current">
+					<li class="current tsd-kind-interface">
 						<a href="manualrenderscheduler.html" class="tsd-kind-icon">Manual<wbr>Render<wbr>Scheduler</a>
+						<ul>
+							<li class=" tsd-kind-method tsd-parent-kind-interface">
+								<a href="manualrenderscheduler.html#render" class="tsd-kind-icon">render</a>
+							</li>
+						</ul>
 					</li>
+				</ul>
+				<ul class="after-current">
 					<li class=" tsd-kind-interface">
 						<a href="renderscheduleconfig.html" class="tsd-kind-icon">Render<wbr>Schedule<wbr>Config</a>
 					</li>
 					<li class=" tsd-kind-interface">
 						<a href="renderscheduleoptions.html" class="tsd-kind-icon">Render<wbr>Schedule<wbr>Options</a>
 					</li>
-				</ul>
-				<ul class="current">
-					<li class="current tsd-kind-interface">
+					<li class=" tsd-kind-interface">
 						<a href="scheduledrenderexecution.html" class="tsd-kind-icon">Scheduled<wbr>Render<wbr>Execution</a>
-						<ul>
-							<li class=" tsd-kind-property tsd-parent-kind-interface">
-								<a href="scheduledrenderexecution.html#config" class="tsd-kind-icon">config</a>
-							</li>
-							<li class=" tsd-kind-method tsd-parent-kind-interface">
-								<a href="scheduledrenderexecution.html#postpone" class="tsd-kind-icon">postpone</a>
-							</li>
-						</ul>
 					</li>
-				</ul>
-				<ul class="after-current">
 					<li class=" tsd-kind-interface">
 						<a href="scheduledrenderqueue.html" class="tsd-kind-icon">Scheduled<wbr>Render<wbr>Queue</a>
 					</li>

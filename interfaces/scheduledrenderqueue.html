@@ -86,14 +86,6 @@
 				<section class="tsd-panel tsd-index-panel">
 					<div class="tsd-index-content">
 						<section class="tsd-index-section ">
-							<h3>Properties</h3>
-							<ul class="tsd-index-list">
-								<li class="tsd-kind-property tsd-parent-kind-interface"><a href="scheduledrenderqueue.html#isempty" class="tsd-kind-icon">is<wbr>Empty</a></li>
-								<li class="tsd-kind-property tsd-parent-kind-interface"><a href="scheduledrenderqueue.html#next" class="tsd-kind-icon">next</a></li>
-								<li class="tsd-kind-property tsd-parent-kind-interface"><a href="scheduledrenderqueue.html#scheduled" class="tsd-kind-icon">scheduled</a></li>
-							</ul>
-						</section>
-						<section class="tsd-index-section ">
 							<h3>Methods</h3>
 							<ul class="tsd-index-list">
 								<li class="tsd-kind-method tsd-parent-kind-interface"><a href="scheduledrenderqueue.html#add" class="tsd-kind-icon">add</a></li>
@@ -102,55 +94,6 @@
 								<li class="tsd-kind-method tsd-parent-kind-interface"><a href="scheduledrenderqueue.html#schedule" class="tsd-kind-icon">schedule</a></li>
 							</ul>
 						</section>
-					</div>
-				</section>
-			</section>
-			<section class="tsd-panel-group tsd-member-group ">
-				<h2>Properties</h2>
-				<section class="tsd-panel tsd-member tsd-kind-property tsd-parent-kind-interface">
-					<a name="isempty" class="tsd-anchor"></a>
-					<h3>is<wbr>Empty</h3>
-					<div class="tsd-signature tsd-kind-icon">is<wbr>Empty<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">boolean</span></div>
-					<aside class="tsd-sources">
-						<ul>
-							<li>Defined in <a href="https://github.com/surol/render-scheduler/blob/c3f46e7/src/custom-render-scheduler.ts#L41">custom-render-scheduler.ts:41</a></li>
-						</ul>
-					</aside>
-					<div class="tsd-comment tsd-typography">
-						<div class="lead">
-							<p>Whether this queue contains no renders.</p>
-						</div>
-					</div>
-				</section>
-				<section class="tsd-panel tsd-member tsd-kind-property tsd-parent-kind-interface">
-					<a name="next" class="tsd-anchor"></a>
-					<h3>next</h3>
-					<div class="tsd-signature tsd-kind-icon">next<span class="tsd-signature-symbol">:</span> <a href="scheduledrenderqueue.html" class="tsd-signature-type">ScheduledRenderQueue</a></div>
-					<aside class="tsd-sources">
-						<ul>
-							<li>Defined in <a href="https://github.com/surol/render-scheduler/blob/c3f46e7/src/custom-render-scheduler.ts#L53">custom-render-scheduler.ts:53</a></li>
-						</ul>
-					</aside>
-					<div class="tsd-comment tsd-typography">
-						<div class="lead">
-							<p>Actual queue to add renders to.</p>
-						</div>
-						<p>This is the same as <code>this</code> until the queue is <a href="scheduledrenderqueue.html#reset">reset</a>.</p>
-					</div>
-				</section>
-				<section class="tsd-panel tsd-member tsd-kind-property tsd-parent-kind-interface">
-					<a name="scheduled" class="tsd-anchor"></a>
-					<h3>scheduled</h3>
-					<div class="tsd-signature tsd-kind-icon">scheduled<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">boolean</span></div>
-					<aside class="tsd-sources">
-						<ul>
-							<li>Defined in <a href="https://github.com/surol/render-scheduler/blob/c3f46e7/src/custom-render-scheduler.ts#L46">custom-render-scheduler.ts:46</a></li>
-						</ul>
-					</aside>
-					<div class="tsd-comment tsd-typography">
-						<div class="lead">
-							<p>Whether this queue already <a href="scheduledrenderqueue.html#schedule">scheduled</a>.</p>
-						</div>
 					</div>
 				</section>
 			</section>
@@ -166,7 +109,7 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/surol/render-scheduler/blob/c3f46e7/src/custom-render-scheduler.ts#L60">custom-render-scheduler.ts:60</a></li>
+									<li>Defined in <a href="https://github.com/surol/render-scheduler/blob/3b371c1/src/custom-render-scheduler.ts#L43">custom-render-scheduler.ts:43</a></li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
@@ -197,7 +140,7 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/surol/render-scheduler/blob/c3f46e7/src/custom-render-scheduler.ts#L67">custom-render-scheduler.ts:67</a></li>
+									<li>Defined in <a href="https://github.com/surol/render-scheduler/blob/3b371c1/src/custom-render-scheduler.ts#L50">custom-render-scheduler.ts:50</a></li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
@@ -205,10 +148,7 @@
 									<p>Retrieves the first added render and removes it from the queue.</p>
 								</div>
 							</div>
-							<h4 class="tsd-returns-title">Returns <a href="../globals.html#scheduledrender" class="tsd-signature-type">ScheduledRender</a>
-								<span class="tsd-signature-symbol"> | </span>
-								<span class="tsd-signature-type">undefined</span>
-							</h4>
+							<h4 class="tsd-returns-title">Returns <a href="../globals.html#scheduledrender" class="tsd-signature-type">ScheduledRender</a><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">undefined</span></h4>
 							<p>Either pulled out scheduled render, or <code>undefined</code> when there is no more renders.</p>
 						</li>
 					</ul>
@@ -223,14 +163,13 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/surol/render-scheduler/blob/c3f46e7/src/custom-render-scheduler.ts#L85">custom-render-scheduler.ts:85</a></li>
+									<li>Defined in <a href="https://github.com/surol/render-scheduler/blob/3b371c1/src/custom-render-scheduler.ts#L64">custom-render-scheduler.ts:64</a></li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
 								<div class="lead">
 									<p>Resets the queue for the next execution.</p>
 								</div>
-								<p>This is called only once per queue. The <a href="scheduledrenderqueue.html#next">next</a> property must return a result of this call after that.</p>
 							</div>
 							<h4 class="tsd-returns-title">Returns <a href="scheduledrenderqueue.html" class="tsd-signature-type">ScheduledRenderQueue</a></h4>
 							<p>Another (empty) queue that will collect scheduled renders from now on.</p>
@@ -241,31 +180,30 @@
 					<a name="schedule" class="tsd-anchor"></a>
 					<h3>schedule</h3>
 					<ul class="tsd-signatures tsd-kind-method tsd-parent-kind-interface">
-						<li class="tsd-signature tsd-kind-icon">schedule<span class="tsd-signature-symbol">(</span>task<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">function</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">void</span></li>
+						<li class="tsd-signature tsd-kind-icon">schedule<span class="tsd-signature-symbol">(</span>task<span class="tsd-signature-symbol">: </span><span class="tsd-signature-symbol">(</span>this<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">void</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol"> =&gt; </span><span class="tsd-signature-type">void</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">void</span></li>
 					</ul>
 					<ul class="tsd-descriptions">
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/surol/render-scheduler/blob/c3f46e7/src/custom-render-scheduler.ts#L76">custom-render-scheduler.ts:76</a></li>
+									<li>Defined in <a href="https://github.com/surol/render-scheduler/blob/3b371c1/src/custom-render-scheduler.ts#L57">custom-render-scheduler.ts:57</a></li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
 								<div class="lead">
 									<p>Schedules queued renders execution.</p>
 								</div>
-								<p>This is called only once per queue. The <a href="scheduledrenderqueue.html#scheduled">scheduled</a> property must become <code>true</code> after that.</p>
 							</div>
 							<h4 class="tsd-parameters-title">Parameters</h4>
 							<ul class="tsd-parameters">
 								<li>
-									<h5>task: <span class="tsd-signature-type">function</span></h5>
+									<h5>task: <span class="tsd-signature-symbol">(</span>this<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">void</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol"> =&gt; </span><span class="tsd-signature-type">void</span></h5>
 									<div class="tsd-comment tsd-typography">
 										<p>A function that performs scheduled renders execution task.</p>
 									</div>
 									<ul class="tsd-parameters">
 										<li class="tsd-parameter-siganture">
-											<ul class="tsd-signatures tsd-kind-type-literal tsd-is-not-exported">
+											<ul class="tsd-signatures tsd-kind-type-literal">
 												<li class="tsd-signature tsd-kind-icon"><span class="tsd-signature-symbol">(</span>this<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">void</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">void</span></li>
 											</ul>
 											<ul class="tsd-descriptions">
@@ -303,6 +241,9 @@
 						<a href="customrenderscheduleroptions.html" class="tsd-kind-icon">Custom<wbr>Render<wbr>Scheduler<wbr>Options</a>
 					</li>
 					<li class=" tsd-kind-interface">
+						<a href="manualrenderscheduler.html" class="tsd-kind-icon">Manual<wbr>Render<wbr>Scheduler</a>
+					</li>
+					<li class=" tsd-kind-interface">
 						<a href="renderscheduleconfig.html" class="tsd-kind-icon">Render<wbr>Schedule<wbr>Config</a>
 					</li>
 					<li class=" tsd-kind-interface">
@@ -316,15 +257,6 @@
 					<li class="current tsd-kind-interface">
 						<a href="scheduledrenderqueue.html" class="tsd-kind-icon">Scheduled<wbr>Render<wbr>Queue</a>
 						<ul>
-							<li class=" tsd-kind-property tsd-parent-kind-interface">
-								<a href="scheduledrenderqueue.html#isempty" class="tsd-kind-icon">is<wbr>Empty</a>
-							</li>
-							<li class=" tsd-kind-property tsd-parent-kind-interface">
-								<a href="scheduledrenderqueue.html#next" class="tsd-kind-icon">next</a>
-							</li>
-							<li class=" tsd-kind-property tsd-parent-kind-interface">
-								<a href="scheduledrenderqueue.html#scheduled" class="tsd-kind-icon">scheduled</a>
-							</li>
 							<li class=" tsd-kind-method tsd-parent-kind-interface">
 								<a href="scheduledrenderqueue.html#add" class="tsd-kind-icon">add</a>
 							</li>
@@ -341,9 +273,6 @@
 					</li>
 				</ul>
 				<ul class="after-current">
-					<li class=" tsd-kind-type-alias">
-						<a href="../globals.html#manualrenderscheduler" class="tsd-kind-icon">Manual<wbr>Render<wbr>Scheduler</a>
-					</li>
 					<li class=" tsd-kind-type-alias">
 						<a href="../globals.html#renderschedule" class="tsd-kind-icon">Render<wbr>Schedule</a>
 					</li>
