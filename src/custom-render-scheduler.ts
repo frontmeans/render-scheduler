@@ -135,7 +135,7 @@ class ScheduledRenderQ {
   }
 
   get next(): ScheduledRenderQ {
-    return this._next || this;
+    return this._next ? (this._next = this._next.next) : this; // ensure `next` is actual for stale schedules
   }
 
   add(render: ScheduledRender) {

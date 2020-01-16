@@ -169,6 +169,41 @@ describe('animationRenderScheduler', () => {
     expect(nextRender1).not.toHaveBeenCalled();
     expect(nextRender2).toHaveBeenCalledTimes(1);
   });
+  it('executes render in stale schedule', () => {
+
+    const nextRender1 = jest.fn();
+    const nextRender2 = jest.fn();
+    const nextRender3 = jest.fn();
+
+    schedule(() => {
+      schedule(nextRender1.mockImplementation(() => {
+        schedule2(nextRender3); // This schedule stale
+        schedule(nextRender2);
+      }));
+      try {
+        expect(nextRender1).not.toHaveBeenCalled();
+        expect(nextRender2).not.toHaveBeenCalled();
+        expect(nextRender2).not.toHaveBeenCalled();
+      } catch (e) {
+        errors.push(e);
+      }
+    });
+
+    animate();
+    expect(nextRender1).not.toHaveBeenCalled();
+    expect(nextRender2).not.toHaveBeenCalled();
+    expect(nextRender3).not.toHaveBeenCalled();
+
+    animate();
+    expect(nextRender1).toHaveBeenCalledTimes(1);
+    expect(nextRender2).not.toHaveBeenCalled();
+    expect(nextRender3).not.toHaveBeenCalled();
+
+    animate();
+    expect(nextRender1).toHaveBeenCalledTimes(1);
+    expect(nextRender2).toHaveBeenCalledTimes(1);
+    expect(nextRender3).toHaveBeenCalledTimes(1);
+  });
   it('executes recurrent renders in the same and another schedule after currently executing one', () => {
 
     const nextRender1 = jest.fn();
