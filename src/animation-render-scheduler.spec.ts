@@ -123,14 +123,16 @@ describe('animationRenderScheduler', () => {
 
     schedule(execution => {
       execution.postpone(ex => ex.postpone(postponed2));
-      execution.postpone(postponed1.mockImplementation(
-          () => {
-            try {
-              expect(postponed2).not.toHaveBeenCalled();
-            } catch (e) {
-              errors.push(e);
-            }
-          }),
+      execution.postpone(
+          postponed1.mockImplementation(
+              () => {
+                try {
+                  expect(postponed2).not.toHaveBeenCalled();
+                } catch (e) {
+                  errors.push(e);
+                }
+              },
+          ),
       );
     });
 

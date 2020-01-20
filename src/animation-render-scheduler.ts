@@ -21,7 +21,7 @@ const animationRenderQueues = (/*#__PURE__*/ new WeakMap<Window, ScheduledRender
  * [requestAnimationFrame()]: https://developer.mozilla.org/en-US/docs/Web/API/window/requestAnimationFrame
  */
 export const animationRenderScheduler: RenderScheduler = (/*#__PURE__*/ customRenderScheduler({
-  newQueue({ window}) {
+  newQueue({ window }) {
 
     const existing = animationRenderQueues.get(window);
 
