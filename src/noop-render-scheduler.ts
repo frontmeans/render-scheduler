@@ -7,7 +7,7 @@ import { RenderScheduler } from './render-scheduler';
 /**
  * @internal
  */
-const noopRenderSchedule: RenderSchedule = () => {};
+const noopRenderSchedule: RenderSchedule = () => {/* noop */};
 
 /**
  * A render scheduler that neither schedules, nor executes renders.

@@ -12,7 +12,6 @@ let immediateRenderQueue = (/*#__PURE__*/ ScheduledRenderQueue.by({
   replace: replacement => immediateRenderQueue = replacement,
 }));
 
-export const immediateRenderScheduler: RenderScheduler =
-    (/*#__PURE__*/ customRenderScheduler({
-      newQueue: () => immediateRenderQueue,
-    }));
+export const immediateRenderScheduler: RenderScheduler = (/*#__PURE__*/ customRenderScheduler({
+  newQueue: () => immediateRenderQueue,
+}));

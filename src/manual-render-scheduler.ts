@@ -29,8 +29,8 @@ export interface ManualRenderScheduler extends RenderScheduler {
  */
 export function newManualRenderScheduler(): ManualRenderScheduler {
 
-  const emptyTask = () => false;
-  let pendingTask: (() => boolean) = emptyTask;
+  const emptyTask = (): boolean => false;
+  let pendingTask = emptyTask;
   let queue = ScheduledRenderQueue.by({
     // Called at most once until reset
     schedule: task => pendingTask = () => {

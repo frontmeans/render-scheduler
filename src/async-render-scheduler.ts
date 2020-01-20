@@ -15,7 +15,6 @@ let asyncRenderQueue = (/*#__PURE__*/ ScheduledRenderQueue.by({
 /**
  * A render scheduler that executes the scheduled renders asynchronously.
  */
-export const asyncRenderScheduler: RenderScheduler =
-    (/*#__PURE__*/ customRenderScheduler({
-      newQueue: () => asyncRenderQueue,
-    }));
+export const asyncRenderScheduler: RenderScheduler = (/*#__PURE__*/ customRenderScheduler({
+  newQueue: () => asyncRenderQueue,
+}));

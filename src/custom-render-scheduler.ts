@@ -81,7 +81,7 @@ export const ScheduledRenderQueue = {
       this: void,
       {
         schedule,
-        replace = () => {},
+        replace = () => {/* do not replace */},
       }: {
         schedule(this: ScheduledRenderQueue, task: (this: void) => void): void;
         replace?(this: void, replacement: ScheduledRenderQueue): void;
@@ -135,12 +135,12 @@ class ScheduledRenderQ {
     this.ref = ref || [this];
   }
 
-  add(render: ScheduledRender) {
+  add(render: ScheduledRender): void {
     this.q.add(render);
   }
 
-  private doSchedule(config: RenderScheduleConfig) {
-    this.schedule = () => {};
+  private doSchedule(config: RenderScheduleConfig): void {
+    this.schedule = () => {/* do not schedule */};
 
     const execution: ScheduledRenderExecution = {
       get config() {
@@ -161,7 +161,7 @@ class ScheduledRenderQ {
     });
   }
 
-  private exec(execution: ScheduledRenderExecution) {
+  private exec(execution: ScheduledRenderExecution): void {
     for (; ;) {
 
       const render = this.q.pull();
@@ -181,14 +181,14 @@ class ScheduledRenderQ {
     return this.ref[0] = ScheduledRenderQ.by(this.q.reset(), this.ref);
   }
 
-  private suspend() {
+  private suspend(): void {
     this.schedule = config => {
       this.scheduled = config;
-      this.schedule = () => {};
+      this.schedule = () => {/* do not schedule */};
     };
   }
 
-  private resume() {
+  private resume(): void {
     if (this.scheduled) {
       this.doSchedule(this.scheduled);
     } else {

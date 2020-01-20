@@ -51,12 +51,12 @@ describe('manualRenderScheduler', () => {
         exec.postpone(postponed2);
       });
 
-      expect(postponed1).not.toBeCalled();
-      expect(postponed2).not.toBeCalled();
+      expect(postponed1).not.toHaveBeenCalled();
+      expect(postponed2).not.toHaveBeenCalled();
 
       scheduler.render();
-      expect(postponed1).toBeCalledTimes(1);
-      expect(postponed2).toBeCalledTimes(1);
+      expect(postponed1).toHaveBeenCalledTimes(1);
+      expect(postponed2).toHaveBeenCalledTimes(1);
     });
     it('executes recurrent renders by next request', () => {
 

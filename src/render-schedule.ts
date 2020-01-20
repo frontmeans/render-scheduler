@@ -106,7 +106,11 @@ export const RenderScheduleConfig = {
         return win || (win = options.window || (options.node && nodeWindow(options.node)) || window);
       },
       error(...messages) {
-        options && options.error ? options.error(...messages) : console.error(...messages);
+        if (options && options.error) {
+          options.error(...messages);
+        } else {
+          console.error(...messages);
+        }
       },
     };
   },

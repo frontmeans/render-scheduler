@@ -20,23 +20,22 @@ const animationRenderQueues = (/*#__PURE__*/ new WeakMap<Window, ScheduledRender
  *
  * [requestAnimationFrame()]: https://developer.mozilla.org/en-US/docs/Web/API/window/requestAnimationFrame
  */
-export const animationRenderScheduler: RenderScheduler =
-    (/*#__PURE__*/ customRenderScheduler({
-      newQueue({ window}) {
+export const animationRenderScheduler: RenderScheduler = (/*#__PURE__*/ customRenderScheduler({
+  newQueue({ window}) {
 
-        const existing = animationRenderQueues.get(window);
+    const existing = animationRenderQueues.get(window);
 
-        if (existing) {
-          return existing;
-        }
+    if (existing) {
+      return existing;
+    }
 
-        const newQueue = ScheduledRenderQueue.by({
-          schedule: task => window.requestAnimationFrame(task),
-          replace: replacement => animationRenderQueues.set(window, replacement),
-        });
+    const newQueue = ScheduledRenderQueue.by({
+      schedule: task => window.requestAnimationFrame(task),
+      replace: replacement => animationRenderQueues.set(window, replacement),
+    });
 
-        animationRenderQueues.set(window, newQueue);
+    animationRenderQueues.set(window, newQueue);
 
-        return newQueue;
-      },
-    }));
+    return newQueue;
+  },
+}));

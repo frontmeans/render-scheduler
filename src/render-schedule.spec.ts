@@ -46,7 +46,8 @@ describe('RenderScheduleConfig', () => {
 
       const error = new Error('Expected');
       const errorSpy = jest.spyOn(console, 'error');
-      errorSpy.mockImplementation(() => {});
+
+      errorSpy.mockImplementation(() => {/* noop */});
 
       RenderScheduleConfig.by().error(error);
       expect(errorSpy).toHaveBeenCalledWith(error);
