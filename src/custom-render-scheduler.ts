@@ -146,9 +146,7 @@ class ScheduledRenderQ {
       get config() {
         return config;
       },
-      postpone: (postponed) => {
-        this.add(postponed);
-      },
+      postpone: postponed => this.add(postponed),
     };
 
     this.q.schedule(() => {

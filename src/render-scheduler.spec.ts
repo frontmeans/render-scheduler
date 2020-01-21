@@ -8,7 +8,7 @@ describe('setRenderScheduler', () => {
   let mockSchedule: Mock<void, Parameters<RenderSchedule>>;
 
   beforeEach(() => {
-    mockScheduler = jest.fn((_options?) => mockSchedule);
+    mockScheduler = jest.fn((_options?: RenderScheduleOptions) => mockSchedule);
     mockSchedule = jest.fn();
   });
   afterEach(() => {
