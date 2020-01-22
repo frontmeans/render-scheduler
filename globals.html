@@ -121,7 +121,7 @@
 					<div class="tsd-signature tsd-kind-icon">Render<wbr>Schedule<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-symbol">(</span>this<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">void</span>, render<span class="tsd-signature-symbol">: </span><a href="globals.html#scheduledrender" class="tsd-signature-type">ScheduledRender</a><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol"> =&gt; </span><span class="tsd-signature-type">void</span></div>
 					<aside class="tsd-sources">
 						<ul>
-							<li>Defined in <a href="https://github.com/surol/render-scheduler/blob/43a1013/src/render-schedule.ts#L20">render-schedule.ts:20</a></li>
+							<li>Defined in <a href="https://github.com/surol/render-scheduler/blob/48d5239/src/render-schedule.ts#L21">render-schedule.ts:21</a></li>
 						</ul>
 					</aside>
 					<div class="tsd-comment tsd-typography">
@@ -174,7 +174,7 @@
 					<div class="tsd-signature tsd-kind-icon">Render<wbr>Scheduler<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-symbol">(</span>this<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">void</span>, options<span class="tsd-signature-symbol">?: </span><a href="interfaces/renderscheduleoptions.html" class="tsd-signature-type">RenderScheduleOptions</a><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol"> =&gt; </span><a href="globals.html#renderschedule" class="tsd-signature-type">RenderSchedule</a></div>
 					<aside class="tsd-sources">
 						<ul>
-							<li>Defined in <a href="https://github.com/surol/render-scheduler/blob/43a1013/src/render-scheduler.ts#L23">render-scheduler.ts:23</a></li>
+							<li>Defined in <a href="https://github.com/surol/render-scheduler/blob/48d5239/src/render-scheduler.ts#L24">render-scheduler.ts:24</a></li>
 						</ul>
 					</aside>
 					<div class="tsd-comment tsd-typography">
@@ -232,7 +232,7 @@
 					<div class="tsd-signature tsd-kind-icon">Scheduled<wbr>Render<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-symbol">(</span>this<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">void</span>, execution<span class="tsd-signature-symbol">: </span><a href="interfaces/scheduledrenderexecution.html" class="tsd-signature-type">ScheduledRenderExecution</a><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol"> =&gt; </span><span class="tsd-signature-type">void</span></div>
 					<aside class="tsd-sources">
 						<ul>
-							<li>Defined in <a href="https://github.com/surol/render-scheduler/blob/43a1013/src/scheduled-render.ts#L11">scheduled-render.ts:11</a></li>
+							<li>Defined in <a href="https://github.com/surol/render-scheduler/blob/48d5239/src/scheduled-render.ts#L12">scheduled-render.ts:12</a></li>
 						</ul>
 					</aside>
 					<div class="tsd-comment tsd-typography">
@@ -279,10 +279,10 @@
 				<section class="tsd-panel tsd-member tsd-kind-variable">
 					<a name="animationrenderscheduler" class="tsd-anchor"></a>
 					<h3><span class="tsd-flag ts-flagConst">Const</span> animation<wbr>Render<wbr>Scheduler</h3>
-					<div class="tsd-signature tsd-kind-icon">animation<wbr>Render<wbr>Scheduler<span class="tsd-signature-symbol">:</span> <a href="globals.html#renderscheduler" class="tsd-signature-type">RenderScheduler</a><span class="tsd-signature-symbol"> = (/*#__PURE__*/ customRenderScheduler({newQueue({ window}) {const existing &#x3D; animationRenderQueues.get(window);if (existing) {return existing;}const newQueue &#x3D; ScheduledRenderQueue.by({schedule: task &#x3D;&gt; window.requestAnimationFrame(task),replace: replacement &#x3D;&gt; animationRenderQueues.set(window, replacement),});animationRenderQueues.set(window, newQueue);return newQueue;},}))</span></div>
+					<div class="tsd-signature tsd-kind-icon">animation<wbr>Render<wbr>Scheduler<span class="tsd-signature-symbol">:</span> <a href="globals.html#renderscheduler" class="tsd-signature-type">RenderScheduler</a><span class="tsd-signature-symbol"> = (/*#__PURE__*/ customRenderScheduler({newQueue({ window }) {const existing &#x3D; animationRenderQueues.get(window);if (existing) {return existing;}const newQueue &#x3D; ScheduledRenderQueue.by({schedule: task &#x3D;&gt; window.requestAnimationFrame(task),replace: replacement &#x3D;&gt; animationRenderQueues.set(window, replacement),});animationRenderQueues.set(window, newQueue);return newQueue;},}))</span></div>
 					<aside class="tsd-sources">
 						<ul>
-							<li>Defined in <a href="https://github.com/surol/render-scheduler/blob/43a1013/src/animation-render-scheduler.ts#L23">animation-render-scheduler.ts:23</a></li>
+							<li>Defined in <a href="https://github.com/surol/render-scheduler/blob/48d5239/src/animation-render-scheduler.ts#L24">animation-render-scheduler.ts:24</a></li>
 						</ul>
 					</aside>
 					<div class="tsd-comment tsd-typography">
@@ -301,7 +301,7 @@
 					<div class="tsd-signature tsd-kind-icon">async<wbr>Render<wbr>Scheduler<span class="tsd-signature-symbol">:</span> <a href="globals.html#renderscheduler" class="tsd-signature-type">RenderScheduler</a><span class="tsd-signature-symbol"> = (/*#__PURE__*/ customRenderScheduler({newQueue: () &#x3D;&gt; asyncRenderQueue,}))</span></div>
 					<aside class="tsd-sources">
 						<ul>
-							<li>Defined in <a href="https://github.com/surol/render-scheduler/blob/43a1013/src/async-render-scheduler.ts#L18">async-render-scheduler.ts:18</a></li>
+							<li>Defined in <a href="https://github.com/surol/render-scheduler/blob/48d5239/src/async-render-scheduler.ts#L19">async-render-scheduler.ts:19</a></li>
 						</ul>
 					</aside>
 					<div class="tsd-comment tsd-typography">
@@ -316,7 +316,7 @@
 					<div class="tsd-signature tsd-kind-icon">immediate<wbr>Render<wbr>Scheduler<span class="tsd-signature-symbol">:</span> <a href="globals.html#renderscheduler" class="tsd-signature-type">RenderScheduler</a><span class="tsd-signature-symbol"> = (/*#__PURE__*/ customRenderScheduler({newQueue: () &#x3D;&gt; immediateRenderQueue,}))</span></div>
 					<aside class="tsd-sources">
 						<ul>
-							<li>Defined in <a href="https://github.com/surol/render-scheduler/blob/43a1013/src/immediate-render-scheduler.ts#L15">immediate-render-scheduler.ts:15</a></li>
+							<li>Defined in <a href="https://github.com/surol/render-scheduler/blob/48d5239/src/immediate-render-scheduler.ts#L16">immediate-render-scheduler.ts:16</a></li>
 						</ul>
 					</aside>
 				</section>
@@ -333,7 +333,7 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/surol/render-scheduler/blob/43a1013/src/custom-render-scheduler.ts#L208">custom-render-scheduler.ts:208</a></li>
+									<li>Defined in <a href="https://github.com/surol/render-scheduler/blob/48d5239/src/custom-render-scheduler.ts#L204">custom-render-scheduler.ts:204</a></li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
@@ -365,7 +365,7 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/surol/render-scheduler/blob/43a1013/src/manual-render-scheduler.ts#L30">manual-render-scheduler.ts:30</a></li>
+									<li>Defined in <a href="https://github.com/surol/render-scheduler/blob/48d5239/src/manual-render-scheduler.ts#L31">manual-render-scheduler.ts:31</a></li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
@@ -389,7 +389,7 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/surol/render-scheduler/blob/43a1013/src/render-scheduler.ts#L59">render-scheduler.ts:59</a></li>
+									<li>Defined in <a href="https://github.com/surol/render-scheduler/blob/48d5239/src/render-scheduler.ts#L60">render-scheduler.ts:60</a></li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
@@ -421,7 +421,7 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/surol/render-scheduler/blob/43a1013/src/render-schedule.ts#L123">render-schedule.ts:123</a></li>
+									<li>Defined in <a href="https://github.com/surol/render-scheduler/blob/48d5239/src/render-schedule.ts#L131">render-schedule.ts:131</a></li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
@@ -453,7 +453,7 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/surol/render-scheduler/blob/43a1013/src/noop-render-scheduler.ts#L15">noop-render-scheduler.ts:15</a></li>
+									<li>Defined in <a href="https://github.com/surol/render-scheduler/blob/48d5239/src/noop-render-scheduler.ts#L16">noop-render-scheduler.ts:16</a></li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
@@ -501,7 +501,7 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/surol/render-scheduler/blob/43a1013/src/render-scheduler.ts#L46">render-scheduler.ts:46</a></li>
+									<li>Defined in <a href="https://github.com/surol/render-scheduler/blob/48d5239/src/render-scheduler.ts#L47">render-scheduler.ts:47</a></li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
@@ -534,7 +534,7 @@
 					<div class="tsd-signature tsd-kind-icon">Render<wbr>Schedule<wbr>Config<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">object</span></div>
 					<aside class="tsd-sources">
 						<ul>
-							<li>Defined in <a href="https://github.com/surol/render-scheduler/blob/43a1013/src/render-schedule.ts#L93">render-schedule.ts:93</a></li>
+							<li>Defined in <a href="https://github.com/surol/render-scheduler/blob/48d5239/src/render-schedule.ts#L94">render-schedule.ts:94</a></li>
 						</ul>
 					</aside>
 					<section class="tsd-panel tsd-member tsd-kind-function tsd-parent-kind-object-literal">
@@ -547,7 +547,7 @@
 							<li class="tsd-description">
 								<aside class="tsd-sources">
 									<ul>
-										<li>Defined in <a href="https://github.com/surol/render-scheduler/blob/43a1013/src/render-schedule.ts#L100">render-schedule.ts:100</a></li>
+										<li>Defined in <a href="https://github.com/surol/render-scheduler/blob/48d5239/src/render-schedule.ts#L101">render-schedule.ts:101</a></li>
 									</ul>
 								</aside>
 								<div class="tsd-comment tsd-typography">
@@ -578,7 +578,7 @@
 					<div class="tsd-signature tsd-kind-icon">Scheduled<wbr>Render<wbr>Queue<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">object</span></div>
 					<aside class="tsd-sources">
 						<ul>
-							<li>Defined in <a href="https://github.com/surol/render-scheduler/blob/43a1013/src/custom-render-scheduler.ts#L68">custom-render-scheduler.ts:68</a></li>
+							<li>Defined in <a href="https://github.com/surol/render-scheduler/blob/48d5239/src/custom-render-scheduler.ts#L70">custom-render-scheduler.ts:70</a></li>
 						</ul>
 					</aside>
 					<section class="tsd-panel tsd-member tsd-kind-function tsd-parent-kind-object-literal">
@@ -591,7 +591,7 @@
 							<li class="tsd-description">
 								<aside class="tsd-sources">
 									<ul>
-										<li>Defined in <a href="https://github.com/surol/render-scheduler/blob/43a1013/src/custom-render-scheduler.ts#L80">custom-render-scheduler.ts:80</a></li>
+										<li>Defined in <a href="https://github.com/surol/render-scheduler/blob/48d5239/src/custom-render-scheduler.ts#L82">custom-render-scheduler.ts:82</a></li>
 									</ul>
 								</aside>
 								<div class="tsd-comment tsd-typography">
@@ -623,7 +623,7 @@
 													<li class="tsd-description">
 														<aside class="tsd-sources">
 															<ul>
-																<li>Defined in <a href="https://github.com/surol/render-scheduler/blob/43a1013/src/custom-render-scheduler.ts#L84">custom-render-scheduler.ts:84</a></li>
+																<li>Defined in <a href="https://github.com/surol/render-scheduler/blob/48d5239/src/custom-render-scheduler.ts#L86">custom-render-scheduler.ts:86</a></li>
 															</ul>
 														</aside>
 														<div class="tsd-comment tsd-typography">
