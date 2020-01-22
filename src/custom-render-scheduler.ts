@@ -24,6 +24,7 @@ export interface CustomRenderSchedulerOptions {
    * @returns  Scheduled render queue.
    */
   newQueue(config: RenderScheduleConfig): ScheduledRenderQueue;
+
 }
 
 /**
@@ -167,11 +168,7 @@ class ScheduledRenderQ {
       if (!render) {
         break;
       }
-      try {
-        render(execution);
-      } catch (e) {
-        execution.config.error(e);
-      }
+      render(execution);
     }
   }
 
@@ -223,7 +220,20 @@ export function customRenderScheduler(
 
         const nextEnqueued = enqueued = [nextQueue, render];
 
-        nextQueue.add((execution: ScheduledRenderExecution) => nextEnqueued[1](execution));
+        nextQueue.add((execution: ScheduledRenderExecution) => {
+          try {
+            nextEnqueued[1]({
+              get config() {
+                return config;
+              },
+              postpone(postponed) {
+                execution.postpone(postponed);
+              },
+            });
+          } catch (e) {
+            config.error(e);
+          }
+        });
       }
 
       nextQueue.schedule(config);

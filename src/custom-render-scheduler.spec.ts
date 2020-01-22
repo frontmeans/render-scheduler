@@ -1,4 +1,6 @@
-import { ScheduledRenderQueue } from './custom-render-scheduler';
+import { customRenderScheduler, ScheduledRenderQueue } from './custom-render-scheduler';
+import { RenderScheduleOptions } from './render-schedule';
+import { ScheduledRenderExecution } from './scheduled-render';
 import Mock = jest.Mock;
 
 describe('ScheduledRenderQueue', () => {
@@ -40,4 +42,39 @@ describe('ScheduledRenderQueue', () => {
       expect(mockSchedule).not.toHaveBeenCalled();
     });
   });
+});
+
+describe('CustomRenderScheduler', () => {
+  it('passes config to enqueued renders', () => {
+
+    let exec = (): void => {/* not scheduled */};
+    const scheduled: Mock<void, [ScheduledRenderExecution]>[] = [];
+    const executed: Mock<void, [ScheduledRenderExecution]>[] = [];
+    const queue: ScheduledRenderQueue = {
+      add: render => scheduled.push(jest.fn(render)),
+      pull: () => {
+
+        const render = scheduled.shift();
+
+        if (render) {
+          executed.push(render);
+        }
+
+        return render;
+      },
+      schedule: task => exec = task,
+      reset: () => queue,
+    };
+    const scheduler = customRenderScheduler({ newQueue: () => queue });
+    const options: RenderScheduleOptions = { node: document.createElement('dev') };
+    const schedule = scheduler(options);
+
+    schedule(jest.fn());
+    exec();
+
+    expect(executed[0]).toHaveBeenCalledWith(expect.objectContaining({
+      config: expect.objectContaining(options),
+    }));
+  });
+
 });

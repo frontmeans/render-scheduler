@@ -102,6 +102,9 @@ export const RenderScheduleConfig = {
     let win: Window | undefined;
 
     return {
+      get node() {
+        return options.node;
+      },
       get window() {
         return win || (win = options.window || (options.node && nodeWindow(options.node)) || window);
       },

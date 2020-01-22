@@ -41,6 +41,17 @@ describe('RenderScheduleConfig', () => {
       expect(getWindow).toHaveBeenCalledTimes(1);
     });
   });
+  describe('node', () => {
+    it('is undefined by default', () => {
+      expect(RenderScheduleConfig.by().node).toBeUndefined();
+    });
+    it('is the one specified', () => {
+
+      const node = document.createElement('dev');
+
+      expect(RenderScheduleConfig.by({ node }).node).toBe(node);
+    });
+  });
   describe('error', () => {
     it('prints error using `console.error` by default', () => {
 

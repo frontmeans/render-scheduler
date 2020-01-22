@@ -94,5 +94,41 @@ describe('manualRenderScheduler', () => {
       expect(render4).toHaveBeenCalledTimes(1);
     });
   });
+  it('logs errors according to schedule options', () => {
 
+    const logError1 = jest.fn();
+    const logError2 = jest.fn();
+
+    schedule = scheduler({ error: logError1 });
+    schedule2 = scheduler({ error: logError2 });
+
+    const error = new Error('!');
+
+    schedule(() => { throw error; });
+    schedule2(() => { throw error; });
+
+    scheduler.render();
+    expect(logError1).toHaveBeenCalledWith(error);
+    expect(logError1).toHaveBeenCalledTimes(1);
+    expect(logError2).toHaveBeenCalledWith(error);
+    expect(logError2).toHaveBeenCalledTimes(1);
+  });
+  it('calls renders with their schedule configs', () => {
+
+    const options1 = { node: document.createElement('div') };
+    const options2 = { node: document.createElement('span') };
+
+    schedule = scheduler(options1);
+    schedule2 = scheduler(options2);
+
+    const render1 = jest.fn();
+    const render2 = jest.fn();
+
+    schedule(render1);
+    schedule2(render2);
+
+    scheduler.render();
+    expect(render1).toHaveBeenCalledWith(expect.objectContaining({ config: expect.objectContaining(options1) }));
+    expect(render2).toHaveBeenCalledWith(expect.objectContaining({ config: expect.objectContaining(options2) }));
+  });
 });
