@@ -1,4 +1,5 @@
 /**
+ * @packageDocumentation
  * @module render-scheduler
  */
 import { customRenderScheduler, ScheduledRenderQueue } from './custom-render-scheduler';

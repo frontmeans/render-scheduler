@@ -1,4 +1,5 @@
 /**
+ * @packageDocumentation
  * @module render-scheduler
  */
 export * from './animation-render-scheduler';

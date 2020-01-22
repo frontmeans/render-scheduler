@@ -1,4 +1,5 @@
 /**
+ * @packageDocumentation
  * @module render-scheduler
  */
 import { RenderSchedule } from './render-schedule';
