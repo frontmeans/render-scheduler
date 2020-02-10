@@ -2,7 +2,7 @@
   "compilerOptions": {
     "moduleResolution": "node",
     "module": "es2015",
-    "target": "es2015",
+    "target": "es2017",
     "strict": true,
     "experimentalDecorators": true,
     "noFallthroughCasesInSwitch": true,
@@ -14,7 +14,7 @@
     "noEmitHelpers": true,
     "lib": [
       "dom",
-      "es2015"
+      "es2017"
     ],
     "outDir": "target/js",
     "sourceMap": true,
