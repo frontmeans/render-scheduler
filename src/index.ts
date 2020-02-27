@@ -1,7 +1,3 @@
-/**
- * @packageDocumentation
- * @module render-scheduler
- */
 export * from './animation-render-scheduler';
 export * from './async-render-scheduler';
 export * from './custom-render-scheduler';
