@@ -60,11 +60,14 @@ class RenderQ {
   private doSchedule(config: RenderScheduleConfig): void {
     this.schedule = () => {/* do not schedule */};
 
+    const postponed: RenderShot[] = [];
     const execution: RenderExecution = {
       get config() {
         return config;
       },
-      postpone: postponed => this.add(postponed),
+      postpone(shot) {
+        postponed.push(shot);
+      },
     };
 
     this.q.schedule(() => {
@@ -72,6 +75,11 @@ class RenderQ {
       const next = this.reset();
 
       next.suspend();
+      this.exec(execution);
+      // Activate next queue
+      this.ref[1] = this.ref[0];
+      // Execute postponed shots
+      postponed.forEach(execution.postpone = shot => this.q.add(shot));
       this.exec(execution);
       next.resume();
     });
@@ -87,7 +95,6 @@ class RenderQ {
       }
       shot(execution);
     }
-    this.ref[1] = this.ref[0]; // Activate next queue
   }
 
   private reset(): RenderQ {

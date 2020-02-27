@@ -13,105 +13,126 @@ describe('manualRenderScheduler', () => {
     schedule2 = scheduler();
   });
 
-  describe('render', () => {
-    it('returns `false` when no render shots scheduled', () => {
-      expect(scheduler.render()).toBe(false);
+  it('returns `false` when no render shots scheduled', () => {
+    expect(scheduler.render()).toBe(false);
+  });
+  it('executes scheduled render shots by request', () => {
+
+    const shot1 = jest.fn();
+    const shot2 = jest.fn();
+    const shot3 = jest.fn();
+
+    schedule(shot1);
+    schedule2(shot2);
+    schedule2(shot3);
+
+    expect(shot1).not.toHaveBeenCalled();
+    expect(shot2).not.toHaveBeenCalled();
+    expect(shot3).not.toHaveBeenCalled();
+
+    expect(scheduler.render()).toBe(true);
+    expect(shot1).toHaveBeenCalled();
+    expect(shot2).not.toHaveBeenCalled();
+    expect(shot3).toHaveBeenCalled();
+
+    expect(scheduler.render()).toBe(false);
+    expect(shot1).toHaveBeenCalledTimes(1);
+    expect(shot2).not.toHaveBeenCalled();
+    expect(shot3).toHaveBeenCalledTimes(1);
+  });
+  it('executes postponed render shots', () => {
+
+    const postponed1 = jest.fn();
+    const postponed2 = jest.fn();
+
+    schedule(exec => {
+      exec.postpone(postponed1);
+      exec.postpone(postponed2);
     });
-    it('executes scheduled render shots by request', () => {
 
-      const shot1 = jest.fn();
-      const shot2 = jest.fn();
-      const shot3 = jest.fn();
+    expect(postponed1).not.toHaveBeenCalled();
+    expect(postponed2).not.toHaveBeenCalled();
 
-      schedule(shot1);
+    scheduler.render();
+    expect(postponed1).toHaveBeenCalledTimes(1);
+    expect(postponed2).toHaveBeenCalledTimes(1);
+  });
+  it('executes recurrent render shot in the same schedule by next request', () => {
+
+    const shot1 = jest.fn();
+    const shot2 = jest.fn();
+    const shot3 = jest.fn();
+
+    schedule(shot1.mockImplementation(() => {
+      schedule(shot2);
+      schedule(shot3);
+    }));
+
+    expect(shot1).not.toHaveBeenCalled();
+    expect(shot2).not.toHaveBeenCalled();
+    expect(shot3).not.toHaveBeenCalled();
+
+    expect(scheduler.render()).toBe(true);
+    expect(shot1).toHaveBeenCalled();
+    expect(shot2).not.toHaveBeenCalled();
+    expect(shot3).not.toHaveBeenCalled();
+
+    expect(scheduler.render()).toBe(true);
+    expect(shot2).not.toHaveBeenCalled();
+    expect(shot3).toHaveBeenCalled();
+
+    expect(scheduler.render()).toBe(false);
+    expect(shot1).toHaveBeenCalledTimes(1);
+    expect(shot2).not.toHaveBeenCalled();
+    expect(shot3).toHaveBeenCalledTimes(1);
+  });
+  it('executes recurrent render shot in another schedule by the same request', () => {
+
+    const shot1 = jest.fn();
+    const shot2 = jest.fn();
+    const shot3 = jest.fn();
+
+    schedule(shot1.mockImplementation(() => {
       schedule2(shot2);
       schedule2(shot3);
+    }));
 
-      expect(shot1).not.toHaveBeenCalled();
-      expect(shot2).not.toHaveBeenCalled();
-      expect(shot3).not.toHaveBeenCalled();
+    expect(shot1).not.toHaveBeenCalled();
+    expect(shot2).not.toHaveBeenCalled();
+    expect(shot3).not.toHaveBeenCalled();
 
-      expect(scheduler.render()).toBe(true);
-      expect(shot1).toHaveBeenCalled();
-      expect(shot2).not.toHaveBeenCalled();
-      expect(shot3).toHaveBeenCalled();
+    expect(scheduler.render()).toBe(true);
+    expect(shot1).toHaveBeenCalled();
+    expect(shot2).not.toHaveBeenCalled();
+    expect(shot3).toHaveBeenCalled();
 
-      expect(scheduler.render()).toBe(false);
-      expect(shot1).toHaveBeenCalledTimes(1);
-      expect(shot2).not.toHaveBeenCalled();
-      expect(shot3).toHaveBeenCalledTimes(1);
+    expect(scheduler.render()).toBe(false);
+    expect(shot1).toHaveBeenCalledTimes(1);
+    expect(shot2).not.toHaveBeenCalled();
+    expect(shot3).toHaveBeenCalledTimes(1);
+  });
+  it('executes postponed render shots after recurrent ones in another schedule', () => {
+
+    const schedule3 = scheduler();
+    const calls: string[] = [];
+    const postponed = (): void => {
+      calls.push('postponed');
+    };
+    const recurrent1 = (): void => {
+      calls.push('recurrent1');
+    };
+    const recurrent2 = (): void => {
+      calls.push('recurrent2');
+    };
+
+    schedule(exec => {
+      schedule2(recurrent1);
+      exec.postpone(postponed);
+      schedule3(recurrent2);
     });
-    it('executes postponed render shots', () => {
 
-      const postponed1 = jest.fn();
-      const postponed2 = jest.fn();
-
-      schedule(exec => {
-        exec.postpone(postponed1);
-        exec.postpone(postponed2);
-      });
-
-      expect(postponed1).not.toHaveBeenCalled();
-      expect(postponed2).not.toHaveBeenCalled();
-
-      scheduler.render();
-      expect(postponed1).toHaveBeenCalledTimes(1);
-      expect(postponed2).toHaveBeenCalledTimes(1);
-    });
-    it('executes recurrent render shot in the same schedule by next request', () => {
-
-      const shot1 = jest.fn();
-      const shot2 = jest.fn();
-      const shot3 = jest.fn();
-
-      schedule(shot1.mockImplementation(() => {
-        schedule(shot2);
-        schedule(shot3);
-      }));
-
-      expect(shot1).not.toHaveBeenCalled();
-      expect(shot2).not.toHaveBeenCalled();
-      expect(shot3).not.toHaveBeenCalled();
-
-      expect(scheduler.render()).toBe(true);
-      expect(shot1).toHaveBeenCalled();
-      expect(shot2).not.toHaveBeenCalled();
-      expect(shot3).not.toHaveBeenCalled();
-
-      expect(scheduler.render()).toBe(true);
-      expect(shot2).not.toHaveBeenCalled();
-      expect(shot3).toHaveBeenCalled();
-
-      expect(scheduler.render()).toBe(false);
-      expect(shot1).toHaveBeenCalledTimes(1);
-      expect(shot2).not.toHaveBeenCalled();
-      expect(shot3).toHaveBeenCalledTimes(1);
-    });
-    it('executes recurrent render shot in another schedule by the same request', () => {
-
-      const shot1 = jest.fn();
-      const shot2 = jest.fn();
-      const shot3 = jest.fn();
-
-      schedule(shot1.mockImplementation(() => {
-        schedule2(shot2);
-        schedule2(shot3);
-      }));
-
-      expect(shot1).not.toHaveBeenCalled();
-      expect(shot2).not.toHaveBeenCalled();
-      expect(shot3).not.toHaveBeenCalled();
-
-      expect(scheduler.render()).toBe(true);
-      expect(shot1).toHaveBeenCalled();
-      expect(shot2).not.toHaveBeenCalled();
-      expect(shot3).toHaveBeenCalled();
-
-      expect(scheduler.render()).toBe(false);
-      expect(shot1).toHaveBeenCalledTimes(1);
-      expect(shot2).not.toHaveBeenCalled();
-      expect(shot3).toHaveBeenCalledTimes(1);
-    });
+    scheduler.render();
+    expect(calls).toEqual(['recurrent1', 'recurrent2', 'postponed']);
   });
   it('logs errors according to schedule options', () => {
 
