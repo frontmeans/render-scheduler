@@ -70,24 +70,24 @@
 					<a href="https://codecov.io/gh/surol/render-scheduler"><img src="https://codecov.io/gh/surol/render-scheduler/branch/master/graph/badge.svg" alt="codecov"></a>
 					<a href="https://github.com/surol/render-scheduler"><img src="https://img.shields.io/static/v1?logo=github&label=GitHub&message=project&color=informational" alt="GitHub Project"></a>
 				<a href="https://surol.github.io/render-scheduler/index.html"><img src="https://img.shields.io/static/v1?logo=typescript&label=API&message=docs&color=informational" alt="API Documentation"></a></p>
-				<p>Schedules DOM updates rendering.</p>
+				<p>Schedules rendering of DOM updates called <em>render shots</em>.</p>
 				<a href="#usage" id="usage" style="color: inherit; text-decoration: none;">
 					<h2>Usage</h2>
 				</a>
 				<pre><code class="language-typescript"><span class="hljs-keyword">import</span> { newRenderSchedule } <span class="hljs-keyword">from</span> <span class="hljs-string">'render-scheduler'</span>;
 
-<span class="hljs-comment">// First, create a rendering schedule.</span>
+<span class="hljs-comment">// First, create a rendering schedule</span>
 <span class="hljs-keyword">const</span> btnSchedule = newRenderSchedule();
 
-<span class="hljs-comment">// Schedule render</span>
+<span class="hljs-comment">// Schedule render shot</span>
 btnSchedule(<span class="hljs-function"><span class="hljs-params">()</span> =&gt;</span> <span class="hljs-built_in">document</span>.getElementById(<span class="hljs-string">'button'</span>).disabled = <span class="hljs-literal">false</span>);
 
-<span class="hljs-comment">// Schedule another render</span>
-<span class="hljs-comment">// Only the latest render within one schedule will be executed </span>
+<span class="hljs-comment">// Schedule another render shot</span>
+<span class="hljs-comment">// Only the latest render shot within one schedule will be executed </span>
 btnSchedule(<span class="hljs-function"><span class="hljs-params">()</span> =&gt;</span> <span class="hljs-built_in">document</span>.getElementById(<span class="hljs-string">'button'</span>).disabled = <span class="hljs-literal">true</span>);
 
-<span class="hljs-comment">// Each schedule schedules its renders independently from others.</span>
-<span class="hljs-comment">// Yet renders from all schedules for the same window are executed in the same animation frame.</span>
+<span class="hljs-comment">// Each schedule schedules its render shots independently from others.</span>
+<span class="hljs-comment">// Yet render shots from all schedules for the same window are executed in the same animation frame.</span>
 <span class="hljs-keyword">const</span> popupSchedule = newRenderSchedule();
 
 popupSchedule(<span class="hljs-function"><span class="hljs-params">execution</span> =&gt;</span> {
@@ -97,7 +97,7 @@ popupSchedule(<span class="hljs-function"><span class="hljs-params">execution</s
   popup.classList.remove(<span class="hljs-string">'hidden'</span>);
 
   execution.postpone(<span class="hljs-function"><span class="hljs-params">()</span> =&gt;</span> {
-    <span class="hljs-comment">// Postponed render is executed after the rest of them.</span>
+    <span class="hljs-comment">// Postponed render shot is executed after the rest of them.</span>
     <span class="hljs-comment">// This is useful when it needs to synchronously request a page reflow,</span>
     <span class="hljs-comment">// e.g. by requesting of geometry of just updated DOM element.  </span>
 
@@ -112,15 +112,15 @@ popupSchedule(<span class="hljs-function"><span class="hljs-params">execution</s
 				<a href="#scheduler-implementations" id="scheduler-implementations" style="color: inherit; text-decoration: none;">
 					<h2>Scheduler Implementations</h2>
 				</a>
-				<p>By default the scheduler executes scheduled renders within animation frame. It utilizes <a href="https://developer.mozilla.org/en-US/docs/Web/API/window/requestAnimationFrame">requestAnimationFrame()</a>
+				<p>By default scheduler executes scheduled render shots within animation frame. It utilizes <a href="https://developer.mozilla.org/en-US/docs/Web/API/window/requestAnimationFrame">requestAnimationFrame()</a>
 					of current window for that. This implementation is called <code>animationRenderScheduler</code>. It helps limit the rate
-				of DOM manipulations caused by too frequent updates, as only the latest render in the same schedule is executed.</p>
-				<p>There are few more implementations:</p>
+				of DOM manipulations caused by too frequent updates, as only the latest render shot in the same schedule is executed.</p>
+				<p>There is a few more implementations:</p>
 				<ul>
-					<li><code>asyncRenderScheduler</code> - executes renders asynchronously,</li>
-					<li><code>immediateRenderScheduler</code> - executes renders immediately upon scheduling,</li>
-					<li><code>ManualRenderScheduler</code> - executes renders on request,</li>
-					<li><code>noopRenderScheduler</code> - neither schedules, not executes renders. </li>
+					<li><code>asyncRenderScheduler</code> - executes render shots asynchronously,</li>
+					<li><code>immediateRenderScheduler</code> - executes render shots immediately upon scheduling,</li>
+					<li><code>ManualRenderScheduler</code> - executes render shots on request,</li>
+					<li><code>noopRenderScheduler</code> - neither schedules, not executes render shots. </li>
 				</ul>
 				<p>Render schedulers can be used directly, or set globally with <code>setRenderScheduler()</code> function. In the latter case
 				the <code>newRenderSchedule()</code> function would use that scheduler.</p>
@@ -131,14 +131,14 @@ popupSchedule(<span class="hljs-function"><span class="hljs-params">execution</s
 				<p>When constructing a new schedule additional options may be specified:</p>
 				<ul>
 					<li><code>window</code> - A window for constructed schedule.
-						<code>animationRenderScheduler</code> executes renders for all schedules created for the same window simultaneously,
+						<code>animationRenderScheduler</code> executes render shots for all schedules created for the same window simultaneously,
 						in the same animation frame.
 						Other implementations ignore this option.
 					Defaults to the window of the <code>node</code>, or to the current one.</li>
 					<li><code>node</code> - A DOM node for constructed schedule.
 					Used to detect missing <code>window</code> option.</li>
 					<li><code>error(...messages: any[])</code> - a method that will be called when some error occurred.
-						E.g. when render execution failed.
+						E.g. when render shot execution failed.
 					Defaults to <code>console.error()</code>.   </li>
 				</ul>
 			</div>
@@ -160,16 +160,16 @@ popupSchedule(<span class="hljs-function"><span class="hljs-params">execution</s
 						<a href="interfaces/manualrenderscheduler.html" class="tsd-kind-icon">Manual<wbr>Render<wbr>Scheduler</a>
 					</li>
 					<li class=" tsd-kind-interface">
+						<a href="interfaces/renderexecution.html" class="tsd-kind-icon">Render<wbr>Execution</a>
+					</li>
+					<li class=" tsd-kind-interface">
+						<a href="interfaces/renderqueue.html" class="tsd-kind-icon">Render<wbr>Queue</a>
+					</li>
+					<li class=" tsd-kind-interface">
 						<a href="interfaces/renderscheduleconfig.html" class="tsd-kind-icon">Render<wbr>Schedule<wbr>Config</a>
 					</li>
 					<li class=" tsd-kind-interface">
 						<a href="interfaces/renderscheduleoptions.html" class="tsd-kind-icon">Render<wbr>Schedule<wbr>Options</a>
-					</li>
-					<li class=" tsd-kind-interface">
-						<a href="interfaces/scheduledrenderexecution.html" class="tsd-kind-icon">Scheduled<wbr>Render<wbr>Execution</a>
-					</li>
-					<li class=" tsd-kind-interface">
-						<a href="interfaces/scheduledrenderqueue.html" class="tsd-kind-icon">Scheduled<wbr>Render<wbr>Queue</a>
 					</li>
 					<li class=" tsd-kind-type-alias">
 						<a href="globals.html#renderschedule" class="tsd-kind-icon">Render<wbr>Schedule</a>
@@ -178,7 +178,7 @@ popupSchedule(<span class="hljs-function"><span class="hljs-params">execution</s
 						<a href="globals.html#renderscheduler" class="tsd-kind-icon">Render<wbr>Scheduler</a>
 					</li>
 					<li class=" tsd-kind-type-alias">
-						<a href="globals.html#scheduledrender" class="tsd-kind-icon">Scheduled<wbr>Render</a>
+						<a href="globals.html#rendershot" class="tsd-kind-icon">Render<wbr>Shot</a>
 					</li>
 					<li class=" tsd-kind-variable">
 						<a href="globals.html#animationrenderscheduler" class="tsd-kind-icon">animation<wbr>Render<wbr>Scheduler</a>
@@ -208,10 +208,10 @@ popupSchedule(<span class="hljs-function"><span class="hljs-params">execution</s
 						<a href="globals.html#setrenderscheduler" class="tsd-kind-icon">set<wbr>Render<wbr>Scheduler</a>
 					</li>
 					<li class=" tsd-kind-object-literal">
-						<a href="globals.html#renderscheduleconfig" class="tsd-kind-icon">Render<wbr>Schedule<wbr>Config</a>
+						<a href="globals.html#renderqueue" class="tsd-kind-icon">Render<wbr>Queue</a>
 					</li>
 					<li class=" tsd-kind-object-literal">
-						<a href="globals.html#scheduledrenderqueue" class="tsd-kind-icon">Scheduled<wbr>Render<wbr>Queue</a>
+						<a href="globals.html#renderscheduleconfig" class="tsd-kind-icon">Render<wbr>Schedule<wbr>Config</a>
 					</li>
 				</ul>
 			</nav>
