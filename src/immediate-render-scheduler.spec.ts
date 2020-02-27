@@ -29,22 +29,22 @@ describe('immediateRenderScheduler', () => {
 
   it('renders immediately', () => {
 
-    const render = jest.fn();
+    const shot = jest.fn();
 
-    schedule(render);
-    expect(render).toHaveBeenCalledTimes(1);
+    schedule(shot);
+    expect(shot).toHaveBeenCalledTimes(1);
   });
-  it('executes subsequent renders immediately', () => {
+  it('executes subsequent render shots immediately', () => {
 
-    const render1 = jest.fn();
-    const render2 = jest.fn();
+    const shot1 = jest.fn();
+    const shot2 = jest.fn();
 
-    schedule(render1);
-    expect(render1).toHaveBeenCalledTimes(1);
-    schedule(render2);
-    expect(render2).toHaveBeenCalledTimes(1);
+    schedule(shot1);
+    expect(shot1).toHaveBeenCalledTimes(1);
+    schedule(shot2);
+    expect(shot2).toHaveBeenCalledTimes(1);
   });
-  it('executes postponed render after the main one', () => {
+  it('executes postponed render shot after the main one', () => {
 
     const postponed = jest.fn();
 
@@ -58,7 +58,7 @@ describe('immediateRenderScheduler', () => {
     });
     expect(postponed).toHaveBeenCalledTimes(1);
   });
-  it('executes all postponed renders in order', () => {
+  it('executes all postponed render shots in order', () => {
 
     const postponed1 = jest.fn();
     const postponed2 = jest.fn();
@@ -81,7 +81,7 @@ describe('immediateRenderScheduler', () => {
     expect(postponed1).toHaveBeenCalledTimes(1);
     expect(postponed2).toHaveBeenCalledTimes(1);
   });
-  it('executes recurrent render after currently executing one', () => {
+  it('executes recurrent render shot after currently executing one', () => {
 
     const nextRender = jest.fn();
 
@@ -96,7 +96,7 @@ describe('immediateRenderScheduler', () => {
 
     expect(nextRender).toHaveBeenCalledTimes(1);
   });
-  it('executes only the last recurrent render after currently executing one', () => {
+  it('executes only the last recurrent render shot after currently executing one', () => {
 
     const nextRender1 = jest.fn();
     const nextRender2 = jest.fn();
@@ -115,7 +115,7 @@ describe('immediateRenderScheduler', () => {
     expect(nextRender1).not.toHaveBeenCalled();
     expect(nextRender2).toHaveBeenCalledTimes(1);
   });
-  it('executes render in stale schedule', () => {
+  it('executes render shot in stale schedule', () => {
 
     const nextRender1 = jest.fn();
     const nextRender2 = jest.fn();
@@ -139,7 +139,7 @@ describe('immediateRenderScheduler', () => {
     expect(nextRender2).toHaveBeenCalledTimes(1);
     expect(nextRender3).toHaveBeenCalledTimes(1);
   });
-  it('executes recurrent renders in the same and another schedule after currently executing one', () => {
+  it('executes recurrent render shots in the same and another schedule after currently executing one', () => {
 
     const nextRender1 = jest.fn();
     const nextRender2 = jest.fn();
@@ -158,7 +158,7 @@ describe('immediateRenderScheduler', () => {
     expect(nextRender1).toHaveBeenCalledTimes(1);
     expect(nextRender2).toHaveBeenCalledTimes(1);
   });
-  it('executes recurrent render in another and the same schedule after currently executing one', () => {
+  it('executes recurrent render shot in another and the same schedule after currently executing one', () => {
 
     const nextRender1 = jest.fn();
     const nextRender2 = jest.fn();
@@ -177,7 +177,7 @@ describe('immediateRenderScheduler', () => {
     expect(nextRender1).toHaveBeenCalledTimes(1);
     expect(nextRender2).toHaveBeenCalledTimes(1);
   });
-  it('logs error and executes recurrent render after error', () => {
+  it('logs error and executes recurrent render shot after error', () => {
 
     const error = new Error('Expected');
     const nextRender = jest.fn();

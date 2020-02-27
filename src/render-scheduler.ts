@@ -8,7 +8,7 @@ import { RenderSchedule, RenderScheduleOptions } from './render-schedule';
 /**
  * Render scheduler signature.
  *
- * This function constructs {@link RenderSchedule render schedules} according to the given options.
+ * This function constructs a {@link RenderSchedule render schedule} according to the given options.
  *
  * The default render scheduler is always available as [[newRenderSchedule]] function.
  *

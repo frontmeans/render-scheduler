@@ -2,27 +2,27 @@
  * @packageDocumentation
  * @module render-scheduler
  */
-import { ScheduledRender } from './scheduled-render';
+import { RenderShot } from './render-shot';
 
 /**
  * Render schedule signature.
  *
- * This function accepts {@link ScheduledRender renders} to schedule.
+ * This function accepts a {@link RenderShot render shot} to schedule. All scheduled render shots are meant to update
+ * the same rendering target. If multiple render shots scheduled before execution starts, only the last one will be
+ * executed to limit rendering rate.
  *
- * If multiple renders scheduled before execution starts, only the last one will be executed to limit their execution
- * rate.
- *
- * The render execution may fail. This should not prevent other scheduled or postponed renders from being executed.
- * The render execution failure reason is expected to be reported with [[RenderScheduleConfig.error]] method.
+ * The render shot execution may fail. This should not prevent other scheduled or postponed render shots from being
+ * executed. The render shot execution failure reason is expected to be reported with [[RenderScheduleConfig.error]]
+ * method.
  *
  * Render schedules are constructed by {@link RenderScheduler render schedulers}, or by [[newRenderSchedule]] function
  * that uses the {@link setRenderScheduler default scheduler} for that.
  */
 export type RenderSchedule =
 /**
- * @param render  A render to schedule.
+ * @param shot  A render shot to schedule.
  */
-    (this: void, render: ScheduledRender) => void;
+    (this: void, shot: RenderShot) => void;
 
 /**
  * Options for render schedule.
@@ -51,7 +51,7 @@ export interface RenderScheduleOptions {
   node?: Node;
 
   /**
-   * Reports an error. E.g. a render execution failure.
+   * Reports an error. E.g. a render shot execution failure.
    *
    * Reports errors with `console.error()` by default.
    *
@@ -83,7 +83,7 @@ export interface RenderScheduleConfig {
   node?: Node;
 
   /**
-   * Reports an error. E.g. a render execution failure.
+   * Reports an error. E.g. a render shot execution failure.
    *
    * @param messages  Error messages to report.
    */

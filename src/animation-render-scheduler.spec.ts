@@ -38,69 +38,69 @@ describe('animationRenderScheduler', () => {
 
   it('renders when in animation frame', () => {
 
-    const render = jest.fn();
+    const shot = jest.fn();
 
-    schedule(render);
-    expect(render).not.toHaveBeenCalled();
+    schedule(shot);
+    expect(shot).not.toHaveBeenCalled();
     animate();
-    expect(render).toHaveBeenCalledWith(expect.objectContaining({
+    expect(shot).toHaveBeenCalledWith(expect.objectContaining({
       config: expect.objectContaining({ window: mockWindow }),
     }));
-    expect(render).toHaveBeenCalledTimes(1);
+    expect(shot).toHaveBeenCalledTimes(1);
   });
-  it('executes renders from different schedules in single animation frame', () => {
+  it('executes render shots from different schedules in single animation frame', () => {
 
-    const render1 = jest.fn();
-    const render2 = jest.fn();
+    const shot1 = jest.fn();
+    const shot2 = jest.fn();
 
-    schedule(render1);
-    schedule2(render2);
+    schedule(shot1);
+    schedule2(shot2);
     expect(mockWindow.requestAnimationFrame).toHaveBeenCalledTimes(1);
-    expect(render1).not.toHaveBeenCalled();
-    expect(render2).not.toHaveBeenCalled();
+    expect(shot1).not.toHaveBeenCalled();
+    expect(shot2).not.toHaveBeenCalled();
 
     animate();
-    expect(render1).toHaveBeenCalledTimes(1);
-    expect(render2).toHaveBeenCalledTimes(1);
+    expect(shot1).toHaveBeenCalledTimes(1);
+    expect(shot2).toHaveBeenCalledTimes(1);
   });
-  it('executes renders from different windows in different animation frames', () => {
+  it('executes render shots from different windows in different animation frames', () => {
 
     const mockWindow3: Mocked<Window> = {
       requestAnimationFrame: jest.fn(),
     } as any;
     const schedule3 = newRenderSchedule({ window: mockWindow3 });
-    const render1 = jest.fn();
-    const render2 = jest.fn();
-    const render3 = jest.fn();
+    const shot1 = jest.fn();
+    const shot2 = jest.fn();
+    const shot3 = jest.fn();
 
-    schedule(render1);
-    schedule2(render2);
-    schedule3(render3);
+    schedule(shot1);
+    schedule2(shot2);
+    schedule3(shot3);
     expect(mockWindow.requestAnimationFrame).toHaveBeenCalledTimes(1);
     expect(mockWindow3.requestAnimationFrame).toHaveBeenCalledTimes(1);
-    expect(render1).not.toHaveBeenCalled();
-    expect(render2).not.toHaveBeenCalled();
-    expect(render3).not.toHaveBeenCalled();
+    expect(shot1).not.toHaveBeenCalled();
+    expect(shot2).not.toHaveBeenCalled();
+    expect(shot3).not.toHaveBeenCalled();
 
     animate();
-    expect(render1).toHaveBeenCalledTimes(1);
-    expect(render2).toHaveBeenCalledTimes(1);
-    expect(render3).not.toHaveBeenCalled();
+    expect(shot1).toHaveBeenCalledTimes(1);
+    expect(shot2).toHaveBeenCalledTimes(1);
+    expect(shot3).not.toHaveBeenCalled();
   });
-  it('executes only the last render scheduled in one schedule', () => {
+  it('executes only the last render shot scheduled in one schedule', () => {
 
-    const render1 = jest.fn();
-    const render2 = jest.fn();
+    const shot1 = jest.fn();
+    const shot2 = jest.fn();
 
-    schedule(render1);
-    schedule(render2);
-    expect(render1).not.toHaveBeenCalled();
-    expect(render2).not.toHaveBeenCalled();
+    schedule(shot1);
+    schedule(shot2);
+    expect(shot1).not.toHaveBeenCalled();
+    expect(shot2).not.toHaveBeenCalled();
     animate();
-    expect(render1).not.toHaveBeenCalled();
-    expect(render2).toHaveBeenCalledTimes(1);
+    expect(shot1).not.toHaveBeenCalled();
+    expect(shot2).toHaveBeenCalledTimes(1);
   });
-  it('executes postponed render after the main one', () => {
+  it('executes postponed render shot after the main one', () => {
 
     const postponed = jest.fn();
 
@@ -116,7 +116,7 @@ describe('animationRenderScheduler', () => {
     animate();
     expect(postponed).toHaveBeenCalledTimes(1);
   });
-  it('executes all postponed renders in order', () => {
+  it('executes all postponed render shots in order', () => {
 
     const postponed1 = jest.fn();
     const postponed2 = jest.fn();
@@ -140,7 +140,7 @@ describe('animationRenderScheduler', () => {
     expect(postponed1).toHaveBeenCalledTimes(1);
     expect(postponed2).toHaveBeenCalledTimes(1);
   });
-  it('executes recurrent render in next animation frame', () => {
+  it('executes recurrent render shot in next animation frame', () => {
 
     const nextRender = jest.fn();
 
@@ -153,7 +153,7 @@ describe('animationRenderScheduler', () => {
     animate();
     expect(nextRender).toHaveBeenCalledTimes(1);
   });
-  it('executes only the last recurrent render after currently executing one', () => {
+  it('executes only the last recurrent render shot after currently executing one', () => {
 
     const nextRender1 = jest.fn();
     const nextRender2 = jest.fn();
@@ -171,7 +171,7 @@ describe('animationRenderScheduler', () => {
     expect(nextRender1).not.toHaveBeenCalled();
     expect(nextRender2).toHaveBeenCalledTimes(1);
   });
-  it('executes render in stale schedule', () => {
+  it('executes render shot in stale schedule', () => {
 
     const nextRender1 = jest.fn();
     const nextRender2 = jest.fn();
@@ -206,7 +206,7 @@ describe('animationRenderScheduler', () => {
     expect(nextRender2).toHaveBeenCalledTimes(1);
     expect(nextRender3).toHaveBeenCalledTimes(1);
   });
-  it('executes recurrent renders in the same and another schedule after currently executing one', () => {
+  it('executes recurrent render shots in the same and another schedule after currently executing one', () => {
 
     const nextRender1 = jest.fn();
     const nextRender2 = jest.fn();
@@ -230,7 +230,7 @@ describe('animationRenderScheduler', () => {
     expect(nextRender1).toHaveBeenCalledTimes(1);
     expect(nextRender2).toHaveBeenCalledTimes(1);
   });
-  it('executes recurrent render in another and the same schedule after currently executing one', () => {
+  it('executes recurrent render shot in another and the same schedule after currently executing one', () => {
 
     const nextRender1 = jest.fn();
     const nextRender2 = jest.fn();
@@ -254,7 +254,7 @@ describe('animationRenderScheduler', () => {
     expect(nextRender1).toHaveBeenCalledTimes(1);
     expect(nextRender2).toHaveBeenCalledTimes(1);
   });
-  it('logs error and executes recurrent render after error', () => {
+  it('logs error and executes recurrent render shot after error', () => {
 
     const error = new Error('Expected');
     const nextRender = jest.fn();

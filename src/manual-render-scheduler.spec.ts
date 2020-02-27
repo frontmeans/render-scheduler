@@ -14,34 +14,34 @@ describe('manualRenderScheduler', () => {
   });
 
   describe('render', () => {
-    it('returns `false` when no renders scheduled', () => {
+    it('returns `false` when no render shots scheduled', () => {
       expect(scheduler.render()).toBe(false);
     });
-    it('executes scheduled renders by request', () => {
+    it('executes scheduled render shots by request', () => {
 
-      const render1 = jest.fn();
-      const render2 = jest.fn();
-      const render3 = jest.fn();
+      const shot1 = jest.fn();
+      const shot2 = jest.fn();
+      const shot3 = jest.fn();
 
-      schedule(render1);
-      schedule2(render2);
-      schedule2(render3);
+      schedule(shot1);
+      schedule2(shot2);
+      schedule2(shot3);
 
-      expect(render1).not.toHaveBeenCalled();
-      expect(render2).not.toHaveBeenCalled();
-      expect(render3).not.toHaveBeenCalled();
+      expect(shot1).not.toHaveBeenCalled();
+      expect(shot2).not.toHaveBeenCalled();
+      expect(shot3).not.toHaveBeenCalled();
 
       expect(scheduler.render()).toBe(true);
-      expect(render1).toHaveBeenCalled();
-      expect(render2).not.toHaveBeenCalled();
-      expect(render3).toHaveBeenCalled();
+      expect(shot1).toHaveBeenCalled();
+      expect(shot2).not.toHaveBeenCalled();
+      expect(shot3).toHaveBeenCalled();
 
       expect(scheduler.render()).toBe(false);
-      expect(render1).toHaveBeenCalledTimes(1);
-      expect(render2).not.toHaveBeenCalled();
-      expect(render3).toHaveBeenCalledTimes(1);
+      expect(shot1).toHaveBeenCalledTimes(1);
+      expect(shot2).not.toHaveBeenCalled();
+      expect(shot3).toHaveBeenCalledTimes(1);
     });
-    it('executes postponed renders', () => {
+    it('executes postponed render shots', () => {
 
       const postponed1 = jest.fn();
       const postponed2 = jest.fn();
@@ -58,40 +58,40 @@ describe('manualRenderScheduler', () => {
       expect(postponed1).toHaveBeenCalledTimes(1);
       expect(postponed2).toHaveBeenCalledTimes(1);
     });
-    it('executes recurrent renders by next request', () => {
+    it('executes recurrent render shots by next request', () => {
 
-      const render1 = jest.fn();
-      const render2 = jest.fn();
-      const render3 = jest.fn();
-      const render4 = jest.fn();
+      const shot1 = jest.fn();
+      const shot2 = jest.fn();
+      const shot3 = jest.fn();
+      const shot4 = jest.fn();
 
-      schedule(render1.mockImplementation(() => {
-        schedule2(render2);
-        schedule(render3);
-        schedule(render4);
+      schedule(shot1.mockImplementation(() => {
+        schedule2(shot2);
+        schedule(shot3);
+        schedule(shot4);
       }));
 
-      expect(render1).not.toHaveBeenCalled();
-      expect(render2).not.toHaveBeenCalled();
-      expect(render3).not.toHaveBeenCalled();
-      expect(render4).not.toHaveBeenCalled();
+      expect(shot1).not.toHaveBeenCalled();
+      expect(shot2).not.toHaveBeenCalled();
+      expect(shot3).not.toHaveBeenCalled();
+      expect(shot4).not.toHaveBeenCalled();
 
       expect(scheduler.render()).toBe(true);
-      expect(render1).toHaveBeenCalled();
-      expect(render2).not.toHaveBeenCalled();
-      expect(render3).not.toHaveBeenCalled();
-      expect(render4).not.toHaveBeenCalled();
+      expect(shot1).toHaveBeenCalled();
+      expect(shot2).not.toHaveBeenCalled();
+      expect(shot3).not.toHaveBeenCalled();
+      expect(shot4).not.toHaveBeenCalled();
 
       expect(scheduler.render()).toBe(true);
-      expect(render2).toHaveBeenCalled();
-      expect(render3).not.toHaveBeenCalled();
-      expect(render4).toHaveBeenCalled();
+      expect(shot2).toHaveBeenCalled();
+      expect(shot3).not.toHaveBeenCalled();
+      expect(shot4).toHaveBeenCalled();
 
       expect(scheduler.render()).toBe(false);
-      expect(render1).toHaveBeenCalledTimes(1);
-      expect(render2).toHaveBeenCalledTimes(1);
-      expect(render3).not.toHaveBeenCalled();
-      expect(render4).toHaveBeenCalledTimes(1);
+      expect(shot1).toHaveBeenCalledTimes(1);
+      expect(shot2).toHaveBeenCalledTimes(1);
+      expect(shot3).not.toHaveBeenCalled();
+      expect(shot4).toHaveBeenCalledTimes(1);
     });
   });
   it('logs errors according to schedule options', () => {
@@ -113,7 +113,7 @@ describe('manualRenderScheduler', () => {
     expect(logError2).toHaveBeenCalledWith(error);
     expect(logError2).toHaveBeenCalledTimes(1);
   });
-  it('calls renders with their schedule configs', () => {
+  it('calls render shots with their schedule configs', () => {
 
     const options1 = { node: document.createElement('div') };
     const options2 = { node: document.createElement('span') };
@@ -121,14 +121,14 @@ describe('manualRenderScheduler', () => {
     schedule = scheduler(options1);
     schedule2 = scheduler(options2);
 
-    const render1 = jest.fn();
-    const render2 = jest.fn();
+    const shot1 = jest.fn();
+    const shot2 = jest.fn();
 
-    schedule(render1);
-    schedule2(render2);
+    schedule(shot1);
+    schedule2(shot2);
 
     scheduler.render();
-    expect(render1).toHaveBeenCalledWith(expect.objectContaining({ config: expect.objectContaining(options1) }));
-    expect(render2).toHaveBeenCalledWith(expect.objectContaining({ config: expect.objectContaining(options2) }));
+    expect(shot1).toHaveBeenCalledWith(expect.objectContaining({ config: expect.objectContaining(options1) }));
+    expect(shot2).toHaveBeenCalledWith(expect.objectContaining({ config: expect.objectContaining(options2) }));
   });
 });

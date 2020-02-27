@@ -11,10 +11,10 @@ describe('noopRenderScheduler', () => {
 
   it('does not schedule', () => {
 
-    const render = jest.fn();
+    const shot = jest.fn();
 
-    schedule(render);
-    expect(render).not.toHaveBeenCalled();
+    schedule(shot);
+    expect(shot).not.toHaveBeenCalled();
   });
   it('always returns the same schedule', () => {
     expect(noopRenderScheduler({ window })).toBe(schedule);
