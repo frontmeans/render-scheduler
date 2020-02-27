@@ -11,42 +11,42 @@ describe('asyncRenderScheduler', () => {
     schedule2 = asyncRenderScheduler();
   });
 
-  it('render deferred', async () => {
+  it('rendering is deferred', async () => {
 
-    const render = jest.fn();
+    const shot = jest.fn();
 
-    schedule(render);
-    expect(render).not.toHaveBeenCalled();
+    schedule(shot);
+    expect(shot).not.toHaveBeenCalled();
 
     await Promise.resolve();
-    expect(render).toHaveBeenCalledTimes(1);
+    expect(shot).toHaveBeenCalledTimes(1);
   });
-  it('executes only the last scheduled render', async () => {
+  it('executes only the last scheduled render shot', async () => {
 
-    const render1 = jest.fn();
-    const render2 = jest.fn();
+    const shot1 = jest.fn();
+    const shot2 = jest.fn();
 
-    schedule(render1);
-    schedule(render2);
-    expect(render1).not.toHaveBeenCalled();
-    expect(render2).not.toHaveBeenCalled();
+    schedule(shot1);
+    schedule(shot2);
+    expect(shot1).not.toHaveBeenCalled();
+    expect(shot2).not.toHaveBeenCalled();
 
     await Promise.resolve();
-    expect(render1).not.toHaveBeenCalled();
-    expect(render2).toHaveBeenCalledTimes(1);
+    expect(shot1).not.toHaveBeenCalled();
+    expect(shot2).toHaveBeenCalledTimes(1);
   });
-  it('executes renders from different schedules simultaneously', async () => {
+  it('executes render shots from different schedules simultaneously', async () => {
 
-    const render1 = jest.fn();
-    const render2 = jest.fn();
+    const shot1 = jest.fn();
+    const shot2 = jest.fn();
 
-    schedule(render1);
-    schedule2(render2);
-    expect(render1).not.toHaveBeenCalled();
-    expect(render2).not.toHaveBeenCalled();
+    schedule(shot1);
+    schedule2(shot2);
+    expect(shot1).not.toHaveBeenCalled();
+    expect(shot2).not.toHaveBeenCalled();
 
     await Promise.resolve();
-    expect(render1).toHaveBeenCalledTimes(1);
-    expect(render2).toHaveBeenCalledTimes(1);
+    expect(shot1).toHaveBeenCalledTimes(1);
+    expect(shot2).toHaveBeenCalledTimes(1);
   });
 });

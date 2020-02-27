@@ -2,29 +2,30 @@
  * @packageDocumentation
  * @module render-scheduler
  */
-import { customRenderScheduler, ScheduledRenderQueue } from './custom-render-scheduler';
+import { customRenderScheduler } from './custom-render-scheduler';
+import { RenderQueue } from './render-queue';
 import { RenderScheduler } from './render-scheduler';
 
 /**
- * A render scheduler that executes scheduled renders on request.
+ * A render scheduler that executes scheduled render shots on request.
  *
  * Can be constructed using [[newManualRenderScheduler]] function.
  */
 export interface ManualRenderScheduler extends RenderScheduler {
 
   /**
-   * Executes all scheduled renders.
+   * Executes all scheduled render shots.
    *
-   * @returns `true` if some renders executed, or `false` when no renders scheduled.
+   * @returns `true` if some render shots executed, or `false` when no render shots scheduled.
    */
   render(): boolean;
 
 }
 
 /**
- * Creates new render scheduler that executes scheduled renders on request.
+ * Creates new render scheduler that executes scheduled render shots on request.
  *
- * Call its [[ManualRenderScheduler.render]] method to execute scheduled renders.
+ * A [[ManualRenderScheduler.render]] method should be called to execute scheduled render shots.
  *
  * @returns New manual render scheduler.
  */
@@ -32,7 +33,7 @@ export function newManualRenderScheduler(): ManualRenderScheduler {
 
   const emptyTask = (): boolean => false;
   let pendingTask = emptyTask;
-  let queue = ScheduledRenderQueue.by({
+  let queue = RenderQueue.by({
     // Called at most once until reset
     schedule: task => pendingTask = () => {
       task();

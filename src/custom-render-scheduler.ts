@@ -2,9 +2,10 @@
  * @packageDocumentation
  * @module render-scheduler
  */
+import { RenderQueue } from './render-queue';
 import { RenderScheduleConfig } from './render-schedule';
 import { RenderScheduler } from './render-scheduler';
-import { ScheduledRender, ScheduledRenderExecution } from './scheduled-render';
+import { RenderExecution, RenderShot } from './render-shot';
 
 /**
  * Custom render scheduler options.
@@ -22,129 +23,44 @@ export interface CustomRenderSchedulerOptions {
    *
    * @param config  Render schedule configuration.
    *
-   * @returns  Scheduled render queue.
+   * @returns  A queue of scheduled render shots.
    */
-  newQueue(config: RenderScheduleConfig): ScheduledRenderQueue;
+  newQueue(config: RenderScheduleConfig): RenderQueue;
 
 }
 
 /**
- * A queue of scheduled renders.
- *
- * Utilized by render scheduler in order to collect scheduled renders and schedule their execution.
- *
- * The default implementation may constructed using [[ScheduledRenderQueue.by]] function.
+ * @internal
  */
-export interface ScheduledRenderQueue {
-
-  /**
-   * Adds a render to this queue.
-   *
-   * @param render  Scheduled render to add.
-   */
-  add(render: ScheduledRender): void;
-
-  /**
-   * Retrieves the first added render and removes it from the queue.
-   *
-   * @returns  Either pulled out scheduled render, or `undefined` when there is no more renders.
-   */
-  pull(): ScheduledRender | undefined;
-
-  /**
-   * Schedules queued renders execution.
-   *
-   * @param task  A function that performs scheduled renders execution task.
-   */
-  schedule(task: (this: void) => void): void;
-
-  /**
-   * Resets the queue for the next execution.
-   *
-   * @returns  Another (empty) queue that will collect scheduled renders from now on.
-   */
-  reset(): ScheduledRenderQueue;
-
-}
-
-export const ScheduledRenderQueue = {
-
-  /**
-   * Builds the default implementation of scheduled renders queue.
-   *
-   * @param schedule  Schedules queued renders execution. This is an implementation of
-   * [[ScheduledRenderQueue.schedule]] method.
-   * @param replace  Called right after [[ScheduledRenderQueue.reset]] method in order to inform on queue that will
-   * collect scheduled renders from now.
-   *
-   * @returns New scheduled render queue.
-   */
-  by(
-      this: void,
-      {
-        schedule,
-        replace = () => {/* do not replace */},
-      }: {
-        schedule(this: ScheduledRenderQueue, task: (this: void) => void): void;
-        replace?(this: void, replacement: ScheduledRenderQueue): void;
-      },
-  ): ScheduledRenderQueue {
-
-    const renders: ScheduledRender[] = [];
-
-    return {
-      schedule,
-      add(render) {
-        renders.push(render);
-      },
-      pull() {
-        return renders.shift();
-      },
-      reset() {
-
-        const next = ScheduledRenderQueue.by({ schedule, replace });
-
-        replace(next);
-
-        return next;
-      },
-    };
-  },
-
-};
+const RenderQ__symbol = Symbol('render-q');
 
 /**
  * @internal
  */
-const ScheduledRenderQ__symbol = Symbol('scheduled-render-q');
+class RenderQ {
 
-/**
- * @internal
- */
-class ScheduledRenderQ {
-
-  readonly ref: [ScheduledRenderQ];
-  schedule: (this: ScheduledRenderQ, config: RenderScheduleConfig) => void;
+  readonly ref: [RenderQ];
+  schedule: (this: RenderQ, config: RenderScheduleConfig) => void;
   private scheduled?: RenderScheduleConfig;
 
-  static by(queue: ScheduledRenderQueue, ref?: [ScheduledRenderQ]): ScheduledRenderQ {
-    return (queue as any)[ScheduledRenderQ__symbol]
-        || ((queue as any)[ScheduledRenderQ__symbol] = new ScheduledRenderQ(queue, ref));
+  static by(queue: RenderQueue, ref?: [RenderQ]): RenderQ {
+    return (queue as any)[RenderQ__symbol]
+        || ((queue as any)[RenderQ__symbol] = new RenderQ(queue, ref));
   }
 
-  private constructor(private readonly q: ScheduledRenderQueue, ref?: [ScheduledRenderQ]) {
+  private constructor(private readonly q: RenderQueue, ref?: [RenderQ]) {
     this.schedule = this.doSchedule;
     this.ref = ref || [this];
   }
 
-  add(render: ScheduledRender): void {
-    this.q.add(render);
+  add(shot: RenderShot): void {
+    this.q.add(shot);
   }
 
   private doSchedule(config: RenderScheduleConfig): void {
     this.schedule = () => {/* do not schedule */};
 
-    const execution: ScheduledRenderExecution = {
+    const execution: RenderExecution = {
       get config() {
         return config;
       },
@@ -161,20 +77,20 @@ class ScheduledRenderQ {
     });
   }
 
-  private exec(execution: ScheduledRenderExecution): void {
+  private exec(execution: RenderExecution): void {
     for (; ;) {
 
-      const render = this.q.pull();
+      const shot = this.q.pull();
 
-      if (!render) {
+      if (!shot) {
         break;
       }
-      render(execution);
+      shot(execution);
     }
   }
 
-  private reset(): ScheduledRenderQ {
-    return this.ref[0] = ScheduledRenderQ.by(this.q.reset(), this.ref);
+  private reset(): RenderQ {
+    return this.ref[0] = RenderQ.by(this.q.reset(), this.ref);
   }
 
   private suspend(): void {
@@ -207,21 +123,21 @@ export function customRenderScheduler(
   return scheduleOptions => {
 
     const config = RenderScheduleConfig.by(scheduleOptions);
-    const queueRef = ScheduledRenderQ.by(options.newQueue(config)).ref;
-    let enqueued: [ScheduledRenderQ, ScheduledRender] | [] = [];
+    const queueRef = RenderQ.by(options.newQueue(config)).ref;
+    let enqueued: [RenderQ, RenderShot] | [] = [];
 
-    return render => {
+    return shot => {
 
       const [lastQueue] = enqueued;
       const [nextQueue] = queueRef;
 
       if (lastQueue === nextQueue) {
-        enqueued[1] = render;
+        enqueued[1] = shot;
       } else {
 
-        const nextEnqueued = enqueued = [nextQueue, render];
+        const nextEnqueued = enqueued = [nextQueue, shot];
 
-        nextQueue.add((execution: ScheduledRenderExecution) => {
+        nextQueue.add((execution: RenderExecution) => {
           try {
             nextEnqueued[1]({
               get config() {

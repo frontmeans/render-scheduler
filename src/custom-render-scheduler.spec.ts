@@ -1,29 +1,30 @@
-import { customRenderScheduler, ScheduledRenderQueue } from './custom-render-scheduler';
+import { customRenderScheduler } from './custom-render-scheduler';
+import { RenderQueue } from './render-queue';
 import { RenderScheduleOptions } from './render-schedule';
-import { ScheduledRenderExecution } from './scheduled-render';
+import { RenderExecution } from './render-shot';
 import Mock = jest.Mock;
 
 describe('ScheduledRenderQueue', () => {
 
-  let queue: ScheduledRenderQueue;
+  let queue: RenderQueue;
   let mockSchedule: Mock;
 
   beforeEach(() => {
     mockSchedule = jest.fn();
-    queue = ScheduledRenderQueue.by({ schedule: mockSchedule });
+    queue = RenderQueue.by({ schedule: mockSchedule });
   });
 
   describe('add', () => {
-    it('enqueues render', () => {
+    it('enqueues render shots', () => {
 
-      const render1 = jest.fn();
-      const render2 = jest.fn();
+      const shot1 = jest.fn();
+      const shot2 = jest.fn();
 
-      queue.add(render1);
-      queue.add(render2);
+      queue.add(shot1);
+      queue.add(shot2);
 
-      expect(queue.pull()).toBe(render1);
-      expect(queue.pull()).toBe(render2);
+      expect(queue.pull()).toBe(shot1);
+      expect(queue.pull()).toBe(shot2);
       expect(queue.pull()).toBeUndefined();
     });
   });
@@ -45,22 +46,22 @@ describe('ScheduledRenderQueue', () => {
 });
 
 describe('CustomRenderScheduler', () => {
-  it('passes config to enqueued renders', () => {
+  it('passes config to enqueued render shots', () => {
 
     let exec = (): void => {/* not scheduled */};
-    const scheduled: Mock<void, [ScheduledRenderExecution]>[] = [];
-    const executed: Mock<void, [ScheduledRenderExecution]>[] = [];
-    const queue: ScheduledRenderQueue = {
-      add: render => scheduled.push(jest.fn(render)),
+    const scheduled: Mock<void, [RenderExecution]>[] = [];
+    const executed: Mock<void, [RenderExecution]>[] = [];
+    const queue: RenderQueue = {
+      add: shot => scheduled.push(jest.fn(shot)),
       pull: () => {
 
-        const render = scheduled.shift();
+        const shot = scheduled.shift();
 
-        if (render) {
-          executed.push(render);
+        if (shot) {
+          executed.push(shot);
         }
 
-        return render;
+        return shot;
       },
       schedule: task => exec = task,
       reset: () => queue,
