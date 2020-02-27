@@ -39,18 +39,18 @@ const RenderQ__symbol = Symbol('render-q');
  */
 class RenderQ {
 
-  readonly ref: [RenderQ];
+  readonly ref: [RenderQ, RenderQ];
   schedule: (this: RenderQ, config: RenderScheduleConfig) => void;
   private scheduled?: RenderScheduleConfig;
 
-  static by(queue: RenderQueue, ref?: [RenderQ]): RenderQ {
+  static by(queue: RenderQueue, ref?: [RenderQ, RenderQ]): RenderQ {
     return (queue as any)[RenderQ__symbol]
         || ((queue as any)[RenderQ__symbol] = new RenderQ(queue, ref));
   }
 
-  private constructor(private readonly q: RenderQueue, ref?: [RenderQ]) {
+  private constructor(private readonly q: RenderQueue, ref?: [RenderQ, RenderQ]) {
     this.schedule = this.doSchedule;
-    this.ref = ref || [this];
+    this.ref = ref || [this, this];
   }
 
   add(shot: RenderShot): void {
@@ -60,11 +60,14 @@ class RenderQ {
   private doSchedule(config: RenderScheduleConfig): void {
     this.schedule = () => {/* do not schedule */};
 
+    const postponed: RenderShot[] = [];
     const execution: RenderExecution = {
       get config() {
         return config;
       },
-      postpone: postponed => this.add(postponed),
+      postpone(shot) {
+        postponed.push(shot);
+      },
     };
 
     this.q.schedule(() => {
@@ -72,6 +75,11 @@ class RenderQ {
       const next = this.reset();
 
       next.suspend();
+      this.exec(execution);
+      // Activate next queue
+      this.ref[1] = this.ref[0];
+      // Execute postponed shots
+      postponed.forEach(execution.postpone = shot => this.q.add(shot));
       this.exec(execution);
       next.resume();
     });
@@ -90,6 +98,7 @@ class RenderQ {
   }
 
   private reset(): RenderQ {
+    // Update next queue. Current queue remains active
     return this.ref[0] = RenderQ.by(this.q.reset(), this.ref);
   }
 
@@ -123,21 +132,28 @@ export function customRenderScheduler(
   return scheduleOptions => {
 
     const config = RenderScheduleConfig.by(scheduleOptions);
-    const queueRef = RenderQ.by(options.newQueue(config)).ref;
-    let enqueued: [RenderQ, RenderShot] | [] = [];
+    const queueRef: readonly [RenderQ, RenderQ] = RenderQ.by(options.newQueue(config)).ref;
+    let enqueued: [RenderQ, RenderShot, true?] | [] = [];
 
     return shot => {
 
-      const [lastQueue] = enqueued;
-      const [nextQueue] = queueRef;
+      const [lastQueue,, executed] = enqueued;
+      const [nextQueue, activeQueue] = queueRef;
+      let queue = lastQueue || activeQueue;
 
-      if (lastQueue === nextQueue) {
+      if (lastQueue === activeQueue && !executed || lastQueue === nextQueue) {
         enqueued[1] = shot;
       } else {
 
-        const nextEnqueued = enqueued = [nextQueue, shot];
+        // Add to active queue initially, unless a shot executed in it already.
+        // Add to the next queue otherwise.
+        const nextEnqueued: [RenderQ, RenderShot, true?] = enqueued = [
+          queue = executed ? nextQueue : activeQueue,
+          shot,
+        ];
 
-        nextQueue.add((execution: RenderExecution) => {
+        queue.add((execution: RenderExecution) => {
+          nextEnqueued[2] = true; // Switch to next queue
           try {
             nextEnqueued[1]({
               get config() {
@@ -153,7 +169,7 @@ export function customRenderScheduler(
         });
       }
 
-      nextQueue.schedule(config);
+      queue.schedule(config);
     };
   };
 }

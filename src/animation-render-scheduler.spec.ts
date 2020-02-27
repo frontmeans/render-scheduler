@@ -199,7 +199,7 @@ describe('animationRenderScheduler', () => {
     animate();
     expect(nextRender1).toHaveBeenCalledTimes(1);
     expect(nextRender2).not.toHaveBeenCalled();
-    expect(nextRender3).not.toHaveBeenCalled();
+    expect(nextRender3).toHaveBeenCalled();
 
     animate();
     expect(nextRender1).toHaveBeenCalledTimes(1);
@@ -224,13 +224,13 @@ describe('animationRenderScheduler', () => {
 
     animate();
     expect(nextRender1).not.toHaveBeenCalled();
-    expect(nextRender2).not.toHaveBeenCalled();
+    expect(nextRender2).toHaveBeenCalled();
 
     animate();
     expect(nextRender1).toHaveBeenCalledTimes(1);
     expect(nextRender2).toHaveBeenCalledTimes(1);
   });
-  it('executes recurrent render shot in another and the same schedule after currently executing one', () => {
+  it('executes recurrent render shots in another and the same schedule after currently executing one', () => {
 
     const nextRender1 = jest.fn();
     const nextRender2 = jest.fn();
@@ -248,7 +248,7 @@ describe('animationRenderScheduler', () => {
 
     animate();
     expect(nextRender1).not.toHaveBeenCalled();
-    expect(nextRender2).not.toHaveBeenCalled();
+    expect(nextRender2).toHaveBeenCalled();
 
     animate();
     expect(nextRender1).toHaveBeenCalledTimes(1);

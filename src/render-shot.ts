@@ -38,9 +38,9 @@ export interface RenderExecution {
    *
    * [layout thrashing]: https://developers.google.com/web/fundamentals/performance/rendering/avoid-large-complex-layouts-and-layout-thrashing
    *
-   * @param shot  A render shot to postpone.
+   * @param postponed  A render shot to postpone.
    */
   // tslint:enable:max-line-length
-  postpone(shot: RenderShot): void;
+  postpone(postponed: RenderShot): void;
 
 }
