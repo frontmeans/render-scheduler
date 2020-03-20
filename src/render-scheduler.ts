@@ -1,6 +1,6 @@
 /**
  * @packageDocumentation
- * @module render-scheduler
+ * @module @proc7ts/render-scheduler
  */
 import { animationRenderScheduler } from './animation-render-scheduler';
 import { RenderSchedule, RenderScheduleOptions } from './render-schedule';

@@ -9,23 +9,23 @@ DOM Render Scheduler
 
 Schedules rendering of DOM updates called _render shots_.
 
-[npm-image]: https://img.shields.io/npm/v/render-scheduler.svg?logo=npm
-[npm-url]: https://www.npmjs.com/package/render-scheduler
-[ci-image]: https://img.shields.io/circleci/build/github/surol/render-scheduler?logo=circleci
-[ci-url]: https://circleci.com/gh/surol/render-scheduler
-[codecov-image]: https://codecov.io/gh/surol/render-scheduler/branch/master/graph/badge.svg
-[codecov-url]: https://codecov.io/gh/surol/render-scheduler
+[npm-image]: https://img.shields.io/npm/v/@proc7ts/render-scheduler.svg?logo=npm
+[npm-url]: https://www.npmjs.com/package/@proc7ts/render-scheduler
+[ci-image]: https://img.shields.io/circleci/build/github/proc7ts/render-scheduler?logo=circleci
+[ci-url]: https://circleci.com/gh/proc7ts/render-scheduler
+[codecov-image]: https://codecov.io/gh/proc7ts/render-scheduler/branch/master/graph/badge.svg
+[codecov-url]: https://codecov.io/gh/proc7ts/render-scheduler
 [github-image]: https://img.shields.io/static/v1?logo=github&label=GitHub&message=project&color=informational
-[github-url]: https://github.com/surol/render-scheduler
+[github-url]: https://github.com/proc7ts/render-scheduler
 [api-docs-image]: https://img.shields.io/static/v1?logo=typescript&label=API&message=docs&color=informational
-[api-docs-url]: https://surol.github.io/render-scheduler/index.html
+[api-docs-url]: https://proc7ts.github.io/render-scheduler/index.html
 
 
 Usage
 -----
 
 ```typescript
-import { newRenderSchedule } from 'render-scheduler';
+import { newRenderSchedule } from '@proc7ts/render-scheduler';
 
 // First, create a rendering schedule
 const btnSchedule = newRenderSchedule();

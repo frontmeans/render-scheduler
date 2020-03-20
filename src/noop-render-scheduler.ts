@@ -1,6 +1,6 @@
 /**
  * @packageDocumentation
- * @module render-scheduler
+ * @module @proc7ts/render-scheduler
  */
 import { RenderSchedule } from './render-schedule';
 import { RenderScheduler } from './render-scheduler';

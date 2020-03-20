@@ -21,7 +21,7 @@ module.exports = {
     [
       'jest-junit',
       {
-        suiteName: 'render-scheduler',
+        suiteName: '@proc7ts/render-scheduler',
         outputDirectory: './target/test-results',
         classNameTemplate: '{classname}: {title}',
         titleTemplate: '{classname}: {title}',
