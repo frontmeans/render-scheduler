@@ -12,6 +12,7 @@ describe('CustomRenderScheduler', () => {
     const executed: Mock<void, [RenderExecution]>[] = [];
     const queue: RenderQueue = {
       add: shot => scheduled.push(jest.fn(shot)),
+      post: shot => scheduled.unshift(jest.fn(shot)),
       pull: () => {
 
         const shot = scheduled.shift();

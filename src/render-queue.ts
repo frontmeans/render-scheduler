@@ -21,6 +21,13 @@ export interface RenderQueue {
   add(shot: RenderShot): void;
 
   /**
+   * Adds a render shot to the head of this queue.
+   *
+   * @param shot  Scheduled render shot to add.
+   */
+  post(shot: RenderShot): void;
+
+  /**
    * Retrieves the first added render shot and removes it from the queue.
    *
    * @returns  Either pulled out render shot, or `undefined` when there is no more render shots.
@@ -72,6 +79,9 @@ export const RenderQueue = {
       schedule,
       add(shot) {
         shots.push(shot);
+      },
+      post(shot) {
+        shots.unshift(shot);
       },
       pull() {
         return shots.shift();
