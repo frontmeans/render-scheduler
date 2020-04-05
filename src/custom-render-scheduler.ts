@@ -78,10 +78,10 @@ class RenderQ {
       this.exec(execution);
       // Activate next queue
       this.ref[1] = this.ref[0];
-      // Postponed shots are executed immediately from now on
-      execution.postpone = shot => this.q.post(shot);
-      // Execute postponed shots (in reverse order)
+      // Schedule postponed shots (in reverse order)
       postponed.forEach(shot => this.q.add(shot));
+      // Recurrently postponed shots are executed immediately after their initiators
+      execution.postpone = shot => this.q.post(shot);
       this.exec(execution);
       next.resume();
     });
