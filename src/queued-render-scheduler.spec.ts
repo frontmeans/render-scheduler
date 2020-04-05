@@ -1,8 +1,8 @@
-import { immediateRenderScheduler } from './immediate-render-scheduler';
+import { queuedRenderScheduler } from './queued-render-scheduler';
 import { RenderSchedule } from './render-schedule';
 import Mock = jest.Mock;
 
-describe('immediateRenderScheduler', () => {
+describe('queuedRenderScheduler', () => {
 
   let mockError: Mock<void, [any]>;
 
@@ -14,8 +14,8 @@ describe('immediateRenderScheduler', () => {
   let schedule2: RenderSchedule;
 
   beforeEach(() => {
-    schedule = immediateRenderScheduler({ error: mockError });
-    schedule2 = immediateRenderScheduler();
+    schedule = queuedRenderScheduler({ error: mockError });
+    schedule2 = queuedRenderScheduler();
   });
 
   let errors: any[];

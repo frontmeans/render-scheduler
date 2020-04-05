@@ -15,8 +15,8 @@ let immediateRenderQueue = (/*#__PURE__*/ RenderQueue.by({
 }));
 
 /**
- * A render scheduler that executes scheduled render shots immediately.
+ * A render scheduler that schedules render shots for immediate execution.
  */
-export const immediateRenderScheduler: RenderScheduler = (/*#__PURE__*/ customRenderScheduler({
+export const queuedRenderScheduler: RenderScheduler = (/*#__PURE__*/ customRenderScheduler({
   newQueue: () => immediateRenderQueue,
 }));

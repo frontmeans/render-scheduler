@@ -73,9 +73,10 @@ of DOM manipulations caused by too frequent updates, as only the latest render s
 There is a few more implementations:
 
 - `asyncRenderScheduler` - executes render shots asynchronously,
-- `immediateRenderScheduler` - executes render shots immediately upon scheduling,
+- `immediateRenderScheduler` - executes render shots immediately,
 - `ManualRenderScheduler` - executes render shots on request,
-- `noopRenderScheduler` - neither schedules, not executes render shots. 
+- `noopRenderScheduler` - neither schedules, nor executes render shots,
+- `queuedRenderScheduler` - schedules render shots for immediate execution. 
 
 Render schedulers can be used directly, or set globally with `setRenderScheduler()` function. In the latter case
 the `newRenderSchedule()` function would use that scheduler.
