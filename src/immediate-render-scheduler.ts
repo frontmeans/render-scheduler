@@ -1,22 +1,46 @@
-/**
- * @packageDocumentation
- * @module @proc7ts/render-scheduler
- */
-import { customRenderScheduler } from './custom-render-scheduler';
-import { RenderQueue } from './render-queue';
+import { RenderSchedule, RenderScheduleConfig, RenderScheduleOptions } from './render-schedule';
 import { RenderScheduler } from './render-scheduler';
+import { RenderExecution, RenderShot } from './render-shot';
 
 /**
- * @internal
+ * Render scheduler that executes render shots immediately.
+ *
+ * @param options
  */
-let immediateRenderQueue = (/*#__PURE__*/ RenderQueue.by({
-  schedule: task => task(),
-  replace: replacement => immediateRenderQueue = replacement,
-}));
+export const immediateRenderScheduler: RenderScheduler = (options?: RenderScheduleOptions): RenderSchedule => {
 
-/**
- * A render scheduler that executes scheduled render shots immediately.
- */
-export const immediateRenderScheduler: RenderScheduler = (/*#__PURE__*/ customRenderScheduler({
-  newQueue: () => immediateRenderQueue,
-}));
+  const config = RenderScheduleConfig.by(options);
+
+  return (shot: RenderShot) => {
+
+    const postponed: RenderShot[] = [];
+    const execution: RenderExecution = {
+      get config() {
+        return config;
+      },
+      postpone(shot) {
+        postponed.push(shot);
+      },
+    };
+
+    execute(shot);
+    for (; ;) {
+
+      const last = postponed.pop();
+
+      if (!last) {
+        break;
+      }
+
+      execute(last);
+    }
+
+    function execute(shot: RenderShot): void {
+      try {
+        shot(execution);
+      } catch (e) {
+        config.error(e);
+      }
+    }
+  };
+};
