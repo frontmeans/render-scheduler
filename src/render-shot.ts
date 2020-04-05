@@ -29,18 +29,18 @@ export interface RenderExecution {
    */
   readonly config: RenderScheduleConfig;
 
-  // tslint:disable:max-line-length
   /**
    * Postpones render shot so that it is executed after all currently executed render shots.
    *
    * This may be useful e.g. when the render shot issues a synchronous page reflow. In this case postponing it until
    * after all DOM modifications done would help reduce [layout thrashing].
    *
+   * Postponed render shots are executed in reverse order.
+   *
    * [layout thrashing]: https://developers.google.com/web/fundamentals/performance/rendering/avoid-large-complex-layouts-and-layout-thrashing
    *
    * @param postponed  A render shot to postpone.
    */
-  // tslint:enable:max-line-length
   postpone(postponed: RenderShot): void;
 
 }

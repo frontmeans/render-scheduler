@@ -66,7 +66,7 @@ popupSchedule(execution => {
 Scheduler Implementations
 -------------------------
 
-By default scheduler executes scheduled render shots within animation frame. It utilizes [requestAnimationFrame()]
+By default, a scheduler executes render shots within animation frame. It utilizes [requestAnimationFrame()]
 of current window for that. This implementation is called `animationRenderScheduler`. It helps limit the rate
 of DOM manipulations caused by too frequent updates, as only the latest render shot in the same schedule is executed.
 

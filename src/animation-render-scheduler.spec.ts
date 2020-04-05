@@ -1,7 +1,7 @@
 import { RenderSchedule, RenderScheduleOptions } from './render-schedule';
 import { newRenderSchedule } from './render-scheduler';
-import Mocked = jest.Mocked;
 import Mock = jest.Mock;
+import Mocked = jest.Mocked;
 
 describe('animationRenderScheduler', () => {
 
@@ -116,18 +116,32 @@ describe('animationRenderScheduler', () => {
     animate();
     expect(postponed).toHaveBeenCalledTimes(1);
   });
-  it('executes all postponed render shots in order', () => {
+  it('executes all postponed render shots in reverse order', () => {
 
     const postponed1 = jest.fn();
     const postponed2 = jest.fn();
+    const postponed3 = jest.fn();
 
     schedule(execution => {
-      execution.postpone(ex => ex.postpone(postponed2));
+      execution.postpone(ex => ex.postpone(postponed3));
       execution.postpone(
           postponed1.mockImplementation(
               () => {
                 try {
-                  expect(postponed2).not.toHaveBeenCalled();
+                  expect(postponed2).toHaveBeenCalled();
+                  expect(postponed3).not.toHaveBeenCalled();
+                } catch (e) {
+                  errors.push(e);
+                }
+              },
+          ),
+      );
+      execution.postpone(
+          postponed2.mockImplementation(
+              () => {
+                try {
+                  expect(postponed1).not.toHaveBeenCalled();
+                  expect(postponed3).not.toHaveBeenCalled();
                 } catch (e) {
                   errors.push(e);
                 }
@@ -139,6 +153,7 @@ describe('animationRenderScheduler', () => {
     animate();
     expect(postponed1).toHaveBeenCalledTimes(1);
     expect(postponed2).toHaveBeenCalledTimes(1);
+    expect(postponed3).toHaveBeenCalledTimes(1);
   });
   it('executes recurrent render shot in next animation frame', () => {
 

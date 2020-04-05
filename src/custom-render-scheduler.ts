@@ -66,7 +66,7 @@ class RenderQ {
         return config;
       },
       postpone(shot) {
-        postponed.push(shot);
+        postponed.unshift(shot);
       },
     };
 
@@ -78,8 +78,10 @@ class RenderQ {
       this.exec(execution);
       // Activate next queue
       this.ref[1] = this.ref[0];
-      // Execute postponed shots
-      postponed.forEach(execution.postpone = shot => this.q.add(shot));
+      // Postponed shots are executed immediately from now on
+      execution.postpone = shot => shot(execution);
+      // Execute postponed shots (in reverse order)
+      postponed.forEach(shot => this.q.add(shot));
       this.exec(execution);
       next.resume();
     });
