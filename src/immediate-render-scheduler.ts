@@ -11,7 +11,7 @@ export const immediateRenderScheduler: RenderScheduler = (options?: RenderSchedu
 
   const config = RenderScheduleConfig.by(options);
 
-  return (shot: RenderShot) => {
+  return (shot: RenderShot): void => {
 
     const postponed: RenderShot[] = [];
     const execution: RenderExecution = {

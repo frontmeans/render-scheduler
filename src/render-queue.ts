@@ -66,7 +66,7 @@ export const RenderQueue = {
       this: void,
       {
         schedule,
-        replace = () => {/* do not replace */},
+        replace = (): void => {/* do not replace */},
       }: {
         schedule(this: RenderQueue, task: (this: void) => void): void;
         replace?(this: void, replacement: RenderQueue): void;
@@ -77,16 +77,16 @@ export const RenderQueue = {
 
     return {
       schedule,
-      add(shot) {
+      add(shot: RenderShot): void {
         shots.push(shot);
       },
-      post(shot) {
+      post(shot: RenderShot): void {
         shots.unshift(shot);
       },
-      pull() {
+      pull(): RenderShot | undefined {
         return shots.shift();
       },
-      reset() {
+      reset(): RenderQueue {
 
         const next = RenderQueue.by({ schedule, replace });
 

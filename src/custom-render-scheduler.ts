@@ -3,7 +3,7 @@
  * @module @proc7ts/render-scheduler
  */
 import { RenderQueue } from './render-queue';
-import { RenderScheduleConfig } from './render-schedule';
+import { RenderSchedule, RenderScheduleConfig, RenderScheduleOptions } from './render-schedule';
 import { RenderScheduler } from './render-scheduler';
 import { RenderExecution, RenderShot } from './render-shot';
 
@@ -37,15 +37,22 @@ const RenderQ__symbol = Symbol('render-q');
 /**
  * @internal
  */
+interface InternalRenderQueue extends RenderQueue {
+  [RenderQ__symbol]?: RenderQ;
+}
+
+/**
+ * @internal
+ */
 class RenderQ {
 
   readonly ref: [RenderQ, RenderQ];
   schedule: (this: RenderQ, config: RenderScheduleConfig) => void;
   private scheduled?: RenderScheduleConfig;
 
-  static by(queue: RenderQueue, ref?: [RenderQ, RenderQ]): RenderQ {
-    return (queue as any)[RenderQ__symbol]
-        || ((queue as any)[RenderQ__symbol] = new RenderQ(queue, ref));
+  static by(queue: InternalRenderQueue, ref?: [RenderQ, RenderQ]): RenderQ {
+    return queue[RenderQ__symbol]
+        || (queue[RenderQ__symbol] = new RenderQ(queue, ref));
   }
 
   private constructor(private readonly q: RenderQueue, ref?: [RenderQ, RenderQ]) {
@@ -131,13 +138,13 @@ class RenderQ {
 export function customRenderScheduler(
     options: CustomRenderSchedulerOptions,
 ): RenderScheduler {
-  return scheduleOptions => {
+  return (scheduleOptions?: RenderScheduleOptions): RenderSchedule => {
 
     const config = RenderScheduleConfig.by(scheduleOptions);
     const queueRef: readonly [RenderQ, RenderQ] = RenderQ.by(options.newQueue(config)).ref;
     let enqueued: [RenderQ, RenderShot, true?] | [] = [];
 
-    return shot => {
+    return (shot: RenderShot): void => {
 
       const [lastQueue,, executed] = enqueued;
       const [nextQueue, activeQueue] = queueRef;

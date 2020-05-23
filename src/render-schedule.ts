@@ -103,13 +103,13 @@ export const RenderScheduleConfig = {
     let win: Window | undefined;
 
     return {
-      get node() {
+      get node(): Node | undefined {
         return options.node;
       },
-      get window() {
+      get window(): Window {
         return win || (win = options.window || (options.node && nodeWindow(options.node)) || window);
       },
-      error(...messages) {
+      error(...messages: any[]): void {
         if (options && options.error) {
           options.error(...messages);
         } else {
