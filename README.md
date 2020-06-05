@@ -2,7 +2,7 @@ DOM Render Scheduler
 ====================
 
 [![NPM][npm-image]][npm-url]
-[![CircleCI][ci-image]][ci-url]
+[![Build Status][build-status-img]][build-status-link]
 [![codecov][codecov-image]][codecov-url]
 [![GitHub Project][github-image]][github-url]
 [![API Documentation][api-docs-image]][api-docs-url]
@@ -11,8 +11,8 @@ Schedules rendering of DOM updates called _render shots_.
 
 [npm-image]: https://img.shields.io/npm/v/@proc7ts/render-scheduler.svg?logo=npm
 [npm-url]: https://www.npmjs.com/package/@proc7ts/render-scheduler
-[ci-image]: https://img.shields.io/circleci/build/github/proc7ts/render-scheduler?logo=circleci
-[ci-url]: https://circleci.com/gh/proc7ts/render-scheduler
+[build-status-img]: https://github.com/proc7ts/render-scheduler/workflows/Build/badge.svg
+[build-status-link]: https://github.com/proc7ts/render-scheduler/actions?query=workflow%3ABuild
 [codecov-image]: https://codecov.io/gh/proc7ts/render-scheduler/branch/master/graph/badge.svg
 [codecov-url]: https://codecov.io/gh/proc7ts/render-scheduler
 [github-image]: https://img.shields.io/static/v1?logo=github&label=GitHub&message=project&color=informational
