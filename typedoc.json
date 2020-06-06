@@ -1,4 +1,5 @@
 {
+  "disableAutoModuleName": true,
   "exclude": [
     "**/index.ts",
     "**/*.impl.ts",
