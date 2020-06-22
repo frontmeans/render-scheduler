@@ -16,7 +16,7 @@
   "author": "Ruslan Lopatin <ruslan.lopatin@gmail.com>",
   "main": "dist/render-scheduler.js",
   "module": "dist/render-scheduler.mjs",
-  "typings": "index.d.ts",
+  "types": "index.d.ts",
   "devDependencies": {
     "@proc7ts/eslint-config": "^2.0.0",
     "@rollup/plugin-commonjs": "^13.0.0",
