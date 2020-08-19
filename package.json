@@ -18,7 +18,7 @@
   "module": "dist/render-scheduler.mjs",
   "types": "index.d.ts",
   "devDependencies": {
-    "@proc7ts/eslint-config": "^2.0.3",
+    "@proc7ts/eslint-config": "^2.0.4",
     "@rollup/plugin-commonjs": "^15.0.0",
     "@rollup/plugin-node-resolve": "^9.0.0",
     "@types/jest": "^26.0.10",
