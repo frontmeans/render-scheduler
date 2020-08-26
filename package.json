@@ -17,6 +17,12 @@
   "main": "dist/render-scheduler.js",
   "module": "dist/render-scheduler.mjs",
   "types": "index.d.ts",
+  "exports": {
+    ".": {
+      "import": "./dist/render-scheduler.mjs",
+      "require": "./dist/render-scheduler.js"
+    }
+  },
   "devDependencies": {
     "@proc7ts/eslint-config": "^2.0.4",
     "@rollup/plugin-commonjs": "^15.0.0",
