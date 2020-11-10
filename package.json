@@ -14,13 +14,17 @@
   },
   "license": "MIT",
   "author": "Ruslan Lopatin <ruslan.lopatin@gmail.com>",
-  "main": "dist/render-scheduler.js",
-  "module": "dist/render-scheduler.mjs",
+  "bugs": {
+    "url": "https://github.com/proc7ts/render-scheduler/issues"
+  },
+  "type": "module",
+  "main": "dist/render-scheduler.cjs",
+  "module": "dist/render-scheduler.js",
   "types": "index.d.ts",
   "exports": {
     ".": {
-      "import": "./dist/render-scheduler.mjs",
-      "require": "./dist/render-scheduler.js"
+      "import": "./dist/render-scheduler.js",
+      "require": "./dist/render-scheduler.cjs"
     }
   },
   "devDependencies": {
