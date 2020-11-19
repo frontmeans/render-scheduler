@@ -1,7 +1,7 @@
 import commonjs from '@rollup/plugin-commonjs';
 import nodeResolve from '@rollup/plugin-node-resolve';
+import ts from '@wessberg/rollup-plugin-ts';
 import sourcemaps from 'rollup-plugin-sourcemaps';
-import ts from 'rollup-plugin-typescript2';
 import typescript from 'typescript';
 import pkg from './package.json';
 
@@ -11,8 +11,13 @@ export default {
     ts({
       typescript,
       tsconfig: 'tsconfig.main.json',
-      cacheRoot: 'target/.rts2_cache',
-      useTsconfigDeclarationDir: true,
+      hook: {
+        outputPath(path, kind) {
+          if (kind === 'declaration') {
+            return './index.d.ts';
+          }
+        },
+      },
     }),
     nodeResolve(),
     sourcemaps(),
