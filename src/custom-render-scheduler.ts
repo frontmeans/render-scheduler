@@ -2,10 +2,10 @@
  * @packageDocumentation
  * @module @proc7ts/render-scheduler
  */
-import { RenderQueue } from './render-queue';
+import type { RenderQueue } from './render-queue';
 import { RenderSchedule, RenderScheduleConfig, RenderScheduleOptions } from './render-schedule';
-import { RenderScheduler } from './render-scheduler';
-import { RenderExecution, RenderShot } from './render-shot';
+import type { RenderScheduler } from './render-scheduler';
+import type { RenderExecution, RenderShot } from './render-shot';
 
 /**
  * Custom render scheduler options.

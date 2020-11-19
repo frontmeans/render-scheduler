@@ -2,8 +2,8 @@
  * @packageDocumentation
  * @module @proc7ts/render-scheduler
  */
-import { RenderSchedule } from './render-schedule';
-import { RenderScheduler } from './render-scheduler';
+import type { RenderSchedule } from './render-schedule';
+import type { RenderScheduler } from './render-scheduler';
 
 /**
  * @internal

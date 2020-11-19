@@ -1,5 +1,5 @@
 import { queuedRenderScheduler } from './queued-render-scheduler';
-import { RenderSchedule } from './render-schedule';
+import type { RenderSchedule } from './render-schedule';
 import Mock = jest.Mock;
 
 describe('queuedRenderScheduler', () => {

@@ -2,7 +2,7 @@
  * @packageDocumentation
  * @module @proc7ts/render-scheduler
  */
-import { RenderShot } from './render-shot';
+import type { RenderShot } from './render-shot';
 
 /**
  * Render schedule signature.

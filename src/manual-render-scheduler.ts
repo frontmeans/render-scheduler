@@ -4,7 +4,7 @@
  */
 import { customRenderScheduler } from './custom-render-scheduler';
 import { RenderQueue } from './render-queue';
-import { RenderScheduler } from './render-scheduler';
+import type { RenderScheduler } from './render-scheduler';
 
 /**
  * A render scheduler that executes scheduled render shots on request.

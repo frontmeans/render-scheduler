@@ -1,6 +1,6 @@
 import { RenderSchedule, RenderScheduleConfig, RenderScheduleOptions } from './render-schedule';
-import { RenderScheduler } from './render-scheduler';
-import { RenderExecution, RenderShot } from './render-shot';
+import type { RenderScheduler } from './render-scheduler';
+import type { RenderExecution, RenderShot } from './render-shot';
 
 /**
  * Render scheduler that executes render shots immediately.

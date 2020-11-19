@@ -1,5 +1,5 @@
 import { ManualRenderScheduler, newManualRenderScheduler } from './manual-render-scheduler';
-import { RenderSchedule } from './render-schedule';
+import type { RenderSchedule } from './render-schedule';
 
 describe('manualRenderScheduler', () => {
 

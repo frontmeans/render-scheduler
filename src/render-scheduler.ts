@@ -3,7 +3,7 @@
  * @module @proc7ts/render-scheduler
  */
 import { animationRenderScheduler } from './animation-render-scheduler';
-import { RenderSchedule, RenderScheduleOptions } from './render-schedule';
+import type { RenderSchedule, RenderScheduleOptions } from './render-schedule';
 
 /**
  * Render scheduler signature.

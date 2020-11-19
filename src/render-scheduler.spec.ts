@@ -1,4 +1,4 @@
-import { RenderSchedule, RenderScheduleOptions } from './render-schedule';
+import type { RenderSchedule, RenderScheduleOptions } from './render-schedule';
 import { newRenderSchedule, RenderScheduler, setRenderScheduler } from './render-scheduler';
 import Mock = jest.Mock;
 

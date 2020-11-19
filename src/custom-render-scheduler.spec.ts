@@ -1,7 +1,7 @@
 import { customRenderScheduler } from './custom-render-scheduler';
-import { RenderQueue } from './render-queue';
-import { RenderScheduleOptions } from './render-schedule';
-import { RenderExecution } from './render-shot';
+import type { RenderQueue } from './render-queue';
+import type { RenderScheduleOptions } from './render-schedule';
+import type { RenderExecution } from './render-shot';
 import Mock = jest.Mock;
 
 describe('CustomRenderScheduler', () => {

@@ -1,5 +1,5 @@
 import { noopRenderScheduler } from './noop-render-scheduler';
-import { RenderSchedule } from './render-schedule';
+import type { RenderSchedule } from './render-schedule';
 
 describe('noopRenderScheduler', () => {
 
