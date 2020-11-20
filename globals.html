@@ -122,7 +122,7 @@
 					<div class="tsd-signature tsd-kind-icon">Render<wbr>Schedule<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-symbol">(</span>this<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">void</span>, shot<span class="tsd-signature-symbol">: </span><a href="globals.html#RenderShot" class="tsd-signature-type">RenderShot</a><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol"> =&gt; </span><span class="tsd-signature-type">void</span></div>
 					<aside class="tsd-sources">
 						<ul>
-							<li>Defined in <a href="https://github.com/proc7ts/render-scheduler/blob/a4e7842/src/render-schedule.ts#L21">render-schedule.ts:21</a></li>
+							<li>Defined in <a href="https://github.com/proc7ts/render-scheduler/blob/934cfc0/src/render-schedule.ts#L21">render-schedule.ts:21</a></li>
 						</ul>
 					</aside>
 					<div class="tsd-comment tsd-typography">
@@ -176,7 +176,7 @@
 					<div class="tsd-signature tsd-kind-icon">Render<wbr>Scheduler<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-symbol">(</span>this<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">void</span>, options<span class="tsd-signature-symbol">?: </span><a href="interfaces/RenderScheduleOptions.html" class="tsd-signature-type">RenderScheduleOptions</a><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol"> =&gt; </span><a href="globals.html#RenderSchedule" class="tsd-signature-type">RenderSchedule</a></div>
 					<aside class="tsd-sources">
 						<ul>
-							<li>Defined in <a href="https://github.com/proc7ts/render-scheduler/blob/a4e7842/src/render-scheduler.ts#L24">render-scheduler.ts:24</a></li>
+							<li>Defined in <a href="https://github.com/proc7ts/render-scheduler/blob/934cfc0/src/render-scheduler.ts#L24">render-scheduler.ts:24</a></li>
 						</ul>
 					</aside>
 					<div class="tsd-comment tsd-typography">
@@ -234,7 +234,7 @@
 					<div class="tsd-signature tsd-kind-icon">Render<wbr>Shot<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-symbol">(</span>this<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">void</span>, execution<span class="tsd-signature-symbol">: </span><a href="interfaces/RenderExecution.html" class="tsd-signature-type">RenderExecution</a><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol"> =&gt; </span><span class="tsd-signature-type">void</span></div>
 					<aside class="tsd-sources">
 						<ul>
-							<li>Defined in <a href="https://github.com/proc7ts/render-scheduler/blob/a4e7842/src/render-shot.ts#L14">render-shot.ts:14</a></li>
+							<li>Defined in <a href="https://github.com/proc7ts/render-scheduler/blob/934cfc0/src/render-shot.ts#L14">render-shot.ts:14</a></li>
 						</ul>
 					</aside>
 					<div class="tsd-comment tsd-typography">
@@ -286,7 +286,7 @@
 					<div class="tsd-signature tsd-kind-icon">animation<wbr>Render<wbr>Scheduler<span class="tsd-signature-symbol">:</span> <a href="globals.html#RenderScheduler" class="tsd-signature-type">RenderScheduler</a><span class="tsd-signature-symbol"> = (/*#__PURE__*/ customRenderScheduler({newQueue({ window }) {const existing &#x3D; animationRenderQueues.get(window);if (existing) {return existing;}const newQueue &#x3D; RenderQueue.by({schedule: task &#x3D;&gt; window.requestAnimationFrame(task),replace: replacement &#x3D;&gt; animationRenderQueues.set(window, replacement),});animationRenderQueues.set(window, newQueue);return newQueue;},}))</span></div>
 					<aside class="tsd-sources">
 						<ul>
-							<li>Defined in <a href="https://github.com/proc7ts/render-scheduler/blob/a4e7842/src/animation-render-scheduler.ts#L25">animation-render-scheduler.ts:25</a></li>
+							<li>Defined in <a href="https://github.com/proc7ts/render-scheduler/blob/934cfc0/src/animation-render-scheduler.ts#L25">animation-render-scheduler.ts:25</a></li>
 						</ul>
 					</aside>
 					<div class="tsd-comment tsd-typography">
@@ -305,7 +305,7 @@
 					<div class="tsd-signature tsd-kind-icon">async<wbr>Render<wbr>Scheduler<span class="tsd-signature-symbol">:</span> <a href="globals.html#RenderScheduler" class="tsd-signature-type">RenderScheduler</a><span class="tsd-signature-symbol"> = (/*#__PURE__*/ customRenderScheduler({newQueue: () &#x3D;&gt; asyncRenderQueue,}))</span></div>
 					<aside class="tsd-sources">
 						<ul>
-							<li>Defined in <a href="https://github.com/proc7ts/render-scheduler/blob/a4e7842/src/async-render-scheduler.ts#L20">async-render-scheduler.ts:20</a></li>
+							<li>Defined in <a href="https://github.com/proc7ts/render-scheduler/blob/934cfc0/src/async-render-scheduler.ts#L20">async-render-scheduler.ts:20</a></li>
 						</ul>
 					</aside>
 					<div class="tsd-comment tsd-typography">
@@ -320,7 +320,7 @@
 					<div class="tsd-signature tsd-kind-icon">queued<wbr>Render<wbr>Scheduler<span class="tsd-signature-symbol">:</span> <a href="globals.html#RenderScheduler" class="tsd-signature-type">RenderScheduler</a><span class="tsd-signature-symbol"> = (/*#__PURE__*/ customRenderScheduler({newQueue: () &#x3D;&gt; immediateRenderQueue,}))</span></div>
 					<aside class="tsd-sources">
 						<ul>
-							<li>Defined in <a href="https://github.com/proc7ts/render-scheduler/blob/a4e7842/src/queued-render-scheduler.ts#L24">queued-render-scheduler.ts:24</a></li>
+							<li>Defined in <a href="https://github.com/proc7ts/render-scheduler/blob/934cfc0/src/queued-render-scheduler.ts#L24">queued-render-scheduler.ts:24</a></li>
 						</ul>
 					</aside>
 					<div class="tsd-comment tsd-typography">
@@ -345,7 +345,7 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/proc7ts/render-scheduler/blob/a4e7842/src/custom-render-scheduler.ts#L138">custom-render-scheduler.ts:138</a></li>
+									<li>Defined in <a href="https://github.com/proc7ts/render-scheduler/blob/934cfc0/src/custom-render-scheduler.ts#L138">custom-render-scheduler.ts:138</a></li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
@@ -377,7 +377,7 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/proc7ts/render-scheduler/blob/a4e7842/src/immediate-render-scheduler.ts#L10">immediate-render-scheduler.ts:10</a></li>
+									<li>Defined in <a href="https://github.com/proc7ts/render-scheduler/blob/934cfc0/src/immediate-render-scheduler.ts#L10">immediate-render-scheduler.ts:10</a></li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
@@ -409,7 +409,7 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/proc7ts/render-scheduler/blob/a4e7842/src/manual-render-scheduler.ts#L32">manual-render-scheduler.ts:32</a></li>
+									<li>Defined in <a href="https://github.com/proc7ts/render-scheduler/blob/934cfc0/src/manual-render-scheduler.ts#L32">manual-render-scheduler.ts:32</a></li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
@@ -433,7 +433,7 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/proc7ts/render-scheduler/blob/a4e7842/src/render-scheduler.ts#L60">render-scheduler.ts:60</a></li>
+									<li>Defined in <a href="https://github.com/proc7ts/render-scheduler/blob/934cfc0/src/render-scheduler.ts#L60">render-scheduler.ts:60</a></li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
@@ -465,7 +465,7 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/proc7ts/render-scheduler/blob/a4e7842/src/render-schedule.ts#L131">render-schedule.ts:131</a></li>
+									<li>Defined in <a href="https://github.com/proc7ts/render-scheduler/blob/934cfc0/src/render-schedule.ts#L131">render-schedule.ts:131</a></li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
@@ -497,7 +497,7 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/proc7ts/render-scheduler/blob/a4e7842/src/noop-render-scheduler.ts#L16">noop-render-scheduler.ts:16</a></li>
+									<li>Defined in <a href="https://github.com/proc7ts/render-scheduler/blob/934cfc0/src/noop-render-scheduler.ts#L16">noop-render-scheduler.ts:16</a></li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
@@ -519,7 +519,7 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/proc7ts/render-scheduler/blob/a4e7842/src/render-scheduler.ts#L47">render-scheduler.ts:47</a></li>
+									<li>Defined in <a href="https://github.com/proc7ts/render-scheduler/blob/934cfc0/src/render-scheduler.ts#L47">render-scheduler.ts:47</a></li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
@@ -552,7 +552,7 @@
 					<div class="tsd-signature tsd-kind-icon">Render<wbr>Queue<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">object</span></div>
 					<aside class="tsd-sources">
 						<ul>
-							<li>Defined in <a href="https://github.com/proc7ts/render-scheduler/blob/a4e7842/src/render-queue.ts#L53">render-queue.ts:53</a></li>
+							<li>Defined in <a href="https://github.com/proc7ts/render-scheduler/blob/934cfc0/src/render-queue.ts#L53">render-queue.ts:53</a></li>
 						</ul>
 					</aside>
 					<section class="tsd-panel tsd-member tsd-kind-function tsd-parent-kind-object-literal">
@@ -565,7 +565,7 @@
 							<li class="tsd-description">
 								<aside class="tsd-sources">
 									<ul>
-										<li>Defined in <a href="https://github.com/proc7ts/render-scheduler/blob/a4e7842/src/render-queue.ts#L65">render-queue.ts:65</a></li>
+										<li>Defined in <a href="https://github.com/proc7ts/render-scheduler/blob/934cfc0/src/render-queue.ts#L65">render-queue.ts:65</a></li>
 									</ul>
 								</aside>
 								<div class="tsd-comment tsd-typography">
@@ -597,7 +597,7 @@
 													<li class="tsd-description">
 														<aside class="tsd-sources">
 															<ul>
-																<li>Defined in <a href="https://github.com/proc7ts/render-scheduler/blob/a4e7842/src/render-queue.ts#L69">render-queue.ts:69</a></li>
+																<li>Defined in <a href="https://github.com/proc7ts/render-scheduler/blob/934cfc0/src/render-queue.ts#L69">render-queue.ts:69</a></li>
 															</ul>
 														</aside>
 														<div class="tsd-comment tsd-typography">
@@ -623,7 +623,7 @@
 					<div class="tsd-signature tsd-kind-icon">Render<wbr>Schedule<wbr>Config<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">object</span></div>
 					<aside class="tsd-sources">
 						<ul>
-							<li>Defined in <a href="https://github.com/proc7ts/render-scheduler/blob/a4e7842/src/render-schedule.ts#L94">render-schedule.ts:94</a></li>
+							<li>Defined in <a href="https://github.com/proc7ts/render-scheduler/blob/934cfc0/src/render-schedule.ts#L94">render-schedule.ts:94</a></li>
 						</ul>
 					</aside>
 					<section class="tsd-panel tsd-member tsd-kind-function tsd-parent-kind-object-literal">
@@ -636,7 +636,7 @@
 							<li class="tsd-description">
 								<aside class="tsd-sources">
 									<ul>
-										<li>Defined in <a href="https://github.com/proc7ts/render-scheduler/blob/a4e7842/src/render-schedule.ts#L101">render-schedule.ts:101</a></li>
+										<li>Defined in <a href="https://github.com/proc7ts/render-scheduler/blob/934cfc0/src/render-schedule.ts#L101">render-schedule.ts:101</a></li>
 									</ul>
 								</aside>
 								<div class="tsd-comment tsd-typography">
