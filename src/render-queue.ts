@@ -1,6 +1,6 @@
 /**
  * @packageDocumentation
- * @module @proc7ts/render-scheduler
+ * @module @frontmeans/render-scheduler
  */
 import type { RenderShot } from './render-shot';
 

@@ -1,6 +1,6 @@
 /**
  * @packageDocumentation
- * @module @proc7ts/render-scheduler
+ * @module @frontmeans/render-scheduler
  */
 import type { RenderQueue } from './render-queue';
 import { RenderSchedule, RenderScheduleConfig, RenderScheduleOptions } from './render-schedule';

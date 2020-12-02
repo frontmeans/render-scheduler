@@ -1,5 +1,5 @@
 {
-  "name": "@proc7ts/render-scheduler",
+  "name": "@frontmeans/render-scheduler",
   "version": "1.4.2",
   "description": "Schedule DOM updates rendering",
   "keywords": [
@@ -7,15 +7,15 @@
     "requestAnimationFrame",
     "raf"
   ],
-  "homepage": "https://github.com/proc7ts/render-scheduler",
+  "homepage": "https://github.com/frontmeans/render-scheduler",
   "repository": {
     "type": "git",
-    "url": "ssh://git@github.com:proc7ts/render-scheduler.git"
+    "url": "ssh://git@github.com:frontmeans/render-scheduler.git"
   },
   "license": "MIT",
   "author": "Ruslan Lopatin <ruslan.lopatin@gmail.com>",
   "bugs": {
-    "url": "https://github.com/proc7ts/render-scheduler/issues"
+    "url": "https://github.com/frontmeans/render-scheduler/issues"
   },
   "type": "module",
   "main": "./dist/render-scheduler.cjs",
