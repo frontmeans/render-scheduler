@@ -16,14 +16,14 @@ export interface RenderQueue {
   /**
    * Adds a render shot to this queue.
    *
-   * @param shot  Scheduled render shot to add.
+   * @param shot - Scheduled render shot to add.
    */
   add(shot: RenderShot): void;
 
   /**
    * Adds a render shot to the head of this queue.
    *
-   * @param shot  Scheduled render shot to add.
+   * @param shot - Scheduled render shot to add.
    */
   post(shot: RenderShot): void;
 
@@ -37,7 +37,7 @@ export interface RenderQueue {
   /**
    * Schedules queued render shots execution.
    *
-   * @param task  A function that performs render shots execution task.
+   * @param task - A function that performs render shots execution task.
    */
   schedule(task: (this: void) => void): void;
 
@@ -55,9 +55,9 @@ export const RenderQueue = {
   /**
    * Builds the default implementation of render queue.
    *
-   * @param schedule  Schedules queued render shots execution. This is an implementation of [[RenderQueue.schedule]]
+   * @param schedule - Schedules queued render shots execution. This is an implementation of [[RenderQueue.schedule]]
    * method.
-   * @param replace  Called right after [[RenderQueue.reset]] method in order to inform on the queue that will collect
+   * @param replace - Called right after [[RenderQueue.reset]] method in order to inform on the queue that will collect
    * scheduled render shots from now.
    *
    * @returns New render queue.

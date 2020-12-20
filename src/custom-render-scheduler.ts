@@ -21,7 +21,7 @@ export interface CustomRenderSchedulerOptions {
    *
    * Render schedules may share the queue.
    *
-   * @param config  Render schedule configuration.
+   * @param config - Render schedule configuration.
    *
    * @returns  A queue of scheduled render shots.
    */
@@ -131,7 +131,7 @@ class RenderQ {
 /**
  * Builds custom render scheduler.
  *
- * @param options  Render scheduler options.
+ * @param options - Render scheduler options.
  *
  * @returns New render scheduler.
  */

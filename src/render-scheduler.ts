@@ -23,7 +23,7 @@ import type { RenderSchedule, RenderScheduleOptions } from './render-schedule';
  */
 export type RenderScheduler =
 /**
- * @param options  Options of constructed render schedule.
+ * @param options - Options of constructed render schedule.
  *
  * @returns New render schedule.
  */
@@ -39,7 +39,7 @@ let defaultRenderScheduler = animationRenderScheduler;
  *
  * An {@link animationRenderScheduler animation frame render scheduler} is used bu default.
  *
- * @param scheduler  New default render scheduler. {@link animationRenderScheduler animation frame render scheduler}
+ * @param scheduler - New default render scheduler. {@link animationRenderScheduler animation frame render scheduler}
  * will be used if `null`, `undefined`, or omitted.
  *
  * @returns New default render scheduler.
@@ -53,7 +53,7 @@ export function setRenderScheduler(
 /**
  * Constructs {@link RenderSchedule render schedule} using {@link setRenderScheduler default render scheduler}.
  *
- * @param options  Options of constructed render schedule.
+ * @param options - Options of constructed render schedule.
  *
  * @returns New render schedule.
  */

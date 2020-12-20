@@ -20,7 +20,7 @@ import type { RenderShot } from './render-shot';
  */
 export type RenderSchedule =
 /**
- * @param shot  A render shot to schedule.
+ * @param shot - A render shot to schedule.
  */
     (this: void, shot: RenderShot) => void;
 
@@ -55,7 +55,7 @@ export interface RenderScheduleOptions {
    *
    * Reports errors with `console.error()` by default.
    *
-   * @param messages  Error messages to report.
+   * @param messages - Error messages to report.
    */
   error?(...messages: any[]): void;
 
@@ -85,7 +85,7 @@ export interface RenderScheduleConfig {
   /**
    * Reports an error. E.g. a render shot execution failure.
    *
-   * @param messages  Error messages to report.
+   * @param messages - Error messages to report.
    */
   error(...messages: any[]): void;
 
@@ -96,7 +96,7 @@ export const RenderScheduleConfig = {
   /**
    * Constructs a configuration of render scheduler by its options.
    *
-   * @param options  Render scheduler options the configuration should be base on.
+   * @param options - Render scheduler options the configuration should be base on.
    */
   by(this: void, options: RenderScheduleOptions = {}): RenderScheduleConfig {
 
@@ -124,7 +124,7 @@ export const RenderScheduleConfig = {
 /**
  * Detects a window the given DOM node is attached to.
  *
- * @param node  Target DOM node.
+ * @param node - Target DOM node.
  *
  * @returns A window of the owner document, or `null` if absent.
  */
