@@ -15,8 +15,8 @@ import type { RenderShot } from './render-shot';
  * executed. The render shot execution failure reason is expected to be reported with {@link RenderScheduleConfig.error}
  * method.
  *
- * Render schedules are constructed by {@link RenderScheduler render schedulers}, or by {@link newRenderSchedule} function
- * that uses the {@link setRenderScheduler default scheduler} for that.
+ * Render schedules are constructed by {@link RenderScheduler render schedulers}, or by {@link newRenderSchedule}
+ * function that uses the {@link setRenderScheduler default scheduler} for that.
  */
 export type RenderSchedule =
 /**

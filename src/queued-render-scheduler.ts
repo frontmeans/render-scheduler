@@ -17,8 +17,8 @@ let immediateRenderQueue = (/*#__PURE__*/ RenderQueue.by({
 /**
  * A render scheduler that schedules render shots for immediate execution.
  *
- * In contrast to {@link immediateRenderScheduler} this one utilizes {@link RenderQueue render queue}. So it acts handles
- * scheduled render shots to other schedulers, such as {@link animationRenderScheduler}. In particular, it adds recurrent
+ * In contrast to {@link immediateRenderScheduler} this one utilizes {@link RenderQueue render queue}. So it acts
+ * similarly to other schedulers, such as {@link animationRenderScheduler}. In particular, it adds recurrent
  * render shots to render queue instead of executing them immediately.
  */
 export const queuedRenderScheduler: RenderScheduler = (/*#__PURE__*/ customRenderScheduler({

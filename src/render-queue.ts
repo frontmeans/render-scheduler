@@ -55,10 +55,10 @@ export const RenderQueue = {
   /**
    * Builds the default implementation of render queue.
    *
-   * @param schedule - Schedules queued render shots execution. This is an implementation of {@link RenderQueue.schedule}
-   * method.
-   * @param replace - Called right after {@link RenderQueue.reset} method in order to inform on the queue that will collect
-   * scheduled render shots from now.
+   * @param schedule - Schedules queued render shots execution. This is an implementation of
+   * {@link RenderQueue.schedule} method.
+   * @param replace - Called right after {@link RenderQueue.reset} method in order to inform on the queue that will
+   * collect scheduled render shots from now.
    *
    * @returns New render queue.
    */
