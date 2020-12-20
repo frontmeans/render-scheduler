@@ -12,10 +12,10 @@ import type { RenderShot } from './render-shot';
  * executed to limit rendering rate.
  *
  * The render shot execution may fail. This should not prevent other scheduled or postponed render shots from being
- * executed. The render shot execution failure reason is expected to be reported with [[RenderScheduleConfig.error]]
+ * executed. The render shot execution failure reason is expected to be reported with {@link RenderScheduleConfig.error}
  * method.
  *
- * Render schedules are constructed by {@link RenderScheduler render schedulers}, or by [[newRenderSchedule]] function
+ * Render schedules are constructed by {@link RenderScheduler render schedulers}, or by {@link newRenderSchedule} function
  * that uses the {@link setRenderScheduler default scheduler} for that.
  */
 export type RenderSchedule =
@@ -30,14 +30,14 @@ export type RenderSchedule =
  * This is passed to {@link RenderScheduler render scheduler} when constructing new {@link RenderSchedule schedule}.
  *
  * A {@link RenderScheduleConfig render configuration} can be constructed based on the options with
- * [[RenderScheduleConfig.by]] function.
+ * {@link RenderScheduleConfig.by} function.
  */
 export interface RenderScheduleOptions {
 
   /**
    * A window for constructed schedule.
    *
-   * Detected by [[nodeWindow]] by default, if [[node]] is specified. Falls back to current `window`.
+   * Detected by {@link nodeWindow} by default, if {@link node} is specified. Falls back to current `window`.
    *
    * The schedulers that don't need a window never access this option value.
    */
@@ -46,7 +46,7 @@ export interface RenderScheduleOptions {
   /**
    * A DOM node for constructed schedule.
    *
-   * Used to detect missing [[window]] option.
+   * Used to detect missing {@link window} option.
    */
   node?: Node;
 
@@ -66,7 +66,7 @@ export interface RenderScheduleOptions {
  *
  * This is based on {@link RenderScheduleOptions render options}, but has all properties present.
  *
- * The configuration ought to be constructed out of render options by [[RenderScheduleConfig.by]] function.
+ * The configuration ought to be constructed out of render options by {@link RenderScheduleConfig.by} function.
  */
 export interface RenderScheduleConfig {
 

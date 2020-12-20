@@ -10,7 +10,7 @@ import type { RenderExecution, RenderShot } from './render-shot';
 /**
  * Custom render scheduler options.
  *
- * This is passed to [[customRenderScheduler]] function to construct new custom scheduler.
+ * This is passed to {@link customRenderScheduler} function to construct new custom scheduler.
  */
 export interface CustomRenderSchedulerOptions {
 

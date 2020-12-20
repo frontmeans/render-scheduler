@@ -10,16 +10,16 @@ import type { RenderSchedule, RenderScheduleOptions } from './render-schedule';
  *
  * This function constructs a {@link RenderSchedule render schedule} according to the given options.
  *
- * The default render scheduler is always available as [[newRenderSchedule]] function.
+ * The default render scheduler is always available as {@link newRenderSchedule} function.
  *
  * There are several scheduler implementations exist:
- * - [[animationRenderScheduler]] (used by default),
- * - [[asyncRenderScheduler]],
- * - [[immediateRenderScheduler]],
- * - [[ManualRenderScheduler]],
- * - [[noopRenderScheduler]].
+ * - {@link animationRenderScheduler} (used by default),
+ * - {@link asyncRenderScheduler},
+ * - {@link immediateRenderScheduler},
+ * - {@link ManualRenderScheduler},
+ * - {@link noopRenderScheduler}.
  *
- * Custom scheduler implementations could be created using [[customRenderScheduler]] function.
+ * Custom scheduler implementations could be created using {@link customRenderScheduler} function.
  */
 export type RenderScheduler =
 /**

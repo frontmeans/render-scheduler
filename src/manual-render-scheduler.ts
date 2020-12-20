@@ -9,7 +9,7 @@ import type { RenderScheduler } from './render-scheduler';
 /**
  * A render scheduler that executes scheduled render shots on request.
  *
- * Can be constructed using [[newManualRenderScheduler]] function.
+ * Can be constructed using {@link newManualRenderScheduler} function.
  */
 export interface ManualRenderScheduler extends RenderScheduler {
 
@@ -25,7 +25,7 @@ export interface ManualRenderScheduler extends RenderScheduler {
 /**
  * Creates new render scheduler that executes scheduled render shots on request.
  *
- * A [[ManualRenderScheduler.render]] method should be called to execute scheduled render shots.
+ * A {@link ManualRenderScheduler.render} method should be called to execute scheduled render shots.
  *
  * @returns New manual render scheduler.
  */
