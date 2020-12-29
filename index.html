@@ -7,6 +7,7 @@
 	<meta name="description" content="Documentation for Render Scheduler">
 	<meta name="viewport" content="width=device-width, initial-scale=1">
 	<link rel="stylesheet" href="assets/css/main.css">
+	<script async src="assets/js/search.js" id="search-script"></script>
 </head>
 <body>
 <header>
@@ -49,12 +50,7 @@
 	</div>
 	<div class="tsd-page-title">
 		<div class="container">
-			<ul class="tsd-breadcrumb">
-				<li>
-					<a href="globals.html">Globals</a>
-				</li>
-			</ul>
-			<h1>Render Scheduler</h1>
+			<h1>Project Render Scheduler</h1>
 		</div>
 	</div>
 </header>
@@ -74,41 +70,42 @@
 				<a href="#usage" id="usage" style="color: inherit; text-decoration: none;">
 					<h2>Usage</h2>
 				</a>
-				<pre><code class="language-typescript"><span class="hljs-keyword">import</span> { newRenderSchedule } <span class="hljs-keyword">from</span> <span class="hljs-string">&#x27;@frontmeans/render-scheduler&#x27;</span>;
+				<pre><code class="language-typescript"><span style="color: #AF00DB">import</span><span style="color: #000000"> { </span><span style="color: #001080">newRenderSchedule</span><span style="color: #000000"> } </span><span style="color: #AF00DB">from</span><span style="color: #000000"> </span><span style="color: #A31515">&#039;@frontmeans/render-scheduler&#039;</span><span style="color: #000000">;</span>
 
-<span class="hljs-comment">// First, create a rendering schedule</span>
-<span class="hljs-keyword">const</span> btnSchedule = newRenderSchedule();
+<span style="color: #008000">// First, create a rendering schedule</span>
+<span style="color: #0000FF">const</span><span style="color: #000000"> </span><span style="color: #0070C1">btnSchedule</span><span style="color: #000000"> = </span><span style="color: #795E26">newRenderSchedule</span><span style="color: #000000">();</span>
 
-<span class="hljs-comment">// Schedule render shot</span>
-btnSchedule(<span class="hljs-function">() =&gt;</span> <span class="hljs-built_in">document</span>.getElementById(<span class="hljs-string">&#x27;button&#x27;</span>).disabled = <span class="hljs-literal">false</span>);
+<span style="color: #008000">// Schedule render shot</span>
+<span style="color: #795E26">btnSchedule</span><span style="color: #000000">(() </span><span style="color: #0000FF">=&gt;</span><span style="color: #000000"> </span><span style="color: #001080">document</span><span style="color: #000000">.</span><span style="color: #795E26">getElementById</span><span style="color: #000000">(</span><span style="color: #A31515">&#039;button&#039;</span><span style="color: #000000">).</span><span style="color: #001080">disabled</span><span style="color: #000000"> = </span><span style="color: #0000FF">false</span><span style="color: #000000">);</span>
 
-<span class="hljs-comment">// Schedule another render shot</span>
-<span class="hljs-comment">// Only the latest render shot within one schedule will be executed </span>
-btnSchedule(<span class="hljs-function">() =&gt;</span> <span class="hljs-built_in">document</span>.getElementById(<span class="hljs-string">&#x27;button&#x27;</span>).disabled = <span class="hljs-literal">true</span>);
+<span style="color: #008000">// Schedule another render shot</span>
+<span style="color: #008000">// Only the latest render shot within one schedule will be executed </span>
+<span style="color: #795E26">btnSchedule</span><span style="color: #000000">(() </span><span style="color: #0000FF">=&gt;</span><span style="color: #000000"> </span><span style="color: #001080">document</span><span style="color: #000000">.</span><span style="color: #795E26">getElementById</span><span style="color: #000000">(</span><span style="color: #A31515">&#039;button&#039;</span><span style="color: #000000">).</span><span style="color: #001080">disabled</span><span style="color: #000000"> = </span><span style="color: #0000FF">true</span><span style="color: #000000">);</span>
 
-<span class="hljs-comment">// Each schedule schedules its render shots independently from others.</span>
-<span class="hljs-comment">// Yet render shots from all schedules for the same window are executed in the same animation frame.</span>
-<span class="hljs-keyword">const</span> popupSchedule = newRenderSchedule();
+<span style="color: #008000">// Each schedule schedules its render shots independently from others.</span>
+<span style="color: #008000">// Yet render shots from all schedules for the same window are executed in the same animation frame.</span>
+<span style="color: #0000FF">const</span><span style="color: #000000"> </span><span style="color: #0070C1">popupSchedule</span><span style="color: #000000"> = </span><span style="color: #795E26">newRenderSchedule</span><span style="color: #000000">();</span>
 
-popupSchedule(<span class="hljs-function"><span class="hljs-params">execution</span> =&gt;</span> {
+<span style="color: #795E26">popupSchedule</span><span style="color: #000000">(</span><span style="color: #001080">execution</span><span style="color: #000000"> </span><span style="color: #0000FF">=&gt;</span><span style="color: #000000"> {</span>
 
-  <span class="hljs-keyword">const</span> popup = <span class="hljs-built_in">document</span>.getElementById(<span class="hljs-string">&#x27;popup&#x27;</span>);
+<span style="color: #000000">  </span><span style="color: #0000FF">const</span><span style="color: #000000"> </span><span style="color: #0070C1">popup</span><span style="color: #000000"> = </span><span style="color: #001080">document</span><span style="color: #000000">.</span><span style="color: #795E26">getElementById</span><span style="color: #000000">(</span><span style="color: #A31515">&#039;popup&#039;</span><span style="color: #000000">);</span>
 
-  popup.classList.remove(<span class="hljs-string">&#x27;hidden&#x27;</span>);
+<span style="color: #000000">  </span><span style="color: #001080">popup</span><span style="color: #000000">.</span><span style="color: #001080">classList</span><span style="color: #000000">.</span><span style="color: #795E26">remove</span><span style="color: #000000">(</span><span style="color: #A31515">&#039;hidden&#039;</span><span style="color: #000000">);</span>
 
-  execution.postpone(<span class="hljs-function">() =&gt;</span> {
-    <span class="hljs-comment">// Postponed render shot is executed after the rest of them.</span>
-    <span class="hljs-comment">// This is useful when it needs to synchronously request a page reflow,</span>
-    <span class="hljs-comment">// e.g. by requesting of geometry of just updated DOM element.  </span>
+<span style="color: #000000">  </span><span style="color: #001080">execution</span><span style="color: #000000">.</span><span style="color: #795E26">postpone</span><span style="color: #000000">(() </span><span style="color: #0000FF">=&gt;</span><span style="color: #000000"> {</span>
+<span style="color: #000000">    </span><span style="color: #008000">// Postponed render shot is executed after the rest of them.</span>
+<span style="color: #000000">    </span><span style="color: #008000">// This is useful when it needs to synchronously request a page reflow,</span>
+<span style="color: #000000">    </span><span style="color: #008000">// e.g. by requesting of geometry of just updated DOM element.  </span>
 
-    <span class="hljs-keyword">const</span> shadow = <span class="hljs-built_in">document</span>.getElementById(<span class="hljs-string">&#x27;popup-shadow&#x27;</span>);
-    <span class="hljs-keyword">const</span> { clientWidth, clientHeight } = popup;
+<span style="color: #000000">    </span><span style="color: #0000FF">const</span><span style="color: #000000"> </span><span style="color: #0070C1">shadow</span><span style="color: #000000"> = </span><span style="color: #001080">document</span><span style="color: #000000">.</span><span style="color: #795E26">getElementById</span><span style="color: #000000">(</span><span style="color: #A31515">&#039;popup-shadow&#039;</span><span style="color: #000000">);</span>
+<span style="color: #000000">    </span><span style="color: #0000FF">const</span><span style="color: #000000"> { </span><span style="color: #0070C1">clientWidth</span><span style="color: #000000">, </span><span style="color: #0070C1">clientHeight</span><span style="color: #000000"> } = </span><span style="color: #001080">popup</span><span style="color: #000000">;</span>
 
-    shadow.classList.remove(<span class="hljs-string">&#x27;hidden&#x27;</span>);
-    shadow.style.width = clientWidth;
-    shadow.style.height = clientHeight;
-  });
-});</code></pre>
+<span style="color: #000000">    </span><span style="color: #001080">shadow</span><span style="color: #000000">.</span><span style="color: #001080">classList</span><span style="color: #000000">.</span><span style="color: #795E26">remove</span><span style="color: #000000">(</span><span style="color: #A31515">&#039;hidden&#039;</span><span style="color: #000000">);</span>
+<span style="color: #000000">    </span><span style="color: #001080">shadow</span><span style="color: #000000">.</span><span style="color: #001080">style</span><span style="color: #000000">.</span><span style="color: #001080">width</span><span style="color: #000000"> = </span><span style="color: #001080">clientWidth</span><span style="color: #000000">;</span>
+<span style="color: #000000">    </span><span style="color: #001080">shadow</span><span style="color: #000000">.</span><span style="color: #001080">style</span><span style="color: #000000">.</span><span style="color: #001080">height</span><span style="color: #000000"> = </span><span style="color: #001080">clientHeight</span><span style="color: #000000">;</span>
+<span style="color: #000000">  });</span>
+<span style="color: #000000">});</span>
+</code></pre>
 				<a href="#scheduler-implementations" id="scheduler-implementations" style="color: inherit; text-decoration: none;">
 					<h2>Scheduler Implementations</h2>
 				</a>
@@ -147,99 +144,75 @@ popupSchedule(<span class="hljs-function"><span class="hljs-params">execution</s
 		<div class="col-4 col-menu menu-sticky-wrap menu-highlight">
 			<nav class="tsd-navigation primary">
 				<ul>
-					<li class="globals  ">
-						<a href="globals.html"><em>Globals</em></a>
+					<li class=" ">
+						<a href="modules.html">Exports</a>
 					</li>
 				</ul>
 			</nav>
 			<nav class="tsd-navigation secondary menu-sticky">
 				<ul class="before-current">
-					<li class=" tsd-kind-class">
-						<a href="classes/RenderQ.html" class="tsd-kind-icon">RenderQ</a>
+					<li class=" tsd-kind-interface">
+						<a href="interfaces/customrenderscheduleroptions.html" class="tsd-kind-icon">Custom<wbr>Render<wbr>Scheduler<wbr>Options</a>
 					</li>
 					<li class=" tsd-kind-interface">
-						<a href="interfaces/CustomRenderSchedulerOptions.html" class="tsd-kind-icon">Custom<wbr>Render<wbr>Scheduler<wbr>Options</a>
+						<a href="interfaces/manualrenderscheduler.html" class="tsd-kind-icon">Manual<wbr>Render<wbr>Scheduler</a>
 					</li>
 					<li class=" tsd-kind-interface">
-						<a href="interfaces/InternalRenderQueue.html" class="tsd-kind-icon">Internal<wbr>Render<wbr>Queue</a>
+						<a href="interfaces/renderexecution.html" class="tsd-kind-icon">Render<wbr>Execution</a>
 					</li>
 					<li class=" tsd-kind-interface">
-						<a href="interfaces/ManualRenderScheduler.html" class="tsd-kind-icon">Manual<wbr>Render<wbr>Scheduler</a>
+						<a href="interfaces/renderqueue.html" class="tsd-kind-icon">Render<wbr>Queue</a>
 					</li>
 					<li class=" tsd-kind-interface">
-						<a href="interfaces/RenderExecution.html" class="tsd-kind-icon">Render<wbr>Execution</a>
+						<a href="interfaces/renderscheduleconfig.html" class="tsd-kind-icon">Render<wbr>Schedule<wbr>Config</a>
 					</li>
 					<li class=" tsd-kind-interface">
-						<a href="interfaces/RenderQueue.html" class="tsd-kind-icon">Render<wbr>Queue</a>
-					</li>
-					<li class=" tsd-kind-interface">
-						<a href="interfaces/RenderScheduleConfig.html" class="tsd-kind-icon">Render<wbr>Schedule<wbr>Config</a>
-					</li>
-					<li class=" tsd-kind-interface">
-						<a href="interfaces/RenderScheduleOptions.html" class="tsd-kind-icon">Render<wbr>Schedule<wbr>Options</a>
+						<a href="interfaces/renderscheduleoptions.html" class="tsd-kind-icon">Render<wbr>Schedule<wbr>Options</a>
 					</li>
 					<li class=" tsd-kind-type-alias">
-						<a href="globals.html#RenderSchedule" class="tsd-kind-icon">Render<wbr>Schedule</a>
+						<a href="modules.html#renderschedule" class="tsd-kind-icon">Render<wbr>Schedule</a>
 					</li>
 					<li class=" tsd-kind-type-alias">
-						<a href="globals.html#RenderScheduler" class="tsd-kind-icon">Render<wbr>Scheduler</a>
+						<a href="modules.html#renderscheduler" class="tsd-kind-icon">Render<wbr>Scheduler</a>
 					</li>
 					<li class=" tsd-kind-type-alias">
-						<a href="globals.html#RenderShot" class="tsd-kind-icon">Render<wbr>Shot</a>
+						<a href="modules.html#rendershot" class="tsd-kind-icon">Render<wbr>Shot</a>
 					</li>
 					<li class=" tsd-kind-variable">
-						<a href="globals.html#RenderQ__symbol" class="tsd-kind-icon">Render<wbr>Q__symbol</a>
+						<a href="modules.html#renderqueue" class="tsd-kind-icon">Render<wbr>Queue</a>
 					</li>
 					<li class=" tsd-kind-variable">
-						<a href="globals.html#animationRenderQueues" class="tsd-kind-icon">animation<wbr>Render<wbr>Queues</a>
-					</li>
-					<li class=" tsd-kind-variable">
-						<a href="globals.html#animationRenderScheduler" class="tsd-kind-icon">animation<wbr>Render<wbr>Scheduler</a>
-					</li>
-					<li class=" tsd-kind-variable">
-						<a href="globals.html#asyncRenderQueue" class="tsd-kind-icon">async<wbr>Render<wbr>Queue</a>
-					</li>
-					<li class=" tsd-kind-variable">
-						<a href="globals.html#asyncRenderScheduler" class="tsd-kind-icon">async<wbr>Render<wbr>Scheduler</a>
-					</li>
-					<li class=" tsd-kind-variable">
-						<a href="globals.html#defaultRenderScheduler" class="tsd-kind-icon">default<wbr>Render<wbr>Scheduler</a>
-					</li>
-					<li class=" tsd-kind-variable">
-						<a href="globals.html#immediateRenderQueue" class="tsd-kind-icon">immediate<wbr>Render<wbr>Queue</a>
-					</li>
-					<li class=" tsd-kind-variable">
-						<a href="globals.html#queuedRenderScheduler" class="tsd-kind-icon">queued<wbr>Render<wbr>Scheduler</a>
+						<a href="modules.html#renderscheduleconfig" class="tsd-kind-icon">Render<wbr>Schedule<wbr>Config</a>
 					</li>
 					<li class=" tsd-kind-function">
-						<a href="globals.html#customRenderScheduler" class="tsd-kind-icon">custom<wbr>Render<wbr>Scheduler</a>
+						<a href="modules.html#animationrenderscheduler" class="tsd-kind-icon">animation<wbr>Render<wbr>Scheduler</a>
 					</li>
 					<li class=" tsd-kind-function">
-						<a href="globals.html#immediateRenderScheduler" class="tsd-kind-icon">immediate<wbr>Render<wbr>Scheduler</a>
+						<a href="modules.html#asyncrenderscheduler" class="tsd-kind-icon">async<wbr>Render<wbr>Scheduler</a>
 					</li>
 					<li class=" tsd-kind-function">
-						<a href="globals.html#newManualRenderScheduler" class="tsd-kind-icon">new<wbr>Manual<wbr>Render<wbr>Scheduler</a>
+						<a href="modules.html#customrenderscheduler" class="tsd-kind-icon">custom<wbr>Render<wbr>Scheduler</a>
 					</li>
 					<li class=" tsd-kind-function">
-						<a href="globals.html#newRenderSchedule" class="tsd-kind-icon">new<wbr>Render<wbr>Schedule</a>
+						<a href="modules.html#immediaterenderscheduler" class="tsd-kind-icon">immediate<wbr>Render<wbr>Scheduler</a>
 					</li>
 					<li class=" tsd-kind-function">
-						<a href="globals.html#nodeWindow" class="tsd-kind-icon">node<wbr>Window</a>
+						<a href="modules.html#newmanualrenderscheduler" class="tsd-kind-icon">new<wbr>Manual<wbr>Render<wbr>Scheduler</a>
 					</li>
 					<li class=" tsd-kind-function">
-						<a href="globals.html#noopRenderSchedule" class="tsd-kind-icon">noop<wbr>Render<wbr>Schedule</a>
+						<a href="modules.html#newrenderschedule" class="tsd-kind-icon">new<wbr>Render<wbr>Schedule</a>
 					</li>
 					<li class=" tsd-kind-function">
-						<a href="globals.html#noopRenderScheduler" class="tsd-kind-icon">noop<wbr>Render<wbr>Scheduler</a>
+						<a href="modules.html#nodewindow" class="tsd-kind-icon">node<wbr>Window</a>
 					</li>
 					<li class=" tsd-kind-function">
-						<a href="globals.html#setRenderScheduler" class="tsd-kind-icon">set<wbr>Render<wbr>Scheduler</a>
+						<a href="modules.html#nooprenderscheduler" class="tsd-kind-icon">noop<wbr>Render<wbr>Scheduler</a>
 					</li>
-					<li class=" tsd-kind-object-literal">
-						<a href="globals.html#RenderQueue" class="tsd-kind-icon">Render<wbr>Queue</a>
+					<li class=" tsd-kind-function">
+						<a href="modules.html#queuedrenderscheduler" class="tsd-kind-icon">queued<wbr>Render<wbr>Scheduler</a>
 					</li>
-					<li class=" tsd-kind-object-literal">
-						<a href="globals.html#RenderScheduleConfig" class="tsd-kind-icon">Render<wbr>Schedule<wbr>Config</a>
+					<li class=" tsd-kind-function">
+						<a href="modules.html#setrenderscheduler" class="tsd-kind-icon">set<wbr>Render<wbr>Scheduler</a>
 					</li>
 				</ul>
 			</nav>
@@ -253,13 +226,6 @@ popupSchedule(<span class="hljs-function"><span class="hljs-params">execution</s
 			<ul class="tsd-legend">
 				<li class="tsd-kind-property tsd-parent-kind-interface"><span class="tsd-kind-icon">Property</span></li>
 				<li class="tsd-kind-method tsd-parent-kind-interface"><span class="tsd-kind-icon">Method</span></li>
-			</ul>
-			<ul class="tsd-legend">
-				<li class="tsd-kind-property tsd-parent-kind-class"><span class="tsd-kind-icon">Property</span></li>
-				<li class="tsd-kind-method tsd-parent-kind-class"><span class="tsd-kind-icon">Method</span></li>
-			</ul>
-			<ul class="tsd-legend">
-				<li class="tsd-kind-method tsd-parent-kind-class tsd-is-static"><span class="tsd-kind-icon">Static method</span></li>
 			</ul>
 		</div>
 	</div>

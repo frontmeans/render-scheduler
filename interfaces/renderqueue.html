@@ -7,6 +7,7 @@
 	<meta name="description" content="Documentation for Render Scheduler">
 	<meta name="viewport" content="width=device-width, initial-scale=1">
 	<link rel="stylesheet" href="../assets/css/main.css">
+	<script async src="../assets/js/search.js" id="search-script"></script>
 </head>
 <body>
 <header>
@@ -51,10 +52,10 @@
 		<div class="container">
 			<ul class="tsd-breadcrumb">
 				<li>
-					<a href="../globals.html">Globals</a>
+					<a href="../modules.html">Render Scheduler</a>
 				</li>
 				<li>
-					<a href="RenderQueue.html">RenderQueue</a>
+					<a href="renderqueue.html">RenderQueue</a>
 				</li>
 			</ul>
 			<h1>Interface RenderQueue</h1>
@@ -70,7 +71,7 @@
 						<p>A queue of scheduled render shots.</p>
 					</div>
 					<p>Utilized by render scheduler in order to collect render shots and schedule their execution.</p>
-					<p>The default implementation may be constructed using <a href="../globals.html#RenderQueue.by">RenderQueue.by</a> function.</p>
+					<p>The default implementation may be constructed using {@link RenderQueue.by} function.</p>
 				</div>
 			</section>
 			<section class="tsd-panel tsd-hierarchy">
@@ -78,11 +79,6 @@
 				<ul class="tsd-hierarchy">
 					<li>
 						<span class="target">RenderQueue</span>
-						<ul class="tsd-hierarchy">
-							<li>
-								<a href="InternalRenderQueue.html" class="tsd-signature-type">InternalRenderQueue</a>
-							</li>
-						</ul>
 					</li>
 				</ul>
 			</section>
@@ -93,11 +89,11 @@
 						<section class="tsd-index-section ">
 							<h3>Methods</h3>
 							<ul class="tsd-index-list">
-								<li class="tsd-kind-method tsd-parent-kind-interface"><a href="RenderQueue.html#add" class="tsd-kind-icon">add</a></li>
-								<li class="tsd-kind-method tsd-parent-kind-interface"><a href="RenderQueue.html#post" class="tsd-kind-icon">post</a></li>
-								<li class="tsd-kind-method tsd-parent-kind-interface"><a href="RenderQueue.html#pull" class="tsd-kind-icon">pull</a></li>
-								<li class="tsd-kind-method tsd-parent-kind-interface"><a href="RenderQueue.html#reset" class="tsd-kind-icon">reset</a></li>
-								<li class="tsd-kind-method tsd-parent-kind-interface"><a href="RenderQueue.html#schedule" class="tsd-kind-icon">schedule</a></li>
+								<li class="tsd-kind-method tsd-parent-kind-interface"><a href="renderqueue.html#add" class="tsd-kind-icon">add</a></li>
+								<li class="tsd-kind-method tsd-parent-kind-interface"><a href="renderqueue.html#post" class="tsd-kind-icon">post</a></li>
+								<li class="tsd-kind-method tsd-parent-kind-interface"><a href="renderqueue.html#pull" class="tsd-kind-icon">pull</a></li>
+								<li class="tsd-kind-method tsd-parent-kind-interface"><a href="renderqueue.html#reset" class="tsd-kind-icon">reset</a></li>
+								<li class="tsd-kind-method tsd-parent-kind-interface"><a href="renderqueue.html#schedule" class="tsd-kind-icon">schedule</a></li>
 							</ul>
 						</section>
 					</div>
@@ -109,13 +105,13 @@
 					<a name="add" class="tsd-anchor"></a>
 					<h3>add</h3>
 					<ul class="tsd-signatures tsd-kind-method tsd-parent-kind-interface">
-						<li class="tsd-signature tsd-kind-icon">add<span class="tsd-signature-symbol">(</span>shot<span class="tsd-signature-symbol">: </span><a href="../globals.html#RenderShot" class="tsd-signature-type">RenderShot</a><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">void</span></li>
+						<li class="tsd-signature tsd-kind-icon">add<span class="tsd-signature-symbol">(</span>shot<span class="tsd-signature-symbol">: </span><a href="../modules.html#rendershot" class="tsd-signature-type" data-tsd-kind="Type alias">RenderShot</a><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">void</span></li>
 					</ul>
 					<ul class="tsd-descriptions">
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/proc7ts/render-scheduler/blob/b1beede/src/render-queue.ts#L21">render-queue.ts:21</a></li>
+									<li>Defined in <a href="https://github.com/frontmeans/render-scheduler/blob/2713eaa/src/render-queue.ts#L21">render-queue.ts:21</a></li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
@@ -126,7 +122,7 @@
 							<h4 class="tsd-parameters-title">Parameters</h4>
 							<ul class="tsd-parameters">
 								<li>
-									<h5>shot: <a href="../globals.html#RenderShot" class="tsd-signature-type">RenderShot</a></h5>
+									<h5>shot: <a href="../modules.html#rendershot" class="tsd-signature-type" data-tsd-kind="Type alias">RenderShot</a></h5>
 									<div class="tsd-comment tsd-typography">
 										<p>Scheduled render shot to add.</p>
 									</div>
@@ -140,13 +136,13 @@
 					<a name="post" class="tsd-anchor"></a>
 					<h3>post</h3>
 					<ul class="tsd-signatures tsd-kind-method tsd-parent-kind-interface">
-						<li class="tsd-signature tsd-kind-icon">post<span class="tsd-signature-symbol">(</span>shot<span class="tsd-signature-symbol">: </span><a href="../globals.html#RenderShot" class="tsd-signature-type">RenderShot</a><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">void</span></li>
+						<li class="tsd-signature tsd-kind-icon">post<span class="tsd-signature-symbol">(</span>shot<span class="tsd-signature-symbol">: </span><a href="../modules.html#rendershot" class="tsd-signature-type" data-tsd-kind="Type alias">RenderShot</a><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">void</span></li>
 					</ul>
 					<ul class="tsd-descriptions">
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/proc7ts/render-scheduler/blob/b1beede/src/render-queue.ts#L28">render-queue.ts:28</a></li>
+									<li>Defined in <a href="https://github.com/frontmeans/render-scheduler/blob/2713eaa/src/render-queue.ts#L28">render-queue.ts:28</a></li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
@@ -157,7 +153,7 @@
 							<h4 class="tsd-parameters-title">Parameters</h4>
 							<ul class="tsd-parameters">
 								<li>
-									<h5>shot: <a href="../globals.html#RenderShot" class="tsd-signature-type">RenderShot</a></h5>
+									<h5>shot: <a href="../modules.html#rendershot" class="tsd-signature-type" data-tsd-kind="Type alias">RenderShot</a></h5>
 									<div class="tsd-comment tsd-typography">
 										<p>Scheduled render shot to add.</p>
 									</div>
@@ -171,13 +167,13 @@
 					<a name="pull" class="tsd-anchor"></a>
 					<h3>pull</h3>
 					<ul class="tsd-signatures tsd-kind-method tsd-parent-kind-interface">
-						<li class="tsd-signature tsd-kind-icon">pull<span class="tsd-signature-symbol">(</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><a href="../globals.html#RenderShot" class="tsd-signature-type">RenderShot</a><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">undefined</span></li>
+						<li class="tsd-signature tsd-kind-icon">pull<span class="tsd-signature-symbol">(</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">undefined</span><span class="tsd-signature-symbol"> | </span><a href="../modules.html#rendershot" class="tsd-signature-type" data-tsd-kind="Type alias">RenderShot</a></li>
 					</ul>
 					<ul class="tsd-descriptions">
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/proc7ts/render-scheduler/blob/b1beede/src/render-queue.ts#L35">render-queue.ts:35</a></li>
+									<li>Defined in <a href="https://github.com/frontmeans/render-scheduler/blob/2713eaa/src/render-queue.ts#L35">render-queue.ts:35</a></li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
@@ -185,7 +181,7 @@
 									<p>Retrieves the first added render shot and removes it from the queue.</p>
 								</div>
 							</div>
-							<h4 class="tsd-returns-title">Returns <a href="../globals.html#RenderShot" class="tsd-signature-type">RenderShot</a><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">undefined</span></h4>
+							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">undefined</span><span class="tsd-signature-symbol"> | </span><a href="../modules.html#rendershot" class="tsd-signature-type" data-tsd-kind="Type alias">RenderShot</a></h4>
 							<p>Either pulled out render shot, or <code>undefined</code> when there is no more render shots.</p>
 						</li>
 					</ul>
@@ -194,13 +190,13 @@
 					<a name="reset" class="tsd-anchor"></a>
 					<h3>reset</h3>
 					<ul class="tsd-signatures tsd-kind-method tsd-parent-kind-interface">
-						<li class="tsd-signature tsd-kind-icon">reset<span class="tsd-signature-symbol">(</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><a href="RenderQueue.html" class="tsd-signature-type">RenderQueue</a></li>
+						<li class="tsd-signature tsd-kind-icon">reset<span class="tsd-signature-symbol">(</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><a href="../modules.html#renderqueue" class="tsd-signature-type" data-tsd-kind="Variable">RenderQueue</a></li>
 					</ul>
 					<ul class="tsd-descriptions">
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/proc7ts/render-scheduler/blob/b1beede/src/render-queue.ts#L49">render-queue.ts:49</a></li>
+									<li>Defined in <a href="https://github.com/frontmeans/render-scheduler/blob/2713eaa/src/render-queue.ts#L49">render-queue.ts:49</a></li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
@@ -208,7 +204,7 @@
 									<p>Resets the queue for the next execution.</p>
 								</div>
 							</div>
-							<h4 class="tsd-returns-title">Returns <a href="RenderQueue.html" class="tsd-signature-type">RenderQueue</a></h4>
+							<h4 class="tsd-returns-title">Returns <a href="../modules.html#renderqueue" class="tsd-signature-type" data-tsd-kind="Variable">RenderQueue</a></h4>
 							<p>Another (empty) queue that will collect scheduled render shots from now on.</p>
 						</li>
 					</ul>
@@ -217,13 +213,13 @@
 					<a name="schedule" class="tsd-anchor"></a>
 					<h3>schedule</h3>
 					<ul class="tsd-signatures tsd-kind-method tsd-parent-kind-interface">
-						<li class="tsd-signature tsd-kind-icon">schedule<span class="tsd-signature-symbol">(</span>task<span class="tsd-signature-symbol">: </span><span class="tsd-signature-symbol">(</span>this<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">void</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol"> =&gt; </span><span class="tsd-signature-type">void</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">void</span></li>
+						<li class="tsd-signature tsd-kind-icon">schedule<span class="tsd-signature-symbol">(</span>task<span class="tsd-signature-symbol">: </span><span class="tsd-signature-symbol">(</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol"> =&gt; </span><span class="tsd-signature-type">void</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">void</span></li>
 					</ul>
 					<ul class="tsd-descriptions">
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/proc7ts/render-scheduler/blob/b1beede/src/render-queue.ts#L42">render-queue.ts:42</a></li>
+									<li>Defined in <a href="https://github.com/frontmeans/render-scheduler/blob/2713eaa/src/render-queue.ts#L42">render-queue.ts:42</a></li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
@@ -234,23 +230,17 @@
 							<h4 class="tsd-parameters-title">Parameters</h4>
 							<ul class="tsd-parameters">
 								<li>
-									<h5>task: <span class="tsd-signature-symbol">(</span>this<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">void</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol"> =&gt; </span><span class="tsd-signature-type">void</span></h5>
+									<h5>task: <span class="tsd-signature-symbol">(</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol"> =&gt; </span><span class="tsd-signature-type">void</span></h5>
 									<div class="tsd-comment tsd-typography">
 										<p>A function that performs render shots execution task.</p>
 									</div>
 									<ul class="tsd-parameters">
 										<li class="tsd-parameter-signature">
 											<ul class="tsd-signatures tsd-kind-type-literal">
-												<li class="tsd-signature tsd-kind-icon"><span class="tsd-signature-symbol">(</span>this<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">void</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">void</span></li>
+												<li class="tsd-signature tsd-kind-icon"><span class="tsd-signature-symbol">(</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">void</span></li>
 											</ul>
 											<ul class="tsd-descriptions">
 												<li class="tsd-description">
-													<h4 class="tsd-parameters-title">Parameters</h4>
-													<ul class="tsd-parameters">
-														<li>
-															<h5>this: <span class="tsd-signature-type">void</span></h5>
-														</li>
-													</ul>
 													<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">void</span></h4>
 												</li>
 											</ul>
@@ -267,120 +257,96 @@
 		<div class="col-4 col-menu menu-sticky-wrap menu-highlight">
 			<nav class="tsd-navigation primary">
 				<ul>
-					<li class="globals  ">
-						<a href="../globals.html"><em>Globals</em></a>
+					<li class=" ">
+						<a href="../modules.html">Exports</a>
 					</li>
 				</ul>
 			</nav>
 			<nav class="tsd-navigation secondary menu-sticky">
 				<ul class="before-current">
-					<li class=" tsd-kind-class">
-						<a href="../classes/RenderQ.html" class="tsd-kind-icon">RenderQ</a>
+					<li class=" tsd-kind-interface">
+						<a href="customrenderscheduleroptions.html" class="tsd-kind-icon">Custom<wbr>Render<wbr>Scheduler<wbr>Options</a>
 					</li>
 					<li class=" tsd-kind-interface">
-						<a href="CustomRenderSchedulerOptions.html" class="tsd-kind-icon">Custom<wbr>Render<wbr>Scheduler<wbr>Options</a>
+						<a href="manualrenderscheduler.html" class="tsd-kind-icon">Manual<wbr>Render<wbr>Scheduler</a>
 					</li>
 					<li class=" tsd-kind-interface">
-						<a href="InternalRenderQueue.html" class="tsd-kind-icon">Internal<wbr>Render<wbr>Queue</a>
-					</li>
-					<li class=" tsd-kind-interface">
-						<a href="ManualRenderScheduler.html" class="tsd-kind-icon">Manual<wbr>Render<wbr>Scheduler</a>
-					</li>
-					<li class=" tsd-kind-interface">
-						<a href="RenderExecution.html" class="tsd-kind-icon">Render<wbr>Execution</a>
+						<a href="renderexecution.html" class="tsd-kind-icon">Render<wbr>Execution</a>
 					</li>
 				</ul>
 				<ul class="current">
 					<li class="current tsd-kind-interface">
-						<a href="RenderQueue.html" class="tsd-kind-icon">Render<wbr>Queue</a>
+						<a href="renderqueue.html" class="tsd-kind-icon">Render<wbr>Queue</a>
 						<ul>
 							<li class=" tsd-kind-method tsd-parent-kind-interface">
-								<a href="RenderQueue.html#add" class="tsd-kind-icon">add</a>
+								<a href="renderqueue.html#add" class="tsd-kind-icon">add</a>
 							</li>
 							<li class=" tsd-kind-method tsd-parent-kind-interface">
-								<a href="RenderQueue.html#post" class="tsd-kind-icon">post</a>
+								<a href="renderqueue.html#post" class="tsd-kind-icon">post</a>
 							</li>
 							<li class=" tsd-kind-method tsd-parent-kind-interface">
-								<a href="RenderQueue.html#pull" class="tsd-kind-icon">pull</a>
+								<a href="renderqueue.html#pull" class="tsd-kind-icon">pull</a>
 							</li>
 							<li class=" tsd-kind-method tsd-parent-kind-interface">
-								<a href="RenderQueue.html#reset" class="tsd-kind-icon">reset</a>
+								<a href="renderqueue.html#reset" class="tsd-kind-icon">reset</a>
 							</li>
 							<li class=" tsd-kind-method tsd-parent-kind-interface">
-								<a href="RenderQueue.html#schedule" class="tsd-kind-icon">schedule</a>
+								<a href="renderqueue.html#schedule" class="tsd-kind-icon">schedule</a>
 							</li>
 						</ul>
 					</li>
 				</ul>
 				<ul class="after-current">
 					<li class=" tsd-kind-interface">
-						<a href="RenderScheduleConfig.html" class="tsd-kind-icon">Render<wbr>Schedule<wbr>Config</a>
+						<a href="renderscheduleconfig.html" class="tsd-kind-icon">Render<wbr>Schedule<wbr>Config</a>
 					</li>
 					<li class=" tsd-kind-interface">
-						<a href="RenderScheduleOptions.html" class="tsd-kind-icon">Render<wbr>Schedule<wbr>Options</a>
+						<a href="renderscheduleoptions.html" class="tsd-kind-icon">Render<wbr>Schedule<wbr>Options</a>
 					</li>
 					<li class=" tsd-kind-type-alias">
-						<a href="../globals.html#RenderSchedule" class="tsd-kind-icon">Render<wbr>Schedule</a>
+						<a href="../modules.html#renderschedule" class="tsd-kind-icon">Render<wbr>Schedule</a>
 					</li>
 					<li class=" tsd-kind-type-alias">
-						<a href="../globals.html#RenderScheduler" class="tsd-kind-icon">Render<wbr>Scheduler</a>
+						<a href="../modules.html#renderscheduler" class="tsd-kind-icon">Render<wbr>Scheduler</a>
 					</li>
 					<li class=" tsd-kind-type-alias">
-						<a href="../globals.html#RenderShot" class="tsd-kind-icon">Render<wbr>Shot</a>
+						<a href="../modules.html#rendershot" class="tsd-kind-icon">Render<wbr>Shot</a>
 					</li>
 					<li class=" tsd-kind-variable">
-						<a href="../globals.html#RenderQ__symbol" class="tsd-kind-icon">Render<wbr>Q__symbol</a>
+						<a href="../modules.html#renderqueue" class="tsd-kind-icon">Render<wbr>Queue</a>
 					</li>
 					<li class=" tsd-kind-variable">
-						<a href="../globals.html#animationRenderQueues" class="tsd-kind-icon">animation<wbr>Render<wbr>Queues</a>
-					</li>
-					<li class=" tsd-kind-variable">
-						<a href="../globals.html#animationRenderScheduler" class="tsd-kind-icon">animation<wbr>Render<wbr>Scheduler</a>
-					</li>
-					<li class=" tsd-kind-variable">
-						<a href="../globals.html#asyncRenderQueue" class="tsd-kind-icon">async<wbr>Render<wbr>Queue</a>
-					</li>
-					<li class=" tsd-kind-variable">
-						<a href="../globals.html#asyncRenderScheduler" class="tsd-kind-icon">async<wbr>Render<wbr>Scheduler</a>
-					</li>
-					<li class=" tsd-kind-variable">
-						<a href="../globals.html#defaultRenderScheduler" class="tsd-kind-icon">default<wbr>Render<wbr>Scheduler</a>
-					</li>
-					<li class=" tsd-kind-variable">
-						<a href="../globals.html#immediateRenderQueue" class="tsd-kind-icon">immediate<wbr>Render<wbr>Queue</a>
-					</li>
-					<li class=" tsd-kind-variable">
-						<a href="../globals.html#queuedRenderScheduler" class="tsd-kind-icon">queued<wbr>Render<wbr>Scheduler</a>
+						<a href="../modules.html#renderscheduleconfig" class="tsd-kind-icon">Render<wbr>Schedule<wbr>Config</a>
 					</li>
 					<li class=" tsd-kind-function">
-						<a href="../globals.html#customRenderScheduler" class="tsd-kind-icon">custom<wbr>Render<wbr>Scheduler</a>
+						<a href="../modules.html#animationrenderscheduler" class="tsd-kind-icon">animation<wbr>Render<wbr>Scheduler</a>
 					</li>
 					<li class=" tsd-kind-function">
-						<a href="../globals.html#immediateRenderScheduler" class="tsd-kind-icon">immediate<wbr>Render<wbr>Scheduler</a>
+						<a href="../modules.html#asyncrenderscheduler" class="tsd-kind-icon">async<wbr>Render<wbr>Scheduler</a>
 					</li>
 					<li class=" tsd-kind-function">
-						<a href="../globals.html#newManualRenderScheduler" class="tsd-kind-icon">new<wbr>Manual<wbr>Render<wbr>Scheduler</a>
+						<a href="../modules.html#customrenderscheduler" class="tsd-kind-icon">custom<wbr>Render<wbr>Scheduler</a>
 					</li>
 					<li class=" tsd-kind-function">
-						<a href="../globals.html#newRenderSchedule" class="tsd-kind-icon">new<wbr>Render<wbr>Schedule</a>
+						<a href="../modules.html#immediaterenderscheduler" class="tsd-kind-icon">immediate<wbr>Render<wbr>Scheduler</a>
 					</li>
 					<li class=" tsd-kind-function">
-						<a href="../globals.html#nodeWindow" class="tsd-kind-icon">node<wbr>Window</a>
+						<a href="../modules.html#newmanualrenderscheduler" class="tsd-kind-icon">new<wbr>Manual<wbr>Render<wbr>Scheduler</a>
 					</li>
 					<li class=" tsd-kind-function">
-						<a href="../globals.html#noopRenderSchedule" class="tsd-kind-icon">noop<wbr>Render<wbr>Schedule</a>
+						<a href="../modules.html#newrenderschedule" class="tsd-kind-icon">new<wbr>Render<wbr>Schedule</a>
 					</li>
 					<li class=" tsd-kind-function">
-						<a href="../globals.html#noopRenderScheduler" class="tsd-kind-icon">noop<wbr>Render<wbr>Scheduler</a>
+						<a href="../modules.html#nodewindow" class="tsd-kind-icon">node<wbr>Window</a>
 					</li>
 					<li class=" tsd-kind-function">
-						<a href="../globals.html#setRenderScheduler" class="tsd-kind-icon">set<wbr>Render<wbr>Scheduler</a>
+						<a href="../modules.html#nooprenderscheduler" class="tsd-kind-icon">noop<wbr>Render<wbr>Scheduler</a>
 					</li>
-					<li class=" tsd-kind-object-literal">
-						<a href="../globals.html#RenderQueue" class="tsd-kind-icon">Render<wbr>Queue</a>
+					<li class=" tsd-kind-function">
+						<a href="../modules.html#queuedrenderscheduler" class="tsd-kind-icon">queued<wbr>Render<wbr>Scheduler</a>
 					</li>
-					<li class=" tsd-kind-object-literal">
-						<a href="../globals.html#RenderScheduleConfig" class="tsd-kind-icon">Render<wbr>Schedule<wbr>Config</a>
+					<li class=" tsd-kind-function">
+						<a href="../modules.html#setrenderscheduler" class="tsd-kind-icon">set<wbr>Render<wbr>Scheduler</a>
 					</li>
 				</ul>
 			</nav>
@@ -394,13 +360,6 @@
 			<ul class="tsd-legend">
 				<li class="tsd-kind-property tsd-parent-kind-interface"><span class="tsd-kind-icon">Property</span></li>
 				<li class="tsd-kind-method tsd-parent-kind-interface"><span class="tsd-kind-icon">Method</span></li>
-			</ul>
-			<ul class="tsd-legend">
-				<li class="tsd-kind-property tsd-parent-kind-class"><span class="tsd-kind-icon">Property</span></li>
-				<li class="tsd-kind-method tsd-parent-kind-class"><span class="tsd-kind-icon">Method</span></li>
-			</ul>
-			<ul class="tsd-legend">
-				<li class="tsd-kind-method tsd-parent-kind-class tsd-is-static"><span class="tsd-kind-icon">Static method</span></li>
 			</ul>
 		</div>
 	</div>
