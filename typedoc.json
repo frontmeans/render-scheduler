@@ -1,13 +1,5 @@
 {
-  "disableAutoModuleName": true,
-  "exclude": [
-    "**/index.ts",
-    "**/*.impl.ts",
-    "**/*.spec.ts"
-  ],
-  "excludeNotExported": true,
-  "excludePrivate": true,
-  "mode": "file",
+  "entryPoints": ["src/index.ts"],
   "name": "Render Scheduler",
   "out": "./target/typedoc",
   "tsconfig": "tsconfig.main.json"
