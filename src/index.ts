@@ -1,6 +1,6 @@
 /**
  * @packageDocumentation
- * @module @frontmeans/render-scheduler
+ * @module Module @frontmeans/render-scheduler
  */
 export * from './animation-render-scheduler';
 export * from './async-render-scheduler';

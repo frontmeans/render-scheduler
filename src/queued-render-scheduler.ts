@@ -1,7 +1,3 @@
-/**
- * @packageDocumentation
- * @module @frontmeans/render-scheduler
- */
 import { customRenderScheduler } from './custom-render-scheduler';
 import { RenderQueue } from './render-queue';
 import type { RenderScheduler } from './render-scheduler';

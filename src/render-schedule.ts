@@ -1,7 +1,3 @@
-/**
- * @packageDocumentation
- * @module @frontmeans/render-scheduler
- */
 import type { RenderShot } from './render-shot';
 
 /**
