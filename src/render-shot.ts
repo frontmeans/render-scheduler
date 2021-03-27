@@ -6,12 +6,14 @@ import type { RenderScheduleConfig } from './render-schedule';
  * Render shots are scheduled in {@link RenderSchedule rendering schedule}. The latest render shot scheduled in the same
  * schedule should be able to update its rendering target to actual state. So that previously scheduled shots could be
  * skipped.
+ *
+ * @typeParam TExecution - A type of supported execution context.
  */
-export type RenderShot =
+export type RenderShot<TExecution extends RenderExecution = RenderExecution> =
 /**
  * @param execution - Render shot execution context instance.
  */
-    (this: void, execution: RenderExecution) => void;
+    (this: void, execution: TExecution) => void;
 
 /**
  * Render shot execution context.
@@ -37,6 +39,6 @@ export interface RenderExecution {
    *
    * @param postponed - A render shot to postpone.
    */
-  postpone(postponed: RenderShot): void;
+  postpone(postponed: RenderShot<this>): void;
 
 }

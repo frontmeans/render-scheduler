@@ -1,4 +1,4 @@
-import type { RenderShot } from './render-shot';
+import type { RenderExecution, RenderShot } from './render-shot';
 
 /**
  * Render schedule signature.
@@ -13,12 +13,14 @@ import type { RenderShot } from './render-shot';
  *
  * Render schedules are constructed by {@link RenderScheduler render schedulers}, or by {@link newRenderSchedule}
  * function that uses the {@link setRenderScheduler default scheduler} for that.
+ *
+ * @typeParam TExecution - A type of supported render shot execution context.
  */
-export type RenderSchedule =
+export type RenderSchedule<TExecution extends RenderExecution = RenderExecution> =
 /**
  * @param shot - A render shot to schedule.
  */
-    (this: void, shot: RenderShot) => void;
+    (this: void, shot: RenderShot<TExecution>) => void;
 
 /**
  * Options for render schedule.
