@@ -14,7 +14,7 @@ import type { RenderExecution, RenderShot } from './render-shot';
  * Render schedules are constructed by {@link RenderScheduler render schedulers}, or by {@link newRenderSchedule}
  * function that uses the {@link setRenderScheduler default scheduler} for that.
  *
- * @typeParam TExecution - Supported type of render schedule execution.
+ * @typeParam TExecution - A type of supported render shot execution context.
  */
 export type RenderSchedule<TExecution extends RenderExecution = RenderExecution> =
 /**

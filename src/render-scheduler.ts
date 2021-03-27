@@ -1,5 +1,6 @@
 import { animationRenderScheduler } from './animation-render-scheduler';
 import type { RenderSchedule, RenderScheduleOptions } from './render-schedule';
+import type { RenderExecution } from './render-shot';
 
 /**
  * Render scheduler signature.
@@ -17,14 +18,16 @@ import type { RenderSchedule, RenderScheduleOptions } from './render-schedule';
  * - {@link noopRenderScheduler}.
  *
  * Custom scheduler implementations could be created using {@link customRenderScheduler} function.
+ *
+ * @typeParam TExecution - A type of supported render shot execution context.
  */
-export type RenderScheduler =
+export type RenderScheduler<TExecution extends RenderExecution = RenderExecution> =
 /**
  * @param options - Options of constructed render schedule.
  *
  * @returns New render schedule.
  */
-    (this: void, options?: RenderScheduleOptions) => RenderSchedule;
+    (this: void, options?: RenderScheduleOptions) => RenderSchedule<TExecution>;
 
 /**
  * @internal

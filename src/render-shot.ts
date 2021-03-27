@@ -7,7 +7,7 @@ import type { RenderScheduleConfig } from './render-schedule';
  * schedule should be able to update its rendering target to actual state. So that previously scheduled shots could be
  * skipped.
  *
- * @typeParam TExecution - Supported type of render schedule execution.
+ * @typeParam TExecution - A type of supported execution context.
  */
 export type RenderShot<TExecution extends RenderExecution = RenderExecution> =
 /**
