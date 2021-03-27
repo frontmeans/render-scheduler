@@ -12,6 +12,7 @@ import type { RenderSchedule, RenderScheduleOptions } from './render-schedule';
  * - {@link animationRenderScheduler} (used by default),
  * - {@link asyncRenderScheduler},
  * - {@link immediateRenderScheduler},
+ * - {@link queuedRenderScheduler},
  * - {@link ManualRenderScheduler},
  * - {@link noopRenderScheduler}.
  *
