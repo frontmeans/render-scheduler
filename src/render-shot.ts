@@ -39,6 +39,6 @@ export interface RenderExecution {
    *
    * @param postponed - A render shot to postpone.
    */
-  postpone(postponed: RenderShot<this>): void;
+  postpone(this: void, postponed: RenderShot<this>): void;
 
 }
