@@ -25,28 +25,19 @@ export interface CustomRenderSchedulerOptions {
 
 }
 
-/**
- * @internal
- */
-const RenderQ__symbol = Symbol('render-q');
+const RenderQ__symbol = (/*#__PURE__*/ Symbol('render-q'));
 
-/**
- * @internal
- */
-interface InternalRenderQueue extends RenderQueue {
+interface RenderQueue$Internal extends RenderQueue {
   [RenderQ__symbol]?: RenderQ;
 }
 
-/**
- * @internal
- */
 class RenderQ {
 
-  readonly ref: [RenderQ, RenderQ];
+  readonly ref: RenderQ$Ref;
   schedule: (this: RenderQ, config: RenderScheduleConfig) => void;
   private scheduled?: RenderScheduleConfig;
 
-  static by(queue: InternalRenderQueue, ref?: [RenderQ, RenderQ]): RenderQ {
+  static by(queue: RenderQueue$Internal, ref?: RenderQ$Ref): RenderQ {
     return queue[RenderQ__symbol]
         || (queue[RenderQ__symbol] = new RenderQ(queue, ref));
   }
@@ -61,7 +52,7 @@ class RenderQ {
   }
 
   private doSchedule(config: RenderScheduleConfig): void {
-    this.schedule = () => {/* do not schedule */};
+    this.schedule = RenderQ$doNotSchedule;
 
     const postponed: RenderShot[] = [];
     const execution: RenderExecution = {
@@ -110,7 +101,7 @@ class RenderQ {
   private suspend(): void {
     this.schedule = config => {
       this.scheduled = config;
-      this.schedule = () => {/* do not schedule */};
+      this.schedule = RenderQ$doNotSchedule;
     };
   }
 
@@ -122,6 +113,12 @@ class RenderQ {
     }
   }
 
+}
+
+type RenderQ$Ref = [next: RenderQ, active: RenderQ];
+
+function RenderQ$doNotSchedule(_config: RenderScheduleConfig): void {
+  // Do not schedule.
 }
 
 /**
@@ -137,7 +134,7 @@ export function customRenderScheduler(
   return (scheduleOptions?: RenderScheduleOptions): RenderSchedule => {
 
     const config = RenderScheduleConfig.by(scheduleOptions);
-    const queueRef: readonly [RenderQ, RenderQ] = RenderQ.by(options.newQueue(config)).ref;
+    const queueRef: Readonly<RenderQ$Ref> = RenderQ.by(options.newQueue(config)).ref;
     let enqueued: [RenderQ, RenderShot, true?] | [] = [];
 
     return (shot: RenderShot): void => {
