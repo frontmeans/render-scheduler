@@ -56,7 +56,7 @@ export interface RenderScheduleOptions {
    *
    * @param messages - Error messages to report.
    */
-  error?(...messages: any[]): void;
+  error?(this: void, ...messages: any[]): void;
 
 }
 
@@ -86,20 +86,23 @@ export interface RenderScheduleConfig {
    *
    * @param messages - Error messages to report.
    */
-  error(...messages: any[]): void;
+  error(this: void, ...messages: any[]): void;
 
 }
 
 export const RenderScheduleConfig = {
 
   /**
-   * Constructs a configuration of render scheduler by its options.
+   * Constructs a configuration of render schedule by its options.
    *
    * @param options - Render scheduler options the configuration should be base on.
+   *
+   * @returns Render schedule configuration.
    */
   by(this: void, options: RenderScheduleOptions = {}): RenderScheduleConfig {
 
     let win: Window | undefined;
+    const { error = console.error } = options;
 
     return {
       get node(): Node | undefined {
@@ -108,13 +111,7 @@ export const RenderScheduleConfig = {
       get window(): Window {
         return win || (win = options.window || (options.node ? nodeWindow(options.node) : window));
       },
-      error(...messages: any[]): void {
-        if (options && options.error) {
-          options.error(...messages);
-        } else {
-          console.error(...messages);
-        }
-      },
+      error,
     };
   },
 
