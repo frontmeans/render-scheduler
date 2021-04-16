@@ -29,6 +29,7 @@
     "@rollup/plugin-commonjs": "^18.0.0",
     "@rollup/plugin-node-resolve": "^11.2.1",
     "@run-z/eslint-config": "^1.2.1",
+    "@run-z/rollup-helpers": "^1.1.0",
     "@types/jest": "^26.0.22",
     "@typescript-eslint/eslint-plugin": "^4.22.0",
     "@typescript-eslint/parser": "^4.22.0",
@@ -58,5 +59,8 @@
     "lint": "run-z +z --then eslint . --ext .js,.ts",
     "test": "run-z +z --then jest",
     "z": "run-z +build,+doc,+lint,+test"
+  },
+  "dependencies": {
+    "@frontmeans/dom-primitives": "^1.0.0"
   }
 }

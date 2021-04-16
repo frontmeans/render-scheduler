@@ -1,3 +1,4 @@
+import { nodeWindow } from '@frontmeans/dom-primitives';
 import type { RenderExecution, RenderShot } from './render-shot';
 
 /**
@@ -105,7 +106,7 @@ export const RenderScheduleConfig = {
         return options.node;
       },
       get window(): Window {
-        return win || (win = options.window || (options.node && nodeWindow(options.node)) || window);
+        return win || (win = options.window || (options.node ? nodeWindow(options.node) : window));
       },
       error(...messages: any[]): void {
         if (options && options.error) {
@@ -118,17 +119,3 @@ export const RenderScheduleConfig = {
   },
 
 };
-
-/**
- * Detects a window the given DOM node is attached to.
- *
- * @param node - Target DOM node.
- *
- * @returns A window of the owner document, or `null` if absent.
- */
-export function nodeWindow(node: Node): Window | null {
-
-  const document = node.ownerDocument || node as Document;
-
-  return document.defaultView;
-}
