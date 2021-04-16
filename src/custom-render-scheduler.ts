@@ -36,7 +36,11 @@ class RenderQ {
   readonly ref: RenderQ$Ref;
   schedule: (this: RenderQ, config: RenderScheduleConfig) => void;
   private scheduled?: RenderScheduleConfig;
-  private readonly execute: (this: this, execution: RenderExecution) => void;
+  private readonly execute: (
+      this: this,
+      execution: RenderExecution,
+      done: () => void,
+  ) => void;
 
   static by(queue: RenderQueue$Internal, ref?: RenderQ$Ref): RenderQ {
     return queue[RenderQ__symbol]
@@ -46,19 +50,7 @@ class RenderQ {
   private constructor(private readonly q: RenderQueue, ref?: [RenderQ, RenderQ]) {
     this.schedule = this.doSchedule;
     this.ref = ref || [this, this];
-    if (q.recur) {
-      this.execute = execution => {
-
-        const execute = (): void => {
-          this.exec(execution);
-          this.q.recur!(execute);
-        };
-
-        execute();
-      };
-    } else {
-      this.execute = this.exec;
-    }
+    this.execute = q.recur ? this.execRecurring : this.execNonRecurring;
   }
 
   add(shot: RenderShot): void {
@@ -82,21 +74,23 @@ class RenderQ {
     this.q.schedule(() => {
 
       const next = this.reset();
+      const done = (): void => {
+
+        // Activate next queue.
+        this.ref[1] = this.ref[0];
+        // Schedule postponed shots (in reverse order).
+        postponed.forEach(shot => this.q.add(shot));
+        // Recurrently postponed shots are executed immediately after their initiators.
+        execution.postpone = shot => this.q.post(shot);
+        // Execute postponed shots.
+        this.exec(execution);
+
+        next.resume();
+      };
 
       next.suspend();
 
-      this.execute(execution);
-
-      // Activate next queue.
-      this.ref[1] = this.ref[0];
-      // Schedule postponed shots (in reverse order).
-      postponed.forEach(shot => this.q.add(shot));
-      // Recurrently postponed shots are executed immediately after their initiators.
-      execution.postpone = shot => this.q.post(shot);
-      // Execute postponed shots.
-      this.exec(execution);
-
-      next.resume();
+      this.execute(execution, done);
     });
   }
 
@@ -108,8 +102,26 @@ class RenderQ {
       if (!shot) {
         break;
       }
+
       shot(execution);
     }
+  }
+
+  private execNonRecurring(execution: RenderExecution, done: () => void): void {
+    this.exec(execution);
+    done();
+  }
+
+  private execRecurring(execution: RenderExecution, done: () => void): void {
+
+    const execute = (): void => {
+      this.exec(execution);
+      if (!this.q.recur!(execute)) {
+        done();
+      }
+    };
+
+    execute();
   }
 
   private reset(): RenderQ {

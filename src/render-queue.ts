@@ -33,7 +33,7 @@ export interface RenderQueue {
   /**
    * Schedules queued render shots execution.
    *
-   * @param task - A function that performs render shots execution task.
+   * @param task - A function that performs render shots execution.
    */
   schedule(task: (this: void) => void): void;
 
@@ -46,10 +46,12 @@ export interface RenderQueue {
    * When not defined, it is expected that {@link schedule} executes all scheduled render shots, including recurrent
    * ones.
    *
-   * @param task - A function that performs render shots execution task. Should not be executed if there is no
-   * recurrent shots.
+   * @param task - A function that performs render shots execution. Should not be executed if there is no recurrent
+   * shots.
+   *
+   * @returns `true` if recurrent shots scheduled, or `false` if there is no recurrent shots.
    */
-  recur?(task: (this: void) => void): void;
+  recur?(task: (this: void) => void): boolean;
 
   /**
    * Resets the queue for the next execution.
@@ -60,49 +62,80 @@ export interface RenderQueue {
 
 }
 
+export namespace RenderQueue {
+
+  /**
+   * Options for the {@link RenderQueue.by default implementation} of {@link RenderQueue}.
+   */
+  export interface Options {
+
+    /**
+     * Schedules queued render shots execution.
+     *
+     * This is an implementation of {@link RenderQueue.schedule} method.
+     *
+     * @param task - A function that performs render shots execution.
+     */
+    schedule(this: void, task: (this: void) => void): void;
+
+    /**
+     * Schedules recurrent render shots execution.
+     *
+     * This is an implementation of {@link RenderQueue.recur} method.
+     *
+     * @param task - A function that performs render shots execution. Will not be executed if there is no recurrent
+     * shots.
+     */
+    recur?(this: void, task: (this: void) => void): void;
+
+    /**
+     * Called right after {@link RenderQueue.reset} method in order to inform on the queue that collects scheduled
+     * render shots from now.
+     *
+     * @param replacement - A queue instance that collects scheduled render shots from now on.
+     */
+    replace?(this: void, replacement: RenderQueue): void;
+
+  }
+
+}
+
 export const RenderQueue = {
 
   /**
    * Builds the default implementation of render queue.
    *
-   * @param schedule - Schedules queued render shots execution. This is an implementation of
-   * {@link RenderQueue.schedule} method.
-   * @param recur - Schedules recurrent render shots execution. This is an implementation of
-   * {@link RenderQueue.recur} method.
-   * @param replace - Called right after {@link RenderQueue.reset} method in order to inform on the queue that will
-   * collect scheduled render shots from now.
+   * @param options - Render queue options.
    *
    * @returns New render queue.
    */
   by(
       this: void,
-      {
-        schedule,
-        recur,
-        replace = RenderQueue$doNotReplace,
-      }: {
-        schedule(this: void, task: (this: void) => void): void;
-        recur?(this: void, task: (this: void) => void): void;
-        replace?(this: void, replacement: RenderQueue): void;
-      },
+      options: RenderQueue.Options,
   ): RenderQueue {
+
+    const { schedule, recur } = options;
+    let { replace = RenderQueue$doNotReplace } = options;
 
     let scheduled: RenderShot[] = [];
     let executed: RenderShot[] = scheduled;
 
-    const scheduleRecurrent = recur;
+    let scheduleRecurrent: ((task: (this: void) => void) => boolean) | undefined;
 
-    if (scheduleRecurrent) {
-      recur = task => {
-        if (scheduled.length) {
-          executed = scheduled;
-          scheduled = [];
-          scheduleRecurrent(task);
-        } else {
+    if (recur) {
+      scheduleRecurrent = task => {
+        if (!scheduled.length) {
           // No recurrent shots.
           // The upcoming shots are non-recurrent.
           scheduled = executed;
+          return false;
         }
+
+        executed = scheduled;
+        scheduled = [];
+        recur(task);
+
+        return true;
       };
 
       const replaceQueue = replace;
@@ -124,10 +157,10 @@ export const RenderQueue = {
         return executed.shift();
       },
       schedule,
-      recur,
+      recur: scheduleRecurrent,
       reset() {
 
-        const next = RenderQueue.by({ schedule, replace });
+        const next = RenderQueue.by(options);
 
         replace(next);
 
