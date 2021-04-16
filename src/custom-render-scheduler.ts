@@ -47,7 +47,7 @@ class RenderQ {
         || (queue[RenderQ__symbol] = new RenderQ(queue, ref));
   }
 
-  private constructor(private readonly q: RenderQueue, ref?: [RenderQ, RenderQ]) {
+  private constructor(readonly q: RenderQueue, ref?: [RenderQ, RenderQ]) {
     this.schedule = this.doSchedule;
     this.ref = ref || [this, this];
     this.execute = q.recur ? this.execRecurring : this.execNonRecurring;
@@ -180,14 +180,16 @@ export function customRenderScheduler(
       const [nextQueue, activeQueue] = queueRef;
       let queue = lastQueue || activeQueue;
 
-      if (lastQueue === activeQueue && !executed || lastQueue === nextQueue) {
+      if ((lastQueue === activeQueue && !executed) || lastQueue === nextQueue) {
+        // Replace the shot in active queue, unless executed already.
+        // Replace the shot in the next queue unconditionally.
         enqueued[1] = shot;
       } else {
 
-        // Add to active queue initially, unless a shot executed in it already.
+        // Add to active queue if no shot executed in this schedule yet, or the queue recurrent.
         // Add to the next queue otherwise.
         const nextEnqueued: [RenderQ, RenderShot, true?] = enqueued = [
-          queue = executed ? nextQueue : activeQueue,
+          queue = !executed || queue.q.recur ? activeQueue : nextQueue,
           shot,
         ];
 
