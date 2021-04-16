@@ -1,5 +1,5 @@
 import { customRenderScheduler } from './custom-render-scheduler';
-import type { RenderQueue } from './render-queue';
+import { RenderQueue } from './render-queue';
 import type { RenderScheduleOptions } from './render-schedule';
 import type { RenderExecution } from './render-shot';
 import Mock = jest.Mock;
@@ -37,5 +37,39 @@ describe('CustomRenderScheduler', () => {
       config: expect.objectContaining(options),
     }));
   });
+  it('executes recurrent shots', () => {
 
+    const schedule = jest.fn((task: () => void) => task());
+    const recur = jest.fn((task: () => void) => task());
+
+    const queue = RenderQueue.by({
+      schedule,
+      recur,
+    });
+
+    const scheduler = customRenderScheduler({
+      newQueue: () => queue,
+    });
+
+    const result: number[] = [];
+
+    const schedule1 = scheduler();
+    const schedule2 = scheduler();
+
+    schedule1(exec => {
+      exec.postpone(() => {
+        result.push(-11);
+      });
+      result.push(11);
+      schedule2(exec => {
+        exec.postpone(() => {
+          result.push(-21);
+        });
+        result.push(21);
+      });
+      result.push(12);
+    });
+
+    expect(result).toEqual([11, 12, 21, -21, -11]);
+  });
 });

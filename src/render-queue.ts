@@ -38,6 +38,20 @@ export interface RenderQueue {
   schedule(task: (this: void) => void): void;
 
   /**
+   * Schedules recurrent render shots execution.
+   *
+   * When defined, this method is responsible for execution of render shots scheduled during preceding render shots
+   * execution.
+   *
+   * When not defined, it is expected that {@link schedule} executes all scheduled render shots, including recurrent
+   * ones.
+   *
+   * @param task - A function that performs render shots execution task. Should not be executed if there is no
+   * recurrent shots.
+   */
+  recur?(task: (this: void) => void): void;
+
+  /**
    * Resets the queue for the next execution.
    *
    * @returns  Another (empty) queue that will collect scheduled render shots from now on.
@@ -53,6 +67,8 @@ export const RenderQueue = {
    *
    * @param schedule - Schedules queued render shots execution. This is an implementation of
    * {@link RenderQueue.schedule} method.
+   * @param recur - Schedules recurrent render shots execution. This is an implementation of
+   * {@link RenderQueue.recur} method.
    * @param replace - Called right after {@link RenderQueue.reset} method in order to inform on the queue that will
    * collect scheduled render shots from now.
    *
@@ -62,27 +78,54 @@ export const RenderQueue = {
       this: void,
       {
         schedule,
-        replace = (): void => {/* do not replace */},
+        recur,
+        replace = RenderQueue$doNotReplace,
       }: {
-        schedule(this: RenderQueue, task: (this: void) => void): void;
+        schedule(this: void, task: (this: void) => void): void;
+        recur?(this: void, task: (this: void) => void): void;
         replace?(this: void, replacement: RenderQueue): void;
       },
   ): RenderQueue {
 
-    const shots: RenderShot[] = [];
+    let scheduled: RenderShot[] = [];
+    let executed: RenderShot[] = scheduled;
+
+    const scheduleRecurrent = recur;
+
+    if (scheduleRecurrent) {
+      recur = task => {
+        if (scheduled.length) {
+          executed = scheduled;
+          scheduled = [];
+          scheduleRecurrent(task);
+        } else {
+          // No recurrent shots.
+          // The upcoming shots are non-recurrent.
+          scheduled = executed;
+        }
+      };
+
+      const replaceQueue = replace;
+
+      replace = next => {
+        scheduled = [];
+        replaceQueue(next);
+      };
+    }
 
     return {
-      schedule,
       add(shot: RenderShot): void {
-        shots.push(shot);
+        scheduled.push(shot);
       },
       post(shot: RenderShot): void {
-        shots.unshift(shot);
+        scheduled.unshift(shot);
       },
       pull(): RenderShot | undefined {
-        return shots.shift();
+        return executed.shift();
       },
-      reset(): RenderQueue {
+      schedule,
+      recur,
+      reset() {
 
         const next = RenderQueue.by({ schedule, replace });
 
@@ -94,3 +137,7 @@ export const RenderQueue = {
   },
 
 };
+
+function RenderQueue$doNotReplace(_replacement: RenderQueue): void {
+  // Do not replace queue
+}

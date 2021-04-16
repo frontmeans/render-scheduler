@@ -36,6 +36,7 @@ class RenderQ {
   readonly ref: RenderQ$Ref;
   schedule: (this: RenderQ, config: RenderScheduleConfig) => void;
   private scheduled?: RenderScheduleConfig;
+  private readonly execute: (this: this, execution: RenderExecution) => void;
 
   static by(queue: RenderQueue$Internal, ref?: RenderQ$Ref): RenderQ {
     return queue[RenderQ__symbol]
@@ -45,6 +46,19 @@ class RenderQ {
   private constructor(private readonly q: RenderQueue, ref?: [RenderQ, RenderQ]) {
     this.schedule = this.doSchedule;
     this.ref = ref || [this, this];
+    if (q.recur) {
+      this.execute = execution => {
+
+        const execute = (): void => {
+          this.exec(execution);
+          this.q.recur!(execute);
+        };
+
+        execute();
+      };
+    } else {
+      this.execute = this.exec;
+    }
   }
 
   add(shot: RenderShot): void {
@@ -52,6 +66,7 @@ class RenderQ {
   }
 
   private doSchedule(config: RenderScheduleConfig): void {
+    // At most one execution at a time.
     this.schedule = RenderQ$doNotSchedule;
 
     const postponed: RenderShot[] = [];
@@ -69,14 +84,18 @@ class RenderQ {
       const next = this.reset();
 
       next.suspend();
-      this.exec(execution);
-      // Activate next queue
+
+      this.execute(execution);
+
+      // Activate next queue.
       this.ref[1] = this.ref[0];
-      // Schedule postponed shots (in reverse order)
+      // Schedule postponed shots (in reverse order).
       postponed.forEach(shot => this.q.add(shot));
-      // Recurrently postponed shots are executed immediately after their initiators
+      // Recurrently postponed shots are executed immediately after their initiators.
       execution.postpone = shot => this.q.post(shot);
+      // Execute postponed shots.
       this.exec(execution);
+
       next.resume();
     });
   }
@@ -100,15 +119,21 @@ class RenderQ {
 
   private suspend(): void {
     this.schedule = config => {
+      // Remember execution to schedule.
+      // It will be scheduled on resume.
       this.scheduled = config;
+
+      // No need to remember more than one execution to schedule.
       this.schedule = RenderQ$doNotSchedule;
     };
   }
 
   private resume(): void {
     if (this.scheduled) {
+      // There is an execution to schedule.
       this.doSchedule(this.scheduled);
     } else {
+      // Resume normal execution scheduling.
       this.schedule = this.doSchedule;
     }
   }
@@ -155,7 +180,7 @@ export function customRenderScheduler(
         ];
 
         queue.add((execution: RenderExecution) => {
-          nextEnqueued[2] = true; // Switch to next queue
+          nextEnqueued[2] = true; // Switch to the next queue.
           try {
             nextEnqueued[1]({
               get config() {
