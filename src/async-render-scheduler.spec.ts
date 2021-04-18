@@ -49,4 +49,46 @@ describe('asyncRenderScheduler', () => {
     expect(shot1).toHaveBeenCalledTimes(1);
     expect(shot2).toHaveBeenCalledTimes(1);
   });
+  it('recurrent render shot is deferred', async () => {
+
+    const shot1 = jest.fn();
+    const shot2 = jest.fn();
+
+    shot1.mockImplementation(() => {
+      schedule2(shot2);
+    });
+    schedule(shot1);
+
+    expect(shot1).not.toHaveBeenCalled();
+    expect(shot2).not.toHaveBeenCalled();
+
+    await Promise.resolve();
+    expect(shot1).toHaveBeenCalledTimes(1);
+    expect(shot2).not.toHaveBeenCalled();
+
+    await Promise.resolve();
+    expect(shot1).toHaveBeenCalledTimes(1);
+    expect(shot2).toHaveBeenCalledTimes(1);
+  });
+  it('recurrent render shot in the same schedule is deferred', async () => {
+
+    const shot1 = jest.fn();
+    const shot2 = jest.fn();
+
+    shot1.mockImplementation(() => {
+      schedule(shot2);
+    });
+    schedule(shot1);
+
+    expect(shot1).not.toHaveBeenCalled();
+    expect(shot2).not.toHaveBeenCalled();
+
+    await Promise.resolve();
+    expect(shot1).toHaveBeenCalledTimes(1);
+    expect(shot2).not.toHaveBeenCalled();
+
+    await Promise.resolve();
+    expect(shot1).toHaveBeenCalledTimes(1);
+    expect(shot2).toHaveBeenCalledTimes(1);
+  });
 });
