@@ -25,6 +25,10 @@
     "import": "./dist/render-scheduler.js",
     "require": "./dist/render-scheduler.cjs"
   },
+  "dependencies": {
+    "@frontmeans/dom-primitives": "^1.0.0",
+    "@proc7ts/supply": "^1.0.0"
+  },
   "devDependencies": {
     "@rollup/plugin-commonjs": "^18.0.0",
     "@rollup/plugin-node-resolve": "^11.2.1",
@@ -59,8 +63,5 @@
     "lint": "run-z +z --then eslint . --ext .js,.ts",
     "test": "run-z +z --then jest",
     "z": "run-z +build,+doc,+lint,+test"
-  },
-  "dependencies": {
-    "@frontmeans/dom-primitives": "^1.0.0"
   }
 }
