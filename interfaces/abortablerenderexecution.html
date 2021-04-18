@@ -3,7 +3,7 @@
 <head>
 	<meta charset="utf-8">
 	<meta http-equiv="X-UA-Compatible" content="IE=edge">
-	<title>ManualRenderScheduler | Render Scheduler</title>
+	<title>AbortableRenderExecution | Render Scheduler</title>
 	<meta name="description" content="Documentation for Render Scheduler">
 	<meta name="viewport" content="width=device-width, initial-scale=1">
 	<link rel="stylesheet" href="../assets/css/main.css">
@@ -55,10 +55,10 @@
 					<a href="../modules.html">Render Scheduler</a>
 				</li>
 				<li>
-					<a href="manualrenderscheduler.html">ManualRenderScheduler</a>
+					<a href="abortablerenderexecution.html">AbortableRenderExecution</a>
 				</li>
 			</ul>
-			<h1>Interface ManualRenderScheduler</h1>
+			<h1>Interface AbortableRenderExecution</h1>
 		</div>
 	</div>
 </header>
@@ -68,53 +68,21 @@
 			<section class="tsd-panel tsd-comment">
 				<div class="tsd-comment tsd-typography">
 					<div class="lead">
-						<p>A render scheduler that executes scheduled render shots on request.</p>
+						<p>Abortable render shot execution context.</p>
 					</div>
-					<p>Can be constructed using <a href="../modules.html#newmanualrenderscheduler">newManualRenderScheduler</a> function.</p>
+					<p>This is passed to <a href="../modules.html#rendershot">render shot</a> when the latter executed by <a href="abortablerenderscheduler.html">abortable</a> render scheduler.</p>
 				</div>
 			</section>
 			<section class="tsd-panel tsd-hierarchy">
 				<h3>Hierarchy</h3>
 				<ul class="tsd-hierarchy">
 					<li>
-						<a href="../modules.html#renderscheduler" class="tsd-signature-type" data-tsd-kind="Type alias">RenderScheduler</a>
+						<a href="renderexecution.html" class="tsd-signature-type" data-tsd-kind="Interface">RenderExecution</a>
 						<ul class="tsd-hierarchy">
 							<li>
-								<span class="target">ManualRenderScheduler</span>
+								<span class="target">AbortableRenderExecution</span>
 							</li>
 						</ul>
-					</li>
-				</ul>
-			</section>
-			<section class="tsd-panel">
-				<h3 class="tsd-before-signature">Callable</h3>
-				<ul class="tsd-signatures tsd-kind-interface">
-					<li class="tsd-signature tsd-kind-icon">Manual<wbr>Render<wbr>Scheduler<span class="tsd-signature-symbol">(</span>options<span class="tsd-signature-symbol">?: </span><a href="renderscheduleoptions.html" class="tsd-signature-type" data-tsd-kind="Interface">RenderScheduleOptions</a><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><a href="../modules.html#renderschedule" class="tsd-signature-type" data-tsd-kind="Type alias">RenderSchedule</a><span class="tsd-signature-symbol">&lt;</span><a href="renderexecution.html" class="tsd-signature-type" data-tsd-kind="Interface">RenderExecution</a><span class="tsd-signature-symbol">&gt;</span></li>
-				</ul>
-				<ul class="tsd-descriptions">
-					<li class="tsd-description">
-						<aside class="tsd-sources">
-							<ul>
-								<li>Defined in <a href="https://github.com/frontmeans/render-scheduler/blob/e90f1f5/src/render-scheduler.ts#L27">render-scheduler.ts:27</a></li>
-							</ul>
-						</aside>
-						<div class="tsd-comment tsd-typography">
-							<div class="lead">
-								<p>A render scheduler that executes scheduled render shots on request.</p>
-							</div>
-							<p>Can be constructed using <a href="../modules.html#newmanualrenderscheduler">newManualRenderScheduler</a> function.</p>
-						</div>
-						<h4 class="tsd-parameters-title">Parameters</h4>
-						<ul class="tsd-parameters">
-							<li>
-								<h5><span class="tsd-flag ts-flagOptional">Optional</span> options: <a href="renderscheduleoptions.html" class="tsd-signature-type" data-tsd-kind="Interface">RenderScheduleOptions</a></h5>
-								<div class="tsd-comment tsd-typography">
-									<p>Created render schedule options.</p>
-								</div>
-							</li>
-						</ul>
-						<h4 class="tsd-returns-title">Returns <a href="../modules.html#renderschedule" class="tsd-signature-type" data-tsd-kind="Type alias">RenderSchedule</a><span class="tsd-signature-symbol">&lt;</span><a href="renderexecution.html" class="tsd-signature-type" data-tsd-kind="Interface">RenderExecution</a><span class="tsd-signature-symbol">&gt;</span></h4>
-						<p>New render schedule.</p>
 					</li>
 				</ul>
 			</section>
@@ -123,36 +91,91 @@
 				<section class="tsd-panel tsd-index-panel">
 					<div class="tsd-index-content">
 						<section class="tsd-index-section ">
+							<h3>Properties</h3>
+							<ul class="tsd-index-list">
+								<li class="tsd-kind-property tsd-parent-kind-interface tsd-is-inherited"><a href="abortablerenderexecution.html#config" class="tsd-kind-icon">config</a></li>
+								<li class="tsd-kind-property tsd-parent-kind-interface"><a href="abortablerenderexecution.html#supply" class="tsd-kind-icon">supply</a></li>
+							</ul>
+						</section>
+						<section class="tsd-index-section tsd-is-inherited">
 							<h3>Methods</h3>
 							<ul class="tsd-index-list">
-								<li class="tsd-kind-method tsd-parent-kind-interface"><a href="manualrenderscheduler.html#render" class="tsd-kind-icon">render</a></li>
+								<li class="tsd-kind-method tsd-parent-kind-interface tsd-is-inherited"><a href="abortablerenderexecution.html#postpone" class="tsd-kind-icon">postpone</a></li>
 							</ul>
 						</section>
 					</div>
 				</section>
 			</section>
 			<section class="tsd-panel-group tsd-member-group ">
+				<h2>Properties</h2>
+				<section class="tsd-panel tsd-member tsd-kind-property tsd-parent-kind-interface tsd-is-inherited">
+					<a name="config" class="tsd-anchor"></a>
+					<h3><span class="tsd-flag ts-flagReadonly">Readonly</span> config</h3>
+					<div class="tsd-signature tsd-kind-icon">config<span class="tsd-signature-symbol">:</span> <a href="../modules.html#renderscheduleconfig" class="tsd-signature-type" data-tsd-kind="Variable">RenderScheduleConfig</a></div>
+					<aside class="tsd-sources">
+						<p>Inherited from <a href="renderexecution.html">RenderExecution</a>.<a href="renderexecution.html#config">config</a></p>
+						<ul>
+							<li>Defined in <a href="https://github.com/frontmeans/render-scheduler/blob/e90f1f5/src/render-shot.ts#L28">render-shot.ts:28</a></li>
+						</ul>
+					</aside>
+					<div class="tsd-comment tsd-typography">
+						<div class="lead">
+							<p>A configuration of rendering schedule the render shot is executed by.</p>
+						</div>
+					</div>
+				</section>
+				<section class="tsd-panel tsd-member tsd-kind-property tsd-parent-kind-interface">
+					<a name="supply" class="tsd-anchor"></a>
+					<h3><span class="tsd-flag ts-flagReadonly">Readonly</span> supply</h3>
+					<div class="tsd-signature tsd-kind-icon">supply<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">Supply</span></div>
+					<aside class="tsd-sources">
+						<ul>
+							<li>Defined in <a href="https://github.com/frontmeans/render-scheduler/blob/e90f1f5/src/abortable-render-scheduler.ts#L39">abortable-render-scheduler.ts:39</a></li>
+						</ul>
+					</aside>
+					<div class="tsd-comment tsd-typography">
+						<div class="lead">
+							<p>Render schedule supply.</p>
+						</div>
+						<p>Stops rendering in current schedule once cut off.</p>
+						<p>This is the same as <a href="abortablerenderschedule.html#supply">AbortableRenderSchedule.supply</a>.</p>
+					</div>
+				</section>
+			</section>
+			<section class="tsd-panel-group tsd-member-group tsd-is-inherited">
 				<h2>Methods</h2>
-				<section class="tsd-panel tsd-member tsd-kind-method tsd-parent-kind-interface">
-					<a name="render" class="tsd-anchor"></a>
-					<h3>render</h3>
-					<ul class="tsd-signatures tsd-kind-method tsd-parent-kind-interface">
-						<li class="tsd-signature tsd-kind-icon">render<span class="tsd-signature-symbol">(</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">boolean</span></li>
+				<section class="tsd-panel tsd-member tsd-kind-method tsd-parent-kind-interface tsd-is-inherited">
+					<a name="postpone" class="tsd-anchor"></a>
+					<h3>postpone</h3>
+					<ul class="tsd-signatures tsd-kind-method tsd-parent-kind-interface tsd-is-inherited">
+						<li class="tsd-signature tsd-kind-icon">postpone<span class="tsd-signature-symbol">(</span>postponed<span class="tsd-signature-symbol">: </span><a href="../modules.html#rendershot" class="tsd-signature-type" data-tsd-kind="Type alias">RenderShot</a><span class="tsd-signature-symbol">&lt;</span><a href="abortablerenderexecution.html" class="tsd-signature-type" data-tsd-kind="Interface">AbortableRenderExecution</a><span class="tsd-signature-symbol">&gt;</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">void</span></li>
 					</ul>
 					<ul class="tsd-descriptions">
 						<li class="tsd-description">
 							<aside class="tsd-sources">
+								<p>Inherited from <a href="renderexecution.html">RenderExecution</a>.<a href="renderexecution.html#postpone">postpone</a></p>
 								<ul>
-									<li>Defined in <a href="https://github.com/frontmeans/render-scheduler/blob/e90f1f5/src/manual-render-scheduler.ts#L17">manual-render-scheduler.ts:17</a></li>
+									<li>Defined in <a href="https://github.com/frontmeans/render-scheduler/blob/e90f1f5/src/render-shot.ts#L42">render-shot.ts:42</a></li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
 								<div class="lead">
-									<p>Executes all scheduled render shots.</p>
+									<p>Postpones render shot so that it is executed after all currently executed render shots.</p>
 								</div>
+								<p>This may be useful e.g. when the render shot issues a synchronous page reflow. In this case postponing it until
+								after all DOM modifications done would help reduce <a href="https://developers.google.com/web/fundamentals/performance/rendering/avoid-large-complex-layouts-and-layout-thrashing">layout thrashing</a>.</p>
+								<p>Postponed render shots are executed in reverse order.</p>
 							</div>
-							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">boolean</span></h4>
-							<p><code>true</code> if some render shots executed, or <code>false</code> when no render shots scheduled.</p>
+							<h4 class="tsd-parameters-title">Parameters</h4>
+							<ul class="tsd-parameters">
+								<li>
+									<h5>postponed: <a href="../modules.html#rendershot" class="tsd-signature-type" data-tsd-kind="Type alias">RenderShot</a><span class="tsd-signature-symbol">&lt;</span><a href="abortablerenderexecution.html" class="tsd-signature-type" data-tsd-kind="Interface">AbortableRenderExecution</a><span class="tsd-signature-symbol">&gt;</span></h5>
+									<div class="tsd-comment tsd-typography">
+										<p>A render shot to postpone.</p>
+									</div>
+								</li>
+							</ul>
+							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">void</span></h4>
 						</li>
 					</ul>
 				</section>
@@ -168,9 +191,24 @@
 			</nav>
 			<nav class="tsd-navigation secondary menu-sticky">
 				<ul class="before-current">
-					<li class=" tsd-kind-interface">
+				</ul>
+				<ul class="current">
+					<li class="current tsd-kind-interface">
 						<a href="abortablerenderexecution.html" class="tsd-kind-icon">Abortable<wbr>Render<wbr>Execution</a>
+						<ul>
+							<li class=" tsd-kind-property tsd-parent-kind-interface tsd-is-inherited">
+								<a href="abortablerenderexecution.html#config" class="tsd-kind-icon">config</a>
+							</li>
+							<li class=" tsd-kind-property tsd-parent-kind-interface">
+								<a href="abortablerenderexecution.html#supply" class="tsd-kind-icon">supply</a>
+							</li>
+							<li class=" tsd-kind-method tsd-parent-kind-interface tsd-is-inherited">
+								<a href="abortablerenderexecution.html#postpone" class="tsd-kind-icon">postpone</a>
+							</li>
+						</ul>
 					</li>
+				</ul>
+				<ul class="after-current">
 					<li class=" tsd-kind-interface tsd-has-type-parameter">
 						<a href="abortablerenderschedule.html" class="tsd-kind-icon">Abortable<wbr>Render<wbr>Schedule</a>
 					</li>
@@ -189,18 +227,9 @@
 					<li class=" tsd-kind-interface tsd-has-type-parameter">
 						<a href="draftrenderexecution.html" class="tsd-kind-icon">Draft<wbr>Render<wbr>Execution</a>
 					</li>
-				</ul>
-				<ul class="current">
-					<li class="current tsd-kind-interface">
+					<li class=" tsd-kind-interface">
 						<a href="manualrenderscheduler.html" class="tsd-kind-icon">Manual<wbr>Render<wbr>Scheduler</a>
-						<ul>
-							<li class=" tsd-kind-method tsd-parent-kind-interface">
-								<a href="manualrenderscheduler.html#render" class="tsd-kind-icon">render</a>
-							</li>
-						</ul>
 					</li>
-				</ul>
-				<ul class="after-current">
 					<li class=" tsd-kind-interface">
 						<a href="renderexecution.html" class="tsd-kind-icon">Render<wbr>Execution</a>
 					</li>

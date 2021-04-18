@@ -3,7 +3,7 @@
 <head>
 	<meta charset="utf-8">
 	<meta http-equiv="X-UA-Compatible" content="IE=edge">
-	<title>ManualRenderScheduler | Render Scheduler</title>
+	<title>DelegateRenderScheduler | Render Scheduler</title>
 	<meta name="description" content="Documentation for Render Scheduler">
 	<meta name="viewport" content="width=device-width, initial-scale=1">
 	<link rel="stylesheet" href="../assets/css/main.css">
@@ -55,10 +55,10 @@
 					<a href="../modules.html">Render Scheduler</a>
 				</li>
 				<li>
-					<a href="manualrenderscheduler.html">ManualRenderScheduler</a>
+					<a href="delegaterenderscheduler.html">DelegateRenderScheduler</a>
 				</li>
 			</ul>
-			<h1>Interface ManualRenderScheduler</h1>
+			<h1>Interface DelegateRenderScheduler&lt;TExecution, TOptions&gt;</h1>
 		</div>
 	</div>
 </header>
@@ -68,19 +68,41 @@
 			<section class="tsd-panel tsd-comment">
 				<div class="tsd-comment tsd-typography">
 					<div class="lead">
-						<p>A render scheduler that executes scheduled render shots on request.</p>
+						<p>A render scheduler that schedules rendering by another one.</p>
 					</div>
-					<p>Can be constructed using <a href="../modules.html#newmanualrenderscheduler">newManualRenderScheduler</a> function.</p>
+					<p>The target scheduler can be switched at any time.</p>
+					<p>Can be constructed by <a href="../modules.html#newdelegaterenderscheduler">newDelegateRenderScheduler</a> function.</p>
 				</div>
+			</section>
+			<section class="tsd-panel tsd-type-parameters">
+				<h3>Type parameters</h3>
+				<ul class="tsd-type-parameters">
+					<li>
+						<h4>TExecution<span class="tsd-signature-symbol">: </span><a href="renderexecution.html" class="tsd-signature-type" data-tsd-kind="Interface">RenderExecution</a> = <a href="renderexecution.html" class="tsd-signature-type" data-tsd-kind="Interface">RenderExecution</a></h4>
+						<div class="tsd-comment tsd-typography">
+							<div class="lead">
+								<p>A type of supported render shot execution context.</p>
+							</div>
+						</div>
+					</li>
+					<li>
+						<h4>TOptions<span class="tsd-signature-symbol">: </span><a href="renderscheduleoptions.html" class="tsd-signature-type" data-tsd-kind="Interface">RenderScheduleOptions</a> = <a href="renderscheduleoptions.html" class="tsd-signature-type" data-tsd-kind="Interface">RenderScheduleOptions</a></h4>
+						<div class="tsd-comment tsd-typography">
+							<div class="lead">
+								<p>A type of accepted render schedule options.</p>
+							</div>
+						</div>
+					</li>
+				</ul>
 			</section>
 			<section class="tsd-panel tsd-hierarchy">
 				<h3>Hierarchy</h3>
 				<ul class="tsd-hierarchy">
 					<li>
-						<a href="../modules.html#renderscheduler" class="tsd-signature-type" data-tsd-kind="Type alias">RenderScheduler</a>
+						<a href="../modules.html#renderscheduler" class="tsd-signature-type" data-tsd-kind="Type alias">RenderScheduler</a><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">TExecution</span><span class="tsd-signature-symbol">, </span><span class="tsd-signature-type">TOptions</span><span class="tsd-signature-symbol">&gt;</span>
 						<ul class="tsd-hierarchy">
 							<li>
-								<span class="target">ManualRenderScheduler</span>
+								<span class="target">DelegateRenderScheduler</span>
 							</li>
 						</ul>
 					</li>
@@ -88,8 +110,8 @@
 			</section>
 			<section class="tsd-panel">
 				<h3 class="tsd-before-signature">Callable</h3>
-				<ul class="tsd-signatures tsd-kind-interface">
-					<li class="tsd-signature tsd-kind-icon">Manual<wbr>Render<wbr>Scheduler<span class="tsd-signature-symbol">(</span>options<span class="tsd-signature-symbol">?: </span><a href="renderscheduleoptions.html" class="tsd-signature-type" data-tsd-kind="Interface">RenderScheduleOptions</a><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><a href="../modules.html#renderschedule" class="tsd-signature-type" data-tsd-kind="Type alias">RenderSchedule</a><span class="tsd-signature-symbol">&lt;</span><a href="renderexecution.html" class="tsd-signature-type" data-tsd-kind="Interface">RenderExecution</a><span class="tsd-signature-symbol">&gt;</span></li>
+				<ul class="tsd-signatures tsd-kind-interface tsd-has-type-parameter">
+					<li class="tsd-signature tsd-kind-icon">Delegate<wbr>Render<wbr>Scheduler<span class="tsd-signature-symbol">(</span>options<span class="tsd-signature-symbol">?: </span><span class="tsd-signature-type">TOptions</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><a href="../modules.html#renderschedule" class="tsd-signature-type" data-tsd-kind="Type alias">RenderSchedule</a><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">TExecution</span><span class="tsd-signature-symbol">&gt;</span></li>
 				</ul>
 				<ul class="tsd-descriptions">
 					<li class="tsd-description">
@@ -100,20 +122,21 @@
 						</aside>
 						<div class="tsd-comment tsd-typography">
 							<div class="lead">
-								<p>A render scheduler that executes scheduled render shots on request.</p>
+								<p>A render scheduler that schedules rendering by another one.</p>
 							</div>
-							<p>Can be constructed using <a href="../modules.html#newmanualrenderscheduler">newManualRenderScheduler</a> function.</p>
+							<p>The target scheduler can be switched at any time.</p>
+							<p>Can be constructed by <a href="../modules.html#newdelegaterenderscheduler">newDelegateRenderScheduler</a> function.</p>
 						</div>
 						<h4 class="tsd-parameters-title">Parameters</h4>
 						<ul class="tsd-parameters">
 							<li>
-								<h5><span class="tsd-flag ts-flagOptional">Optional</span> options: <a href="renderscheduleoptions.html" class="tsd-signature-type" data-tsd-kind="Interface">RenderScheduleOptions</a></h5>
+								<h5><span class="tsd-flag ts-flagOptional">Optional</span> options: <span class="tsd-signature-type">TOptions</span></h5>
 								<div class="tsd-comment tsd-typography">
 									<p>Created render schedule options.</p>
 								</div>
 							</li>
 						</ul>
-						<h4 class="tsd-returns-title">Returns <a href="../modules.html#renderschedule" class="tsd-signature-type" data-tsd-kind="Type alias">RenderSchedule</a><span class="tsd-signature-symbol">&lt;</span><a href="renderexecution.html" class="tsd-signature-type" data-tsd-kind="Interface">RenderExecution</a><span class="tsd-signature-symbol">&gt;</span></h4>
+						<h4 class="tsd-returns-title">Returns <a href="../modules.html#renderschedule" class="tsd-signature-type" data-tsd-kind="Type alias">RenderSchedule</a><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">TExecution</span><span class="tsd-signature-symbol">&gt;</span></h4>
 						<p>New render schedule.</p>
 					</li>
 				</ul>
@@ -125,7 +148,7 @@
 						<section class="tsd-index-section ">
 							<h3>Methods</h3>
 							<ul class="tsd-index-list">
-								<li class="tsd-kind-method tsd-parent-kind-interface"><a href="manualrenderscheduler.html#render" class="tsd-kind-icon">render</a></li>
+								<li class="tsd-kind-method tsd-parent-kind-interface"><a href="delegaterenderscheduler.html#scheduleby" class="tsd-kind-icon">schedule<wbr>By</a></li>
 							</ul>
 						</section>
 					</div>
@@ -134,25 +157,36 @@
 			<section class="tsd-panel-group tsd-member-group ">
 				<h2>Methods</h2>
 				<section class="tsd-panel tsd-member tsd-kind-method tsd-parent-kind-interface">
-					<a name="render" class="tsd-anchor"></a>
-					<h3>render</h3>
+					<a name="scheduleby" class="tsd-anchor"></a>
+					<h3>schedule<wbr>By</h3>
 					<ul class="tsd-signatures tsd-kind-method tsd-parent-kind-interface">
-						<li class="tsd-signature tsd-kind-icon">render<span class="tsd-signature-symbol">(</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">boolean</span></li>
+						<li class="tsd-signature tsd-kind-icon">schedule<wbr>By<span class="tsd-signature-symbol">(</span>scheduler<span class="tsd-signature-symbol">: </span><a href="../modules.html#renderscheduler" class="tsd-signature-type" data-tsd-kind="Type alias">RenderScheduler</a><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">TExecution</span><span class="tsd-signature-symbol">, </span><a href="renderscheduleoptions.html" class="tsd-signature-type" data-tsd-kind="Interface">RenderScheduleOptions</a><span class="tsd-signature-symbol">&gt;</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><a href="delegaterenderscheduler.html" class="tsd-signature-type" data-tsd-kind="Interface">DelegateRenderScheduler</a><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">TExecution</span><span class="tsd-signature-symbol">, </span><span class="tsd-signature-type">TOptions</span><span class="tsd-signature-symbol">&gt;</span></li>
 					</ul>
 					<ul class="tsd-descriptions">
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/frontmeans/render-scheduler/blob/e90f1f5/src/manual-render-scheduler.ts#L17">manual-render-scheduler.ts:17</a></li>
+									<li>Defined in <a href="https://github.com/frontmeans/render-scheduler/blob/e90f1f5/src/delegate-render-scheduler.ts#L31">delegate-render-scheduler.ts:31</a></li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
 								<div class="lead">
-									<p>Executes all scheduled render shots.</p>
+									<p>Switches a render scheduler to schedule rendering by.</p>
 								</div>
+								<p>The previously scheduled render shots would still be executed by previous scheduler.</p>
+								<p>Does nothing if the target scheduler is the same as previous one.</p>
 							</div>
-							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">boolean</span></h4>
-							<p><code>true</code> if some render shots executed, or <code>false</code> when no render shots scheduled.</p>
+							<h4 class="tsd-parameters-title">Parameters</h4>
+							<ul class="tsd-parameters">
+								<li>
+									<h5>scheduler: <a href="../modules.html#renderscheduler" class="tsd-signature-type" data-tsd-kind="Type alias">RenderScheduler</a><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">TExecution</span><span class="tsd-signature-symbol">, </span><a href="renderscheduleoptions.html" class="tsd-signature-type" data-tsd-kind="Interface">RenderScheduleOptions</a><span class="tsd-signature-symbol">&gt;</span></h5>
+									<div class="tsd-comment tsd-typography">
+										<p>A render scheduler to schedule rendering by from now on.</p>
+									</div>
+								</li>
+							</ul>
+							<h4 class="tsd-returns-title">Returns <a href="delegaterenderscheduler.html" class="tsd-signature-type" data-tsd-kind="Interface">DelegateRenderScheduler</a><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">TExecution</span><span class="tsd-signature-symbol">, </span><span class="tsd-signature-type">TOptions</span><span class="tsd-signature-symbol">&gt;</span></h4>
+							<p><code>this</code> instance.</p>
 						</li>
 					</ul>
 				</section>
@@ -183,24 +217,24 @@
 					<li class=" tsd-kind-interface">
 						<a href="customrenderscheduleroptions.html" class="tsd-kind-icon">Custom<wbr>Render<wbr>Scheduler<wbr>Options</a>
 					</li>
-					<li class=" tsd-kind-interface tsd-has-type-parameter">
-						<a href="delegaterenderscheduler.html" class="tsd-kind-icon">Delegate<wbr>Render<wbr>Scheduler</a>
-					</li>
-					<li class=" tsd-kind-interface tsd-has-type-parameter">
-						<a href="draftrenderexecution.html" class="tsd-kind-icon">Draft<wbr>Render<wbr>Execution</a>
-					</li>
 				</ul>
 				<ul class="current">
-					<li class="current tsd-kind-interface">
-						<a href="manualrenderscheduler.html" class="tsd-kind-icon">Manual<wbr>Render<wbr>Scheduler</a>
+					<li class="current tsd-kind-interface tsd-has-type-parameter">
+						<a href="delegaterenderscheduler.html" class="tsd-kind-icon">Delegate<wbr>Render<wbr>Scheduler</a>
 						<ul>
 							<li class=" tsd-kind-method tsd-parent-kind-interface">
-								<a href="manualrenderscheduler.html#render" class="tsd-kind-icon">render</a>
+								<a href="delegaterenderscheduler.html#scheduleby" class="tsd-kind-icon">schedule<wbr>By</a>
 							</li>
 						</ul>
 					</li>
 				</ul>
 				<ul class="after-current">
+					<li class=" tsd-kind-interface tsd-has-type-parameter">
+						<a href="draftrenderexecution.html" class="tsd-kind-icon">Draft<wbr>Render<wbr>Execution</a>
+					</li>
+					<li class=" tsd-kind-interface">
+						<a href="manualrenderscheduler.html" class="tsd-kind-icon">Manual<wbr>Render<wbr>Scheduler</a>
+					</li>
 					<li class=" tsd-kind-interface">
 						<a href="renderexecution.html" class="tsd-kind-icon">Render<wbr>Execution</a>
 					</li>
