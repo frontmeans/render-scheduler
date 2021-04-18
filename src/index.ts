@@ -9,6 +9,7 @@ export * from './custom-render-scheduler';
 export * from './delegate-render-scheduler';
 export * from './immediate-render-scheduler';
 export * from './manual-render-scheduler';
+export * from './map-render-schedule';
 export * from './noop-render-scheduler';
 export * from './queued-render-scheduler';
 export * from './render-queue';
