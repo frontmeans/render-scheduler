@@ -1,4 +1,5 @@
 import { Supply } from '@proc7ts/supply';
+import { DraftRenderExecution, mapRenderSchedule } from './map-render-schedule';
 import type { RenderSchedule, RenderScheduleOptions } from './render-schedule';
 import { RenderScheduleConfig } from './render-schedule';
 import type { RenderScheduler } from './render-scheduler';
@@ -121,32 +122,31 @@ export function newAbortableRenderScheduler<
 
     scheduleSupply.needs(supply);
 
-    const schedule = scheduler(options);
-    let execute = (shot: RenderShot<TExecution & AbortableRenderExecution>, exec: TExecution): void => {
-
-      const abortableExec: TExecution & AbortableRenderExecution = {
-        ...exec,
-        postpone(postponed: RenderShot<TExecution & AbortableRenderExecution>) {
-          exec.postpone(_exec => postponed(abortableExec));
-        },
-        supply: scheduleSupply,
-      };
-
-      shot(abortableExec);
-    };
-    let doSchedule = (
+    let execute = (
+        exec: TExecution,
+        draft: DraftRenderExecution<TExecution & AbortableRenderExecution>,
         shot: RenderShot<TExecution & AbortableRenderExecution>,
-    ): void => schedule(
-        exec => execute(shot, exec),
+    ): void => shot({
+      ...exec,
+      ...draft,
+      supply: scheduleSupply,
+    });
+    let schedule = mapRenderSchedule<TExecution, TExecution & AbortableRenderExecution>(
+        scheduler(options),
+        (
+            exec,
+            draft,
+            shot,
+        ) => execute(exec, draft, shot),
     );
     const abortableSchedule = ((
         shot: RenderShot<TExecution & AbortableRenderExecution>,
-    ): void => doSchedule(shot)) as AbortableRenderSchedule<TExecution>;
+    ): void => schedule(shot)) as AbortableRenderSchedule<TExecution>;
 
     (abortableSchedule as { supply: Supply }).supply = scheduleSupply;
     scheduleSupply.whenOff(reason => {
       execute = AbortableRenderSchedule$doNotExecute;
-      doSchedule = AbortableRenderSchedule$abort(reason, options);
+      schedule = AbortableRenderSchedule$abort(reason, options);
     });
 
     return abortableSchedule;
@@ -169,6 +169,10 @@ function AbortableRenderSchedule$abort(
   };
 }
 
-function AbortableRenderSchedule$doNotExecute(_shot: RenderShot<never>, _exec: RenderExecution): void {
+function AbortableRenderSchedule$doNotExecute(
+    _exec: RenderExecution,
+    _draft: DraftRenderExecution<AbortableRenderExecution>,
+    _shot: RenderShot<never>,
+): void {
   // Do not execute in aborted schedule
 }
