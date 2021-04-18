@@ -24,7 +24,7 @@ export interface DelegateRenderScheduler<
    *
    * Does nothing if the target scheduler is the same as previous one.
    *
-   * @param scheduler - A render scheduler to delegate scheduling to from now on.
+   * @param scheduler - A render scheduler to schedule rendering by from now on.
    *
    * @returns `this` instance.
    */
@@ -35,10 +35,11 @@ export interface DelegateRenderScheduler<
 /**
  * Creates a render scheduler that delegates scheduling to the given one.
  *
- * @param scheduler - A A render scheduler to delegate scheduling to.
- *
  * @typeParam TExecution - A type of supported render shot execution context.
  * @typeParam TOptions - A type of accepted render schedule options.
+ * @param scheduler - A render scheduler to schedule rendering by.
+ *
+ * @returns New delegating render scheduler instance.
  */
 export function newDelegateRenderScheduler<
     TExecution extends RenderExecution,

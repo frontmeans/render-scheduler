@@ -2,6 +2,7 @@
  * @packageDocumentation
  * @module Module @frontmeans/render-scheduler
  */
+export * from './abortable-render-scheduler';
 export * from './animation-render-scheduler';
 export * from './async-render-scheduler';
 export * from './custom-render-scheduler';

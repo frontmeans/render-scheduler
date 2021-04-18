@@ -5,7 +5,7 @@ import type { RenderExecution } from './render-shot';
 /**
  * Render scheduler signature.
  *
- * This function constructs a {@link RenderSchedule render schedule} according to the given options.
+ * This function creates a {@link RenderSchedule render schedule} according to the given options.
  *
  * The default render scheduler is always available as {@link newRenderSchedule} function.
  *
@@ -26,7 +26,7 @@ export type RenderScheduler<
     TExecution extends RenderExecution = RenderExecution,
     TOptions extends RenderScheduleOptions = RenderScheduleOptions> =
 /**
- * @param options - Options of constructed render schedule.
+ * @param options - Created render schedule options.
  *
  * @returns New render schedule.
  */
