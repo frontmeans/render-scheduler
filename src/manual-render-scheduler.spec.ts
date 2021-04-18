@@ -4,17 +4,19 @@ import type { RenderSchedule } from './render-schedule';
 describe('manualRenderScheduler', () => {
 
   let scheduler: ManualRenderScheduler;
+  let render: () => boolean;
   let schedule: RenderSchedule;
   let schedule2: RenderSchedule;
 
   beforeEach(() => {
     scheduler = newManualRenderScheduler();
+    render = scheduler.render;
     schedule = scheduler();
     schedule2 = scheduler();
   });
 
   it('returns `false` when no render shots scheduled', () => {
-    expect(scheduler.render()).toBe(false);
+    expect(render()).toBe(false);
   });
   it('executes scheduled render shots by request', () => {
 
@@ -30,12 +32,12 @@ describe('manualRenderScheduler', () => {
     expect(shot2).not.toHaveBeenCalled();
     expect(shot3).not.toHaveBeenCalled();
 
-    expect(scheduler.render()).toBe(true);
+    expect(render()).toBe(true);
     expect(shot1).toHaveBeenCalled();
     expect(shot2).not.toHaveBeenCalled();
     expect(shot3).toHaveBeenCalled();
 
-    expect(scheduler.render()).toBe(false);
+    expect(render()).toBe(false);
     expect(shot1).toHaveBeenCalledTimes(1);
     expect(shot2).not.toHaveBeenCalled();
     expect(shot3).toHaveBeenCalledTimes(1);
@@ -53,7 +55,7 @@ describe('manualRenderScheduler', () => {
     expect(postponed1).not.toHaveBeenCalled();
     expect(postponed2).not.toHaveBeenCalled();
 
-    scheduler.render();
+    render();
     expect(postponed1).toHaveBeenCalledTimes(1);
     expect(postponed2).toHaveBeenCalledTimes(1);
   });
@@ -72,16 +74,16 @@ describe('manualRenderScheduler', () => {
     expect(shot2).not.toHaveBeenCalled();
     expect(shot3).not.toHaveBeenCalled();
 
-    expect(scheduler.render()).toBe(true);
+    expect(render()).toBe(true);
     expect(shot1).toHaveBeenCalled();
     expect(shot2).not.toHaveBeenCalled();
     expect(shot3).not.toHaveBeenCalled();
 
-    expect(scheduler.render()).toBe(true);
+    expect(render()).toBe(true);
     expect(shot2).not.toHaveBeenCalled();
     expect(shot3).toHaveBeenCalled();
 
-    expect(scheduler.render()).toBe(false);
+    expect(render()).toBe(false);
     expect(shot1).toHaveBeenCalledTimes(1);
     expect(shot2).not.toHaveBeenCalled();
     expect(shot3).toHaveBeenCalledTimes(1);
@@ -101,12 +103,12 @@ describe('manualRenderScheduler', () => {
     expect(shot2).not.toHaveBeenCalled();
     expect(shot3).not.toHaveBeenCalled();
 
-    expect(scheduler.render()).toBe(true);
+    expect(render()).toBe(true);
     expect(shot1).toHaveBeenCalled();
     expect(shot2).not.toHaveBeenCalled();
     expect(shot3).toHaveBeenCalled();
 
-    expect(scheduler.render()).toBe(false);
+    expect(render()).toBe(false);
     expect(shot1).toHaveBeenCalledTimes(1);
     expect(shot2).not.toHaveBeenCalled();
     expect(shot3).toHaveBeenCalledTimes(1);
@@ -131,7 +133,7 @@ describe('manualRenderScheduler', () => {
       schedule3(recurrent2);
     });
 
-    scheduler.render();
+    render();
     expect(calls).toEqual(['recurrent1', 'recurrent2', 'postponed']);
   });
   it('logs errors according to schedule options', () => {
@@ -147,7 +149,7 @@ describe('manualRenderScheduler', () => {
     schedule(() => { throw error; });
     schedule2(() => { throw error; });
 
-    scheduler.render();
+    render();
     expect(logError1).toHaveBeenCalledWith(error);
     expect(logError1).toHaveBeenCalledTimes(1);
     expect(logError2).toHaveBeenCalledWith(error);
@@ -167,7 +169,7 @@ describe('manualRenderScheduler', () => {
     schedule(shot1);
     schedule2(shot2);
 
-    scheduler.render();
+    render();
     expect(shot1).toHaveBeenCalledWith(expect.objectContaining({ config: expect.objectContaining(options1) }));
     expect(shot2).toHaveBeenCalledWith(expect.objectContaining({ config: expect.objectContaining(options2) }));
   });

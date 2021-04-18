@@ -14,7 +14,7 @@ export interface ManualRenderScheduler extends RenderScheduler {
    *
    * @returns `true` if some render shots executed, or `false` when no render shots scheduled.
    */
-  render(): boolean;
+  render(this: void): boolean;
 
 }
 

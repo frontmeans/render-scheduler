@@ -20,14 +20,17 @@ import type { RenderExecution } from './render-shot';
  * Custom scheduler implementations could be created using {@link customRenderScheduler} function.
  *
  * @typeParam TExecution - A type of supported render shot execution context.
+ * @typeParam TOptions - A type of accepted render schedule options.
  */
-export type RenderScheduler<TExecution extends RenderExecution = RenderExecution> =
+export type RenderScheduler<
+    TExecution extends RenderExecution = RenderExecution,
+    TOptions extends RenderScheduleOptions = RenderScheduleOptions> =
 /**
  * @param options - Options of constructed render schedule.
  *
  * @returns New render schedule.
  */
-    (this: void, options?: RenderScheduleOptions) => RenderSchedule<TExecution>;
+    (this: void, options?: TOptions) => RenderSchedule<TExecution>;
 
 /**
  * @internal
