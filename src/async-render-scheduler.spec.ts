@@ -1,3 +1,4 @@
+import { beforeEach, describe, expect, it, jest } from '@jest/globals';
 import { asyncRenderScheduler } from './async-render-scheduler';
 import type { RenderSchedule } from './render-schedule';
 

@@ -1,3 +1,4 @@
+import { beforeEach, describe, expect, it, jest } from '@jest/globals';
 import { ManualRenderScheduler, newManualRenderScheduler } from './manual-render-scheduler';
 import type { RenderSchedule } from './render-schedule';
 

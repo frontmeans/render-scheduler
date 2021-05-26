@@ -1,3 +1,4 @@
+import { beforeEach, describe, expect, it, jest } from '@jest/globals';
 import { noopRenderScheduler } from './noop-render-scheduler';
 import type { RenderSchedule } from './render-schedule';
 
