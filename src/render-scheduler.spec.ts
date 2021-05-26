@@ -1,6 +1,7 @@
+import { afterEach, beforeEach, describe, expect, it, jest } from '@jest/globals';
+import type { Mock } from 'jest-mock';
 import type { RenderSchedule, RenderScheduleOptions } from './render-schedule';
 import { newRenderSchedule, RenderScheduler, setRenderScheduler } from './render-scheduler';
-import Mock = jest.Mock;
 
 describe('setRenderScheduler', () => {
 

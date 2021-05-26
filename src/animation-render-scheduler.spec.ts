@@ -1,18 +1,18 @@
+import { afterEach, beforeEach, describe, expect, it, jest } from '@jest/globals';
+import type { Mock } from 'jest-mock';
 import type { RenderSchedule, RenderScheduleOptions } from './render-schedule';
 import { newRenderSchedule } from './render-scheduler';
-import Mock = jest.Mock;
-import Mocked = jest.Mocked;
 
 describe('animationRenderScheduler', () => {
 
-  let mockWindow: Mocked<Window>;
+  let mockWindow: Window;
   let mockError: Mock<void, [any]>;
   let animate: () => void;
 
   beforeEach(() => {
     mockError = jest.fn();
     mockWindow = {
-      requestAnimationFrame: jest.fn(cb => animate = cb),
+      requestAnimationFrame: jest.fn((cb: () => void) => animate = cb),
     } as any;
   });
 
@@ -65,7 +65,7 @@ describe('animationRenderScheduler', () => {
   });
   it('executes render shots from different windows in different animation frames', () => {
 
-    const mockWindow3: Mocked<Window> = {
+    const mockWindow3: Window = {
       requestAnimationFrame: jest.fn(),
     } as any;
     const schedule3 = newRenderSchedule({ window: mockWindow3 });

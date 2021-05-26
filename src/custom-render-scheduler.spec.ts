@@ -1,8 +1,9 @@
+import { describe, expect, it, jest } from '@jest/globals';
+import type { Mock } from 'jest-mock';
 import { customRenderScheduler } from './custom-render-scheduler';
 import { RenderQueue } from './render-queue';
 import type { RenderScheduleOptions } from './render-schedule';
 import type { RenderExecution } from './render-shot';
-import Mock = jest.Mock;
 
 describe('CustomRenderScheduler', () => {
   it('passes config to enqueued render shots', () => {
@@ -34,7 +35,7 @@ describe('CustomRenderScheduler', () => {
     exec();
 
     expect(executed[0]).toHaveBeenCalledWith(expect.objectContaining({
-      config: expect.objectContaining(options),
+      config: expect.objectContaining(options as Record<string, unknown>),
     }));
   });
   it('executes recurrent shots', () => {

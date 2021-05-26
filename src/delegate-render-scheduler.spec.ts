@@ -1,3 +1,4 @@
+import { beforeEach, describe, expect, it } from '@jest/globals';
 import type { DelegateRenderScheduler } from './delegate-render-scheduler';
 import { newDelegateRenderScheduler } from './delegate-render-scheduler';
 import type { ManualRenderScheduler } from './manual-render-scheduler';
