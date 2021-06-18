@@ -128,15 +128,9 @@
 					<div class="tsd-signature tsd-kind-icon">Mapped<wbr>Render<wbr>Executor&lt;TFromExecution, TToExecution&gt;<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-symbol">(</span>this<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">void</span>, execution<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">TFromExecution</span>, draft<span class="tsd-signature-symbol">: </span><a href="interfaces/draftrenderexecution.html" class="tsd-signature-type" data-tsd-kind="Interface">DraftRenderExecution</a><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">TToExecution</span><span class="tsd-signature-symbol">&gt;</span>, shot<span class="tsd-signature-symbol">: </span><a href="modules.html#rendershot" class="tsd-signature-type" data-tsd-kind="Type alias">RenderShot</a><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">TToExecution</span><span class="tsd-signature-symbol">&gt;</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol"> =&gt; </span><span class="tsd-signature-type">void</span></div>
 					<aside class="tsd-sources">
 						<ul>
-							<li>Defined in <a href="https://github.com/frontmeans/render-scheduler/blob/e90f1f5/src/map-render-schedule.ts#L50">map-render-schedule.ts:50</a></li>
+							<li>Defined in <a href="https://github.com/frontmeans/render-scheduler/blob/cb2a86a/src/map-render-schedule.ts#L50">map-render-schedule.ts:50</a></li>
 						</ul>
 					</aside>
-					<div class="tsd-comment tsd-typography">
-						<div class="lead">
-							<p>Mapped render executor signature.</p>
-						</div>
-						<p>Executes a render shot in mapped execution context.</p>
-					</div>
 					<h4 class="tsd-type-parameters-title">Type parameters</h4>
 					<ul class="tsd-type-parameters">
 						<li>
@@ -161,6 +155,12 @@
 								</ul>
 								<ul class="tsd-descriptions">
 									<li class="tsd-description">
+										<div class="tsd-comment tsd-typography">
+											<div class="lead">
+												<p>Mapped render executor signature.</p>
+											</div>
+											<p>Executes a render shot in mapped execution context.</p>
+										</div>
 										<h4 class="tsd-parameters-title">Parameters</h4>
 										<ul class="tsd-parameters">
 											<li>
@@ -198,22 +198,9 @@
 					<div class="tsd-signature tsd-kind-icon">Render<wbr>Schedule&lt;TExecution&gt;<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-symbol">(</span>this<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">void</span>, shot<span class="tsd-signature-symbol">: </span><a href="modules.html#rendershot" class="tsd-signature-type" data-tsd-kind="Type alias">RenderShot</a><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">TExecution</span><span class="tsd-signature-symbol">&gt;</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol"> =&gt; </span><span class="tsd-signature-type">void</span></div>
 					<aside class="tsd-sources">
 						<ul>
-							<li>Defined in <a href="https://github.com/frontmeans/render-scheduler/blob/e90f1f5/src/render-schedule.ts#L20">render-schedule.ts:20</a></li>
+							<li>Defined in <a href="https://github.com/frontmeans/render-scheduler/blob/cb2a86a/src/render-schedule.ts#L20">render-schedule.ts:20</a></li>
 						</ul>
 					</aside>
-					<div class="tsd-comment tsd-typography">
-						<div class="lead">
-							<p>Render schedule signature.</p>
-						</div>
-						<p>This function accepts a <a href="modules.html#rendershot">render shot</a> to schedule. All scheduled render shots are meant to update
-							the same rendering target. If multiple render shots scheduled before execution starts, only the last one will be
-						executed to limit rendering rate.</p>
-						<p>The render shot execution may fail. This should not prevent other scheduled or postponed render shots from being
-							executed. The render shot execution failure reason is expected to be reported with <a href="interfaces/renderscheduleconfig.html#error">RenderScheduleConfig.error</a>
-						method.</p>
-						<p>Render schedules are constructed by <a href="modules.html#renderscheduler">render schedulers</a>, or by <a href="modules.html#newrenderschedule">newRenderSchedule</a>
-						function that uses the <a href="modules.html#setrenderscheduler">default scheduler</a> for that.</p>
-					</div>
 					<h4 class="tsd-type-parameters-title">Type parameters</h4>
 					<ul class="tsd-type-parameters">
 						<li>
@@ -232,6 +219,19 @@
 								</ul>
 								<ul class="tsd-descriptions">
 									<li class="tsd-description">
+										<div class="tsd-comment tsd-typography">
+											<div class="lead">
+												<p>Render schedule signature.</p>
+											</div>
+											<p>This function accepts a <a href="modules.html#rendershot">render shot</a> to schedule. All scheduled render shots are meant to update
+												the same rendering target. If multiple render shots scheduled before execution starts, only the last one will be
+											executed to limit rendering rate.</p>
+											<p>The render shot execution may fail. This should not prevent other scheduled or postponed render shots from being
+												executed. The render shot execution failure reason is expected to be reported with <a href="interfaces/renderscheduleconfig.html#error">RenderScheduleConfig.error</a>
+											method.</p>
+											<p>Render schedules are constructed by <a href="modules.html#renderscheduler">render schedulers</a>, or by <a href="modules.html#newrenderschedule">newRenderSchedule</a>
+											function that uses the <a href="modules.html#setrenderscheduler">default scheduler</a> for that.</p>
+										</div>
 										<h4 class="tsd-parameters-title">Parameters</h4>
 										<ul class="tsd-parameters">
 											<li>
@@ -257,26 +257,9 @@
 					<div class="tsd-signature tsd-kind-icon">Render<wbr>Scheduler&lt;TExecution, TOptions&gt;<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-symbol">(</span>this<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">void</span>, options<span class="tsd-signature-symbol">?: </span><span class="tsd-signature-type">TOptions</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol"> =&gt; </span><a href="modules.html#renderschedule" class="tsd-signature-type" data-tsd-kind="Type alias">RenderSchedule</a><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">TExecution</span><span class="tsd-signature-symbol">&gt;</span></div>
 					<aside class="tsd-sources">
 						<ul>
-							<li>Defined in <a href="https://github.com/frontmeans/render-scheduler/blob/e90f1f5/src/render-scheduler.ts#L25">render-scheduler.ts:25</a></li>
+							<li>Defined in <a href="https://github.com/frontmeans/render-scheduler/blob/cb2a86a/src/render-scheduler.ts#L25">render-scheduler.ts:25</a></li>
 						</ul>
 					</aside>
-					<div class="tsd-comment tsd-typography">
-						<div class="lead">
-							<p>Render scheduler signature.</p>
-						</div>
-						<p>This function creates a <a href="modules.html#renderschedule">render schedule</a> according to the given options.</p>
-						<p>The default render scheduler is always available as <a href="modules.html#newrenderschedule">newRenderSchedule</a> function.</p>
-						<p>There are several scheduler implementations exist:</p>
-						<ul>
-							<li><a href="modules.html#animationrenderscheduler">animationRenderScheduler</a> (used by default),</li>
-							<li><a href="modules.html#asyncrenderscheduler">asyncRenderScheduler</a>,</li>
-							<li><a href="modules.html#immediaterenderscheduler">immediateRenderScheduler</a>,</li>
-							<li><a href="modules.html#queuedrenderscheduler">queuedRenderScheduler</a>,</li>
-							<li><a href="interfaces/manualrenderscheduler.html">ManualRenderScheduler</a>,</li>
-							<li><a href="modules.html#nooprenderscheduler">noopRenderScheduler</a>.</li>
-						</ul>
-						<p>Custom scheduler implementations could be created using <a href="modules.html#customrenderscheduler">customRenderScheduler</a> function.</p>
-					</div>
 					<h4 class="tsd-type-parameters-title">Type parameters</h4>
 					<ul class="tsd-type-parameters">
 						<li>
@@ -301,6 +284,23 @@
 								</ul>
 								<ul class="tsd-descriptions">
 									<li class="tsd-description">
+										<div class="tsd-comment tsd-typography">
+											<div class="lead">
+												<p>Render scheduler signature.</p>
+											</div>
+											<p>This function creates a <a href="modules.html#renderschedule">render schedule</a> according to the given options.</p>
+											<p>The default render scheduler is always available as <a href="modules.html#newrenderschedule">newRenderSchedule</a> function.</p>
+											<p>There are several scheduler implementations exist:</p>
+											<ul>
+												<li><a href="modules.html#animationrenderscheduler">animationRenderScheduler</a> (used by default),</li>
+												<li><a href="modules.html#asyncrenderscheduler">asyncRenderScheduler</a>,</li>
+												<li><a href="modules.html#immediaterenderscheduler">immediateRenderScheduler</a>,</li>
+												<li><a href="modules.html#queuedrenderscheduler">queuedRenderScheduler</a>,</li>
+												<li><a href="interfaces/manualrenderscheduler.html">ManualRenderScheduler</a>,</li>
+												<li><a href="modules.html#nooprenderscheduler">noopRenderScheduler</a>.</li>
+											</ul>
+											<p>Custom scheduler implementations could be created using <a href="modules.html#customrenderscheduler">customRenderScheduler</a> function.</p>
+										</div>
 										<h4 class="tsd-parameters-title">Parameters</h4>
 										<ul class="tsd-parameters">
 											<li>
@@ -327,17 +327,9 @@
 					<div class="tsd-signature tsd-kind-icon">Render<wbr>Shot&lt;TExecution&gt;<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-symbol">(</span>this<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">void</span>, execution<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">TExecution</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol"> =&gt; </span><span class="tsd-signature-type">void</span></div>
 					<aside class="tsd-sources">
 						<ul>
-							<li>Defined in <a href="https://github.com/frontmeans/render-scheduler/blob/e90f1f5/src/render-shot.ts#L12">render-shot.ts:12</a></li>
+							<li>Defined in <a href="https://github.com/frontmeans/render-scheduler/blob/cb2a86a/src/render-shot.ts#L12">render-shot.ts:12</a></li>
 						</ul>
 					</aside>
-					<div class="tsd-comment tsd-typography">
-						<div class="lead">
-							<p>Render shot signature.</p>
-						</div>
-						<p>Render shots are scheduled in <a href="modules.html#renderschedule">rendering schedule</a>. The latest render shot scheduled in the same
-							schedule should be able to update its rendering target to actual state. So that previously scheduled shots could be
-						skipped.</p>
-					</div>
 					<h4 class="tsd-type-parameters-title">Type parameters</h4>
 					<ul class="tsd-type-parameters">
 						<li>
@@ -356,6 +348,14 @@
 								</ul>
 								<ul class="tsd-descriptions">
 									<li class="tsd-description">
+										<div class="tsd-comment tsd-typography">
+											<div class="lead">
+												<p>Render shot signature.</p>
+											</div>
+											<p>Render shots are scheduled in <a href="modules.html#renderschedule">rendering schedule</a>. The latest render shot scheduled in the same
+												schedule should be able to update its rendering target to actual state. So that previously scheduled shots could be
+											skipped.</p>
+										</div>
 										<h4 class="tsd-parameters-title">Parameters</h4>
 										<ul class="tsd-parameters">
 											<li>
@@ -384,7 +384,7 @@
 					<div class="tsd-signature tsd-kind-icon">Render<wbr>Queue<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-symbol">{ </span>by<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">any</span><span class="tsd-signature-symbol"> }</span></div>
 					<aside class="tsd-sources">
 						<ul>
-							<li>Defined in <a href="https://github.com/frontmeans/render-scheduler/blob/e90f1f5/src/render-queue.ts#L103">render-queue.ts:103</a></li>
+							<li>Defined in <a href="https://github.com/frontmeans/render-scheduler/blob/cb2a86a/src/render-queue.ts#L103">render-queue.ts:103</a></li>
 						</ul>
 					</aside>
 					<div class="tsd-type-declaration">
@@ -399,7 +399,7 @@
 									<li class="tsd-description">
 										<aside class="tsd-sources">
 											<ul>
-												<li>Defined in <a href="https://github.com/frontmeans/render-scheduler/blob/e90f1f5/src/render-queue.ts#L112">render-queue.ts:112</a></li>
+												<li>Defined in <a href="https://github.com/frontmeans/render-scheduler/blob/cb2a86a/src/render-queue.ts#L112">render-queue.ts:112</a></li>
 											</ul>
 										</aside>
 										<div class="tsd-comment tsd-typography">
@@ -430,7 +430,7 @@
 					<div class="tsd-signature tsd-kind-icon">Render<wbr>Schedule<wbr>Config<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-symbol">{ </span>by<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">any</span><span class="tsd-signature-symbol"> }</span></div>
 					<aside class="tsd-sources">
 						<ul>
-							<li>Defined in <a href="https://github.com/frontmeans/render-scheduler/blob/e90f1f5/src/render-schedule.ts#L93">render-schedule.ts:93</a></li>
+							<li>Defined in <a href="https://github.com/frontmeans/render-scheduler/blob/cb2a86a/src/render-schedule.ts#L93">render-schedule.ts:93</a></li>
 						</ul>
 					</aside>
 					<div class="tsd-type-declaration">
@@ -445,7 +445,7 @@
 									<li class="tsd-description">
 										<aside class="tsd-sources">
 											<ul>
-												<li>Defined in <a href="https://github.com/frontmeans/render-scheduler/blob/e90f1f5/src/render-schedule.ts#L102">render-schedule.ts:102</a></li>
+												<li>Defined in <a href="https://github.com/frontmeans/render-scheduler/blob/cb2a86a/src/render-schedule.ts#L102">render-schedule.ts:102</a></li>
 											</ul>
 										</aside>
 										<div class="tsd-comment tsd-typography">
@@ -483,7 +483,7 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/frontmeans/render-scheduler/blob/e90f1f5/src/animation-render-scheduler.ts#L21">animation-render-scheduler.ts:21</a></li>
+									<li>Defined in <a href="https://github.com/frontmeans/render-scheduler/blob/cb2a86a/src/animation-render-scheduler.ts#L21">animation-render-scheduler.ts:21</a></li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
@@ -515,7 +515,7 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/frontmeans/render-scheduler/blob/e90f1f5/src/async-render-scheduler.ts#L21">async-render-scheduler.ts:21</a></li>
+									<li>Defined in <a href="https://github.com/frontmeans/render-scheduler/blob/cb2a86a/src/async-render-scheduler.ts#L21">async-render-scheduler.ts:21</a></li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
@@ -544,7 +544,7 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/frontmeans/render-scheduler/blob/e90f1f5/src/custom-render-scheduler.ts#L168">custom-render-scheduler.ts:168</a></li>
+									<li>Defined in <a href="https://github.com/frontmeans/render-scheduler/blob/cb2a86a/src/custom-render-scheduler.ts#L168">custom-render-scheduler.ts:168</a></li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
@@ -576,7 +576,7 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/frontmeans/render-scheduler/blob/e90f1f5/src/immediate-render-scheduler.ts#L10">immediate-render-scheduler.ts:10</a></li>
+									<li>Defined in <a href="https://github.com/frontmeans/render-scheduler/blob/cb2a86a/src/immediate-render-scheduler.ts#L10">immediate-render-scheduler.ts:10</a></li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
@@ -606,7 +606,7 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/frontmeans/render-scheduler/blob/e90f1f5/src/map-render-schedule.ts#L16">map-render-schedule.ts:16</a></li>
+									<li>Defined in <a href="https://github.com/frontmeans/render-scheduler/blob/cb2a86a/src/map-render-schedule.ts#L16">map-render-schedule.ts:16</a></li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
@@ -687,7 +687,7 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/frontmeans/render-scheduler/blob/e90f1f5/src/abortable-render-scheduler.ts#L109">abortable-render-scheduler.ts:109</a></li>
+									<li>Defined in <a href="https://github.com/frontmeans/render-scheduler/blob/cb2a86a/src/abortable-render-scheduler.ts#L109">abortable-render-scheduler.ts:109</a></li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
@@ -741,7 +741,7 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/frontmeans/render-scheduler/blob/e90f1f5/src/delegate-render-scheduler.ts#L44">delegate-render-scheduler.ts:44</a></li>
+									<li>Defined in <a href="https://github.com/frontmeans/render-scheduler/blob/cb2a86a/src/delegate-render-scheduler.ts#L44">delegate-render-scheduler.ts:44</a></li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
@@ -788,7 +788,7 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/frontmeans/render-scheduler/blob/e90f1f5/src/manual-render-scheduler.ts#L28">manual-render-scheduler.ts:28</a></li>
+									<li>Defined in <a href="https://github.com/frontmeans/render-scheduler/blob/cb2a86a/src/manual-render-scheduler.ts#L28">manual-render-scheduler.ts:28</a></li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
@@ -812,7 +812,7 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/frontmeans/render-scheduler/blob/e90f1f5/src/render-scheduler.ts#L63">render-scheduler.ts:63</a></li>
+									<li>Defined in <a href="https://github.com/frontmeans/render-scheduler/blob/cb2a86a/src/render-scheduler.ts#L63">render-scheduler.ts:63</a></li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
@@ -844,7 +844,7 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/frontmeans/render-scheduler/blob/e90f1f5/src/noop-render-scheduler.ts#L7">noop-render-scheduler.ts:7</a></li>
+									<li>Defined in <a href="https://github.com/frontmeans/render-scheduler/blob/cb2a86a/src/noop-render-scheduler.ts#L7">noop-render-scheduler.ts:7</a></li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
@@ -872,7 +872,7 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/frontmeans/render-scheduler/blob/e90f1f5/src/queued-render-scheduler.ts#L20">queued-render-scheduler.ts:20</a></li>
+									<li>Defined in <a href="https://github.com/frontmeans/render-scheduler/blob/cb2a86a/src/queued-render-scheduler.ts#L20">queued-render-scheduler.ts:20</a></li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
@@ -903,7 +903,7 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/frontmeans/render-scheduler/blob/e90f1f5/src/render-scheduler.ts#L50">render-scheduler.ts:50</a></li>
+									<li>Defined in <a href="https://github.com/frontmeans/render-scheduler/blob/cb2a86a/src/render-scheduler.ts#L50">render-scheduler.ts:50</a></li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
