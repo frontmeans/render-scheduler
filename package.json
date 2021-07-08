@@ -23,7 +23,7 @@
   "exports": "./dist/render-scheduler.js",
   "dependencies": {
     "@frontmeans/dom-primitives": "^1.1.0",
-    "@proc7ts/supply": "^1.2.0"
+    "@proc7ts/supply": "^1.2.1"
   },
   "devDependencies": {
     "@jest/globals": "^27.0.6",
