@@ -6,6 +6,7 @@ export * from './abortable-render-scheduler';
 export * from './animation-render-scheduler';
 export * from './async-render-scheduler';
 export * from './custom-render-scheduler';
+export * from './cx-window';
 export * from './delegate-render-scheduler';
 export * from './immediate-render-scheduler';
 export * from './manual-render-scheduler';
