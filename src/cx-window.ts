@@ -1,12 +1,12 @@
 import { CxEntry, cxSingle } from '@proc7ts/context-values';
 
 /**
- * Contextual window instance.
+ * Default window instance.
  */
 export type CxWindow = Window & typeof globalThis;
 
 /**
- * Context entry containing contextual window instance.
+ * Context entry containing default window instance.
  *
  * Defaults to current window.
  */

@@ -16,12 +16,12 @@ import type { RenderExecution, RenderShot } from './render-shot';
  * function that uses the {@link setRenderScheduler default scheduler} for that.
  *
  * @typeParam TExecution - A type of supported render shot execution context.
- */
-export type RenderSchedule<TExecution extends RenderExecution = RenderExecution> =
-/**
  * @param shot - A render shot to schedule.
  */
-    (this: void, shot: RenderShot<TExecution>) => void;
+export type RenderSchedule<TExecution extends RenderExecution = RenderExecution> = (
+    this: void,
+    shot: RenderShot<TExecution>,
+) => void;
 
 /**
  * Options for render schedule.

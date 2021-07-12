@@ -1,4 +1,6 @@
+import type { CxEntry } from '@proc7ts/context-values';
 import { animationRenderScheduler } from './animation-render-scheduler';
+import { cxRenderScheduler } from './cx-render-scheduler';
 import type { RenderSchedule, RenderScheduleOptions } from './render-schedule';
 import type { RenderExecution } from './render-shot';
 
@@ -21,20 +23,28 @@ import type { RenderExecution } from './render-shot';
  *
  * @typeParam TExecution - A type of supported render shot execution context.
  * @typeParam TOptions - A type of accepted render schedule options.
- */
-export type RenderScheduler<
-    TExecution extends RenderExecution = RenderExecution,
-    TOptions extends RenderScheduleOptions = RenderScheduleOptions> =
-/**
  * @param options - Created render schedule options.
  *
  * @returns New render schedule.
  */
-    (this: void, options?: TOptions) => RenderSchedule<TExecution>;
+export type RenderScheduler<
+    TExecution extends RenderExecution = RenderExecution,
+    TOptions extends RenderScheduleOptions = RenderScheduleOptions,
+    > = (
+    this: void,
+    options?: TOptions,
+) => RenderSchedule<TExecution>;
 
 /**
- * @internal
+ * Context entry containing {@link RenderScheduler} instance.
+ *
+ * Uses {@link newRenderSchedule default} render scheduler by default.
  */
+export const RenderScheduler: CxEntry<RenderScheduler, RenderScheduler> = {
+  perContext: (/*#__PURE__*/ cxRenderScheduler()),
+  toString: () => '[RenderScheduler]',
+};
+
 let defaultRenderScheduler = animationRenderScheduler;
 
 /**

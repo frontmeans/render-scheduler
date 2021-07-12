@@ -4,8 +4,6 @@ import type { RenderExecution, RenderShot } from './render-shot';
 
 /**
  * Render scheduler that executes render shots immediately.
- *
- * @param options
  */
 export const immediateRenderScheduler: RenderScheduler = (options?: RenderScheduleOptions): RenderSchedule => {
 
