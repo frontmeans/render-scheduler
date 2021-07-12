@@ -1,6 +1,6 @@
 {
   "name": "@frontmeans/render-scheduler",
-  "version": "1.7.0",
+  "version": "1.8.0-dev.0",
   "description": "Schedule DOM updates rendering",
   "keywords": [
     "performance",
