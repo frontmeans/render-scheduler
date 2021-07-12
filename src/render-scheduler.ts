@@ -1,4 +1,5 @@
 import type { CxEntry } from '@proc7ts/context-values';
+import { CxGlobals, cxScoped } from '@proc7ts/context-values';
 import { cxRenderScheduler } from './cx-render-scheduler';
 import type { RenderSchedule, RenderScheduleOptions } from './render-schedule';
 import type { RenderExecution } from './render-shot';
@@ -37,9 +38,14 @@ export type RenderScheduler<
 /**
  * Context entry containing {@link RenderScheduler} instance.
  *
+ * This instance is globally singleton.
+ *
  * Uses {@link newRenderSchedule default} render scheduler by default.
  */
 export const RenderScheduler: CxEntry<RenderScheduler, RenderScheduler> = {
-  perContext: (/*#__PURE__*/ cxRenderScheduler()),
+  perContext: (/*#__PURE__*/ cxScoped(
+      CxGlobals,
+      (/*#__PURE__*/ cxRenderScheduler()),
+  )),
   toString: () => '[RenderScheduler]',
 };

@@ -1,7 +1,7 @@
 import { nodeWindow } from '@frontmeans/dom-primitives';
 import { afterEach, beforeEach, describe, expect, it, jest } from '@jest/globals';
 import { CxBuilder, cxConstAsset } from '@proc7ts/context-builder';
-import { CxReferenceError } from '@proc7ts/context-values';
+import { CxGlobals, CxReferenceError } from '@proc7ts/context-values';
 import { Supply } from '@proc7ts/supply';
 import type { Mock } from 'jest-mock';
 import { CxWindow } from './cx-window';
@@ -59,6 +59,7 @@ describe('setRenderScheduler', () => {
     beforeEach(() => {
       mockWindow = { name: 'bootstrap-window' } as any;
       cxBuilder = new CxBuilder(get => ({ get }));
+      cxBuilder.provide(cxConstAsset(CxGlobals, cxBuilder.context));
       cxBuilder.provide(cxConstAsset(CxWindow, mockWindow));
       scheduler = cxBuilder.get(RenderScheduler);
     });
@@ -115,6 +116,12 @@ describe('setRenderScheduler', () => {
       expect(() => scheduler({ window, node, error }))
           .toThrow(new CxReferenceError(RenderScheduler, 'The [RenderScheduler] is unavailable', reason));
       expect(mockScheduler).not.toHaveBeenCalled();
+    });
+    it('is singleton', () => {
+
+      const cxBuilder2 = new CxBuilder(get => ({ get }), cxBuilder);
+
+      expect(cxBuilder2.get(RenderScheduler)).toBe(scheduler);
     });
 
     describe('toString', () => {
