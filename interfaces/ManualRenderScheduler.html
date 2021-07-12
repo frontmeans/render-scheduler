@@ -55,7 +55,7 @@
 					<a href="../modules.html">Render Scheduler</a>
 				</li>
 				<li>
-					<a href="manualrenderscheduler.html">ManualRenderScheduler</a>
+					<a href="ManualRenderScheduler.html">ManualRenderScheduler</a>
 				</li>
 			</ul>
 			<h1>Interface ManualRenderScheduler</h1>
@@ -70,14 +70,14 @@
 					<div class="lead">
 						<p>A render scheduler that executes scheduled render shots on request.</p>
 					</div>
-					<p>Can be constructed using <a href="../modules.html#newmanualrenderscheduler">newManualRenderScheduler</a> function.</p>
+					<p>Can be constructed using <a href="../modules.html#newManualRenderScheduler">newManualRenderScheduler</a> function.</p>
 				</div>
 			</section>
 			<section class="tsd-panel tsd-hierarchy">
 				<h3>Hierarchy</h3>
 				<ul class="tsd-hierarchy">
 					<li>
-						<a href="../modules.html#renderscheduler" class="tsd-signature-type" data-tsd-kind="Type alias">RenderScheduler</a>
+						<a href="../modules.html#RenderScheduler" class="tsd-signature-type" data-tsd-kind="Variable">RenderScheduler</a>
 						<ul class="tsd-hierarchy">
 							<li>
 								<span class="target">ManualRenderScheduler</span>
@@ -89,31 +89,50 @@
 			<section class="tsd-panel">
 				<h3 class="tsd-before-signature">Callable</h3>
 				<ul class="tsd-signatures tsd-kind-interface">
-					<li class="tsd-signature tsd-kind-icon">Manual<wbr>Render<wbr>Scheduler<span class="tsd-signature-symbol">(</span>options<span class="tsd-signature-symbol">?: </span><a href="renderscheduleoptions.html" class="tsd-signature-type" data-tsd-kind="Interface">RenderScheduleOptions</a><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><a href="../modules.html#renderschedule" class="tsd-signature-type" data-tsd-kind="Type alias">RenderSchedule</a><span class="tsd-signature-symbol">&lt;</span><a href="renderexecution.html" class="tsd-signature-type" data-tsd-kind="Interface">RenderExecution</a><span class="tsd-signature-symbol">&gt;</span></li>
+					<li class="tsd-signature tsd-kind-icon">Manual<wbr>Render<wbr>Scheduler<span class="tsd-signature-symbol">(</span>options<span class="tsd-signature-symbol">?: </span><a href="RenderScheduleOptions.html" class="tsd-signature-type" data-tsd-kind="Interface">RenderScheduleOptions</a><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><a href="../modules.html#RenderSchedule" class="tsd-signature-type" data-tsd-kind="Type alias">RenderSchedule</a><span class="tsd-signature-symbol">&lt;</span><a href="RenderExecution.html" class="tsd-signature-type" data-tsd-kind="Interface">RenderExecution</a><span class="tsd-signature-symbol">&gt;</span></li>
 				</ul>
 				<ul class="tsd-descriptions">
 					<li class="tsd-description">
 						<aside class="tsd-sources">
 							<ul>
-								<li>Defined in <a href="https://github.com/frontmeans/render-scheduler/blob/cb2a86a/src/render-scheduler.ts#L27">render-scheduler.ts:27</a></li>
+								<li>Defined in <a href="https://github.com/frontmeans/render-scheduler/blob/0844957/src/render-scheduler.ts#L33">render-scheduler.ts:33</a></li>
 							</ul>
 						</aside>
 						<div class="tsd-comment tsd-typography">
 							<div class="lead">
-								<p>A render scheduler that executes scheduled render shots on request.</p>
+								<p>Render scheduler signature.</p>
 							</div>
-							<p>Can be constructed using <a href="../modules.html#newmanualrenderscheduler">newManualRenderScheduler</a> function.</p>
+							<p>This function creates a <a href="../modules.html#RenderSchedule">render schedule</a> according to the given options.</p>
+							<p>The default render scheduler is always available as <a href="../modules.html#newRenderSchedule">newRenderSchedule</a> function.</p>
+							<p>There are several scheduler implementations exist:</p>
+							<ul>
+								<li><a href="../modules.html#animationRenderScheduler">animationRenderScheduler</a> (used by default),</li>
+								<li><a href="../modules.html#asyncRenderScheduler">asyncRenderScheduler</a>,</li>
+								<li><a href="../modules.html#immediateRenderScheduler">immediateRenderScheduler</a>,</li>
+								<li><a href="../modules.html#queuedRenderScheduler">queuedRenderScheduler</a>,</li>
+								<li>{@link ManualRenderScheduler},</li>
+								<li><a href="../modules.html#noopRenderScheduler">noopRenderScheduler</a>.</li>
+							</ul>
+							<p>Custom scheduler implementations could be created using <a href="../modules.html#customRenderScheduler">customRenderScheduler</a> function.</p>
+							<dl class="tsd-comment-tags">
+								<dt>typeparam</dt>
+								<dd><p>A type of supported render shot execution context.</p>
+								</dd>
+								<dt>typeparam</dt>
+								<dd><p>A type of accepted render schedule options.</p>
+								</dd>
+							</dl>
 						</div>
 						<h4 class="tsd-parameters-title">Parameters</h4>
 						<ul class="tsd-parameters">
 							<li>
-								<h5><span class="tsd-flag ts-flagOptional">Optional</span> options: <a href="renderscheduleoptions.html" class="tsd-signature-type" data-tsd-kind="Interface">RenderScheduleOptions</a></h5>
+								<h5><span class="tsd-flag ts-flagOptional">Optional</span> options: <a href="RenderScheduleOptions.html" class="tsd-signature-type" data-tsd-kind="Interface">RenderScheduleOptions</a></h5>
 								<div class="tsd-comment tsd-typography">
 									<p>Created render schedule options.</p>
 								</div>
 							</li>
 						</ul>
-						<h4 class="tsd-returns-title">Returns <a href="../modules.html#renderschedule" class="tsd-signature-type" data-tsd-kind="Type alias">RenderSchedule</a><span class="tsd-signature-symbol">&lt;</span><a href="renderexecution.html" class="tsd-signature-type" data-tsd-kind="Interface">RenderExecution</a><span class="tsd-signature-symbol">&gt;</span></h4>
+						<h4 class="tsd-returns-title">Returns <a href="../modules.html#RenderSchedule" class="tsd-signature-type" data-tsd-kind="Type alias">RenderSchedule</a><span class="tsd-signature-symbol">&lt;</span><a href="RenderExecution.html" class="tsd-signature-type" data-tsd-kind="Interface">RenderExecution</a><span class="tsd-signature-symbol">&gt;</span></h4>
 						<p>New render schedule.</p>
 					</li>
 				</ul>
@@ -125,7 +144,7 @@
 						<section class="tsd-index-section ">
 							<h3>Methods</h3>
 							<ul class="tsd-index-list">
-								<li class="tsd-kind-method tsd-parent-kind-interface"><a href="manualrenderscheduler.html#render" class="tsd-kind-icon">render</a></li>
+								<li class="tsd-kind-method tsd-parent-kind-interface"><a href="ManualRenderScheduler.html#render" class="tsd-kind-icon">render</a></li>
 							</ul>
 						</section>
 					</div>
@@ -143,7 +162,7 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/frontmeans/render-scheduler/blob/cb2a86a/src/manual-render-scheduler.ts#L17">manual-render-scheduler.ts:17</a></li>
+									<li>Defined in <a href="https://github.com/frontmeans/render-scheduler/blob/0844957/src/manual-render-scheduler.ts#L17">manual-render-scheduler.ts:17</a></li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
@@ -169,103 +188,121 @@
 			<nav class="tsd-navigation secondary menu-sticky">
 				<ul class="before-current">
 					<li class=" tsd-kind-interface">
-						<a href="abortablerenderexecution.html" class="tsd-kind-icon">Abortable<wbr>Render<wbr>Execution</a>
+						<a href="AbortableRenderExecution.html" class="tsd-kind-icon">Abortable<wbr>Render<wbr>Execution</a>
 					</li>
 					<li class=" tsd-kind-interface tsd-has-type-parameter">
-						<a href="abortablerenderschedule.html" class="tsd-kind-icon">Abortable<wbr>Render<wbr>Schedule</a>
+						<a href="AbortableRenderSchedule.html" class="tsd-kind-icon">Abortable<wbr>Render<wbr>Schedule</a>
 					</li>
 					<li class=" tsd-kind-interface">
-						<a href="abortablerenderscheduleoptions.html" class="tsd-kind-icon">Abortable<wbr>Render<wbr>Schedule<wbr>Options</a>
+						<a href="AbortableRenderScheduleOptions.html" class="tsd-kind-icon">Abortable<wbr>Render<wbr>Schedule<wbr>Options</a>
 					</li>
 					<li class=" tsd-kind-interface tsd-has-type-parameter">
-						<a href="abortablerenderscheduler.html" class="tsd-kind-icon">Abortable<wbr>Render<wbr>Scheduler</a>
+						<a href="AbortableRenderScheduler.html" class="tsd-kind-icon">Abortable<wbr>Render<wbr>Scheduler</a>
 					</li>
 					<li class=" tsd-kind-interface">
-						<a href="customrenderscheduleroptions.html" class="tsd-kind-icon">Custom<wbr>Render<wbr>Scheduler<wbr>Options</a>
+						<a href="CustomRenderSchedulerOptions.html" class="tsd-kind-icon">Custom<wbr>Render<wbr>Scheduler<wbr>Options</a>
 					</li>
 					<li class=" tsd-kind-interface tsd-has-type-parameter">
-						<a href="delegaterenderscheduler.html" class="tsd-kind-icon">Delegate<wbr>Render<wbr>Scheduler</a>
+						<a href="DelegateRenderScheduler.html" class="tsd-kind-icon">Delegate<wbr>Render<wbr>Scheduler</a>
 					</li>
 					<li class=" tsd-kind-interface tsd-has-type-parameter">
-						<a href="draftrenderexecution.html" class="tsd-kind-icon">Draft<wbr>Render<wbr>Execution</a>
+						<a href="DraftRenderExecution.html" class="tsd-kind-icon">Draft<wbr>Render<wbr>Execution</a>
 					</li>
 				</ul>
 				<ul class="current">
 					<li class="current tsd-kind-interface">
-						<a href="manualrenderscheduler.html" class="tsd-kind-icon">Manual<wbr>Render<wbr>Scheduler</a>
+						<a href="ManualRenderScheduler.html" class="tsd-kind-icon">Manual<wbr>Render<wbr>Scheduler</a>
 						<ul>
 							<li class=" tsd-kind-method tsd-parent-kind-interface">
-								<a href="manualrenderscheduler.html#render" class="tsd-kind-icon">render</a>
+								<a href="ManualRenderScheduler.html#render" class="tsd-kind-icon">render</a>
 							</li>
 						</ul>
 					</li>
 				</ul>
 				<ul class="after-current">
 					<li class=" tsd-kind-interface">
-						<a href="renderexecution.html" class="tsd-kind-icon">Render<wbr>Execution</a>
+						<a href="RenderExecution.html" class="tsd-kind-icon">Render<wbr>Execution</a>
 					</li>
 					<li class=" tsd-kind-interface">
-						<a href="renderqueue.html" class="tsd-kind-icon">Render<wbr>Queue</a>
+						<a href="RenderQueue.html" class="tsd-kind-icon">Render<wbr>Queue</a>
 					</li>
 					<li class=" tsd-kind-interface">
-						<a href="renderscheduleconfig.html" class="tsd-kind-icon">Render<wbr>Schedule<wbr>Config</a>
+						<a href="RenderScheduleConfig.html" class="tsd-kind-icon">Render<wbr>Schedule<wbr>Config</a>
 					</li>
 					<li class=" tsd-kind-interface">
-						<a href="renderscheduleoptions.html" class="tsd-kind-icon">Render<wbr>Schedule<wbr>Options</a>
+						<a href="RenderScheduleOptions.html" class="tsd-kind-icon">Render<wbr>Schedule<wbr>Options</a>
+					</li>
+					<li class=" tsd-kind-type-alias">
+						<a href="../modules.html#CxWindow" class="tsd-kind-icon">Cx<wbr>Window</a>
 					</li>
 					<li class=" tsd-kind-type-alias tsd-has-type-parameter">
-						<a href="../modules.html#mappedrenderexecutor" class="tsd-kind-icon">Mapped<wbr>Render<wbr>Executor</a>
+						<a href="../modules.html#MappedRenderExecutor" class="tsd-kind-icon">Mapped<wbr>Render<wbr>Executor</a>
+					</li>
+					<li class=" tsd-kind-type-alias">
+						<a href="../modules.html#PreRenderScheduler" class="tsd-kind-icon">Pre<wbr>Render<wbr>Scheduler</a>
 					</li>
 					<li class=" tsd-kind-type-alias tsd-has-type-parameter">
-						<a href="../modules.html#renderschedule" class="tsd-kind-icon">Render<wbr>Schedule</a>
+						<a href="../modules.html#RenderSchedule" class="tsd-kind-icon">Render<wbr>Schedule</a>
 					</li>
 					<li class=" tsd-kind-type-alias tsd-has-type-parameter">
-						<a href="../modules.html#renderscheduler" class="tsd-kind-icon">Render<wbr>Scheduler</a>
+						<a href="../modules.html#RenderScheduler" class="tsd-kind-icon">Render<wbr>Scheduler</a>
 					</li>
 					<li class=" tsd-kind-type-alias tsd-has-type-parameter">
-						<a href="../modules.html#rendershot" class="tsd-kind-icon">Render<wbr>Shot</a>
+						<a href="../modules.html#RenderShot" class="tsd-kind-icon">Render<wbr>Shot</a>
 					</li>
 					<li class=" tsd-kind-variable">
-						<a href="../modules.html#renderqueue" class="tsd-kind-icon">Render<wbr>Queue</a>
+						<a href="../modules.html#CxWindow" class="tsd-kind-icon">Cx<wbr>Window</a>
 					</li>
 					<li class=" tsd-kind-variable">
-						<a href="../modules.html#renderscheduleconfig" class="tsd-kind-icon">Render<wbr>Schedule<wbr>Config</a>
+						<a href="../modules.html#PreRenderScheduler" class="tsd-kind-icon">Pre<wbr>Render<wbr>Scheduler</a>
+					</li>
+					<li class=" tsd-kind-variable">
+						<a href="../modules.html#RenderQueue" class="tsd-kind-icon">Render<wbr>Queue</a>
+					</li>
+					<li class=" tsd-kind-variable">
+						<a href="../modules.html#RenderScheduleConfig" class="tsd-kind-icon">Render<wbr>Schedule<wbr>Config</a>
+					</li>
+					<li class=" tsd-kind-variable">
+						<a href="../modules.html#RenderScheduler" class="tsd-kind-icon">Render<wbr>Scheduler</a>
 					</li>
 					<li class=" tsd-kind-function">
-						<a href="../modules.html#animationrenderscheduler" class="tsd-kind-icon">animation<wbr>Render<wbr>Scheduler</a>
+						<a href="../modules.html#animationRenderScheduler" class="tsd-kind-icon">animation<wbr>Render<wbr>Scheduler</a>
 					</li>
 					<li class=" tsd-kind-function">
-						<a href="../modules.html#asyncrenderscheduler" class="tsd-kind-icon">async<wbr>Render<wbr>Scheduler</a>
+						<a href="../modules.html#asyncRenderScheduler" class="tsd-kind-icon">async<wbr>Render<wbr>Scheduler</a>
 					</li>
 					<li class=" tsd-kind-function">
-						<a href="../modules.html#customrenderscheduler" class="tsd-kind-icon">custom<wbr>Render<wbr>Scheduler</a>
+						<a href="../modules.html#customRenderScheduler" class="tsd-kind-icon">custom<wbr>Render<wbr>Scheduler</a>
 					</li>
 					<li class=" tsd-kind-function">
-						<a href="../modules.html#immediaterenderscheduler" class="tsd-kind-icon">immediate<wbr>Render<wbr>Scheduler</a>
+						<a href="../modules.html#cxRenderScheduler" class="tsd-kind-icon">cx<wbr>Render<wbr>Scheduler</a>
+					</li>
+					<li class=" tsd-kind-function">
+						<a href="../modules.html#immediateRenderScheduler" class="tsd-kind-icon">immediate<wbr>Render<wbr>Scheduler</a>
 					</li>
 					<li class=" tsd-kind-function tsd-has-type-parameter">
-						<a href="../modules.html#maprenderschedule" class="tsd-kind-icon">map<wbr>Render<wbr>Schedule</a>
+						<a href="../modules.html#mapRenderSchedule" class="tsd-kind-icon">map<wbr>Render<wbr>Schedule</a>
 					</li>
 					<li class=" tsd-kind-function tsd-has-type-parameter">
-						<a href="../modules.html#newabortablerenderscheduler" class="tsd-kind-icon">new<wbr>Abortable<wbr>Render<wbr>Scheduler</a>
+						<a href="../modules.html#newAbortableRenderScheduler" class="tsd-kind-icon">new<wbr>Abortable<wbr>Render<wbr>Scheduler</a>
 					</li>
 					<li class=" tsd-kind-function tsd-has-type-parameter">
-						<a href="../modules.html#newdelegaterenderscheduler" class="tsd-kind-icon">new<wbr>Delegate<wbr>Render<wbr>Scheduler</a>
+						<a href="../modules.html#newDelegateRenderScheduler" class="tsd-kind-icon">new<wbr>Delegate<wbr>Render<wbr>Scheduler</a>
 					</li>
 					<li class=" tsd-kind-function">
-						<a href="../modules.html#newmanualrenderscheduler" class="tsd-kind-icon">new<wbr>Manual<wbr>Render<wbr>Scheduler</a>
+						<a href="../modules.html#newManualRenderScheduler" class="tsd-kind-icon">new<wbr>Manual<wbr>Render<wbr>Scheduler</a>
 					</li>
 					<li class=" tsd-kind-function">
-						<a href="../modules.html#newrenderschedule" class="tsd-kind-icon">new<wbr>Render<wbr>Schedule</a>
+						<a href="../modules.html#newRenderSchedule" class="tsd-kind-icon">new<wbr>Render<wbr>Schedule</a>
 					</li>
 					<li class=" tsd-kind-function">
-						<a href="../modules.html#nooprenderscheduler" class="tsd-kind-icon">noop<wbr>Render<wbr>Scheduler</a>
+						<a href="../modules.html#noopRenderScheduler" class="tsd-kind-icon">noop<wbr>Render<wbr>Scheduler</a>
 					</li>
 					<li class=" tsd-kind-function">
-						<a href="../modules.html#queuedrenderscheduler" class="tsd-kind-icon">queued<wbr>Render<wbr>Scheduler</a>
+						<a href="../modules.html#queuedRenderScheduler" class="tsd-kind-icon">queued<wbr>Render<wbr>Scheduler</a>
 					</li>
 					<li class=" tsd-kind-function">
-						<a href="../modules.html#setrenderscheduler" class="tsd-kind-icon">set<wbr>Render<wbr>Scheduler</a>
+						<a href="../modules.html#setRenderScheduler" class="tsd-kind-icon">set<wbr>Render<wbr>Scheduler</a>
 					</li>
 				</ul>
 			</nav>
