@@ -23,12 +23,12 @@
   "exports": "./dist/render-scheduler.js",
   "dependencies": {
     "@frontmeans/dom-primitives": "^1.1.0",
-    "@proc7ts/context-values": "^7.0.0-dev.13",
+    "@proc7ts/context-values": "^7.0.0",
     "@proc7ts/supply": "^1.2.3"
   },
   "devDependencies": {
     "@jest/globals": "^27.0.6",
-    "@proc7ts/context-builder": "^7.0.0-dev.13",
+    "@proc7ts/context-builder": "^7.0.0",
     "@rollup/plugin-node-resolve": "^13.0.0",
     "@run-z/eslint-config": "^1.3.0",
     "@run-z/rollup-helpers": "^1.1.1",
