@@ -8,12 +8,12 @@ import type { RenderScheduleConfig } from './render-schedule';
  * skipped.
  *
  * @typeParam TExecution - A type of supported execution context.
- */
-export type RenderShot<TExecution extends RenderExecution = RenderExecution> =
-/**
  * @param execution - Render shot execution context instance.
  */
-    (this: void, execution: TExecution) => void;
+export type RenderShot<TExecution extends RenderExecution = RenderExecution> = (
+    this: void,
+    execution: TExecution,
+) => void;
 
 /**
  * Render shot execution context.
