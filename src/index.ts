@@ -12,6 +12,7 @@ export * from './delegate-render-scheduler';
 export * from './immediate-render-scheduler';
 export * from './manual-render-scheduler';
 export * from './map-render-schedule';
+export * from './new-render-scheduler';
 export * from './noop-render-scheduler';
 export * from './pre-render-scheduler';
 export * from './queued-render-scheduler';

@@ -6,8 +6,9 @@ import { Supply } from '@proc7ts/supply';
 import type { Mock } from 'jest-mock';
 import { CxWindow } from './cx-window';
 import { immediateRenderScheduler } from './immediate-render-scheduler';
+import { newRenderSchedule, setRenderScheduler } from './new-render-scheduler';
 import type { RenderSchedule, RenderScheduleOptions } from './render-schedule';
-import { newRenderSchedule, RenderScheduler, setRenderScheduler } from './render-scheduler';
+import { RenderScheduler } from './render-scheduler';
 
 describe('setRenderScheduler', () => {
 

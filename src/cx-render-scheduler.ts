@@ -2,8 +2,9 @@ import { nodeWindow } from '@frontmeans/dom-primitives';
 import { CxEntry, cxRecent, CxTracker, cxUnavailable } from '@proc7ts/context-values';
 import { CxWindow } from './cx-window';
 import { newDelegateRenderScheduler } from './delegate-render-scheduler';
+import { newRenderSchedule } from './new-render-scheduler';
 import { noopRenderScheduler } from './noop-render-scheduler';
-import { newRenderSchedule, RenderScheduler } from './render-scheduler';
+import type { RenderScheduler } from './render-scheduler';
 import type { RenderExecution } from './render-shot';
 
 /**
