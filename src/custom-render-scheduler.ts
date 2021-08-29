@@ -28,14 +28,14 @@ export interface CustomRenderSchedulerOptions {
 const RenderQ__symbol = (/*#__PURE__*/ Symbol('render-q'));
 
 interface RenderQueue$Internal extends RenderQueue {
-  [RenderQ__symbol]?: RenderQ;
+  [RenderQ__symbol]?: RenderQ | undefined;
 }
 
 class RenderQ {
 
   readonly ref: RenderQ$Ref;
   schedule: (this: RenderQ, config: RenderScheduleConfig) => void;
-  private scheduled?: RenderScheduleConfig;
+  private scheduled?: RenderScheduleConfig | undefined;
   private readonly execute: (
       this: this,
       execution: RenderExecution,

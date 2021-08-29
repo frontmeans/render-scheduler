@@ -17,7 +17,7 @@ export interface AbortableRenderScheduleOptions extends RenderScheduleOptions {
    *
    * A new supply will be created when omitted.
    */
-  readonly supply?: Supply;
+  readonly supply?: Supply | undefined;
 
 }
 

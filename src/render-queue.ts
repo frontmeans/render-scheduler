@@ -86,7 +86,7 @@ export namespace RenderQueue {
      * @param task - A function that performs render shots execution. Will not be executed if there is no recurrent
      * shots.
      */
-    recur?(this: void, task: (this: void) => void): void;
+    recur?: ((this: void, task: (this: void) => void) => void) | undefined;
 
     /**
      * Called right after {@link RenderQueue.reset} method in order to inform on the queue that collects scheduled
@@ -94,7 +94,7 @@ export namespace RenderQueue {
      *
      * @param replacement - A queue instance that collects scheduled render shots from now on.
      */
-    replace?(this: void, replacement: RenderQueue): void;
+    replace?: ((this: void, replacement: RenderQueue) => void) | undefined;
 
   }
 

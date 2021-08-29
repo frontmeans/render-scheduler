@@ -40,14 +40,14 @@ export interface RenderScheduleOptions {
    *
    * The schedulers that don't need a window never access this option value.
    */
-  window?: Window;
+  window?: Window | undefined;
 
   /**
    * A DOM node for constructed schedule.
    *
    * Used to detect missing {@link window} option.
    */
-  node?: Node;
+  node?: Node | undefined;
 
   /**
    * Reports an error. E.g. a render shot execution failure.
@@ -56,7 +56,7 @@ export interface RenderScheduleOptions {
    *
    * @param messages - Error messages to report.
    */
-  error?(this: void, ...messages: any[]): void;
+  error?: ((this: void, ...messages: any[]) => void) | undefined;
 
 }
 
@@ -79,7 +79,7 @@ export interface RenderScheduleConfig {
   /**
    * A DOM node the schedule is constructed for.
    */
-  node?: Node;
+  node?: Node | undefined;
 
   /**
    * Reports an error. E.g. a render shot execution failure.

@@ -22,7 +22,7 @@ export function cxRenderScheduler(
     {
       byDefault = _ => newRenderSchedule,
     }: {
-      byDefault?(target: CxEntry.Target<RenderScheduler>): RenderScheduler;
+      byDefault?: ((this: void, target: CxEntry.Target<RenderScheduler>) => RenderScheduler) | undefined;
     } = {},
 ): CxEntry.Definer<RenderScheduler> {
   return cxRecent({
