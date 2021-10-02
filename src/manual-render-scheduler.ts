@@ -33,6 +33,7 @@ export function newManualRenderScheduler(): ManualRenderScheduler {
     // Called at most once until reset
     schedule: task => pendingTask = () => {
       task();
+
       return true;
     },
     replace: replacement => {

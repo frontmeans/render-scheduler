@@ -128,6 +128,7 @@ export const RenderQueue = {
           // No recurrent shots.
           // The upcoming shots are non-recurrent.
           scheduled = executed;
+
           return false;
         }
 
