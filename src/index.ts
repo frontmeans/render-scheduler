@@ -1,6 +1,6 @@
 /**
  * @packageDocumentation
- * @module Module @frontmeans/render-scheduler
+ * @module @frontmeans/render-scheduler
  */
 export * from './abortable-render-scheduler';
 export * from './animation-render-scheduler';
