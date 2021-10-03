@@ -1,288 +1,53 @@
-<!doctype html>
-<html class="default no-js">
-<head>
-	<meta charset="utf-8">
-	<meta http-equiv="X-UA-Compatible" content="IE=edge">
-	<title>Render Scheduler</title>
-	<meta name="description" content="Documentation for Render Scheduler">
-	<meta name="viewport" content="width=device-width, initial-scale=1">
-	<link rel="stylesheet" href="assets/css/main.css">
-	<script async src="assets/js/search.js" id="search-script"></script>
-</head>
-<body>
-<header>
-	<div class="tsd-page-toolbar">
-		<div class="container">
-			<div class="table-wrap">
-				<div class="table-cell" id="tsd-search" data-index="assets/js/search.json" data-base=".">
-					<div class="field">
-						<label for="tsd-search-field" class="tsd-widget search no-caption">Search</label>
-						<input id="tsd-search-field" type="text" />
-					</div>
-					<ul class="results">
-						<li class="state loading">Preparing search index...</li>
-						<li class="state failure">The search index is not available</li>
-					</ul>
-					<a href="index.html" class="title">Render Scheduler</a>
-				</div>
-				<div class="table-cell" id="tsd-widgets">
-					<div id="tsd-filter">
-						<a href="#" class="tsd-widget options no-caption" data-toggle="options">Options</a>
-						<div class="tsd-filter-group">
-							<div class="tsd-select" id="tsd-filter-visibility">
-								<span class="tsd-select-label">All</span>
-								<ul class="tsd-select-list">
-									<li data-value="public">Public</li>
-									<li data-value="protected">Public/Protected</li>
-									<li data-value="private" class="selected">All</li>
-								</ul>
-							</div>
-							<input type="checkbox" id="tsd-filter-inherited" checked />
-							<label class="tsd-widget" for="tsd-filter-inherited">Inherited</label>
-							<input type="checkbox" id="tsd-filter-externals" checked />
-							<label class="tsd-widget" for="tsd-filter-externals">Externals</label>
-						</div>
-					</div>
-					<a href="#" class="tsd-widget menu no-caption" data-toggle="menu">Menu</a>
-				</div>
-			</div>
-		</div>
-	</div>
-	<div class="tsd-page-title">
-		<div class="container">
-			<h1>Render Scheduler</h1>
-		</div>
-	</div>
-</header>
-<div class="container container-main">
-	<div class="row">
-		<div class="col-8 col-content">
-			<div class="tsd-panel tsd-typography">
-				<a href="#dom-render-scheduler" id="dom-render-scheduler" style="color: inherit; text-decoration: none;">
-					<h1>DOM Render Scheduler </h1>
-				</a>
-				<p><a href="https://www.npmjs.com/package/@frontmeans/render-scheduler"><img src="https://img.shields.io/npm/v/@frontmeans/render-scheduler.svg?logo=npm" alt="NPM"></a>
-					<a href="https://github.com/frontmeans/render-scheduler/actions?query=workflow%3ABuild"><img src="https://github.com/frontmeans/render-scheduler/workflows/Build/badge.svg" alt="Build Status"></a>
-					<a href="https://www.codacy.com/gh/frontmeans/render-scheduler/dashboard?utm_source=github.com&amp;utm_medium=referral&amp;utm_content=frontmeans/render-scheduler&amp;utm_campaign=Badge_Grade"><img src="https://app.codacy.com/project/badge/Grade/2061159fe8be4def9e092beab1bc3b1f" alt="Code Quality"></a>
-					<a href="https://www.codacy.com/gh/frontmeans/render-scheduler/dashboard?utm_source=github.com&amp;utm_medium=referral&amp;utm_content=frontmeans/render-scheduler&amp;utm_campaign=Badge_Coverage"><img src="https://app.codacy.com/project/badge/Coverage/2061159fe8be4def9e092beab1bc3b1f" alt="Coverage"></a>
-					<a href="https://github.com/frontmeans/render-scheduler"><img src="https://img.shields.io/static/v1?logo=github&label=GitHub&message=project&color=informational" alt="GitHub Project"></a>
-				<a href="https://frontmeans.github.io/render-scheduler/index.html"><img src="https://img.shields.io/static/v1?logo=typescript&label=API&message=docs&color=informational" alt="API Documentation"></a></p>
-				<p>Schedules rendering of DOM updates called <em>render shots</em>.</p>
-				<a href="#usage" id="usage" style="color: inherit; text-decoration: none;">
-					<h2>Usage</h2>
-				</a>
-				<pre><code class="language-typescript"><span style="color: #AF00DB">import</span><span style="color: #000000"> { </span><span style="color: #001080">newRenderSchedule</span><span style="color: #000000"> } </span><span style="color: #AF00DB">from</span><span style="color: #000000"> </span><span style="color: #A31515">&#039;@frontmeans/render-scheduler&#039;</span><span style="color: #000000">;</span>
+<!DOCTYPE html><html class="default no-js"><head><meta charSet="utf-8"/><meta http-equiv="X-UA-Compatible" content="IE=edge"/><title>Render Scheduler</title><meta name="description" content="Documentation for Render Scheduler"/><meta name="viewport" content="width=device-width, initial-scale=1"/><link rel="stylesheet" href="assets/style.css"/><link rel="stylesheet" href="assets/highlight.css"/><script async src="assets/search.js" id="search-script"></script></head><body><header><div class="tsd-page-toolbar"><div class="container"><div class="table-wrap"><div class="table-cell" id="tsd-search" data-base="."><div class="field"><label for="tsd-search-field" class="tsd-widget search no-caption">Search</label><input type="text" id="tsd-search-field"/></div><ul class="results"><li class="state loading">Preparing search index...</li><li class="state failure">The search index is not available</li></ul><a href="index.html" class="title">Render Scheduler</a></div><div class="table-cell" id="tsd-widgets"><div id="tsd-filter"><a href="#" class="tsd-widget options no-caption" data-toggle="options">Options</a><div class="tsd-filter-group"><div class="tsd-select" id="tsd-filter-visibility"><span class="tsd-select-label">All</span><ul class="tsd-select-list"><li data-value="public">Public</li><li data-value="protected">Public/Protected</li><li data-value="private" class="selected">All</li></ul></div> <input type="checkbox" id="tsd-filter-inherited" checked/><label class="tsd-widget" for="tsd-filter-inherited">Inherited</label><input type="checkbox" id="tsd-filter-externals" checked/><label class="tsd-widget" for="tsd-filter-externals">Externals</label></div></div><a href="#" class="tsd-widget menu no-caption" data-toggle="menu">Menu</a></div></div></div></div><div class="tsd-page-title"><div class="container"><h1>Render Scheduler</h1></div></div></header><div class="container container-main"><div class="row"><div class="col-8 col-content"><div class="tsd-panel tsd-typography">
+<a href="#dom-render-scheduler" id="dom-render-scheduler" style="color: inherit; text-decoration: none;">
+  <h1>DOM Render Scheduler </h1>
+</a>
+<p><a href="https://www.npmjs.com/package/@frontmeans/render-scheduler"><img src="https://img.shields.io/npm/v/@frontmeans/render-scheduler.svg?logo=npm" alt="NPM"></a>
+<a href="https://github.com/frontmeans/render-scheduler/actions?query=workflow%3ABuild"><img src="https://github.com/frontmeans/render-scheduler/workflows/Build/badge.svg" alt="Build Status"></a>
+<a href="https://www.codacy.com/gh/frontmeans/render-scheduler/dashboard?utm_source=github.com&amp;utm_medium=referral&amp;utm_content=frontmeans/render-scheduler&amp;utm_campaign=Badge_Grade"><img src="https://app.codacy.com/project/badge/Grade/2061159fe8be4def9e092beab1bc3b1f" alt="Code Quality"></a>
+<a href="https://www.codacy.com/gh/frontmeans/render-scheduler/dashboard?utm_source=github.com&amp;utm_medium=referral&amp;utm_content=frontmeans/render-scheduler&amp;utm_campaign=Badge_Coverage"><img src="https://app.codacy.com/project/badge/Coverage/2061159fe8be4def9e092beab1bc3b1f" alt="Coverage"></a>
+<a href="https://github.com/frontmeans/render-scheduler"><img src="https://img.shields.io/static/v1?logo=github&label=GitHub&message=project&color=informational" alt="GitHub Project"></a>
+<a href="https://frontmeans.github.io/render-scheduler/index.html"><img src="https://img.shields.io/static/v1?logo=typescript&label=API&message=docs&color=informational" alt="API Documentation"></a></p>
+<p>Schedules rendering of DOM updates called <em>render shots</em>.</p>
 
-<span style="color: #008000">// First, create a rendering schedule</span>
-<span style="color: #0000FF">const</span><span style="color: #000000"> </span><span style="color: #0070C1">btnSchedule</span><span style="color: #000000"> = </span><span style="color: #795E26">newRenderSchedule</span><span style="color: #000000">();</span>
-
-<span style="color: #008000">// Schedule render shot</span>
-<span style="color: #795E26">btnSchedule</span><span style="color: #000000">(() </span><span style="color: #0000FF">=&gt;</span><span style="color: #000000"> </span><span style="color: #001080">document</span><span style="color: #000000">.</span><span style="color: #795E26">getElementById</span><span style="color: #000000">(</span><span style="color: #A31515">&#039;button&#039;</span><span style="color: #000000">).</span><span style="color: #001080">disabled</span><span style="color: #000000"> = </span><span style="color: #0000FF">false</span><span style="color: #000000">);</span>
-
-<span style="color: #008000">// Schedule another render shot</span>
-<span style="color: #008000">// Only the latest render shot within one schedule will be executed </span>
-<span style="color: #795E26">btnSchedule</span><span style="color: #000000">(() </span><span style="color: #0000FF">=&gt;</span><span style="color: #000000"> </span><span style="color: #001080">document</span><span style="color: #000000">.</span><span style="color: #795E26">getElementById</span><span style="color: #000000">(</span><span style="color: #A31515">&#039;button&#039;</span><span style="color: #000000">).</span><span style="color: #001080">disabled</span><span style="color: #000000"> = </span><span style="color: #0000FF">true</span><span style="color: #000000">);</span>
-
-<span style="color: #008000">// Each schedule schedules its render shots independently from others.</span>
-<span style="color: #008000">// Yet render shots from all schedules for the same window are executed in the same animation frame.</span>
-<span style="color: #0000FF">const</span><span style="color: #000000"> </span><span style="color: #0070C1">popupSchedule</span><span style="color: #000000"> = </span><span style="color: #795E26">newRenderSchedule</span><span style="color: #000000">();</span>
-
-<span style="color: #795E26">popupSchedule</span><span style="color: #000000">(</span><span style="color: #001080">execution</span><span style="color: #000000"> </span><span style="color: #0000FF">=&gt;</span><span style="color: #000000"> {</span>
-<span style="color: #000000">  </span>
-<span style="color: #000000">  </span><span style="color: #0000FF">const</span><span style="color: #000000"> </span><span style="color: #0070C1">popup</span><span style="color: #000000"> = </span><span style="color: #001080">document</span><span style="color: #000000">.</span><span style="color: #795E26">getElementById</span><span style="color: #000000">(</span><span style="color: #A31515">&#039;popup&#039;</span><span style="color: #000000">);</span>
-
-<span style="color: #000000">  </span><span style="color: #001080">popup</span><span style="color: #000000">.</span><span style="color: #001080">classList</span><span style="color: #000000">.</span><span style="color: #795E26">remove</span><span style="color: #000000">(</span><span style="color: #A31515">&#039;hidden&#039;</span><span style="color: #000000">);</span>
-<span style="color: #000000">  </span>
-<span style="color: #000000">  </span><span style="color: #001080">execution</span><span style="color: #000000">.</span><span style="color: #795E26">postpone</span><span style="color: #000000">(() </span><span style="color: #0000FF">=&gt;</span><span style="color: #000000"> {</span>
-<span style="color: #000000">    </span><span style="color: #008000">// Postponed render shot is executed after the rest of them.</span>
-<span style="color: #000000">    </span><span style="color: #008000">// This is useful when it needs to synchronously request a page reflow,</span>
-<span style="color: #000000">    </span><span style="color: #008000">// e.g. by requesting of geometry of just updated DOM element.  </span>
-
-<span style="color: #000000">    </span><span style="color: #0000FF">const</span><span style="color: #000000"> </span><span style="color: #0070C1">shadow</span><span style="color: #000000"> = </span><span style="color: #001080">document</span><span style="color: #000000">.</span><span style="color: #795E26">getElementById</span><span style="color: #000000">(</span><span style="color: #A31515">&#039;popup-shadow&#039;</span><span style="color: #000000">);</span>
-<span style="color: #000000">    </span><span style="color: #0000FF">const</span><span style="color: #000000"> { </span><span style="color: #0070C1">clientWidth</span><span style="color: #000000">, </span><span style="color: #0070C1">clientHeight</span><span style="color: #000000"> } = </span><span style="color: #001080">popup</span><span style="color: #000000">;</span>
-<span style="color: #000000">    </span>
-<span style="color: #000000">    </span><span style="color: #001080">shadow</span><span style="color: #000000">.</span><span style="color: #001080">classList</span><span style="color: #000000">.</span><span style="color: #795E26">remove</span><span style="color: #000000">(</span><span style="color: #A31515">&#039;hidden&#039;</span><span style="color: #000000">);</span>
-<span style="color: #000000">    </span><span style="color: #001080">shadow</span><span style="color: #000000">.</span><span style="color: #001080">style</span><span style="color: #000000">.</span><span style="color: #001080">width</span><span style="color: #000000"> = </span><span style="color: #001080">clientWidth</span><span style="color: #000000">;</span>
-<span style="color: #000000">    </span><span style="color: #001080">shadow</span><span style="color: #000000">.</span><span style="color: #001080">style</span><span style="color: #000000">.</span><span style="color: #001080">height</span><span style="color: #000000"> = </span><span style="color: #001080">clientHeight</span><span style="color: #000000">;</span>
-<span style="color: #000000">  });</span>
-<span style="color: #000000">});</span>
+<a href="#usage" id="usage" style="color: inherit; text-decoration: none;">
+  <h2>Usage</h2>
+</a>
+<pre><code class="language-typescript"><span class="hl-0">import</span><span class="hl-1"> { </span><span class="hl-2">newRenderSchedule</span><span class="hl-1"> } </span><span class="hl-0">from</span><span class="hl-1"> </span><span class="hl-3">&#39;@frontmeans/render-scheduler&#39;</span><span class="hl-1">;</span><br/><br/><span class="hl-4">// First, create a rendering schedule</span><br/><span class="hl-5">const</span><span class="hl-1"> </span><span class="hl-6">btnSchedule</span><span class="hl-1"> = </span><span class="hl-7">newRenderSchedule</span><span class="hl-1">();</span><br/><br/><span class="hl-4">// Schedule render shot</span><br/><span class="hl-7">btnSchedule</span><span class="hl-1">(() </span><span class="hl-5">=&gt;</span><span class="hl-1"> </span><span class="hl-2">document</span><span class="hl-1">.</span><span class="hl-7">getElementById</span><span class="hl-1">(</span><span class="hl-3">&#39;button&#39;</span><span class="hl-1">).</span><span class="hl-2">disabled</span><span class="hl-1"> = </span><span class="hl-5">false</span><span class="hl-1">);</span><br/><br/><span class="hl-4">// Schedule another render shot</span><br/><span class="hl-4">// Only the latest render shot within one schedule will be executed </span><br/><span class="hl-7">btnSchedule</span><span class="hl-1">(() </span><span class="hl-5">=&gt;</span><span class="hl-1"> </span><span class="hl-2">document</span><span class="hl-1">.</span><span class="hl-7">getElementById</span><span class="hl-1">(</span><span class="hl-3">&#39;button&#39;</span><span class="hl-1">).</span><span class="hl-2">disabled</span><span class="hl-1"> = </span><span class="hl-5">true</span><span class="hl-1">);</span><br/><br/><span class="hl-4">// Each schedule schedules its render shots independently from others.</span><br/><span class="hl-4">// Yet render shots from all schedules for the same window are executed in the same animation frame.</span><br/><span class="hl-5">const</span><span class="hl-1"> </span><span class="hl-6">popupSchedule</span><span class="hl-1"> = </span><span class="hl-7">newRenderSchedule</span><span class="hl-1">();</span><br/><br/><span class="hl-7">popupSchedule</span><span class="hl-1">(</span><span class="hl-2">execution</span><span class="hl-1"> </span><span class="hl-5">=&gt;</span><span class="hl-1"> {</span><br/><span class="hl-1">  </span><br/><span class="hl-1">  </span><span class="hl-5">const</span><span class="hl-1"> </span><span class="hl-6">popup</span><span class="hl-1"> = </span><span class="hl-2">document</span><span class="hl-1">.</span><span class="hl-7">getElementById</span><span class="hl-1">(</span><span class="hl-3">&#39;popup&#39;</span><span class="hl-1">);</span><br/><br/><span class="hl-1">  </span><span class="hl-2">popup</span><span class="hl-1">.</span><span class="hl-2">classList</span><span class="hl-1">.</span><span class="hl-7">remove</span><span class="hl-1">(</span><span class="hl-3">&#39;hidden&#39;</span><span class="hl-1">);</span><br/><span class="hl-1">  </span><br/><span class="hl-1">  </span><span class="hl-2">execution</span><span class="hl-1">.</span><span class="hl-7">postpone</span><span class="hl-1">(() </span><span class="hl-5">=&gt;</span><span class="hl-1"> {</span><br/><span class="hl-1">    </span><span class="hl-4">// Postponed render shot is executed after the rest of them.</span><br/><span class="hl-1">    </span><span class="hl-4">// This is useful when it needs to synchronously request a page reflow,</span><br/><span class="hl-1">    </span><span class="hl-4">// e.g. by requesting of geometry of just updated DOM element.  </span><br/><br/><span class="hl-1">    </span><span class="hl-5">const</span><span class="hl-1"> </span><span class="hl-6">shadow</span><span class="hl-1"> = </span><span class="hl-2">document</span><span class="hl-1">.</span><span class="hl-7">getElementById</span><span class="hl-1">(</span><span class="hl-3">&#39;popup-shadow&#39;</span><span class="hl-1">);</span><br/><span class="hl-1">    </span><span class="hl-5">const</span><span class="hl-1"> { </span><span class="hl-6">clientWidth</span><span class="hl-1">, </span><span class="hl-6">clientHeight</span><span class="hl-1"> } = </span><span class="hl-2">popup</span><span class="hl-1">;</span><br/><span class="hl-1">    </span><br/><span class="hl-1">    </span><span class="hl-2">shadow</span><span class="hl-1">.</span><span class="hl-2">classList</span><span class="hl-1">.</span><span class="hl-7">remove</span><span class="hl-1">(</span><span class="hl-3">&#39;hidden&#39;</span><span class="hl-1">);</span><br/><span class="hl-1">    </span><span class="hl-2">shadow</span><span class="hl-1">.</span><span class="hl-2">style</span><span class="hl-1">.</span><span class="hl-2">width</span><span class="hl-1"> = </span><span class="hl-2">clientWidth</span><span class="hl-1">;</span><br/><span class="hl-1">    </span><span class="hl-2">shadow</span><span class="hl-1">.</span><span class="hl-2">style</span><span class="hl-1">.</span><span class="hl-2">height</span><span class="hl-1"> = </span><span class="hl-2">clientHeight</span><span class="hl-1">;</span><br/><span class="hl-1">  });</span><br/><span class="hl-1">});</span>
 </code></pre>
-				<a href="#scheduler-implementations" id="scheduler-implementations" style="color: inherit; text-decoration: none;">
-					<h2>Scheduler Implementations</h2>
-				</a>
-				<p>By default, a scheduler executes render shots within animation frame. It utilizes <a href="https://developer.mozilla.org/en-US/docs/Web/API/window/requestAnimationFrame">requestAnimationFrame()</a>
-					of current window for that. This implementation is called <code>animationRenderScheduler</code>. It helps limit the rate
-				of DOM manipulations caused by too frequent updates, as only the latest render shot in the same schedule is executed.</p>
-				<p>There is a few more implementations:</p>
-				<ul>
-					<li><code>asyncRenderScheduler</code> - executes render shots asynchronously,</li>
-					<li><code>immediateRenderScheduler</code> - executes render shots immediately,</li>
-					<li><code>ManualRenderScheduler</code> - executes render shots on request,</li>
-					<li><code>noopRenderScheduler</code> - neither schedules, nor executes render shots,</li>
-					<li><code>queuedRenderScheduler</code> - schedules render shots for immediate execution. </li>
-				</ul>
-				<p>Render schedulers can be used directly, or set globally with <code>setRenderScheduler()</code> function. In the latter case
-				the <code>newRenderSchedule()</code> function would use that scheduler.</p>
-				<p>Custom scheduler may also be created using <code>customRenderScheduler()</code> function.</p>
-				<a href="#schedule-options" id="schedule-options" style="color: inherit; text-decoration: none;">
-					<h2>Schedule Options</h2>
-				</a>
-				<p>When constructing a new schedule additional options may be specified:</p>
-				<ul>
-					<li><code>window</code> - A window for constructed schedule.
-						<code>animationRenderScheduler</code> executes render shots for all schedules created for the same window simultaneously,
-						in the same animation frame.
-						Other implementations ignore this option.
-					Defaults to the window of the <code>node</code>, or to the current one.</li>
-					<li><code>node</code> - A DOM node for constructed schedule.
-					Used to detect missing <code>window</code> option.</li>
-					<li><code>error(...messages: any[])</code> - a method that will be called when some error occurred.
-						E.g. when render shot execution failed.
-					Defaults to <code>console.error()</code>.   </li>
-				</ul>
-			</div>
-		</div>
-		<div class="col-4 col-menu menu-sticky-wrap menu-highlight">
-			<nav class="tsd-navigation primary">
-				<ul>
-					<li class=" ">
-						<a href="modules.html">Exports</a>
-					</li>
-					<li class=" tsd-kind-namespace">
-						<a href="modules/RenderQueue.html">Render<wbr>Queue</a>
-					</li>
-				</ul>
-			</nav>
-			<nav class="tsd-navigation secondary menu-sticky">
-				<ul class="before-current">
-					<li class=" tsd-kind-interface">
-						<a href="interfaces/AbortableRenderExecution.html" class="tsd-kind-icon">Abortable<wbr>Render<wbr>Execution</a>
-					</li>
-					<li class=" tsd-kind-interface tsd-has-type-parameter">
-						<a href="interfaces/AbortableRenderSchedule.html" class="tsd-kind-icon">Abortable<wbr>Render<wbr>Schedule</a>
-					</li>
-					<li class=" tsd-kind-interface">
-						<a href="interfaces/AbortableRenderScheduleOptions.html" class="tsd-kind-icon">Abortable<wbr>Render<wbr>Schedule<wbr>Options</a>
-					</li>
-					<li class=" tsd-kind-interface tsd-has-type-parameter">
-						<a href="interfaces/AbortableRenderScheduler.html" class="tsd-kind-icon">Abortable<wbr>Render<wbr>Scheduler</a>
-					</li>
-					<li class=" tsd-kind-interface">
-						<a href="interfaces/CustomRenderSchedulerOptions.html" class="tsd-kind-icon">Custom<wbr>Render<wbr>Scheduler<wbr>Options</a>
-					</li>
-					<li class=" tsd-kind-interface tsd-has-type-parameter">
-						<a href="interfaces/DelegateRenderScheduler.html" class="tsd-kind-icon">Delegate<wbr>Render<wbr>Scheduler</a>
-					</li>
-					<li class=" tsd-kind-interface tsd-has-type-parameter">
-						<a href="interfaces/DraftRenderExecution.html" class="tsd-kind-icon">Draft<wbr>Render<wbr>Execution</a>
-					</li>
-					<li class=" tsd-kind-interface">
-						<a href="interfaces/ManualRenderScheduler.html" class="tsd-kind-icon">Manual<wbr>Render<wbr>Scheduler</a>
-					</li>
-					<li class=" tsd-kind-interface">
-						<a href="interfaces/RenderExecution.html" class="tsd-kind-icon">Render<wbr>Execution</a>
-					</li>
-					<li class=" tsd-kind-interface">
-						<a href="interfaces/RenderQueue.html" class="tsd-kind-icon">Render<wbr>Queue</a>
-					</li>
-					<li class=" tsd-kind-interface">
-						<a href="interfaces/RenderScheduleConfig.html" class="tsd-kind-icon">Render<wbr>Schedule<wbr>Config</a>
-					</li>
-					<li class=" tsd-kind-interface">
-						<a href="interfaces/RenderScheduleOptions.html" class="tsd-kind-icon">Render<wbr>Schedule<wbr>Options</a>
-					</li>
-					<li class=" tsd-kind-type-alias">
-						<a href="modules.html#CxWindow" class="tsd-kind-icon">Cx<wbr>Window</a>
-					</li>
-					<li class=" tsd-kind-type-alias tsd-has-type-parameter">
-						<a href="modules.html#MappedRenderExecutor" class="tsd-kind-icon">Mapped<wbr>Render<wbr>Executor</a>
-					</li>
-					<li class=" tsd-kind-type-alias">
-						<a href="modules.html#PreRenderScheduler" class="tsd-kind-icon">Pre<wbr>Render<wbr>Scheduler</a>
-					</li>
-					<li class=" tsd-kind-type-alias tsd-has-type-parameter">
-						<a href="modules.html#RenderSchedule" class="tsd-kind-icon">Render<wbr>Schedule</a>
-					</li>
-					<li class=" tsd-kind-type-alias tsd-has-type-parameter">
-						<a href="modules.html#RenderScheduler" class="tsd-kind-icon">Render<wbr>Scheduler</a>
-					</li>
-					<li class=" tsd-kind-type-alias tsd-has-type-parameter">
-						<a href="modules.html#RenderShot" class="tsd-kind-icon">Render<wbr>Shot</a>
-					</li>
-					<li class=" tsd-kind-variable">
-						<a href="modules.html#CxWindow" class="tsd-kind-icon">Cx<wbr>Window</a>
-					</li>
-					<li class=" tsd-kind-variable">
-						<a href="modules.html#PreRenderScheduler" class="tsd-kind-icon">Pre<wbr>Render<wbr>Scheduler</a>
-					</li>
-					<li class=" tsd-kind-variable">
-						<a href="modules.html#RenderQueue" class="tsd-kind-icon">Render<wbr>Queue</a>
-					</li>
-					<li class=" tsd-kind-variable">
-						<a href="modules.html#RenderScheduleConfig" class="tsd-kind-icon">Render<wbr>Schedule<wbr>Config</a>
-					</li>
-					<li class=" tsd-kind-variable">
-						<a href="modules.html#RenderScheduler" class="tsd-kind-icon">Render<wbr>Scheduler</a>
-					</li>
-					<li class=" tsd-kind-function">
-						<a href="modules.html#animationRenderScheduler" class="tsd-kind-icon">animation<wbr>Render<wbr>Scheduler</a>
-					</li>
-					<li class=" tsd-kind-function">
-						<a href="modules.html#asyncRenderScheduler" class="tsd-kind-icon">async<wbr>Render<wbr>Scheduler</a>
-					</li>
-					<li class=" tsd-kind-function">
-						<a href="modules.html#customRenderScheduler" class="tsd-kind-icon">custom<wbr>Render<wbr>Scheduler</a>
-					</li>
-					<li class=" tsd-kind-function">
-						<a href="modules.html#cxRenderScheduler" class="tsd-kind-icon">cx<wbr>Render<wbr>Scheduler</a>
-					</li>
-					<li class=" tsd-kind-function">
-						<a href="modules.html#immediateRenderScheduler" class="tsd-kind-icon">immediate<wbr>Render<wbr>Scheduler</a>
-					</li>
-					<li class=" tsd-kind-function tsd-has-type-parameter">
-						<a href="modules.html#mapRenderSchedule" class="tsd-kind-icon">map<wbr>Render<wbr>Schedule</a>
-					</li>
-					<li class=" tsd-kind-function tsd-has-type-parameter">
-						<a href="modules.html#newAbortableRenderScheduler" class="tsd-kind-icon">new<wbr>Abortable<wbr>Render<wbr>Scheduler</a>
-					</li>
-					<li class=" tsd-kind-function tsd-has-type-parameter">
-						<a href="modules.html#newDelegateRenderScheduler" class="tsd-kind-icon">new<wbr>Delegate<wbr>Render<wbr>Scheduler</a>
-					</li>
-					<li class=" tsd-kind-function">
-						<a href="modules.html#newManualRenderScheduler" class="tsd-kind-icon">new<wbr>Manual<wbr>Render<wbr>Scheduler</a>
-					</li>
-					<li class=" tsd-kind-function">
-						<a href="modules.html#newRenderSchedule" class="tsd-kind-icon">new<wbr>Render<wbr>Schedule</a>
-					</li>
-					<li class=" tsd-kind-function">
-						<a href="modules.html#noopRenderScheduler" class="tsd-kind-icon">noop<wbr>Render<wbr>Scheduler</a>
-					</li>
-					<li class=" tsd-kind-function">
-						<a href="modules.html#queuedRenderScheduler" class="tsd-kind-icon">queued<wbr>Render<wbr>Scheduler</a>
-					</li>
-					<li class=" tsd-kind-function">
-						<a href="modules.html#setRenderScheduler" class="tsd-kind-icon">set<wbr>Render<wbr>Scheduler</a>
-					</li>
-				</ul>
-			</nav>
-		</div>
-	</div>
-</div>
-<footer class="with-border-bottom">
-	<div class="container">
-		<h2>Legend</h2>
-		<div class="tsd-legend-group">
-			<ul class="tsd-legend">
-				<li class="tsd-kind-property tsd-parent-kind-interface"><span class="tsd-kind-icon">Property</span></li>
-				<li class="tsd-kind-method tsd-parent-kind-interface"><span class="tsd-kind-icon">Method</span></li>
-			</ul>
-		</div>
-	</div>
-</footer>
-<div class="container tsd-generator">
-	<p>Generated using <a href="https://typedoc.org/" target="_blank">TypeDoc</a></p>
-</div>
-<div class="overlay"></div>
-<script src="assets/js/main.js"></script>
-</body>
-</html>
+
+<a href="#scheduler-implementations" id="scheduler-implementations" style="color: inherit; text-decoration: none;">
+  <h2>Scheduler Implementations</h2>
+</a>
+<p>By default, a scheduler executes render shots within animation frame. It utilizes <a href="https://developer.mozilla.org/en-US/docs/Web/API/window/requestAnimationFrame">requestAnimationFrame()</a>
+of current window for that. This implementation is called <code>animationRenderScheduler</code>. It helps limit the rate
+of DOM manipulations caused by too frequent updates, as only the latest render shot in the same schedule is executed.</p>
+<p>There is a few more implementations:</p>
+<ul>
+<li><code>asyncRenderScheduler</code> - executes render shots asynchronously,</li>
+<li><code>immediateRenderScheduler</code> - executes render shots immediately,</li>
+<li><code>ManualRenderScheduler</code> - executes render shots on request,</li>
+<li><code>noopRenderScheduler</code> - neither schedules, nor executes render shots,</li>
+<li><code>queuedRenderScheduler</code> - schedules render shots for immediate execution.</li>
+</ul>
+<p>Render schedulers can be used directly, or set globally with <code>setRenderScheduler()</code> function. In the latter case
+the <code>newRenderSchedule()</code> function would use that scheduler.</p>
+<p>Custom scheduler may also be created using <code>customRenderScheduler()</code> function.</p>
+
+<a href="#schedule-options" id="schedule-options" style="color: inherit; text-decoration: none;">
+  <h2>Schedule Options</h2>
+</a>
+<p>When constructing a new schedule additional options may be specified:</p>
+<ul>
+<li><code>window</code> - A window for constructed schedule.
+<code>animationRenderScheduler</code> executes render shots for all schedules created for the same window simultaneously,
+in the same animation frame.
+Other implementations ignore this option.
+Defaults to the window of the <code>node</code>, or to the current one.</li>
+<li><code>node</code> - A DOM node for constructed schedule.
+Used to detect missing <code>window</code> option.</li>
+<li><code>error(...messages: any[])</code> - a method that will be called when some error occurred.
+E.g. when render shot execution failed.
+Defaults to <code>console.error()</code>.</li>
+</ul>
+</div></div><div class="col-4 col-menu menu-sticky-wrap menu-highlight"><nav class="tsd-navigation primary"><ul><li class="current"><a href="modules.html">Exports</a></li><li class=" tsd-kind-namespace"><a href="modules/RenderQueue.html">Render<wbr/>Queue</a></li></ul></nav><nav class="tsd-navigation secondary menu-sticky"><ul><li class="tsd-kind-interface"><a href="interfaces/AbortableRenderExecution.html" class="tsd-kind-icon">Abortable<wbr/>Render<wbr/>Execution</a></li><li class="tsd-kind-interface tsd-has-type-parameter"><a href="interfaces/AbortableRenderSchedule.html" class="tsd-kind-icon">Abortable<wbr/>Render<wbr/>Schedule</a></li><li class="tsd-kind-interface"><a href="interfaces/AbortableRenderScheduleOptions.html" class="tsd-kind-icon">Abortable<wbr/>Render<wbr/>Schedule<wbr/>Options</a></li><li class="tsd-kind-interface tsd-has-type-parameter"><a href="interfaces/AbortableRenderScheduler.html" class="tsd-kind-icon">Abortable<wbr/>Render<wbr/>Scheduler</a></li><li class="tsd-kind-interface"><a href="interfaces/CustomRenderSchedulerOptions.html" class="tsd-kind-icon">Custom<wbr/>Render<wbr/>Scheduler<wbr/>Options</a></li><li class="tsd-kind-interface tsd-has-type-parameter"><a href="interfaces/DelegateRenderScheduler.html" class="tsd-kind-icon">Delegate<wbr/>Render<wbr/>Scheduler</a></li><li class="tsd-kind-interface tsd-has-type-parameter"><a href="interfaces/DraftRenderExecution.html" class="tsd-kind-icon">Draft<wbr/>Render<wbr/>Execution</a></li><li class="tsd-kind-interface"><a href="interfaces/ManualRenderScheduler.html" class="tsd-kind-icon">Manual<wbr/>Render<wbr/>Scheduler</a></li><li class="tsd-kind-interface"><a href="interfaces/RenderExecution.html" class="tsd-kind-icon">Render<wbr/>Execution</a></li><li class="tsd-kind-interface"><a href="interfaces/RenderQueue.html" class="tsd-kind-icon">Render<wbr/>Queue</a></li><li class="tsd-kind-interface"><a href="interfaces/RenderScheduleConfig.html" class="tsd-kind-icon">Render<wbr/>Schedule<wbr/>Config</a></li><li class="tsd-kind-interface"><a href="interfaces/RenderScheduleOptions.html" class="tsd-kind-icon">Render<wbr/>Schedule<wbr/>Options</a></li><li class="tsd-kind-type-alias"><a href="modules.html#CxWindow" class="tsd-kind-icon">Cx<wbr/>Window</a></li><li class="tsd-kind-type-alias tsd-has-type-parameter"><a href="modules.html#MappedRenderExecutor" class="tsd-kind-icon">Mapped<wbr/>Render<wbr/>Executor</a></li><li class="tsd-kind-type-alias"><a href="modules.html#PreRenderScheduler" class="tsd-kind-icon">Pre<wbr/>Render<wbr/>Scheduler</a></li><li class="tsd-kind-type-alias tsd-has-type-parameter"><a href="modules.html#RenderSchedule" class="tsd-kind-icon">Render<wbr/>Schedule</a></li><li class="tsd-kind-type-alias tsd-has-type-parameter"><a href="modules.html#RenderScheduler" class="tsd-kind-icon">Render<wbr/>Scheduler</a></li><li class="tsd-kind-type-alias tsd-has-type-parameter"><a href="modules.html#RenderShot" class="tsd-kind-icon">Render<wbr/>Shot</a></li><li class="tsd-kind-variable"><a href="modules.html#CxWindow" class="tsd-kind-icon">Cx<wbr/>Window</a></li><li class="tsd-kind-variable"><a href="modules.html#PreRenderScheduler" class="tsd-kind-icon">Pre<wbr/>Render<wbr/>Scheduler</a></li><li class="tsd-kind-variable"><a href="modules.html#RenderQueue" class="tsd-kind-icon">Render<wbr/>Queue</a></li><li class="tsd-kind-variable"><a href="modules.html#RenderScheduleConfig" class="tsd-kind-icon">Render<wbr/>Schedule<wbr/>Config</a></li><li class="tsd-kind-variable"><a href="modules.html#RenderScheduler" class="tsd-kind-icon">Render<wbr/>Scheduler</a></li><li class="tsd-kind-function"><a href="modules.html#animationRenderScheduler" class="tsd-kind-icon">animation<wbr/>Render<wbr/>Scheduler</a></li><li class="tsd-kind-function"><a href="modules.html#asyncRenderScheduler" class="tsd-kind-icon">async<wbr/>Render<wbr/>Scheduler</a></li><li class="tsd-kind-function"><a href="modules.html#customRenderScheduler" class="tsd-kind-icon">custom<wbr/>Render<wbr/>Scheduler</a></li><li class="tsd-kind-function"><a href="modules.html#cxRenderScheduler" class="tsd-kind-icon">cx<wbr/>Render<wbr/>Scheduler</a></li><li class="tsd-kind-function"><a href="modules.html#immediateRenderScheduler" class="tsd-kind-icon">immediate<wbr/>Render<wbr/>Scheduler</a></li><li class="tsd-kind-function tsd-has-type-parameter"><a href="modules.html#mapRenderSchedule" class="tsd-kind-icon">map<wbr/>Render<wbr/>Schedule</a></li><li class="tsd-kind-function tsd-has-type-parameter"><a href="modules.html#newAbortableRenderScheduler" class="tsd-kind-icon">new<wbr/>Abortable<wbr/>Render<wbr/>Scheduler</a></li><li class="tsd-kind-function tsd-has-type-parameter"><a href="modules.html#newDelegateRenderScheduler" class="tsd-kind-icon">new<wbr/>Delegate<wbr/>Render<wbr/>Scheduler</a></li><li class="tsd-kind-function"><a href="modules.html#newManualRenderScheduler" class="tsd-kind-icon">new<wbr/>Manual<wbr/>Render<wbr/>Scheduler</a></li><li class="tsd-kind-function"><a href="modules.html#newRenderSchedule" class="tsd-kind-icon">new<wbr/>Render<wbr/>Schedule</a></li><li class="tsd-kind-function"><a href="modules.html#noopRenderScheduler" class="tsd-kind-icon">noop<wbr/>Render<wbr/>Scheduler</a></li><li class="tsd-kind-function"><a href="modules.html#queuedRenderScheduler" class="tsd-kind-icon">queued<wbr/>Render<wbr/>Scheduler</a></li><li class="tsd-kind-function"><a href="modules.html#setRenderScheduler" class="tsd-kind-icon">set<wbr/>Render<wbr/>Scheduler</a></li></ul></nav></div></div></div><footer class="with-border-bottom"><div class="container"><h2>Legend</h2><div class="tsd-legend-group"><ul class="tsd-legend"><li class="tsd-kind-property tsd-parent-kind-interface"><span class="tsd-kind-icon">Property</span></li><li class="tsd-kind-method tsd-parent-kind-interface"><span class="tsd-kind-icon">Method</span></li></ul></div><h2>Settings</h2><p>Theme <select id="theme"><option value="os">OS</option><option value="light">Light</option><option value="dark">Dark</option></select></p></div></footer><div class="container tsd-generator"><p>Generated using <a href="https://typedoc.org/" target="_blank">TypeDoc</a></p></div><div class="overlay"></div><script src="assets/main.js"></script></body></html>
