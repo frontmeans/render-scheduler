@@ -1,5 +1,4 @@
-DOM Render Scheduler 
-====================
+# DOM Render Scheduler
 
 [![NPM][npm-image]][npm-url]
 [![Build Status][build-status-img]][build-status-link]
@@ -23,9 +22,7 @@ Schedules rendering of DOM updates called _render shots_.
 [api-docs-image]: https://img.shields.io/static/v1?logo=typescript&label=API&message=docs&color=informational
 [api-docs-url]: https://frontmeans.github.io/render-scheduler/index.html
 
-
-Usage
------
+## Usage
 
 ```typescript
 import { newRenderSchedule } from '@frontmeans/render-scheduler';
@@ -34,30 +31,29 @@ import { newRenderSchedule } from '@frontmeans/render-scheduler';
 const btnSchedule = newRenderSchedule();
 
 // Schedule render shot
-btnSchedule(() => document.getElementById('button').disabled = false);
+btnSchedule(() => (document.getElementById('button').disabled = false));
 
 // Schedule another render shot
-// Only the latest render shot within one schedule will be executed 
-btnSchedule(() => document.getElementById('button').disabled = true);
+// Only the latest render shot within one schedule will be executed
+btnSchedule(() => (document.getElementById('button').disabled = true));
 
 // Each schedule schedules its render shots independently from others.
 // Yet render shots from all schedules for the same window are executed in the same animation frame.
 const popupSchedule = newRenderSchedule();
 
 popupSchedule(execution => {
-  
   const popup = document.getElementById('popup');
 
   popup.classList.remove('hidden');
-  
+
   execution.postpone(() => {
     // Postponed render shot is executed after the rest of them.
     // This is useful when it needs to synchronously request a page reflow,
-    // e.g. by requesting of geometry of just updated DOM element.  
+    // e.g. by requesting of geometry of just updated DOM element.
 
     const shadow = document.getElementById('popup-shadow');
     const { clientWidth, clientHeight } = popup;
-    
+
     shadow.classList.remove('hidden');
     shadow.style.width = clientWidth;
     shadow.style.height = clientHeight;
@@ -65,9 +61,7 @@ popupSchedule(execution => {
 });
 ```
 
-
-Scheduler Implementations
--------------------------
+## Scheduler Implementations
 
 By default, a scheduler executes render shots within animation frame. It utilizes [requestAnimationFrame()]
 of current window for that. This implementation is called `animationRenderScheduler`. It helps limit the rate
@@ -79,18 +73,16 @@ There is a few more implementations:
 - `immediateRenderScheduler` - executes render shots immediately,
 - `ManualRenderScheduler` - executes render shots on request,
 - `noopRenderScheduler` - neither schedules, nor executes render shots,
-- `queuedRenderScheduler` - schedules render shots for immediate execution. 
+- `queuedRenderScheduler` - schedules render shots for immediate execution.
 
 Render schedulers can be used directly, or set globally with `setRenderScheduler()` function. In the latter case
 the `newRenderSchedule()` function would use that scheduler.
 
 Custom scheduler may also be created using `customRenderScheduler()` function.
 
-[requestAnimationFrame()]: https://developer.mozilla.org/en-US/docs/Web/API/window/requestAnimationFrame
+[requestanimationframe()]: https://developer.mozilla.org/en-US/docs/Web/API/window/requestAnimationFrame
 
-
-Schedule Options
-----------------
+## Schedule Options
 
 When constructing a new schedule additional options may be specified:
 
@@ -103,5 +95,4 @@ When constructing a new schedule additional options may be specified:
   Used to detect missing `window` option.
 - `error(...messages: any[])` - a method that will be called when some error occurred.
   E.g. when render shot execution failed.
-  Defaults to `console.error()`.   
-
+  Defaults to `console.error()`.
