@@ -12,8 +12,8 @@ import { RenderScheduler } from './render-scheduler';
 
 describe('setRenderScheduler', () => {
 
-  let mockScheduler: Mock<ReturnType<RenderScheduler>, Parameters<RenderScheduler>>;
-  let mockSchedule: Mock<void, Parameters<RenderSchedule>>;
+  let mockScheduler: Mock<RenderScheduler>;
+  let mockSchedule: Mock<RenderSchedule>;
 
   beforeEach(() => {
     mockScheduler = jest.fn((_options?: RenderScheduleOptions) => mockSchedule);
@@ -42,7 +42,7 @@ describe('setRenderScheduler', () => {
 
   describe('context entry', () => {
 
-    let mockScheduler: Mock<RenderSchedule, Parameters<RenderScheduler>>;
+    let mockScheduler: Mock<RenderScheduler>;
 
     beforeEach(() => {
       mockScheduler = jest.fn(immediateRenderScheduler);
@@ -85,7 +85,7 @@ describe('setRenderScheduler', () => {
     });
     it('substitutes default window to provided scheduler', () => {
 
-      const customScheduler = jest.fn<RenderSchedule, [RenderScheduleOptions?]>();
+      const customScheduler = jest.fn<RenderScheduler>();
 
       cxBuilder.provide(cxConstAsset(RenderScheduler, customScheduler));
 

@@ -6,7 +6,7 @@ import type { RenderSchedule, RenderScheduleOptions } from './render-schedule';
 describe('animationRenderScheduler', () => {
 
   let mockWindow: Window;
-  let mockError: Mock<void, [any]>;
+  let mockError: Mock<(...error: unknown[]) => void>;
   let animate: () => void;
 
   beforeEach(() => {

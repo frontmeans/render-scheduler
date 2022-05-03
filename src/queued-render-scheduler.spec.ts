@@ -5,7 +5,7 @@ import type { RenderSchedule } from './render-schedule';
 
 describe('queuedRenderScheduler', () => {
 
-  let mockError: Mock<void, [any]>;
+  let mockError: Mock<(...error: unknown[]) => void>;
 
   beforeEach(() => {
     mockError = jest.fn();

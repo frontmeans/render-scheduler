@@ -9,8 +9,8 @@ describe('CustomRenderScheduler', () => {
   it('passes config to enqueued render shots', () => {
 
     let exec = (): void => {/* not scheduled */};
-    const scheduled: Mock<void, [RenderExecution]>[] = [];
-    const executed: Mock<void, [RenderExecution]>[] = [];
+    const scheduled: Mock<(execution: RenderExecution) => void>[] = [];
+    const executed: Mock<(execution: RenderExecution) => void>[] = [];
     const queue: RenderQueue = {
       add: shot => scheduled.push(jest.fn(shot)),
       post: shot => scheduled.unshift(jest.fn(shot)),

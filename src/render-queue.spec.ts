@@ -1,12 +1,11 @@
 import { beforeEach, describe, expect, it, jest } from '@jest/globals';
 import type { Mock } from 'jest-mock';
 import { RenderQueue } from './render-queue';
-import type { RenderShot } from './render-shot';
 
 describe('RenderQueue', () => {
 
   let queue: RenderQueue;
-  let mockSchedule: Mock<void, [RenderShot]>;
+  let mockSchedule: Mock<() => void>;
 
   beforeEach(() => {
     mockSchedule = jest.fn();
