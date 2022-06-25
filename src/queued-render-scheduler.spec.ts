@@ -19,7 +19,7 @@ describe('queuedRenderScheduler', () => {
     schedule2 = queuedRenderScheduler();
   });
 
-  let errors: any[];
+  let errors: unknown[];
 
   beforeEach(() => {
     errors = [];

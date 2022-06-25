@@ -3,7 +3,7 @@ import { immediateRenderScheduler } from './immediate-render-scheduler';
 
 describe('immediateRenderScheduler', () => {
 
-  let errors: any[];
+  let errors: unknown[];
 
   beforeEach(() => {
     errors = [];

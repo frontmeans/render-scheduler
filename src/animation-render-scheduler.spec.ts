@@ -27,7 +27,7 @@ describe('animationRenderScheduler', () => {
     schedule2 = newRenderSchedule(options);
   });
 
-  let errors: any[];
+  let errors: unknown[];
 
   beforeEach(() => {
     errors = [];

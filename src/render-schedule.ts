@@ -56,7 +56,7 @@ export interface RenderScheduleOptions {
    *
    * @param messages - Error messages to report.
    */
-  error?: ((this: void, ...messages: any[]) => void) | undefined;
+  error?: ((this: void, ...messages: unknown[]) => void) | undefined;
 
 }
 
@@ -86,7 +86,7 @@ export interface RenderScheduleConfig {
    *
    * @param messages - Error messages to report.
    */
-  error(this: void, ...messages: any[]): void;
+  error(this: void, ...messages: unknown[]): void;
 
 }
 
