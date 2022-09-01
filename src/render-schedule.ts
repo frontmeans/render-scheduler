@@ -19,8 +19,8 @@ import type { RenderExecution, RenderShot } from './render-shot';
  * @param shot - A render shot to schedule.
  */
 export type RenderSchedule<TExecution extends RenderExecution = RenderExecution> = (
-    this: void,
-    shot: RenderShot<TExecution>,
+  this: void,
+  shot: RenderShot<TExecution>,
 ) => void;
 
 /**
@@ -32,7 +32,6 @@ export type RenderSchedule<TExecution extends RenderExecution = RenderExecution>
  * {@link RenderScheduleConfig.by} function.
  */
 export interface RenderScheduleOptions {
-
   /**
    * A window for constructed schedule.
    *
@@ -57,7 +56,6 @@ export interface RenderScheduleOptions {
    * @param messages - Error messages to report.
    */
   error?: ((this: void, ...messages: unknown[]) => void) | undefined;
-
 }
 
 /**
@@ -68,7 +66,6 @@ export interface RenderScheduleOptions {
  * The configuration ought to be constructed out of render options by {@link RenderScheduleConfig.by} function.
  */
 export interface RenderScheduleConfig {
-
   /**
    * A window the schedule is constructed for.
    *
@@ -87,11 +84,9 @@ export interface RenderScheduleConfig {
    * @param messages - Error messages to report.
    */
   error(this: void, ...messages: unknown[]): void;
-
 }
 
 export const RenderScheduleConfig = {
-
   /**
    * Constructs a configuration of render schedule by its options.
    *
@@ -100,7 +95,6 @@ export const RenderScheduleConfig = {
    * @returns Render schedule configuration.
    */
   by(this: void, options: RenderScheduleOptions = {}): RenderScheduleConfig {
-
     let win: Window | undefined;
     const { error = console.error } = options;
 
@@ -114,5 +108,4 @@ export const RenderScheduleConfig = {
       error,
     };
   },
-
 };

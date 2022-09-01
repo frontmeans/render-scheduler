@@ -4,7 +4,6 @@ import { queuedRenderScheduler } from './queued-render-scheduler';
 import type { RenderSchedule } from './render-schedule';
 
 describe('queuedRenderScheduler', () => {
-
   let mockError: Mock<(...error: unknown[]) => void>;
 
   beforeEach(() => {
@@ -25,18 +24,18 @@ describe('queuedRenderScheduler', () => {
     errors = [];
   });
   afterEach(() => {
-    errors.forEach(e => { throw e; });
+    errors.forEach(e => {
+      throw e;
+    });
   });
 
   it('renders immediately', () => {
-
     const shot = jest.fn();
 
     schedule(shot);
     expect(shot).toHaveBeenCalledTimes(1);
   });
   it('executes subsequent render shots immediately', () => {
-
     const shot1 = jest.fn();
     const shot2 = jest.fn();
 
@@ -46,7 +45,6 @@ describe('queuedRenderScheduler', () => {
     expect(shot2).toHaveBeenCalledTimes(1);
   });
   it('executes postponed render shot after the main one', () => {
-
     const postponed = jest.fn();
 
     schedule(execution => {
@@ -60,7 +58,6 @@ describe('queuedRenderScheduler', () => {
     expect(postponed).toHaveBeenCalledTimes(1);
   });
   it('executes all postponed render shots in reverse order', () => {
-
     const postponed1 = jest.fn();
     const postponed2 = jest.fn();
     const postponed3 = jest.fn();
@@ -68,28 +65,24 @@ describe('queuedRenderScheduler', () => {
     schedule(execution => {
       execution.postpone(ex => ex.postpone(postponed3));
       execution.postpone(
-          postponed1.mockImplementation(
-              () => {
-                try {
-                  expect(postponed2).toHaveBeenCalled();
-                  expect(postponed3).not.toHaveBeenCalled();
-                } catch (e) {
-                  errors.push(e);
-                }
-              },
-          ),
+        postponed1.mockImplementation(() => {
+          try {
+            expect(postponed2).toHaveBeenCalled();
+            expect(postponed3).not.toHaveBeenCalled();
+          } catch (e) {
+            errors.push(e);
+          }
+        }),
       );
       execution.postpone(
-          postponed2.mockImplementation(
-              () => {
-                try {
-                  expect(postponed1).not.toHaveBeenCalled();
-                  expect(postponed3).not.toHaveBeenCalled();
-                } catch (e) {
-                  errors.push(e);
-                }
-              },
-          ),
+        postponed2.mockImplementation(() => {
+          try {
+            expect(postponed1).not.toHaveBeenCalled();
+            expect(postponed3).not.toHaveBeenCalled();
+          } catch (e) {
+            errors.push(e);
+          }
+        }),
       );
     });
 
@@ -98,7 +91,6 @@ describe('queuedRenderScheduler', () => {
     expect(postponed3).toHaveBeenCalledTimes(1);
   });
   it('executes recurrent render shot after currently executing one', () => {
-
     const nextRender = jest.fn();
 
     schedule(() => {
@@ -113,7 +105,6 @@ describe('queuedRenderScheduler', () => {
     expect(nextRender).toHaveBeenCalledTimes(1);
   });
   it('executes only the last recurrent render shot after currently executing one', () => {
-
     const nextRender1 = jest.fn();
     const nextRender2 = jest.fn();
 
@@ -132,16 +123,17 @@ describe('queuedRenderScheduler', () => {
     expect(nextRender2).toHaveBeenCalledTimes(1);
   });
   it('executes render shot in stale schedule', () => {
-
     const nextRender1 = jest.fn();
     const nextRender2 = jest.fn();
     const nextRender3 = jest.fn();
 
     schedule(() => {
-      schedule(nextRender1.mockImplementation(() => {
-        schedule2(nextRender3); // This schedule is stale
-        schedule(nextRender2);
-      }));
+      schedule(
+        nextRender1.mockImplementation(() => {
+          schedule2(nextRender3); // This schedule is stale
+          schedule(nextRender2);
+        }),
+      );
       try {
         expect(nextRender1).not.toHaveBeenCalled();
         expect(nextRender2).not.toHaveBeenCalled();
@@ -156,7 +148,6 @@ describe('queuedRenderScheduler', () => {
     expect(nextRender3).toHaveBeenCalledTimes(1);
   });
   it('executes recurrent render shots in the same and another schedule after currently executing one', () => {
-
     const nextRender1 = jest.fn();
     const nextRender2 = jest.fn();
 
@@ -175,7 +166,6 @@ describe('queuedRenderScheduler', () => {
     expect(nextRender2).toHaveBeenCalledTimes(1);
   });
   it('executes recurrent render shot in another and the same schedule after currently executing one', () => {
-
     const nextRender1 = jest.fn();
     const nextRender2 = jest.fn();
 
@@ -194,7 +184,6 @@ describe('queuedRenderScheduler', () => {
     expect(nextRender2).toHaveBeenCalledTimes(1);
   });
   it('logs error and executes recurrent render shot after error', () => {
-
     const error = new Error('Expected');
     const nextRender = jest.fn();
 

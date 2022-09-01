@@ -5,7 +5,6 @@ import { CxWindow } from './cx-window';
 import { PreRenderScheduler } from './pre-render-scheduler';
 
 describe('PreRenderScheduler', () => {
-
   let mockWindow: CxWindow;
   let cxBuilder: CxBuilder;
   let scheduler: PreRenderScheduler;
@@ -19,7 +18,6 @@ describe('PreRenderScheduler', () => {
   });
 
   it('utilizes asynchronous render scheduler', async () => {
-
     const shot = jest.fn();
 
     scheduler()(shot);
@@ -29,7 +27,6 @@ describe('PreRenderScheduler', () => {
     expect(shot).toHaveBeenCalled();
   });
   it('is singleton', () => {
-
     const cxBuilder2 = new CxBuilder(get => ({ get }), cxBuilder);
 
     expect(cxBuilder2.get(PreRenderScheduler)).toBe(scheduler);

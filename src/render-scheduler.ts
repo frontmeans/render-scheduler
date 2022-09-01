@@ -28,12 +28,9 @@ import type { RenderExecution } from './render-shot';
  * @returns New render schedule.
  */
 export type RenderScheduler<
-    TExecution extends RenderExecution = RenderExecution,
-    TOptions extends RenderScheduleOptions = RenderScheduleOptions,
-    > = (
-    this: void,
-    options?: TOptions,
-) => RenderSchedule<TExecution>;
+  TExecution extends RenderExecution = RenderExecution,
+  TOptions extends RenderScheduleOptions = RenderScheduleOptions,
+> = (this: void, options?: TOptions) => RenderSchedule<TExecution>;
 
 /**
  * Context entry containing {@link RenderScheduler} instance.
@@ -43,9 +40,6 @@ export type RenderScheduler<
  * Uses {@link newRenderSchedule default} render scheduler by default.
  */
 export const RenderScheduler: CxEntry<RenderScheduler, RenderScheduler> = {
-  perContext: (/*#__PURE__*/ cxScoped(
-      CxGlobals,
-      (/*#__PURE__*/ cxRenderScheduler()),
-  )),
+  perContext: /*#__PURE__*/ cxScoped(CxGlobals, /*#__PURE__*/ cxRenderScheduler()),
   toString: () => '[RenderScheduler]',
 };

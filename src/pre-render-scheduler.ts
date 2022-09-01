@@ -21,9 +21,9 @@ export type PreRenderScheduler = RenderScheduler;
  * Uses {@link asyncRenderScheduler asynchronous} render scheduler by default.
  */
 export const PreRenderScheduler: CxEntry<PreRenderScheduler> = {
-  perContext: (/*#__PURE__*/ cxScoped(
-      CxGlobals,
-      (/*#__PURE__*/ cxRenderScheduler({ byDefault: _ => asyncRenderScheduler })),
-  )),
+  perContext: /*#__PURE__*/ cxScoped(
+    CxGlobals,
+    /*#__PURE__*/ cxRenderScheduler({ byDefault: _ => asyncRenderScheduler }),
+  ),
   toString: () => '[PreRenderScheduler]',
 };

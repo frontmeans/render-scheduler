@@ -3,7 +3,6 @@ import { asyncRenderScheduler } from './async-render-scheduler';
 import type { RenderSchedule } from './render-schedule';
 
 describe('asyncRenderScheduler', () => {
-
   let schedule: RenderSchedule;
   let schedule2: RenderSchedule;
 
@@ -13,7 +12,6 @@ describe('asyncRenderScheduler', () => {
   });
 
   it('rendering is deferred', async () => {
-
     const shot = jest.fn();
 
     schedule(shot);
@@ -23,7 +21,6 @@ describe('asyncRenderScheduler', () => {
     expect(shot).toHaveBeenCalledTimes(1);
   });
   it('executes only the last scheduled render shot', async () => {
-
     const shot1 = jest.fn();
     const shot2 = jest.fn();
 
@@ -37,7 +34,6 @@ describe('asyncRenderScheduler', () => {
     expect(shot2).toHaveBeenCalledTimes(1);
   });
   it('executes render shots from different schedules simultaneously', async () => {
-
     const shot1 = jest.fn();
     const shot2 = jest.fn();
 
@@ -51,7 +47,6 @@ describe('asyncRenderScheduler', () => {
     expect(shot2).toHaveBeenCalledTimes(1);
   });
   it('recurrent render shot is deferred', async () => {
-
     const shot1 = jest.fn();
     const shot2 = jest.fn();
 
@@ -72,7 +67,6 @@ describe('asyncRenderScheduler', () => {
     expect(shot2).toHaveBeenCalledTimes(1);
   });
   it('recurrent render shot in the same schedule is deferred', async () => {
-
     const shot1 = jest.fn();
     const shot2 = jest.fn();
 

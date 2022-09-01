@@ -3,7 +3,6 @@ import { ManualRenderScheduler, newManualRenderScheduler } from './manual-render
 import type { RenderSchedule } from './render-schedule';
 
 describe('manualRenderScheduler', () => {
-
   let scheduler: ManualRenderScheduler;
   let render: () => boolean;
   let schedule: RenderSchedule;
@@ -20,7 +19,6 @@ describe('manualRenderScheduler', () => {
     expect(render()).toBe(false);
   });
   it('executes scheduled render shots by request', () => {
-
     const shot1 = jest.fn();
     const shot2 = jest.fn();
     const shot3 = jest.fn();
@@ -44,7 +42,6 @@ describe('manualRenderScheduler', () => {
     expect(shot3).toHaveBeenCalledTimes(1);
   });
   it('executes postponed render shots', () => {
-
     const postponed1 = jest.fn();
     const postponed2 = jest.fn();
 
@@ -61,15 +58,16 @@ describe('manualRenderScheduler', () => {
     expect(postponed2).toHaveBeenCalledTimes(1);
   });
   it('executes recurrent render shot in the same schedule by next request', () => {
-
     const shot1 = jest.fn();
     const shot2 = jest.fn();
     const shot3 = jest.fn();
 
-    schedule(shot1.mockImplementation(() => {
-      schedule(shot2);
-      schedule(shot3);
-    }));
+    schedule(
+      shot1.mockImplementation(() => {
+        schedule(shot2);
+        schedule(shot3);
+      }),
+    );
 
     expect(shot1).not.toHaveBeenCalled();
     expect(shot2).not.toHaveBeenCalled();
@@ -90,15 +88,16 @@ describe('manualRenderScheduler', () => {
     expect(shot3).toHaveBeenCalledTimes(1);
   });
   it('executes recurrent render shot in another schedule by the same request', () => {
-
     const shot1 = jest.fn();
     const shot2 = jest.fn();
     const shot3 = jest.fn();
 
-    schedule(shot1.mockImplementation(() => {
-      schedule2(shot2);
-      schedule2(shot3);
-    }));
+    schedule(
+      shot1.mockImplementation(() => {
+        schedule2(shot2);
+        schedule2(shot3);
+      }),
+    );
 
     expect(shot1).not.toHaveBeenCalled();
     expect(shot2).not.toHaveBeenCalled();
@@ -115,7 +114,6 @@ describe('manualRenderScheduler', () => {
     expect(shot3).toHaveBeenCalledTimes(1);
   });
   it('executes postponed render shots after recurrent ones in another schedule', () => {
-
     const schedule3 = scheduler();
     const calls: string[] = [];
     const postponed = (): void => {
@@ -138,7 +136,6 @@ describe('manualRenderScheduler', () => {
     expect(calls).toEqual(['recurrent1', 'recurrent2', 'postponed']);
   });
   it('logs errors according to schedule options', () => {
-
     const logError1 = jest.fn();
     const logError2 = jest.fn();
 
@@ -147,8 +144,12 @@ describe('manualRenderScheduler', () => {
 
     const error = new Error('!');
 
-    schedule(() => { throw error; });
-    schedule2(() => { throw error; });
+    schedule(() => {
+      throw error;
+    });
+    schedule2(() => {
+      throw error;
+    });
 
     render();
     expect(logError1).toHaveBeenCalledWith(error);
@@ -157,7 +158,6 @@ describe('manualRenderScheduler', () => {
     expect(logError2).toHaveBeenCalledTimes(1);
   });
   it('calls render shots with their schedule configs', () => {
-
     const options1 = { node: document.createElement('div') };
     const options2 = { node: document.createElement('span') };
 
@@ -171,7 +171,11 @@ describe('manualRenderScheduler', () => {
     schedule2(shot2);
 
     render();
-    expect(shot1).toHaveBeenCalledWith(expect.objectContaining({ config: expect.objectContaining(options1) }));
-    expect(shot2).toHaveBeenCalledWith(expect.objectContaining({ config: expect.objectContaining(options2) }));
+    expect(shot1).toHaveBeenCalledWith(
+      expect.objectContaining({ config: expect.objectContaining(options1) }),
+    );
+    expect(shot2).toHaveBeenCalledWith(
+      expect.objectContaining({ config: expect.objectContaining(options2) }),
+    );
   });
 });

@@ -3,7 +3,6 @@ import type { Mock } from 'jest-mock';
 import { RenderQueue } from './render-queue';
 
 describe('RenderQueue', () => {
-
   let queue: RenderQueue;
   let mockSchedule: Mock<() => void>;
 
@@ -14,7 +13,6 @@ describe('RenderQueue', () => {
 
   describe('add', () => {
     it('enqueues render shots', () => {
-
       const shot1 = jest.fn();
       const shot2 = jest.fn();
 

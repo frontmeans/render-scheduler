@@ -11,6 +11,6 @@ export type CxWindow = Window & typeof globalThis;
  * Defaults to current window.
  */
 export const CxWindow: CxEntry<CxWindow> = {
-  perContext: (/*#__PURE__*/ cxSingle({ byDefault: () => window })),
+  perContext: /*#__PURE__*/ cxSingle({ byDefault: () => window }),
   toString: () => '[CxWindow]',
 };

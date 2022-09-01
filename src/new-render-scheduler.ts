@@ -14,10 +14,8 @@ let defaultRenderScheduler = animationRenderScheduler;
  *
  * @returns New default render scheduler.
  */
-export function setRenderScheduler(
-    scheduler?: RenderScheduler | null,
-): RenderScheduler {
-  return defaultRenderScheduler = scheduler || animationRenderScheduler;
+export function setRenderScheduler(scheduler?: RenderScheduler | null): RenderScheduler {
+  return (defaultRenderScheduler = scheduler || animationRenderScheduler);
 }
 
 /**

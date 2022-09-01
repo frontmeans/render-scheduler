@@ -13,30 +13,28 @@ import type { RenderExecution, RenderShot } from './render-shot';
  *
  * @returns Mapped render schedule instance.
  */
-export function mapRenderSchedule<TFromExecution extends RenderExecution, TToExecution extends RenderExecution>(
-    schedule: RenderSchedule<TFromExecution>,
-    execute: (
-        this: void,
-        execution: TFromExecution,
-        draft: DraftRenderExecution<TToExecution>,
-        shot: RenderShot<TToExecution>,
-    ) => void,
+export function mapRenderSchedule<
+  TFromExecution extends RenderExecution,
+  TToExecution extends RenderExecution,
+>(
+  schedule: RenderSchedule<TFromExecution>,
+  execute: (
+    this: void,
+    execution: TFromExecution,
+    draft: DraftRenderExecution<TToExecution>,
+    shot: RenderShot<TToExecution>,
+  ) => void,
 ): RenderSchedule<TToExecution> {
   return shot => schedule((fromExec: TFromExecution): void => {
+      let toExec!: TToExecution;
+      const draft: DraftRenderExecution<TToExecution> = {
+        postpone(postponed: RenderShot<TToExecution>) {
+          fromExec.postpone(_exec => postponed(toExec));
+        },
+      };
 
-    let toExec!: TToExecution;
-    const draft: DraftRenderExecution<TToExecution> = {
-      postpone(postponed: RenderShot<TToExecution>) {
-        fromExec.postpone(_exec => postponed(toExec));
-      },
-    };
-
-    execute(
-        fromExec,
-        draft,
-        exec => shot(toExec = exec),
-    );
-  });
+      execute(fromExec, draft, exec => shot((toExec = exec)));
+    });
 }
 
 /**
@@ -47,18 +45,21 @@ export function mapRenderSchedule<TFromExecution extends RenderExecution, TToExe
  * @typeParam TFromExecution - A type of render shot execution context supported by original schedule.
  * @typeParam TToExecution - A type of render shot execution context supported by mapped schedule.
  */
-export type MappedRenderExecutor<TFromExecution extends RenderExecution, TToExecution extends RenderExecution> =
-/**
- * @param execution - Original render shot execution context.
- * @param draft - A draft of mapped render shot execution context.
- * @param shot - A render shot to execute.
- */
-    (
-        this: void,
-        execution: TFromExecution,
-        draft: DraftRenderExecution<TToExecution>,
-        shot: RenderShot<TToExecution>,
-    ) => void;
+export type MappedRenderExecutor<
+  TFromExecution extends RenderExecution,
+  TToExecution extends RenderExecution,
+> =
+  /**
+   * @param execution - Original render shot execution context.
+   * @param draft - A draft of mapped render shot execution context.
+   * @param shot - A render shot to execute.
+   */
+  (
+    this: void,
+    execution: TFromExecution,
+    draft: DraftRenderExecution<TToExecution>,
+    shot: RenderShot<TToExecution>,
+  ) => void;
 
 /**
  * A draft of the mapped render shot execution context.

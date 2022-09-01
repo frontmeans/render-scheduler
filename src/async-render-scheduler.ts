@@ -7,17 +7,17 @@ function asyncRenderQueue$schedule(task: () => void): void {
   Promise.resolve().then(task);
 }
 
-let asyncRenderQueue = (/*#__PURE__*/ RenderQueue.by({
+let asyncRenderQueue = /*#__PURE__*/ RenderQueue.by({
   schedule: asyncRenderQueue$schedule,
   recur: asyncRenderQueue$schedule,
-  replace: replacement => asyncRenderQueue = replacement,
-}));
+  replace: replacement => (asyncRenderQueue = replacement),
+});
 
 /**
  * A render scheduler that executes scheduled render shots asynchronously.
  *
  * Recurrent render shots are also executed asynchronously.
  */
-export const asyncRenderScheduler: RenderScheduler = (/*#__PURE__*/ customRenderScheduler({
+export const asyncRenderScheduler: RenderScheduler = /*#__PURE__*/ customRenderScheduler({
   newQueue: () => asyncRenderQueue,
-}));
+});

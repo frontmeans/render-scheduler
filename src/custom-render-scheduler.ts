@@ -9,7 +9,6 @@ import type { RenderExecution, RenderShot } from './render-shot';
  * This is passed to {@link customRenderScheduler} function to construct new custom scheduler.
  */
 export interface CustomRenderSchedulerOptions {
-
   /**
    * Obtains a queue for render schedule.
    *
@@ -22,10 +21,9 @@ export interface CustomRenderSchedulerOptions {
    * @returns  A queue of scheduled render shots.
    */
   newQueue(config: RenderScheduleConfig): RenderQueue;
-
 }
 
-const RenderQ__symbol = (/*#__PURE__*/ Symbol('render-q'));
+const RenderQ__symbol = /*#__PURE__*/ Symbol('render-q');
 
 interface RenderQueue$Internal extends RenderQueue {
   [RenderQ__symbol]?: RenderQ | undefined;
@@ -36,15 +34,10 @@ class RenderQ {
   readonly ref: RenderQ$Ref;
   schedule: (this: RenderQ, config: RenderScheduleConfig) => void;
   private scheduled?: RenderScheduleConfig | undefined;
-  private readonly execute: (
-      this: this,
-      execution: RenderExecution,
-      done: () => void,
-  ) => void;
+  private readonly execute: (this: this, execution: RenderExecution, done: () => void) => void;
 
   static by(queue: RenderQueue$Internal, ref?: RenderQ$Ref): RenderQ {
-    return queue[RenderQ__symbol]
-        || (queue[RenderQ__symbol] = new RenderQ(queue, ref));
+    return queue[RenderQ__symbol] || (queue[RenderQ__symbol] = new RenderQ(queue, ref));
   }
 
   private constructor(readonly q: RenderQueue, ref?: [RenderQ, RenderQ]) {
@@ -72,10 +65,8 @@ class RenderQ {
     };
 
     this.q.schedule(() => {
-
       const next = this.reset();
       const done = (): void => {
-
         // Activate next queue.
         this.ref[1] = this.ref[0];
         // Schedule postponed shots (in reverse order).
@@ -95,8 +86,7 @@ class RenderQ {
   }
 
   private exec(execution: RenderExecution): void {
-    for (; ;) {
-
+    for (;;) {
       const shot = this.q.pull();
 
       if (!shot) {
@@ -113,7 +103,6 @@ class RenderQ {
   }
 
   private execRecurring(execution: RenderExecution, done: () => void): void {
-
     const execute = (): void => {
       this.exec(execution);
       if (!this.q.recur!(execute)) {
@@ -126,7 +115,7 @@ class RenderQ {
 
   private reset(): RenderQ {
     // Update next queue. Current queue remains active
-    return this.ref[0] = RenderQ.by(this.q.reset(), this.ref);
+    return (this.ref[0] = RenderQ.by(this.q.reset(), this.ref));
   }
 
   private suspend(): void {
@@ -165,18 +154,14 @@ function RenderQ$doNotSchedule(_config: RenderScheduleConfig): void {
  *
  * @returns New render scheduler.
  */
-export function customRenderScheduler(
-    options: CustomRenderSchedulerOptions,
-): RenderScheduler {
+export function customRenderScheduler(options: CustomRenderSchedulerOptions): RenderScheduler {
   return (scheduleOptions?: RenderScheduleOptions): RenderSchedule => {
-
     const config = RenderScheduleConfig.by(scheduleOptions);
     const queueRef: Readonly<RenderQ$Ref> = RenderQ.by(options.newQueue(config)).ref;
     let enqueued: [RenderQ, RenderShot, true?] | [] = [];
 
     return (shot: RenderShot): void => {
-
-      const [lastQueue,, executed] = enqueued;
+      const [lastQueue, , executed] = enqueued;
       const [nextQueue, activeQueue] = queueRef;
       let queue = lastQueue || activeQueue;
 
@@ -185,13 +170,12 @@ export function customRenderScheduler(
         // Replace the shot in the next queue unconditionally.
         enqueued[1] = shot;
       } else {
-
         // Add to active queue if no shot executed in this schedule yet, or the queue recurrent.
         // Add to the next queue otherwise.
-        const nextEnqueued: [RenderQ, RenderShot, true?] = enqueued = [
-          queue = !executed || queue.q.recur ? activeQueue : nextQueue,
+        const nextEnqueued: [RenderQ, RenderShot, true?] = (enqueued = [
+          (queue = !executed || queue.q.recur ? activeQueue : nextQueue),
           shot,
-        ];
+        ]);
 
         queue.add((execution: RenderExecution) => {
           nextEnqueued[2] = true; // Switch to the next queue.

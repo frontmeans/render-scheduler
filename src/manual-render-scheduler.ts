@@ -8,14 +8,12 @@ import type { RenderScheduler } from './render-scheduler';
  * Can be constructed using {@link newManualRenderScheduler} function.
  */
 export interface ManualRenderScheduler extends RenderScheduler {
-
   /**
    * Executes all scheduled render shots.
    *
    * @returns `true` if some render shots executed, or `false` when no render shots scheduled.
    */
   render(this: void): boolean;
-
 }
 
 /**
@@ -26,16 +24,15 @@ export interface ManualRenderScheduler extends RenderScheduler {
  * @returns New manual render scheduler.
  */
 export function newManualRenderScheduler(): ManualRenderScheduler {
-
   const emptyTask = (): boolean => false;
   let pendingTask = emptyTask;
   let queue = RenderQueue.by({
     // Called at most once until reset
-    schedule: task => pendingTask = () => {
-      task();
+    schedule: task => (pendingTask = () => {
+        task();
 
-      return true;
-    },
+        return true;
+      }),
     replace: replacement => {
       pendingTask = emptyTask;
       queue = replacement;

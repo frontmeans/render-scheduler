@@ -3,7 +3,6 @@ import { noopRenderScheduler } from './noop-render-scheduler';
 import type { RenderSchedule } from './render-schedule';
 
 describe('noopRenderScheduler', () => {
-
   let schedule: RenderSchedule;
 
   beforeEach(() => {
@@ -11,7 +10,6 @@ describe('noopRenderScheduler', () => {
   });
 
   it('does not schedule', () => {
-
     const shot = jest.fn();
 
     schedule(shot);

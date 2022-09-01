@@ -11,8 +11,8 @@ import type { RenderScheduleConfig } from './render-schedule';
  * @param execution - Render shot execution context instance.
  */
 export type RenderShot<TExecution extends RenderExecution = RenderExecution> = (
-    this: void,
-    execution: TExecution,
+  this: void,
+  execution: TExecution,
 ) => void;
 
 /**
@@ -21,7 +21,6 @@ export type RenderShot<TExecution extends RenderExecution = RenderExecution> = (
  * This is passed to {@link RenderShot render shot} when the latter executed.
  */
 export interface RenderExecution {
-
   /**
    * A configuration of rendering schedule the render shot is executed by.
    */
@@ -40,5 +39,4 @@ export interface RenderExecution {
    * @param postponed - A render shot to postpone.
    */
   postpone(this: void, postponed: RenderShot<this>): void;
-
 }

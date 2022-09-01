@@ -8,7 +8,6 @@ import type { RenderShot } from './render-shot';
  * The default implementation may be constructed using {@link RenderQueue.by} function.
  */
 export interface RenderQueue {
-
   /**
    * Adds a render shot to this queue.
    *
@@ -59,16 +58,13 @@ export interface RenderQueue {
    * @returns  Another (empty) queue that will collect scheduled render shots from now on.
    */
   reset(): RenderQueue;
-
 }
 
 export namespace RenderQueue {
-
   /**
    * Options for the {@link RenderQueue.by default implementation} of {@link RenderQueue}.
    */
   export interface Options {
-
     /**
      * Schedules queued render shots execution.
      *
@@ -95,13 +91,10 @@ export namespace RenderQueue {
      * @param replacement - A queue instance that collects scheduled render shots from now on.
      */
     replace?: ((this: void, replacement: RenderQueue) => void) | undefined;
-
   }
-
 }
 
 export const RenderQueue = {
-
   /**
    * Builds the default implementation of render queue.
    *
@@ -109,11 +102,7 @@ export const RenderQueue = {
    *
    * @returns New render queue.
    */
-  by(
-      this: void,
-      options: RenderQueue.Options,
-  ): RenderQueue {
-
+  by(this: void, options: RenderQueue.Options): RenderQueue {
     const { schedule, recur } = options;
     let { replace = RenderQueue$doNotReplace } = options;
 
@@ -160,7 +149,6 @@ export const RenderQueue = {
       schedule,
       recur: scheduleRecurrent,
       reset() {
-
         const next = RenderQueue.by(options);
 
         replace(next);
@@ -169,7 +157,6 @@ export const RenderQueue = {
       },
     };
   },
-
 };
 
 function RenderQueue$doNotReplace(_replacement: RenderQueue): void {

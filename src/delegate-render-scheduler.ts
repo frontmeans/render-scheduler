@@ -13,10 +13,9 @@ import type { RenderExecution } from './render-shot';
  * @typeParam TOptions - A type of accepted render schedule options.
  */
 export interface DelegateRenderScheduler<
-    TExecution extends RenderExecution = RenderExecution,
-    TOptions extends RenderScheduleOptions = RenderScheduleOptions>
-    extends RenderScheduler<TExecution, TOptions> {
-
+  TExecution extends RenderExecution = RenderExecution,
+  TOptions extends RenderScheduleOptions = RenderScheduleOptions,
+> extends RenderScheduler<TExecution, TOptions> {
   /**
    * Switches a render scheduler to schedule rendering by.
    *
@@ -29,7 +28,6 @@ export interface DelegateRenderScheduler<
    * @returns `this` instance.
    */
   scheduleBy(this: void, scheduler: RenderScheduler<TExecution>): this;
-
 }
 
 /**
@@ -42,13 +40,10 @@ export interface DelegateRenderScheduler<
  * @returns New delegating render scheduler instance.
  */
 export function newDelegateRenderScheduler<
-    TExecution extends RenderExecution,
-    TOptions extends RenderScheduleOptions = RenderScheduleOptions>(
-    scheduler: RenderScheduler<TExecution>,
-): DelegateRenderScheduler<TExecution, TOptions> {
-
+  TExecution extends RenderExecution,
+  TOptions extends RenderScheduleOptions = RenderScheduleOptions,
+>(scheduler: RenderScheduler<TExecution>): DelegateRenderScheduler<TExecution, TOptions> {
   const result = ((options: TOptions): RenderSchedule<TExecution> => {
-
     let usedScheduler = scheduler;
     let schedule = scheduler(options);
 

@@ -11,7 +11,6 @@ import type { RenderSchedule, RenderScheduleOptions } from './render-schedule';
 import { RenderScheduler } from './render-scheduler';
 
 describe('setRenderScheduler', () => {
-
   let mockScheduler: Mock<RenderScheduler>;
   let mockSchedule: Mock<RenderSchedule>;
 
@@ -41,7 +40,6 @@ describe('setRenderScheduler', () => {
   });
 
   describe('context entry', () => {
-
     let mockScheduler: Mock<RenderScheduler>;
 
     beforeEach(() => {
@@ -69,56 +67,61 @@ describe('setRenderScheduler', () => {
       expect(mockScheduler).toHaveBeenCalled();
     });
     it('substitutes node window when present', () => {
-
       const node = document.createElement('div');
-      const error = (): void => { /* log error */ };
+      const error = (): void => {
+        /* log error */
+      };
 
       scheduler({ node, error });
       expect(mockScheduler).toHaveBeenCalledWith({ window: nodeWindow(node), node, error });
     });
     it('substitutes default window when absent', () => {
-
-      const error = (): void => { /* log error */ };
+      const error = (): void => {
+        /* log error */
+      };
 
       scheduler({ error });
       expect(mockScheduler).toHaveBeenCalledWith({ window: mockWindow, error });
     });
     it('substitutes default window to provided scheduler', () => {
-
       const customScheduler = jest.fn<RenderScheduler>();
 
       cxBuilder.provide(cxConstAsset(RenderScheduler, customScheduler));
 
-      const error = (): void => { /* log error */ };
+      const error = (): void => {
+        /* log error */
+      };
 
       scheduler({ error });
       expect(customScheduler).toHaveBeenCalledWith({ window: mockWindow, error });
     });
     it('respects explicit parameters', () => {
-
       const window: Window = { name: 'window' } as any;
       const node = document.createElement('div');
-      const error = (): void => { /* log error */ };
+      const error = (): void => {
+        /* log error */
+      };
 
       scheduler({ window, node, error });
       expect(mockScheduler).toHaveBeenCalledWith({ window, node, error });
     });
     it('becomes unavailable after context disposal', () => {
-
       const reason = new Error('Test reason');
 
       cxBuilder.supply.off(reason);
 
       const window: Window = { name: 'window' } as any;
       const node = document.createElement('div');
-      const error = (): void => { /* log error */ };
+      const error = (): void => {
+        /* log error */
+      };
 
-      expect(() => scheduler({ window, node, error }))
-          .toThrow(new CxReferenceError(RenderScheduler, 'The [RenderScheduler] is unavailable', reason));
+      expect(() => scheduler({ window, node, error })).toThrow(
+        new CxReferenceError(RenderScheduler, 'The [RenderScheduler] is unavailable', reason),
+      );
       expect(mockScheduler).not.toHaveBeenCalled();
     });
     it('is singleton', () => {
-
       const cxBuilder2 = new CxBuilder(get => ({ get }), cxBuilder);
 
       expect(cxBuilder2.get(RenderScheduler)).toBe(scheduler);

@@ -18,26 +18,28 @@ import type { RenderExecution } from './render-shot';
  *
  * @returns New context entry definer.
  */
-export function cxRenderScheduler(
-    {
-      byDefault = _ => newRenderSchedule,
-    }: {
-      byDefault?: ((this: void, target: CxEntry.Target<RenderScheduler>) => RenderScheduler) | undefined;
-    } = {},
-): CxEntry.Definer<RenderScheduler> {
+export function cxRenderScheduler({
+  byDefault = _ => newRenderSchedule,
+}: {
+  byDefault?:
+    | ((this: void, target: CxEntry.Target<RenderScheduler>) => RenderScheduler)
+    | undefined;
+} = {}): CxEntry.Definer<RenderScheduler> {
   return cxRecent({
     create: (recent: RenderScheduler, _target: CxEntry.Target<RenderScheduler>) => recent,
     byDefault,
-    assign({ track, to }: CxTracker.Mandatory<RenderScheduler>, target: CxEntry.Target<RenderScheduler>) {
-
+    assign(
+      { track, to }: CxTracker.Mandatory<RenderScheduler>,
+      target: CxEntry.Target<RenderScheduler>,
+    ) {
       const cxWindow = target.get(CxWindow);
       const delegate = newDelegateRenderScheduler<RenderExecution>(noopRenderScheduler);
 
-      track(scheduler => delegate.scheduleBy(scheduler))
-          .whenOff(reason => delegate.scheduleBy(cxUnavailable(target.entry, undefined, reason)));
+      track(scheduler => delegate.scheduleBy(scheduler)).whenOff(reason => {
+        delegate.scheduleBy(cxUnavailable(target.entry, undefined, reason));
+      });
 
       const scheduler: RenderScheduler = (options = {}) => {
-
         const { node, window = node ? nodeWindow(node) : cxWindow } = options;
 
         return delegate({

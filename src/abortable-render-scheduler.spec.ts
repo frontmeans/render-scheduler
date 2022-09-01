@@ -1,12 +1,14 @@
 import { beforeEach, describe, expect, it, jest } from '@jest/globals';
 import { Supply } from '@proc7ts/supply';
 import type { AbortableRenderScheduler } from './abortable-render-scheduler';
-import { AbortableRenderExecution, newAbortableRenderScheduler } from './abortable-render-scheduler';
+import {
+  AbortableRenderExecution,
+  newAbortableRenderScheduler,
+} from './abortable-render-scheduler';
 import type { ManualRenderScheduler } from './manual-render-scheduler';
 import { newManualRenderScheduler } from './manual-render-scheduler';
 
 describe('AbortableRenderScheduler', () => {
-
   let scheduler: ManualRenderScheduler;
   let abortable: AbortableRenderScheduler;
 
@@ -31,7 +33,6 @@ describe('AbortableRenderScheduler', () => {
 
   describe('schedule supply', () => {
     it('is passed to render shot', () => {
-
       const schedule = abortable();
       let renderExec: AbortableRenderExecution | undefined;
 
@@ -43,7 +44,6 @@ describe('AbortableRenderScheduler', () => {
       expect(renderExec?.supply).toBe(schedule.supply);
     });
     it('is passed to postponed render shot', () => {
-
       const schedule = abortable();
       let postponedExec: AbortableRenderExecution | undefined;
 
@@ -60,14 +60,12 @@ describe('AbortableRenderScheduler', () => {
 
   describe('supply', () => {
     it('can be specified explicitly', () => {
-
       const supply = new Supply();
 
       abortable = newAbortableRenderScheduler(scheduler, supply);
       expect(abortable.supply).toBe(supply);
     });
     it('reports error on attempt to schedule render shot in existing schedule', () => {
-
       const whenOff = jest.fn();
       const supply = new Supply(whenOff);
       const error = jest.fn();
@@ -84,7 +82,11 @@ describe('AbortableRenderScheduler', () => {
       expect(out).toHaveLength(0);
     });
     it('reports error on attempt to schedule render shot in new schedule', () => {
-      abortable.supply.whenOff(() => { /* noop */ }).off('reason');
+      abortable.supply
+        .whenOff(() => {
+          /* noop */
+        })
+        .off('reason');
 
       const whenOff = jest.fn();
       const supply = new Supply(whenOff);
@@ -100,7 +102,6 @@ describe('AbortableRenderScheduler', () => {
       expect(out).toHaveLength(0);
     });
     it('does not render once cut off', () => {
-
       const whenOff = jest.fn();
       const supply = new Supply(whenOff);
       const error = jest.fn();
@@ -114,5 +115,4 @@ describe('AbortableRenderScheduler', () => {
       expect(error).not.toHaveBeenCalled();
     });
   });
-
 });

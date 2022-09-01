@@ -5,7 +5,7 @@ import type { RenderScheduler } from './render-scheduler';
 /**
  * @internal
  */
-const animationRenderQueues = (/*#__PURE__*/ new WeakMap<Window, RenderQueue>());
+const animationRenderQueues = /*#__PURE__*/ new WeakMap<Window, RenderQueue>();
 
 /**
  * A render scheduler that executes scheduled render shots within animation frame.
@@ -18,9 +18,8 @@ const animationRenderQueues = (/*#__PURE__*/ new WeakMap<Window, RenderQueue>())
  *
  * [requestAnimationFrame()]: https://developer.mozilla.org/en-US/docs/Web/API/window/requestAnimationFrame
  */
-export const animationRenderScheduler: RenderScheduler = (/*#__PURE__*/ customRenderScheduler({
+export const animationRenderScheduler: RenderScheduler = /*#__PURE__*/ customRenderScheduler({
   newQueue({ window }) {
-
     const existing = animationRenderQueues.get(window);
 
     if (existing) {
@@ -36,4 +35,4 @@ export const animationRenderScheduler: RenderScheduler = (/*#__PURE__*/ customRe
 
     return newQueue;
   },
-}));
+});

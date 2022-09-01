@@ -7,15 +7,15 @@ import type { RenderExecution } from './render-shot';
 
 describe('CustomRenderScheduler', () => {
   it('passes config to enqueued render shots', () => {
-
-    let exec = (): void => {/* not scheduled */};
+    let exec = (): void => {
+      /* not scheduled */
+    };
     const scheduled: Mock<(execution: RenderExecution) => void>[] = [];
     const executed: Mock<(execution: RenderExecution) => void>[] = [];
     const queue: RenderQueue = {
       add: shot => scheduled.push(jest.fn(shot)),
       post: shot => scheduled.unshift(jest.fn(shot)),
       pull: () => {
-
         const shot = scheduled.shift();
 
         if (shot) {
@@ -24,7 +24,7 @@ describe('CustomRenderScheduler', () => {
 
         return shot;
       },
-      schedule: task => exec = task,
+      schedule: task => (exec = task),
       reset: () => queue,
     };
     const scheduler = customRenderScheduler({ newQueue: () => queue });
@@ -34,12 +34,13 @@ describe('CustomRenderScheduler', () => {
     schedule(jest.fn());
     exec();
 
-    expect(executed[0]).toHaveBeenCalledWith(expect.objectContaining({
-      config: expect.objectContaining(options as Record<string, unknown>),
-    }));
+    expect(executed[0]).toHaveBeenCalledWith(
+      expect.objectContaining({
+        config: expect.objectContaining(options as Record<string, unknown>),
+      }),
+    );
   });
   it('executes recurrent shots', () => {
-
     const schedule = jest.fn((task: () => void) => task());
     const recur = jest.fn((task: () => void) => task());
 

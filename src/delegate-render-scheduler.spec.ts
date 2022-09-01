@@ -6,7 +6,6 @@ import { newManualRenderScheduler } from './manual-render-scheduler';
 import type { RenderScheduler } from './render-scheduler';
 
 describe('DelegateRenderScheduler', () => {
-
   let scheduler: ManualRenderScheduler;
   let delegate: DelegateRenderScheduler;
   let scheduleBy: (scheduler: RenderScheduler) => DelegateRenderScheduler;
@@ -24,7 +23,6 @@ describe('DelegateRenderScheduler', () => {
   });
 
   it('schedules rendering by another scheduler', () => {
-
     const schedule = delegate();
 
     schedule(() => out.push(1));
@@ -35,7 +33,6 @@ describe('DelegateRenderScheduler', () => {
   });
 
   describe('scheduleBy', () => {
-
     let scheduler2: ManualRenderScheduler;
 
     beforeEach(() => {
@@ -43,7 +40,6 @@ describe('DelegateRenderScheduler', () => {
     });
 
     it('creates new schedules in new scheduler', () => {
-
       expect(out).toHaveLength(0);
       expect(scheduleBy(scheduler2)).toBe(delegate);
 
@@ -57,7 +53,6 @@ describe('DelegateRenderScheduler', () => {
       expect(out).toEqual([1]);
     });
     it('schedules new render shots by new scheduler', () => {
-
       const schedule = delegate();
 
       expect(out).toHaveLength(0);
@@ -71,7 +66,6 @@ describe('DelegateRenderScheduler', () => {
       expect(out).toEqual([1]);
     });
     it('schedules old render shots by old scheduler', () => {
-
       const schedule = delegate();
 
       schedule(() => out.push(1));

@@ -5,10 +5,10 @@ import type { RenderScheduler } from './render-scheduler';
 /**
  * @internal
  */
-let immediateRenderQueue = (/*#__PURE__*/ RenderQueue.by({
+let immediateRenderQueue = /*#__PURE__*/ RenderQueue.by({
   schedule: task => task(),
-  replace: replacement => immediateRenderQueue = replacement,
-}));
+  replace: replacement => (immediateRenderQueue = replacement),
+});
 
 /**
  * A render scheduler that schedules render shots for immediate execution.
@@ -17,6 +17,6 @@ let immediateRenderQueue = (/*#__PURE__*/ RenderQueue.by({
  * similarly to other schedulers, such as {@link animationRenderScheduler}. In particular, it adds recurrent
  * render shots to render queue instead of executing them immediately.
  */
-export const queuedRenderScheduler: RenderScheduler = (/*#__PURE__*/ customRenderScheduler({
+export const queuedRenderScheduler: RenderScheduler = /*#__PURE__*/ customRenderScheduler({
   newQueue: () => immediateRenderQueue,
-}));
+});

@@ -4,7 +4,6 @@ import { CxWindow } from './cx-window';
 
 describe('CxWindow', () => {
   it('defaults to window object', () => {
-
     const context = new CxBuilder(get => ({ get })).context;
 
     expect(context.get(CxWindow)).toBe(window);

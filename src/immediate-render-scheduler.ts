@@ -5,12 +5,12 @@ import type { RenderExecution, RenderShot } from './render-shot';
 /**
  * Render scheduler that executes render shots immediately.
  */
-export const immediateRenderScheduler: RenderScheduler = (options?: RenderScheduleOptions): RenderSchedule => {
-
+export const immediateRenderScheduler: RenderScheduler = (
+  options?: RenderScheduleOptions,
+): RenderSchedule => {
   const config = RenderScheduleConfig.by(options);
 
   return (shot: RenderShot): void => {
-
     const postponed: RenderShot[] = [];
     const execution: RenderExecution = {
       get config() {
@@ -22,8 +22,7 @@ export const immediateRenderScheduler: RenderScheduler = (options?: RenderSchedu
     };
 
     execute(shot);
-    for (; ;) {
-
+    for (;;) {
       const last = postponed.pop();
 
       if (!last) {

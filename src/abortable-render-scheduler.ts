@@ -9,7 +9,6 @@ import type { RenderExecution, RenderShot } from './render-shot';
  * Options for abortable render schedule.
  */
 export interface AbortableRenderScheduleOptions extends RenderScheduleOptions {
-
   /**
    * Render schedule supply.
    *
@@ -18,7 +17,6 @@ export interface AbortableRenderScheduleOptions extends RenderScheduleOptions {
    * A new supply will be created when omitted.
    */
   readonly supply?: Supply | undefined;
-
 }
 
 /**
@@ -28,7 +26,6 @@ export interface AbortableRenderScheduleOptions extends RenderScheduleOptions {
  * abortable} render scheduler.
  */
 export interface AbortableRenderExecution extends RenderExecution {
-
   /**
    * Render schedule supply.
    *
@@ -37,7 +34,6 @@ export interface AbortableRenderExecution extends RenderExecution {
    * This is the same as {@link AbortableRenderSchedule.supply}.
    */
   readonly supply: Supply;
-
 }
 
 /**
@@ -48,8 +44,7 @@ export interface AbortableRenderExecution extends RenderExecution {
  * @typeParam TExecution - A type of supported render shot execution context.
  */
 export interface AbortableRenderSchedule<TExecution extends RenderExecution = RenderExecution>
-    extends RenderSchedule<TExecution & AbortableRenderExecution> {
-
+  extends RenderSchedule<TExecution & AbortableRenderExecution> {
   /**
    * A supply of this render schedule.
    *
@@ -59,7 +54,6 @@ export interface AbortableRenderSchedule<TExecution extends RenderExecution = Re
    * this schedule when omitted.
    */
   readonly supply: Supply;
-
 }
 
 /**
@@ -71,9 +65,9 @@ export interface AbortableRenderSchedule<TExecution extends RenderExecution = Re
  * @typeParam TOptions - A type of accepted render schedule options.
  */
 export interface AbortableRenderScheduler<
-    TExecution extends RenderExecution = RenderExecution,
-    TOptions extends RenderScheduleOptions = RenderScheduleOptions> {
-
+  TExecution extends RenderExecution = RenderExecution,
+  TOptions extends RenderScheduleOptions = RenderScheduleOptions,
+> {
   /**
    * Creates an {@link AbortableRenderSchedule abortable} render schedule according to the given options.
    *
@@ -81,7 +75,10 @@ export interface AbortableRenderScheduler<
    *
    * @returns New render schedule.
    */
-  (this: void, options?: TOptions & AbortableRenderScheduleOptions): AbortableRenderSchedule<TExecution>;
+  (
+    this: void,
+    options?: TOptions & AbortableRenderScheduleOptions,
+  ): AbortableRenderSchedule<TExecution>;
 
   /**
    * A supply of this render scheduler.
@@ -92,7 +89,6 @@ export interface AbortableRenderScheduler<
    * scheduler when omitted.
    */
   readonly supply: Supply;
-
 }
 
 /**
@@ -107,41 +103,35 @@ export interface AbortableRenderScheduler<
  * @returns New abortable render scheduler instance.
  */
 export function newAbortableRenderScheduler<
-    TExecution extends RenderExecution,
-    TOptions extends RenderScheduleOptions,
-    >(
-    scheduler: RenderScheduler<TExecution, TOptions>,
-    supply = new Supply(),
+  TExecution extends RenderExecution,
+  TOptions extends RenderScheduleOptions,
+>(
+  scheduler: RenderScheduler<TExecution, TOptions>,
+  supply = new Supply(),
 ): AbortableRenderScheduler<TExecution, TOptions> {
-
   const abortableScheduler = ((
-      options?: TOptions & AbortableRenderScheduleOptions,
+    options?: TOptions & AbortableRenderScheduleOptions,
   ): AbortableRenderSchedule<TExecution> => {
-
     const scheduleSupply = options?.supply || new Supply();
 
     scheduleSupply.needs(supply);
 
     let execute = (
-        exec: TExecution,
-        draft: DraftRenderExecution<TExecution & AbortableRenderExecution>,
-        shot: RenderShot<TExecution & AbortableRenderExecution>,
+      exec: TExecution,
+      draft: DraftRenderExecution<TExecution & AbortableRenderExecution>,
+      shot: RenderShot<TExecution & AbortableRenderExecution>,
     ): void => shot({
-      ...exec,
-      ...draft,
-      supply: scheduleSupply,
-    });
+        ...exec,
+        ...draft,
+        supply: scheduleSupply,
+      });
     let schedule = mapRenderSchedule<TExecution, TExecution & AbortableRenderExecution>(
-        scheduler(options),
-        (
-            exec,
-            draft,
-            shot,
-        ) => execute(exec, draft, shot),
+      scheduler(options),
+      (exec, draft, shot) => execute(exec, draft, shot),
     );
-    const abortableSchedule = ((
-        shot: RenderShot<TExecution & AbortableRenderExecution>,
-    ): void => schedule(shot)) as AbortableRenderSchedule<TExecution>;
+    const abortableSchedule = ((shot: RenderShot<TExecution & AbortableRenderExecution>): void => {
+      schedule(shot);
+    }) as AbortableRenderSchedule<TExecution>;
 
     (abortableSchedule as { supply: Supply }).supply = scheduleSupply;
     scheduleSupply.whenOff(reason => {
@@ -158,10 +148,9 @@ export function newAbortableRenderScheduler<
 }
 
 function AbortableRenderSchedule$abort(
-    reason: unknown,
-    options: RenderScheduleOptions | undefined,
+  reason: unknown,
+  options: RenderScheduleOptions | undefined,
 ): (_shot: RenderShot<never>) => void {
-
   const { error } = RenderScheduleConfig.by(options);
 
   return _shot => {
@@ -170,9 +159,9 @@ function AbortableRenderSchedule$abort(
 }
 
 function AbortableRenderSchedule$doNotExecute(
-    _exec: RenderExecution,
-    _draft: DraftRenderExecution<AbortableRenderExecution>,
-    _shot: RenderShot<never>,
+  _exec: RenderExecution,
+  _draft: DraftRenderExecution<AbortableRenderExecution>,
+  _shot: RenderShot<never>,
 ): void {
   // Do not execute in aborted schedule
 }
