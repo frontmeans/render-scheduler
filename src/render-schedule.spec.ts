@@ -1,4 +1,5 @@
 import { describe, expect, it, jest } from '@jest/globals';
+import type { Mock } from 'jest-mock';
 import { RenderScheduleConfig } from './render-schedule';
 
 describe('RenderScheduleConfig', () => {
@@ -55,7 +56,7 @@ describe('RenderScheduleConfig', () => {
   describe('error', () => {
     it('prints error using `console.error` by default', () => {
       const error = new Error('Expected');
-      const errorSpy = jest.spyOn(console, 'error');
+      const errorSpy = jest.spyOn(console, 'error') as Mock<(...args: unknown[]) => void>;
 
       errorSpy.mockImplementation(() => {
         /* noop */

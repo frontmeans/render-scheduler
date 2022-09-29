@@ -37,7 +37,7 @@ describe('CustomRenderScheduler', () => {
     expect(executed[0]).toHaveBeenCalledWith(
       expect.objectContaining({
         config: expect.objectContaining(options as Record<string, unknown>),
-      }),
+      }) as unknown as RenderExecution,
     );
   });
   it('executes recurrent shots', () => {
