@@ -10,7 +10,7 @@ import type { RenderExecution } from './render-shot';
 /**
  * Creates context entry definer containing {@link RenderScheduler render scheduler}.
  *
- * Uses the most recently provided render scheduler. Sets {@link RenderSchedule.Options.window window} option for the
+ * Uses the most recently provided render scheduler. Sets {@link RenderScheduleOptions#window window} option for the
  * scheduler to {@link CxWindow contextual window} unless explicitly specified.
  *
  * @param byDefault - Creates render scheduler to use by default. {@link newRenderSchedule Default one} used when

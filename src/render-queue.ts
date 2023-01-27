@@ -5,7 +5,7 @@ import type { RenderShot } from './render-shot';
  *
  * Utilized by render scheduler in order to collect render shots and schedule their execution.
  *
- * The default implementation may be constructed using {@link RenderQueue.by} function.
+ * The default implementation may be constructed using {@link RenderQueue:object.by RenderQueue.by()} function.
  */
 export interface RenderQueue {
   /**
@@ -62,7 +62,7 @@ export interface RenderQueue {
 
 export namespace RenderQueue {
   /**
-   * Options for the {@link RenderQueue.by default implementation} of {@link RenderQueue}.
+   * Options for the {@link RenderQueue:object.by default implementation} of {@link RenderQueue}.
    */
   export interface Options {
     /**

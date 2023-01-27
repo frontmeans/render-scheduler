@@ -29,7 +29,7 @@ export type RenderSchedule<TExecution extends RenderExecution = RenderExecution>
  * This is passed to {@link RenderScheduler render scheduler} when constructing new {@link RenderSchedule schedule}.
  *
  * A {@link RenderScheduleConfig render configuration} can be constructed based on the options with
- * {@link RenderScheduleConfig.by} function.
+ * {@link RenderScheduleConfig:object.by RenderScheduleConfig:object.by()} function.
  */
 export interface RenderScheduleOptions {
   /**
@@ -63,7 +63,8 @@ export interface RenderScheduleOptions {
  *
  * This is based on {@link RenderScheduleOptions render options}, but has all properties present.
  *
- * The configuration ought to be constructed out of render options by {@link RenderScheduleConfig.by} function.
+ * The configuration ought to be constructed out of render options by {@link RenderScheduleConfig:object.by
+ * RenderScheduleConfig:object.by()} function.
  */
 export interface RenderScheduleConfig {
   /**
