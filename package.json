@@ -23,6 +23,7 @@
     "types": "./dist/render-scheduler.d.ts",
     "default": "./dist/render-scheduler.js"
   },
+  "sideEffects": false,
   "dependencies": {
     "@frontmeans/dom-primitives": "^1.1.0",
     "@proc7ts/context-values": "^7.1.0",
